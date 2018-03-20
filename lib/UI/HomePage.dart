@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../UI/GradientAppBar.dart';
+import '../UI/HomePageBody.dart';
 class HomePage extends StatelessWidget {
 
   @override
@@ -9,9 +10,8 @@ class HomePage extends StatelessWidget {
     return new Scaffold(
       body: new Column(
         children: <Widget>[
-          new GradientAppBar(
-            "Studento"
-          )
+          new GradientAppBar("Studento"),
+          new HomePageBody(),
         ],
       )
     );
