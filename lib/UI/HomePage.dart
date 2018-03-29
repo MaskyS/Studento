@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../UI/HomePageBody.dart';
+import '../UI/StudentoAppBar.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
     return new Scaffold(
       body: new Column(
         children: <Widget>[
-
+           new StudentoAppBar("Studento"),
           new HomePageBody(),
         ],
       )
