@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
+/* This variable contains all the needed configurations for the app bar
+  * When we need to use the app bar in  a certain page:
+  * - import this class.
+  * In your Scaffold widget, use the following key-value pair:
+  *   appBar: new StudentoAppBar().appBarMeta,
+  * That's it!
+  * I used the appBarMeta variable because returning the configuration as
+  * Widget didn't work.
+  * If you have found a better way, please post it on
+  * https://github.com/MaskyS/studento/issues :)
+  */
 
-class StudentoAppBar extends StatelessWidget {
-
-  final String title;
-  final double barHeight = 66.0;
-
-  StudentoAppBar(this.title);
-
-  @override
-  Widget build(BuildContext context) {
-
-    return new Container(
-      height: barHeight,
-      decoration: new BoxDecoration(
-        color: new Color(0xFF5fbff9)
-    ),
-      child: new Center(
-        child: new Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontFamily: 'Mina',
-            fontWeight: FontWeight.bold,
-            fontSize: 36.0,
-          ),
-        ),
+class StudentoAppBar {
+  final appBarMeta = new AppBar(
+    title: new Text('Studento',
+      style: const TextStyle(
+          color: Colors.white,
+          fontFamily: 'Mina',
+          fontWeight: FontWeight.w700,
+          fontSize: 36.0,
       ),
-    );
-  }
+    ),
+    centerTitle: true,
+    backgroundColor: new Color(0xFF5fbff9),
+    actions: <Widget>[
+      new IconButton(
+        icon: new Icon(Icons.add_circle), /// TODO 1
+        /// TODO 2
+        color: Colors.white,
+        onPressed: () {print("This will open up your schedule page! In the future anyway :P");},
+      )
+    ],
+  );
 }
+
+///TODO 1: 
+/// Implement dynamic icon setup.
+
+///TODO 2 :
+/// Change the icon's color depending on state. i.e. how close
+/// the next deadline is, or if user has any homework left.
+/// Something like: color: (__isDeadlineApproaching) ? red : green 
