@@ -3,7 +3,12 @@ import '../pages/PastPapersPage.dart';
 import '../pages/SchedulePage.dart';
 import '../pages/TodoListPage.dart';
 import '../pages/TopicNotesPage.dart';
-
+/*
+ * The alignment/layout in this class isn't done right yet. Currently this
+ * looks good on a GPixel 2, but ir probably doesn't elsewhere. I need to look
+ * into the Rows and Columns system to see if that can work. Otherwise, very
+ * much work in progress here concerning the layout.
+ */
 class HomePageBody extends StatelessWidget{
   Widget build(BuildContext context){
     //Args: Button Title, isAlignedRight, isAlignedTop, icon_file_path, marginVertical of card, margin_top of icon, marginHorizontal of card.
