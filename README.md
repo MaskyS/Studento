@@ -1,5 +1,5 @@
 # Studento
-
+![Screenshot HomePage](image.ibb.co/hmgys7/Screenshot_from_2018_04_01_22_43_45.png)
 ## The only app you need for acing your IGCSE!
 
 This app is a WIP, but here's a small description of what's to come:
