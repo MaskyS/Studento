@@ -1,9 +1,9 @@
 # Studento
-##...The only app you need for acing your IGCSE!
+## The only app you need for acing your IGCSE!
 
 This app is a WIP, but here's a small description of what's to come:
 
-####Past Papers
+#### Past Papers
 -  Studento allows you to access O Level and A Level past papers & marking
    schemes offlin(after the first run). There is no more need to browse through
    websites and remember complicated codes so you can get the right paper. You
