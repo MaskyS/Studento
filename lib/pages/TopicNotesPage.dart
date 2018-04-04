@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../UI/StudentoAppBar.dart';
 
 class TopicNotesPage extends StatelessWidget {
+  static String routeName = "topic_notes_page";
+
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

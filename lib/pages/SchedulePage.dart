@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import '../UI/StudentoAppBar.dart';
 
+
+
 class SchedulePage extends StatelessWidget {
+  static String routeName = "schedule_page";
+
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

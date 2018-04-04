@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import '../UI/StudentoAppBar.dart';
 
 class SyllabusPage extends StatelessWidget {
-
-
   static String routeName = "syllabus_page";
+
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

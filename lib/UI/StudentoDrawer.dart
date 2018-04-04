@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/HomePage.dart';
-import '../pages/SyllabusPage.dart';
-import '../pages/EventsPage.dart';
-import '../pages/MarksCalculatorPage.dart';
-import '../pages/GetProPage.dart';
-import '../pages/SendFeedbackPage.dart';
-import '../pages/SettingsPage.dart';
+import 'package:studentapp/globals.dart' as globals;
 
 
 class DrawerFragment extends StatelessWidget{
@@ -53,7 +47,7 @@ class StudentoDrawer extends StatelessWidget {
   static String authorNameString = "Elon Musk";
   // The text Widget for the author name.
   static var  quoteAuthorText = new Container(
-    child: new Text(('- ' + authorNameString),
+    child: new Text(('- $authorNameString'),
       textAlign: TextAlign.end,
       style: new TextStyle(
         fontWeight: FontWeight.w400,
@@ -78,14 +72,14 @@ class StudentoDrawer extends StatelessWidget {
     ),
   );
 
-  var homePageFragment = new DrawerFragment(Icons.home, "Home", "Go back to the home page.", HomePage.routeName);
-  var syllabusPageFragment = new DrawerFragment(Icons.book, "Syllabus", "Access the syllabus of your subjects.", SyllabusPage.routeName);
-  var eventsFragment = new DrawerFragment(Icons.notifications, "Events", "View or add reminders for exams/events.", EventsPage.routeName);
-  var marksCalculatorFragment = new DrawerFragment(Icons.assessment, "Marks Calculator", "Input your assignment scores, get your final mark. Simple.", MarksCalculatorPage.routeName);
+  var homePageFragment = new DrawerFragment(Icons.home, "Home", "Go back to the home page.", globals.homePageRouteName);
+  var syllabusPageFragment = new DrawerFragment(Icons.book, "Syllabus", "Access the syllabus of your subjects.", globals.syllabusPageRouteName);
+  var eventsFragment = new DrawerFragment(Icons.notifications, "Events", "View or add reminders for exams/events.", globals.eventsPageRouteName);
+  var marksCalculatorFragment = new DrawerFragment(Icons.assessment, "Marks Calculator", "Input your assignment scores, get your final mark. Simple.", globals.marksCalculatorPageRouteName);
 
-  var getProFragment = new DrawerFragment(Icons.card_membership, "Get Pro", "Buy us a cup of chai, we'll help you get rid of ads!", GetProPage.routeName);
-  var sendFeedbackFragment = new DrawerFragment(Icons.feedback, "Send Feedback", "Report a nasty bug or send awesome ideas our way.", SendFeedbackPage.routeName);
-  var settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", SettingsPage.routeName);
+  var getProFragment = new DrawerFragment(Icons.card_membership, "Get Pro", "Buy us a cup of chai, we'll help you get rid of ads!", globals.getProPageRouteName);
+  var sendFeedbackFragment = new DrawerFragment(Icons.feedback, "Send Feedback", "Report a nasty bug or send awesome ideas our way.", globals.sendFeedbackPageRouteName);
+  var settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", globals.settingsPageRouteName);
 
   Widget build(BuildContext context){
     // Put the header and all the fragments together in a ListView.

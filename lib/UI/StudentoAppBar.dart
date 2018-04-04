@@ -18,14 +18,14 @@ class StudentoAppBar {
           color: Colors.white,
           fontFamily: 'Mina',
           fontWeight: FontWeight.w700,
-          fontSize: 36.0,
+          fontSize: 30.0,
       ),
     ),
     centerTitle: true,
-    backgroundColor: new Color(0xFF5fbff9),
+    backgroundColor: Colors.deepPurpleAccent,
     actions: <Widget>[
       new IconButton(
-        icon: new Icon(Icons.add_circle), /// TODO 1
+        icon: new Icon(Icons.notifications_active), /// TODO 1
         /// TODO 2
         color: Colors.white,
         onPressed: () {print("This will open up your schedule page! In the future anyway :P");},
@@ -35,7 +35,8 @@ class StudentoAppBar {
 }
 
 ///TODO 1: 
-/// Implement dynamic icon setup.
+/// Implement dynamic icon setup, i.e. The icon should change depending on how
+/// close the deadline is.
 
 ///TODO 2 :
 /// Change the icon's color depending on state. i.e. how close

@@ -62,6 +62,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
           weight: 700
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf
+          style: italic
+          weight: 800
 
 
   #     fonts:
