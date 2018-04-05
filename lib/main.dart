@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './pages/HomePage.dart';
+
+import 'pages/HomePage.dart';
 import 'pages/PastPapersPage.dart';
 import 'pages/SyllabusPage.dart';
 import 'pages/EventsPage.dart';
@@ -15,7 +16,7 @@ void main() => runApp(new Studento());
 
 class Studento extends StatelessWidget {
 
-  var routes = <String, WidgetBuilder> {
+  final routes = <String, WidgetBuilder> {
   HomePage.routeName : (BuildContext context) => new HomePage(),
   PastPapersPage.routeName : (BuildContext context) => new PastPapersPage(),
   SchedulePage.routeName : (BuildContext context) => new SchedulePage(),
@@ -27,7 +28,6 @@ class Studento extends StatelessWidget {
   SendFeedbackPage.routeName : (BuildContext context) => new SendFeedbackPage(),
   TodoListPage.routeName : (BuildContext context) => new TodoListPage(),
   TopicNotesPage.routeName : (BuildContext context) => new TopicNotesPage(),
-
   };
 
   @override
@@ -41,5 +41,5 @@ class Studento extends StatelessWidget {
       ),
     );
   }
-	
+
 }

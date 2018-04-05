@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../UI/StudentoAppBar.dart';
+import '../UI/StudentoDrawer.dart';
 
 class TopicNotesPage extends StatelessWidget {
   static String routeName = "topic_notes_page";
@@ -8,6 +9,7 @@ class TopicNotesPage extends StatelessWidget {
 
     //Contains the layout of the page.
     final page = new Scaffold(
+      drawer: new StudentoDrawer(),
       appBar: new StudentoAppBar().appBarMeta,
       body: new Container(
         child: new Text('Hello!  This TopicNotesPage isn\'t ready for your eyes yet :)'),

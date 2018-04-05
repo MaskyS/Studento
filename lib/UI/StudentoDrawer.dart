@@ -27,6 +27,8 @@ class DrawerFragment extends StatelessWidget{
 }
 
 class StudentoDrawer extends StatelessWidget {
+  final bool usedInHomePage;
+  StudentoDrawer({this.usedInHomePage : false});
   // Store quote in a var so different quotes can be displayed.
   static String quoteString = "\"Failure is not an option here. If things are failing, you are not innovating enough.\"";
   //The text Widget for the quote.
@@ -46,7 +48,7 @@ class StudentoDrawer extends StatelessWidget {
   // Store author name in a var so that different quotes can be displayed.
   static String authorNameString = "Elon Musk";
   // The text Widget for the author name.
-  static var  quoteAuthorText = new Container(
+  static Container  quoteAuthorText = new Container(
     child: new Text(('- $authorNameString'),
       textAlign: TextAlign.end,
       style: new TextStyle(
@@ -59,7 +61,7 @@ class StudentoDrawer extends StatelessWidget {
   );
 
   // Place quote and author widgets in a DrawerHeader.
-  var header = new DrawerHeader(
+  final drawerHeader = new DrawerHeader(
     decoration: new BoxDecoration(
       color: Colors.deepPurpleAccent,
     ),
@@ -68,25 +70,27 @@ class StudentoDrawer extends StatelessWidget {
       children: <Widget>[
         quoteText,
         quoteAuthorText,
-      ] 
+      ]
     ),
   );
 
-  var homePageFragment = new DrawerFragment(Icons.home, "Home", "Go back to the home page.", globals.homePageRouteName);
-  var syllabusPageFragment = new DrawerFragment(Icons.book, "Syllabus", "Access the syllabus of your subjects.", globals.syllabusPageRouteName);
-  var eventsFragment = new DrawerFragment(Icons.notifications, "Events", "View or add reminders for exams/events.", globals.eventsPageRouteName);
-  var marksCalculatorFragment = new DrawerFragment(Icons.assessment, "Marks Calculator", "Input your assignment scores, get your final mark. Simple.", globals.marksCalculatorPageRouteName);
+  final homePageFragment = new DrawerFragment(Icons.home, "Home", "Go back to the home page.", globals.homePageRouteName);
+  final syllabusPageFragment = new DrawerFragment(Icons.book, "Syllabus", "Access the syllabus of your subjects.", globals.syllabusPageRouteName);
+  final eventsFragment = new DrawerFragment(Icons.notifications, "Events", "View or add reminders for exams/events.", globals.eventsPageRouteName);
+  final marksCalculatorFragment = new DrawerFragment(Icons.assessment, "Marks Calculator", "Input your assignment scores, get your final mark. Simple.", globals.marksCalculatorPageRouteName);
 
-  var getProFragment = new DrawerFragment(Icons.card_membership, "Get Pro", "Buy us a cup of chai, we'll help you get rid of ads!", globals.getProPageRouteName);
-  var sendFeedbackFragment = new DrawerFragment(Icons.feedback, "Send Feedback", "Report a nasty bug or send awesome ideas our way.", globals.sendFeedbackPageRouteName);
-  var settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", globals.settingsPageRouteName);
+  final getProFragment = new DrawerFragment(Icons.card_membership, "Get Pro", "Buy us a cup of chai, we'll help you get rid of ads!", globals.getProPageRouteName);
+  final sendFeedbackFragment = new DrawerFragment(Icons.feedback, "Send Feedback", "Report a nasty bug or send awesome ideas our way.", globals.sendFeedbackPageRouteName);
+  final settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", globals.settingsPageRouteName);
 
   Widget build(BuildContext context){
+    List fragmentsList = [drawerHeader, homePageFragment, syllabusPageFragment, eventsFragment, marksCalculatorFragment, new Divider(),
+      getProFragment, settingsFragment, sendFeedbackFragment];
+    if (usedInHomePage) {
+      fragmentsList.remove(homePageFragment);
+    }
     // Put the header and all the fragments together in a ListView.
-    var fragmentListView= new ListView(children: [header, homePageFragment, syllabusPageFragment, eventsFragment, marksCalculatorFragment, 
-      new Divider(), 
-      getProFragment, settingsFragment, sendFeedbackFragment, 
-    ]);
+    ListView fragmentListView= new ListView(children: fragmentsList);
 
     final drawer = new Drawer(child: fragmentListView);
     return drawer;

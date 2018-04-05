@@ -13,7 +13,7 @@ import 'pages/TopicNotesPage.dart';
 String userName = "Romeo";
 
 // Initialise these variables so we don't have to import each and every one of
-// these  pages each time we want to navigate to them. 
+// these  pages each time we want to navigate to them.
 
 final String homePageRouteName = HomePage.routeName;
 final String pastPapersPageRouteName = HomePage.routeName;
