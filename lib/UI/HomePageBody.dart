@@ -91,7 +91,7 @@ class HomePageBody extends StatelessWidget{
                     decoration: new BoxDecoration(
                       border: new Border(
                         bottom: (index < 2) ? new BorderSide(color: Colors.blue[700]) : BorderSide.none,
-                        right: new BorderSide(color: Colors.blue[700]),
+                        right: (index== 1 || index ==3) ? new BorderSide(color: Colors.blue[700]) : BorderSide.none,
                       ),
                     ),
                     child: new Column(
