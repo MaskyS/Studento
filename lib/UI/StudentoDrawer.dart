@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studentapp/globals.dart' as globals;
-
+import 'package:studentapp/UI/RandomQuoteContainer.dart';
 
 class DrawerFragment extends StatelessWidget{
   final IconData icon;
@@ -28,50 +28,17 @@ class DrawerFragment extends StatelessWidget{
 
 class StudentoDrawer extends StatelessWidget {
   final bool usedInHomePage;
+
   StudentoDrawer({this.usedInHomePage : false});
-  // Store quote in a var so different quotes can be displayed.
-  static String quoteString = "\"Failure is not an option here. If things are failing, you are not innovating enough.\"";
-  //The text Widget for the quote.
-  static var quoteText  = new Container(
-    alignment: Alignment.center,
-    padding: new EdgeInsets.symmetric(vertical: 20.0),
-    child: new Text(quoteString,
-      style: new TextStyle(
-        fontWeight: FontWeight.w400,
-        fontSize: 18.0,
-        color: Colors.white,
-      ),
-      textAlign: TextAlign.center,
-    ),
-  );
 
-  // Store author name in a var so that different quotes can be displayed.
-  static String authorNameString = "Elon Musk";
-  // The text Widget for the author name.
-  static Container  quoteAuthorText = new Container(
-    child: new Text(('- $authorNameString'),
-      textAlign: TextAlign.end,
-      style: new TextStyle(
-        fontWeight: FontWeight.w400,
-        color: Colors.white,
-      ),
-    ),
-    alignment: FractionalOffset.bottomRight,
-    padding: new EdgeInsets.only(top: 5.0),
-  );
-
-  // Place quote and author widgets in a DrawerHeader.
+  // Place quote and author widgets located in RandomQuotesContainer() into the
+  // DrawerHeader.
   final drawerHeader = new DrawerHeader(
     decoration: new BoxDecoration(
       color: Colors.deepPurpleAccent,
     ),
 
-    child: new Column(
-      children: <Widget>[
-        quoteText,
-        quoteAuthorText,
-      ]
-    ),
+    child: new RandomQuoteContainer(),
   );
 
   final homePageFragment = new DrawerFragment(Icons.home, "Home", "Go back to the home page.", globals.homePageRouteName);
@@ -91,7 +58,6 @@ class StudentoDrawer extends StatelessWidget {
     }
     // Put the header and all the fragments together in a ListView.
     ListView fragmentListView= new ListView(children: fragmentsList);
-
     final drawer = new Drawer(child: fragmentListView);
     return drawer;
   }

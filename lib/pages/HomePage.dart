@@ -8,7 +8,7 @@ import '../UI/HomePageBody.dart';
 class HomePage extends StatelessWidget{
 
   static String routeName = "home_page";
-  Widget build(BuildContext context){;
+  Widget build(BuildContext context){
     return new Scaffold(
       drawer: new StudentoDrawer(usedInHomePage : true),
       // Since this page has a SliverAppBar, we cannot use the appBar property

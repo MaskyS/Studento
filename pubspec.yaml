@@ -33,6 +33,7 @@ flutter:
     - assets/icons/schedule_icon.png
     - assets/icons/notes_icon.png
     - assets/icons/todo-list_icon.png
+    - assets/json/quotes.json
 
 
 
@@ -77,5 +78,5 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
-  # For details regarding fonts from package dependencies, 
+  # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
