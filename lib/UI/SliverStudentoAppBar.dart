@@ -19,7 +19,7 @@ class SliverStudentoAppBar extends StatelessWidget{
         ),
       ),
       centerTitle: true,
-      backgroundColor: new Color(0xFF7c4dff),
+      backgroundColor: Colors.deepPurpleAccent,
       actions: <Widget>[
         new IconButton(
           icon: new Icon(Icons.notifications_active), /// TODO 1
