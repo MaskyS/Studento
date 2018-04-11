@@ -51,7 +51,7 @@ class StudentoDrawer extends StatelessWidget {
   final settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", globals.settingsPageRouteName);
 
   Widget build(BuildContext context){
-    List fragmentsList = [drawerHeader, homePageFragment, syllabusPageFragment, eventsFragment, marksCalculatorFragment, new Divider(),
+    List<Widget> fragmentsList = [drawerHeader, homePageFragment, syllabusPageFragment, eventsFragment, marksCalculatorFragment, new Divider(),
       getProFragment, settingsFragment, sendFeedbackFragment];
     if (usedInHomePage) {
       fragmentsList.remove(homePageFragment);

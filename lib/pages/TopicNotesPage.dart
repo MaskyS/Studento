@@ -10,7 +10,7 @@ class TopicNotesPage extends StatelessWidget {
     //Contains the layout of the page.
     final page = new Scaffold(
       drawer: new StudentoDrawer(),
-      appBar: new StudentoAppBar().appBarMeta,
+      appBar: new StudentoAppBar(),
       body: new Container(
         child: new Text('Hello!  This TopicNotesPage isn\'t ready for your eyes yet :)'),
       ),

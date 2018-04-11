@@ -8,7 +8,7 @@ class SyllabusPage extends StatelessWidget {
 
     //Contains the layout of the page.
     final page = new Scaffold(
-      appBar: new StudentoAppBar().appBarMeta,
+      appBar: new StudentoAppBar(),
       body: new Container(
         child: new Text('Hello!  This SyllabusPage isn\'t ready for your eyes yet :)'),
       ),

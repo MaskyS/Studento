@@ -11,26 +11,22 @@ import 'package:flutter/material.dart';
   * https://github.com/MaskyS/studento/issues :)
   */
 
-class StudentoAppBar {
-  final appBarMeta = new AppBar(
-    title: new Text('Studento',
-      style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Mina',
-          fontWeight: FontWeight.w700,
-          fontSize: 30.0,
-      ),
-    ),
+class StudentoAppBar extends AppBar{
+  StudentoAppBar({Key key,
+  Widget title: const Text("Studento",
+    style: const TextStyle(
+      color: Colors.white,
+      fontFamily: 'Mina',
+      fontWeight: FontWeight.w700,
+      fontSize: 30.0,
+    ),),
+     List<Widget> actions})
+
+  : super(key: key,
+    title: title,
+    actions: actions,
     centerTitle: true,
-    backgroundColor: Colors.deepPurpleAccent,
-    actions: <Widget>[
-      new IconButton(
-        icon: new Icon(Icons.notifications_active), /// TODO 1
-        /// TODO 2
-        color: Colors.white,
-        onPressed: () {print("This will open up your schedule page! In the future anyway :P");},
-      )
-    ],
+    backgroundColor: Colors.deepPurpleAccent
   );
 }
 
