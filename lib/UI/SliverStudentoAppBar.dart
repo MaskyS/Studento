@@ -34,3 +34,12 @@ class SliverStudentoAppBar extends StatelessWidget{
   }
 
   }
+
+///TODO 1:
+/// Implement dynamic icon setup, i.e. The icon should change depending on how
+/// close the deadline is.
+
+///TODO 2 :
+/// Change the icon's color depending on state. i.e. how close
+/// the next deadline is, or if user has any homework left.
+/// Something like: color: (__isDeadlineApproaching) ? red : green
