@@ -45,7 +45,10 @@ class PastPapersPage extends StatefulWidget {
 
 class _PastPapersPageState extends State<PastPapersPage> {
   bool _isCompleted = false;
+  bool _isFullScreen = true;
   Color _colorOfMarkAsCompleteButton;
+  IconData _iconOfFullScreenButton = Icons.fullscreen;
+
   static int _marks = 0;
 
   Future<Null> _showDialogToGetMarks() async {
@@ -65,7 +68,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
                 ),
                 // Corny quote to remind the user to not compare marks with his
                 // peers.
-                new Text("Comparison is the death of joy.\n   - Mark Twain",
+                new Text("Comparison is the death of joy.\n     - Mark Twain",
                   textScaleFactor: 0.8,
                   style: new TextStyle(fontStyle: FontStyle.italic,)
                 ),
@@ -108,16 +111,48 @@ class _PastPapersPageState extends State<PastPapersPage> {
     });
   }
 
+  void _pressedFullScreenButton() {
+    setState((){
+      if (_isFullScreen){
+        //  TODO implement setFullscreen() method
+        _iconOfFullScreenButton = Icons.fullscreen_exit;
+        _isFullScreen = false;
+      }
+      else {
+        _iconOfFullScreenButton = Icons.fullscreen;
+        _isFullScreen = true;
+      }
+    }
+    );}
+
   @override
   Widget build(BuildContext context) {
     List<Widget> actions;
     actions = [
-      new IconButton(
+      new SizedBox(
+        height: 25.0,
+        width: 30.0,
+   child: new IconButton(
         icon: const Icon(Icons.beenhere),
+        iconSize: 18.0,
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
         onPressed: _pressedMarkAsCompleteButton,
         color: _colorOfMarkAsCompleteButton,
         tooltip: "Mark this paper as completed.",
       ),
+),
+
+new SizedBox(
+height: 24.0,
+width: 30.0,
+      child: new IconButton(
+        icon: new Icon(_iconOfFullScreenButton),
+        iconSize: 22.0,
+        padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
+        onPressed: _pressedFullScreenButton,
+        color: Colors.white,
+        tooltip: "Set full screen.",
+      ),),
     ];
 
     // If "Marked as complete" button is pressed,
@@ -127,14 +162,15 @@ class _PastPapersPageState extends State<PastPapersPage> {
         // Wrap the button in a SizedBox so as to reduce its size.
         new SizedBox(
           height: 1.0,
-          width: 45.0,
+          width: 35.0,
           child: new FlatButton(
-            padding: EdgeInsets.all(5.0),
+            shape: new CircleBorder(side: const BorderSide(color: Colors.white, )),
+            padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
             onPressed: () {_showDialogToGetMarks();},
             child: new Center(
               child: new Text(
                 _marks.round().toString(),
-                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0,),
+                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5,),
               ),
             ),
             splashColor: Colors.deepPurpleAccent[400],
@@ -145,7 +181,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
     }
     //If the paper had been marked as completed and is now being unmarked,
     // remove the marks from the AppBar.
-    else if (actions.length == 2){
+    else if (actions.length == 3){
       actions.removeLast();
     }
 

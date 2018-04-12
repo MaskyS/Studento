@@ -14,7 +14,7 @@ class SliverStudentoAppBar extends StatelessWidget{
       title: new Text("Studento",
         style: new TextStyle(
           fontFamily: 'Mina',
-          fontSize: 30.0,
+          fontSize: 26.0,
           fontWeight: FontWeight.bold,
         ),
       ),
