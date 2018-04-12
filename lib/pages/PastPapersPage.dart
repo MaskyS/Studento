@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../UI/StudentoAppBar.dart';
+import '../UI/StudentoDrawer.dart';
 import 'dart:async';
 
 // Boilerplate.
@@ -152,6 +153,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
       appBar: new StudentoAppBar(
         actions: actions,
       ),
+      drawer: new StudentoDrawer(),
 
       body: new Container(
         child: new Text('Hello!  This PastPapersPage isn\'t ready for your eyes yet :)'),
