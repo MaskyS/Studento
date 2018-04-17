@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import '../UI/StudentoAppBar.dart';
 import '../UI/StudentoDrawer.dart';
 import 'dart:async';
@@ -48,11 +49,12 @@ class _PastPapersPageState extends State<PastPapersPage> {
   bool _isFullScreen = true;
   Color _colorOfMarkAsCompleteButton;
   IconData _iconOfFullScreenButton = Icons.fullscreen;
+  DateTime minYear = DateTime(2005);
+  DateTime selectedYear = DateTime.now();
 
   static int _marks = 0;
 
   Future<Null> _showDialogToGetMarks() async {
-
     return showDialog<Null>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -94,6 +96,25 @@ class _PastPapersPageState extends State<PastPapersPage> {
     );
   }
 
+  /// Shows a dialog that contains a datePicker. TODO Improve selection so that
+  /// when user selects the year, the dialog is closed immediately instead of
+  /// displaying the month/day picker. This will probably require some custom
+  /// Widget that will show a dialog containing the YearPicker widget.
+  Future<Null> _showDialogToGetYear() async {
+    DateTime picked = await showDatePicker(
+      context: context,
+      firstDate: minYear,
+      lastDate: new DateTime.now(),
+      initialDate: selectedYear,
+      initialDatePickerMode: DatePickerMode.year,
+    );
+    if (picked != null) setState(() {
+      selectedYear = picked;
+      print(selectedYear.year);
+    });
+  }
+
+
   void _pressedMarkAsCompleteButton() {
     // If button has been pressed before, we reset the color to white.
     // Else, we set the color of the icon to lime, and show the dialog so we
@@ -132,27 +153,28 @@ class _PastPapersPageState extends State<PastPapersPage> {
       new SizedBox(
         height: 25.0,
         width: 30.0,
-   child: new IconButton(
-        icon: const Icon(Icons.beenhere),
-        iconSize: 18.0,
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-        onPressed: _pressedMarkAsCompleteButton,
-        color: _colorOfMarkAsCompleteButton,
-        tooltip: "Mark this paper as completed.",
+        child: new IconButton(
+          icon: const Icon(Icons.beenhere),
+          iconSize: 18.0,
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          onPressed: _pressedMarkAsCompleteButton,
+          color: _colorOfMarkAsCompleteButton,
+          tooltip: "Mark this paper as completed.",
+        ),
       ),
-),
 
-new SizedBox(
-height: 24.0,
-width: 30.0,
-      child: new IconButton(
-        icon: new Icon(_iconOfFullScreenButton),
-        iconSize: 22.0,
-        padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
-        onPressed: _pressedFullScreenButton,
-        color: Colors.white,
-        tooltip: "Set full screen.",
-      ),),
+      new SizedBox(
+        height: 24.0,
+        width: 30.0,
+        child: new IconButton(
+          icon: new Icon(_iconOfFullScreenButton),
+          iconSize: 22.0,
+          padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
+          onPressed: _pressedFullScreenButton,
+          color: Colors.white,
+          tooltip: "Set full screen.",
+        ),
+      ),
     ];
 
     // If "Marked as complete" button is pressed,
@@ -179,7 +201,7 @@ width: 30.0,
         ),
       );
     }
-    //If the paper had been marked as completed and is now being unmarked,
+    // If the paper had been marked as completed and is now being unmarked,
     // remove the marks from the AppBar.
     else if (actions.length == 3){
       actions.removeLast();
@@ -191,9 +213,32 @@ width: 30.0,
       ),
       drawer: new StudentoDrawer(),
 
-      body: new Container(
-        child: new Text('Hello!  This PastPapersPage isn\'t ready for your eyes yet :)'),
+      body:
+      new Column(
+        children: <Widget>[
+          new Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: new ListTile(
+              dense: true,
+              enabled: true,
+              leading: new Icon(Icons.date_range),
+              onTap: _showDialogToGetYear,
+              title: new Text("Year"),
+              subtitle: new Text("Select the year of the past paper you need."),
+              trailing: new Text(selectedYear.year.toString()),
+            ),
+          ),
+          new Divider(),
+          new FlatButton(
+            child: new Text("Go!"),
+            onPressed: () {print("This will launch the WebView, once that is implemented.");},
+            padding: const EdgeInsets.all(20.0),
+            shape: new CircleBorder(side: const BorderSide(color: Colors.deepPurple),),
+            splashColor: Colors.deepPurpleAccent,
+          ),
+        ],
       ),
     );
   }
+
 }
