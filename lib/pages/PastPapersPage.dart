@@ -4,6 +4,8 @@ import '../UI/StudentoAppBar.dart';
 import '../UI/StudentoDrawer.dart';
 import 'dart:async';
 
+const double _kPickerSheetHeight = 216.0;
+
 // Boilerplate.
 class AlertDialogMarksSlider extends StatefulWidget {
   @override
@@ -51,6 +53,8 @@ class _PastPapersPageState extends State<PastPapersPage> {
   IconData _iconOfFullScreenButton = Icons.fullscreen;
   DateTime minYear = DateTime(2005);
   DateTime selectedYear = DateTime.now();
+  int _selectedItemIndex = 0;
+  List<String> subjectsList = ["French", "Maths", "English", "Additional Mathematics", "Chemistry", "Physics", "Biology", "Literature"];
 
   static int _marks = 0;
 
@@ -145,24 +149,52 @@ class _PastPapersPageState extends State<PastPapersPage> {
       }
     }
     );}
+  Widget _buildCupertinoPicker(List<String> items){
+    final FixedExtentScrollController scrollController = new FixedExtentScrollController(initialItem: _selectedItemIndex);
+    return new Container(
+      height: _kPickerSheetHeight,
+      child: new GestureDetector(
+        onTap: () {},
+        child: new SafeArea(
+          child: new CupertinoPicker(
+            backgroundColor: Colors.white,
+            itemExtent: 32.0,
+            scrollController: scrollController,
+            children: new List<Widget>.generate(items.length, (int index) {
+              return new Center(child: new Text(items[index]),);
+            }),
+            onSelectedItemChanged: (int index) {
+              setState(() {
+                _selectedItemIndex = index;
+              });
+            }
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChoiceListTile(String title, IconData icon, List<String> items){
+    return new ListTile(
+      enabled: true,
+      leading: new Icon(icon),
+      onTap: () async {
+        await showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context){
+            return _buildCupertinoPicker(items);
+          },
+        );
+      },
+      title: new Text(title),
+      trailing: new Text("${items[_selectedItemIndex]}"),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> actions;
     actions = [
-      new SizedBox(
-        height: 25.0,
-        width: 30.0,
-        child: new IconButton(
-          icon: const Icon(Icons.beenhere),
-          iconSize: 18.0,
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-          onPressed: _pressedMarkAsCompleteButton,
-          color: _colorOfMarkAsCompleteButton,
-          tooltip: "Mark this paper as completed.",
-        ),
-      ),
-
       new SizedBox(
         height: 24.0,
         width: 30.0,
@@ -173,6 +205,18 @@ class _PastPapersPageState extends State<PastPapersPage> {
           onPressed: _pressedFullScreenButton,
           color: Colors.white,
           tooltip: "Set full screen.",
+        ),
+      ),
+      new SizedBox(
+        height: 25.0,
+        width: 30.0,
+        child: new IconButton(
+          icon: const Icon(Icons.beenhere),
+          iconSize: 18.0,
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          onPressed: _pressedMarkAsCompleteButton,
+          color: _colorOfMarkAsCompleteButton,
+          tooltip: "Mark this paper as completed.",
         ),
       ),
     ];
@@ -207,6 +251,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
       actions.removeLast();
     }
 
+
     return new Scaffold(
       appBar: new StudentoAppBar(
         actions: actions,
@@ -216,23 +261,20 @@ class _PastPapersPageState extends State<PastPapersPage> {
       body:
       new Column(
         children: <Widget>[
-          new Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: new ListTile(
-              dense: true,
-              enabled: true,
-              leading: new Icon(Icons.date_range),
-              onTap: _showDialogToGetYear,
-              title: new Text("Year"),
-              subtitle: new Text("Select the year of the past paper you need."),
-              trailing: new Text(selectedYear.year.toString()),
-            ),
+          new Divider(color: Colors.white),
+          new ListTile(
+            enabled: true,
+            leading: new Icon(Icons.date_range),
+            onTap: _showDialogToGetYear,
+            title: new Text("Year"),
+            trailing: new Text(selectedYear.year.toString()),
           ),
           new Divider(),
+          _buildChoiceListTile('Subject', Icons.subject, subjectsList),
           new FlatButton(
             child: new Text("Go!"),
             onPressed: () {print("This will launch the WebView, once that is implemented.");},
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(22.0),
             shape: new CircleBorder(side: const BorderSide(color: Colors.deepPurple),),
             splashColor: Colors.deepPurpleAccent,
           ),
