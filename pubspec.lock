@@ -90,11 +90,25 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_radial_menu:
+    dependency: "direct main"
+    description:
+      name: flutter_radial_menu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_webview_plugin:
+    dependency: "direct main"
+    description:
+      name: flutter_webview_plugin
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   front_end:
     dependency: transitive
     description:
@@ -256,6 +270,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.28.0"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   shelf:
     dependency: transitive
     description:
@@ -389,3 +410,4 @@ packages:
     version: "2.1.13"
 sdks:
   dart: ">=2.0.0-dev.28.0 <=2.0.0-edge.af1436931b93e755d38223c487d33a0a1f5eadf5"
+  flutter: ">=0.1.4 <2.0.0"
