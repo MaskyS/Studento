@@ -1,0 +1,26 @@
+{ "O level": {
+    "Accounting": {
+      "subject_code": "7707",
+      "url": "/414835-2020-2022-syllabus.pdf",
+      "expiry_year": "2022"
+    },
+    "blah blah": {
+      "subject_code": "7707",
+      "url": "/414835-2020-2022-syllabus.pdf",
+      "expiry_year": "2022"
+    }
+  },
+  "A level": {
+    "Chemistry": {
+      "subject_code": "7707",
+      "url": "/414835-2020-2022-syllabus.pdf",
+      "expiry_year": "2022"
+    },
+    "blah blah": {
+      "subject_code": "7707",
+      "url": "/414835-2020-2022-syllabus.pdf",
+      "expiry_year": "2022"
+    }
+  }
+
+}
