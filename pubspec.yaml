@@ -37,6 +37,7 @@ flutter:
     - assets/icons/notes_icon.png
     - assets/icons/todo-list_icon.png
     - assets/json/quotes.json
+    - assets/json/subjects_syllabus_urls.json
 
 
 

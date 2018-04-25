@@ -24,12 +24,12 @@
       "url": "/414609-2020-2021-syllabus.pdf",
       "expiry_year": "2021"
     },
-    "Design and Communication": {
+    "Design & Communication": {
       "subject_code": "7048",
       "url": "/414782-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
     },
-    "Design and Technology": {
+    "Design & Technology": {
       "subject_code": "6043",
       "url": "/414750-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
@@ -68,7 +68,7 @@
       "subject_code": "2251",
       "url": "/414628-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
-    },
+    }
   },
   "A level": {
     "Accounting": {
@@ -91,7 +91,7 @@
       "url": "/415023-2020-syllabus.pdf",
       "expiry_year": "2020"
     },
-    "Design and Technology": {
+    "Design & Technology": {
       "subject_code": "9705",
       "url": "/415058-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
@@ -106,17 +106,17 @@
       "url": "/414955-2020-syllabus.pdf",
       "expiry_year": "2020"
     },
-    "English General Paper(AS)": {
+    "General Paper AS": {
       "subject_code": "8021",
       "url": "/415188-2019-2021-syllabus.pdf",
       "expiry_year": "2021"
     },
-    "French(A level)": {
+    "French": {
       "subject_code": "9716",
       "url": "/415062-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
     },
-    "French(AS level)": {
+    "French AS": {
       "subject_code": "8682",
       "url": "/414882-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
@@ -135,7 +135,7 @@
       "subject_code": "9699",
       "url": "/415056-2020-syllabus.pdf",
       "expiry_year": "2020"
-    },
+    }
   }
 
 }

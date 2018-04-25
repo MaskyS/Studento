@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +23,7 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   @override
   void initState() {
     _getQuotes();
+    super.initState();
   }
 
   @override
@@ -38,10 +39,10 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   List<Widget> _buildRandomQuoteWidget(){
     // get a random number that will be used to get a quote from the list.
     final random = new Random();
-    int randomQuoteIndex = random.nextInt(quotesList.length);
+    int randomIndex = random.nextInt(quotesList.length);
     // get the random quote and the corresponding author.
-    final String quoteString = quotesList[randomQuoteIndex]["Quote String"];
-    final String quoteAuthorNameString = quotesList[randomQuoteIndex]["Quote Author"];
+    final String quoteString = quotesList[randomIndex]["Quote String"];
+    final String quoteAuthorNameString = quotesList[randomIndex]["Quote Author"];
 
     Container quoteTextContainer = new Container(
       alignment: Alignment.center,
