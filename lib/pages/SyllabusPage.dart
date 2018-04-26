@@ -26,21 +26,6 @@ class SyllabusPageState extends State<SyllabusPage>{
   var webViewPlugin = new FlutterWebviewPlugin();
   String url;
 
-  String _getSubjectUrl(List value) {
-    String _level = value[0];
-    String _subject = value[1];
-
-    url = urlList["$_level level"][_subject]['url'];
-    url = "https://docs.google.com/gview?embedded=true&url=http://www.cambridgeinternational.org/images" + "$url";
-
-    return url;
-  }
-
-  void _getPro(){
-    // TODO Implement payment method.
-    print("this will help developers survive.");
-  }
-
   @override
   void initState() {
     // TODO Once we get Shared Pref up and running, we should fetch the list of
@@ -121,6 +106,21 @@ class SyllabusPageState extends State<SyllabusPage>{
     }
 
     return items;
+  }
+
+  String _getSubjectUrl(List value) {
+    String _level = value[0];
+    String _subject = value[1];
+
+    url = urlList["$_level level"][_subject]['url'];
+    url = "https://docs.google.com/gview?embedded=true&url=http://www.cambridgeinternational.org/images" + "$url";
+
+    return url;
+  }
+
+  void _getPro(){
+    // TODO Implement payment method.
+    print("this will help developers survive.");
   }
 
 }
