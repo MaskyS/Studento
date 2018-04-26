@@ -5,9 +5,7 @@ import '../pages/TodoListPage.dart';
 import '../pages/TopicNotesPage.dart';
 import '../UI/SliverStudentoAppBar.dart';
 
-/// The UI for the IconButtons and the text below them.
-///
-/// @returns Container
+/// The UI for the IconButtons on the HomePage and the text below them.
 class HomePageButton extends StatelessWidget {
   final String _title;
   final String _iconFilePath;
@@ -28,7 +26,7 @@ class HomePageButton extends StatelessWidget {
           _title,
           textAlign: TextAlign.center,
           style: new TextStyle(
-            fontSize:13.5,
+            fontSize: 13.5,
             fontWeight: FontWeight.bold,
             color: Colors.black87,
           ),
@@ -77,7 +75,7 @@ class HomePageBody extends StatelessWidget{
                       /// since I can't use if/switch statements. The ternary
                       /// operators will assign the correct route by checking
                       /// the index of the _iconButtonList[]. In english, I mean
-                      ///  that we check which button was pressed and hence
+                      /// that we check which button was pressed and hence
                       /// provide the appropriate page.
                       (index == 0) ? new PastPapersPage()
                         :(index == 1) ? new SchedulePage()
