@@ -4,7 +4,6 @@ description: A new Flutter project.
 dependencies:
   flutter:
     sdk: flutter
-  flutter_radial_menu: "^0.0.1"
   shared_preferences: "0.4.1"
   flutter_webview_plugin: "^0.1.5"
 
