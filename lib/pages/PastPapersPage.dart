@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../UI/StudentoAppBar.dart';
 import '../UI/StudentoDrawer.dart';
-import 'dart:async';
+
 
 const double _kPickerSheetHeight = 216.0;
 
@@ -57,6 +58,95 @@ class _PastPapersPageState extends State<PastPapersPage> {
   List<String> subjectsList = ["French", "Maths", "English", "Additional Mathematics", "Chemistry", "Physics", "Biology", "Literature"];
 
   static int _marks = 0;
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> actions;
+    actions = [
+      new SizedBox(
+        height: 24.0,
+        width: 30.0,
+        child: new IconButton(
+          icon: new Icon(_iconOfFullScreenButton),
+          iconSize: 22.0,
+          padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
+          onPressed: _pressedFullScreenButton,
+          color: Colors.white,
+          tooltip: "Set full screen.",
+        ),
+      ),
+      new SizedBox(
+        height: 25.0,
+        width: 30.0,
+        child: new IconButton(
+          icon: const Icon(Icons.beenhere),
+          iconSize: 18.0,
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          onPressed: _pressedMarkAsCompleteButton,
+          color: _colorOfMarkAsCompleteButton,
+          tooltip: "Mark this paper as completed.",
+        ),
+      ),
+    ];
+
+    // If "Marked as complete" button is pressed,
+    // display the marks.
+    if (_isCompleted){
+      actions.add(
+        // Wrap the button in a SizedBox so as to reduce its size.
+        new SizedBox(
+          height: 1.0,
+          width: 35.0,
+          child: new FlatButton(
+            shape: new CircleBorder(side: const BorderSide(color: Colors.white, )),
+            padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
+            onPressed: () {_showDialogToGetMarks();},
+            splashColor: Colors.deepPurpleAccent[400],
+            textColor: Colors.white,
+            child: new Center(
+              child: new Text(
+                _marks.round().toString(),
+                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5,),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    // If the paper had been marked as completed and is now being unmarked,
+    // remove the marks from the AppBar.
+    else if (actions.length == 3){
+      actions.removeLast();
+    }
+
+
+    return new Scaffold(
+      appBar: new StudentoAppBar(actions: actions,),
+      drawer: new StudentoDrawer(),
+
+      body:
+      new Column(
+        children: <Widget>[
+          new Divider(color: Colors.white),
+          new ListTile(
+            enabled: true,
+            leading: new Icon(Icons.date_range),
+            onTap: _showDialogToGetYear,
+            title: new Text("Year"),
+            trailing: new Text(selectedYear.year.toString()),
+          ),
+          new Divider(),
+          _buildChoiceListTile('Subject', Icons.subject, subjectsList),
+          new FlatButton(
+            child: new Text("Go!"),
+            onPressed: () {print("This will launch the WebView, once that is implemented.");},
+            padding: const EdgeInsets.all(22.0),
+            shape: new CircleBorder(side: const BorderSide(color: Colors.deepPurple),),
+            splashColor: Colors.deepPurpleAccent,
+          ),
+        ],
+      ),
+    );
+  }
 
   Future<Null> _showDialogToGetMarks() async {
     return showDialog<Null>(
@@ -148,7 +238,9 @@ class _PastPapersPageState extends State<PastPapersPage> {
         _isFullScreen = true;
       }
     }
-    );}
+    );
+  }
+
   Widget _buildCupertinoPicker(List<String> items){
     final FixedExtentScrollController scrollController = new FixedExtentScrollController(initialItem: _selectedItemIndex);
     return new Container(
@@ -188,98 +280,6 @@ class _PastPapersPageState extends State<PastPapersPage> {
       },
       title: new Text(title),
       trailing: new Text("${items[_selectedItemIndex]}"),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> actions;
-    actions = [
-      new SizedBox(
-        height: 24.0,
-        width: 30.0,
-        child: new IconButton(
-          icon: new Icon(_iconOfFullScreenButton),
-          iconSize: 22.0,
-          padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
-          onPressed: _pressedFullScreenButton,
-          color: Colors.white,
-          tooltip: "Set full screen.",
-        ),
-      ),
-      new SizedBox(
-        height: 25.0,
-        width: 30.0,
-        child: new IconButton(
-          icon: const Icon(Icons.beenhere),
-          iconSize: 18.0,
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-          onPressed: _pressedMarkAsCompleteButton,
-          color: _colorOfMarkAsCompleteButton,
-          tooltip: "Mark this paper as completed.",
-        ),
-      ),
-    ];
-
-    // If "Marked as complete" button is pressed,
-    // display the marks.
-    if (_isCompleted){
-      actions.add(
-        // Wrap the button in a SizedBox so as to reduce its size.
-        new SizedBox(
-          height: 1.0,
-          width: 35.0,
-          child: new FlatButton(
-            shape: new CircleBorder(side: const BorderSide(color: Colors.white, )),
-            padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
-            onPressed: () {_showDialogToGetMarks();},
-            child: new Center(
-              child: new Text(
-                _marks.round().toString(),
-                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5,),
-              ),
-            ),
-            splashColor: Colors.deepPurpleAccent[400],
-            textColor: Colors.white,
-          ),
-        ),
-      );
-    }
-    // If the paper had been marked as completed and is now being unmarked,
-    // remove the marks from the AppBar.
-    else if (actions.length == 3){
-      actions.removeLast();
-    }
-
-
-    return new Scaffold(
-      appBar: new StudentoAppBar(
-        actions: actions,
-      ),
-      drawer: new StudentoDrawer(),
-
-      body:
-      new Column(
-        children: <Widget>[
-          new Divider(color: Colors.white),
-          new ListTile(
-            enabled: true,
-            leading: new Icon(Icons.date_range),
-            onTap: _showDialogToGetYear,
-            title: new Text("Year"),
-            trailing: new Text(selectedYear.year.toString()),
-          ),
-          new Divider(),
-          _buildChoiceListTile('Subject', Icons.subject, subjectsList),
-          new FlatButton(
-            child: new Text("Go!"),
-            onPressed: () {print("This will launch the WebView, once that is implemented.");},
-            padding: const EdgeInsets.all(22.0),
-            shape: new CircleBorder(side: const BorderSide(color: Colors.deepPurple),),
-            splashColor: Colors.deepPurpleAccent,
-          ),
-        ],
-      ),
     );
   }
 
