@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:studentapp/globals.dart' as globals;
-import 'package:studentapp/UI/RandomQuoteContainer.dart';
+import '../globals.dart' as globals;
+import '../UI/RandomQuoteContainer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerFragment extends StatelessWidget{
   final IconData icon;
@@ -31,6 +32,15 @@ class StudentoDrawer extends StatelessWidget {
 
   StudentoDrawer({this.usedInHomePage : false});
 
+  static void _launchBugReportingWebsite() async {
+    const url = 'https://github.com/MaskyS/studento/issues/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not open $url. Check your internet connection and try again.';
+    }
+  }
+
   // Place quote and author widgets located in RandomQuotesContainer() into the
   // DrawerHeader.
   final drawerHeader = new DrawerHeader(
@@ -47,7 +57,12 @@ class StudentoDrawer extends StatelessWidget {
   final marksCalculatorFragment = new DrawerFragment(Icons.assessment, "Marks Calculator", "Input your assignment scores, get your final mark. Simple.", globals.marksCalculatorPageRouteName);
 
   final getProFragment = new DrawerFragment(Icons.card_membership, "Get Pro", "Buy us a cup of chai, we'll help you get rid of ads!", globals.getProPageRouteName);
-  final sendFeedbackFragment = new DrawerFragment(Icons.feedback, "Send Feedback", "Report a nasty bug or send awesome ideas our way.", globals.sendFeedbackPageRouteName);
+  final sendFeedbackFragment = new ListTile(
+    leading: new Icon(Icons.feedback),
+    title: new Text("Send Feedback"),
+    subtitle: new Text("Report a nasty bug or send awesome ideas our way."),
+    onTap: _launchBugReportingWebsite,
+  );
   final settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", globals.settingsPageRouteName);
 
   Widget build(BuildContext context){
