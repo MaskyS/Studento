@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../UI/StudentoAppBar.dart';
 import '../UI/StudentoDrawer.dart';
 import 'package:numberpicker/numberpicker.dart';
-
 
 const double _kPickerSheetHeight = 216.0;
 
@@ -118,8 +116,8 @@ class _PastPapersPageState extends State<PastPapersPage> {
   }
 
   /// Shows a dialog for user to choose the marks of the displayed paper.
-  Future<int> _showDialogToGetMarks() async {
-    return showDialog<int>(
+  void _showDialogToGetMarks() {
+    showDialog<int>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
@@ -142,10 +140,9 @@ class _PastPapersPageState extends State<PastPapersPage> {
   }
 
   /// Shows a dialog for user to choose the year of the desired paper.
-  Future<Null> _showDialogToGetYear() async {
-    return showDialog<int>(
+  void _showDialogToGetYear() {
+    showDialog<int>(
       context: context,
-      barrierDismissible: false,
       builder: (BuildContext context) {
         return new NumberPickerDialog.integer(
           title: new Text("Select year of the paper:",
