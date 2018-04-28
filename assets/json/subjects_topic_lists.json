@@ -1,13 +1,43 @@
 {
-  "Accounting": {
+  "Physics": {
     "topic_list": {
       "A level": [
         "blah blah",
         "blah blah"
       ],
       "O level": [
-        "blah blah",
-        "blah blah"
+        "Kinematics – describing motion",
+        "Accelerated motion",
+        "Dynamics – explaining motion",
+        "Forces – vectors and moments",
+        "Work, energy and power",
+        "Momentum",
+        "Matter and materials",
+        "Electric fields",
+        "Electric current, potential difference and resistance",
+        "Kirchhoff’s laws",
+        "Resistance and resistivity",
+        "Practical circuits",
+        "Waves",
+        "Superposition of waves",
+        "Stationary waves",
+        "Radioactivity",
+        "Circular motion",
+        "Gravitational fields",
+        "Oscillations",
+        "Communications systems",
+        "Thermal physics",
+        "Ideal gases",
+        "Coulomb’s law",
+        "Capacitance",
+        "Electronics",
+        "Magnetic fields and electromagnetism",
+        "Charged particles",
+        "Electromagnetic induction",
+        "Alternating currents",
+        "Quantum physics",
+        "Nuclear physics",
+        "Medical imaging"
       ]
     },
     ...
