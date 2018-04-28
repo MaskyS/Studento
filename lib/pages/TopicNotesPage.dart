@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../UI/StudentoAppBar.dart';
 import '../UI/StudentoDrawer.dart';
 import '../UI/radial_menu/flutter_radial_menu.dart';
+import  '../UI/TopicsListPage.dart';
+import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 
 class TopicNotesPage extends StatefulWidget {
@@ -17,30 +19,27 @@ class _TopicNotesPageState extends State<TopicNotesPage> {
 
   @override
   Widget build(BuildContext context){
-    //Contains the layout of the page.
-    final page = new Scaffold(
-      drawer: new StudentoDrawer(),
+    return new Scaffold(
       appBar: new StudentoAppBar(),
-      body: new Container(
-        child: new Text('Hello!  This TopicNotesPage isn\'t ready for your eyes yet :)'),
-      ),
+      body: _buildRadialMenu(),
     );
-
-    return page;
   }
+
   RadialMenu _buildRadialMenu(){
     return new RadialMenu(
       key: _menuKey,
       items: _getRadialMenuItems(),
       radius: 125.0,
       onSelected: (selectedSubject){
+        _menuKey.currentState.reset();
         Navigator.push(
           context,
-          new MaterialPageRoute(builder: (context) => new SubjectTopicsListPage(selectedSubject)),
+          new MaterialPageRoute(builder: (context) => new SubjectTopicsListPage(selectedSubject[1], selectedSubject[0])),
         );
       }
     );
   }
+
   List<RadialMenuItem> _getRadialMenuItems() {
     List<RadialMenuItem> items = [];
 
@@ -54,22 +53,8 @@ class _TopicNotesPageState extends State<TopicNotesPage> {
         buttonText: subjectNameString,
       ));
     }
-
     return items;
   }
 
 }
 
-class SubjectTopicsListPage extends StatelessWidget{
-  final String selectedSubject;
-
-  SubjectTopicsListPage(this.selectedSubject);
-
-  @override
-  Widget build(BuildContext) {
-    return new Scaffold(
-      appBar: new StudentoAppBar(),
-
-    );
-  }
-}

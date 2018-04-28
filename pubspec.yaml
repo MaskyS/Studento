@@ -41,6 +41,7 @@ flutter:
     - assets/icons/todo-list_icon.png
     - assets/json/quotes.json
     - assets/json/subjects_syllabus_urls.json
+    - assets/json/subjects_topic_lists.json
 
 
 
