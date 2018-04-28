@@ -2,10 +2,6 @@
   "Physics": {
     "topic_list": {
       "A level": [
-        "blah blah",
-        "blah blah"
-      ],
-      "O level": [
         "Kinematics – describing motion",
         "Accelerated motion",
         "Dynamics – explaining motion",
@@ -38,8 +34,9 @@
         "Quantum physics",
         "Nuclear physics",
         "Medical imaging"
+      ],
+      "O level": [
       ]
-    },
-    ...
+    }
   }
 }
