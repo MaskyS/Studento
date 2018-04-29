@@ -28,11 +28,13 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
 
   @override
   Widget build(BuildContext context) {
+    // While the quotes are being loaded, display a progress indicator.
+    if (quotesList == null){
+      return new CircularProgressIndicator();
+    }
+
     return new ListView(
-      children: // While the quotes are being loaded, display a progress indicator.
-        (quotesList!=null) ?
-          _buildRandomQuoteWidget()
-          : <Widget>[new CircularProgressIndicator()],
+      children: _buildRandomQuoteWidget(),
     );
   }
 
