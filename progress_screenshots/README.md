@@ -1,6 +1,6 @@
 ##This folder holds some screenshots to record how the project's UI evolved over commits.
 
-![screenshot](https://github.com/MaskyS/studento/tree/master/progress_screenshots/flutter_01.png)
+![screenshot](./flutter_01.png)
 ![screenshot](https://github.com/MaskyS/studento/tree/master/progress_screenshots/flutter_02.png)
 ![screenshot](https://github.com/MaskyS/studento/tree/master/progress_screenshots/flutter_03.png)
 ![screenshot](https://github.com/MaskyS/studento/tree/master/progress_screenshots/flutter_04.png)
