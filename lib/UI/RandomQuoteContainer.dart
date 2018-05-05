@@ -50,11 +50,11 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
       alignment: Alignment.center,
       padding: new EdgeInsets.symmetric(vertical: 20.0),
       child: new Text(quoteString,
+        textAlign: TextAlign.center,
         style: new TextStyle(
           fontSize: 18.0,
           color: Colors.white,
         ),
-        textAlign: TextAlign.center,
       ),
     );
 

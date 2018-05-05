@@ -23,8 +23,8 @@ class _PastPapersPageState extends State<PastPapersPage> {
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   int _selectedItemIndex = 0;
   List<String> subjectsList = ["French", "Maths", "English", "Additional Mathematics", "Chemistry", "Physics", "Biology", "Literature"];
-
   static int _marks = 0;
+
   @override
   Widget build(BuildContext context) {
     List<Widget> actions;
@@ -122,14 +122,14 @@ class _PastPapersPageState extends State<PastPapersPage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return new NumberPickerDialog.integer(
-          title: new Text("Enter your marks for this paper:",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.w400),
-          ),
           titlePadding: const EdgeInsets.all(10.0),
           minValue: 0,
           maxValue: 100,
           initialIntegerValue: _marks,
+          title: new Text("Enter your marks for this paper:",
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontWeight: FontWeight.w400),
+          ),
         );
       }
     ).then((int pickedValue){
@@ -145,14 +145,14 @@ class _PastPapersPageState extends State<PastPapersPage> {
       context: context,
       builder: (BuildContext context) {
         return new NumberPickerDialog.integer(
-          title: new Text("Select year of the paper:",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.w400),
-          ),
           titlePadding: const EdgeInsets.all(10.0),
           minValue: minYear,
           maxValue: new DateTime.now().year,
           initialIntegerValue: selectedYear,
+          title: new Text("Select year of the paper:",
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontWeight: FontWeight.w400),
+          ),
         );
       }
     ).then((int pickedValue){
@@ -223,6 +223,8 @@ class _PastPapersPageState extends State<PastPapersPage> {
     return new ListTile(
       enabled: true,
       leading: new Icon(icon),
+      title: new Text(title),
+      trailing: new Text("${items[_selectedItemIndex]}"),
       onTap: () async {
         await showModalBottomSheet<void>(
           context: context,
@@ -231,8 +233,6 @@ class _PastPapersPageState extends State<PastPapersPage> {
           },
         );
       },
-      title: new Text(title),
-      trailing: new Text("${items[_selectedItemIndex]}"),
     );
   }
 

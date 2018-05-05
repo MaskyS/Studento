@@ -8,7 +8,6 @@ import 'pages/EventsPage.dart';
 import 'pages/MarksCalculatorPage.dart';
 import 'pages/GetProPage.dart';
 import 'pages/SettingsPage.dart';
-import 'pages/SendFeedbackPage.dart';
 import 'pages/SchedulePage.dart';
 import 'pages/TodoListPage.dart';
 import 'pages/TopicNotesPage.dart';
@@ -26,7 +25,6 @@ class Studento extends StatelessWidget {
   MarksCalculatorPage.routeName : (BuildContext context) => new MarksCalculatorPage(),
   GetProPage.routeName : (BuildContext context) => new GetProPage(),
   SettingsPage.routeName : (BuildContext context) => new SettingsPage(),
-  SendFeedbackPage.routeName : (BuildContext context) => new SendFeedbackPage(),
   TodoListPage.routeName : (BuildContext context) => new TodoListPage(),
   TopicNotesPage.routeName : (BuildContext context) => new TopicNotesPage(),
   };
