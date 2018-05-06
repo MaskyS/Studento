@@ -19,8 +19,10 @@ class _PastPapersPageState extends State<PastPapersPage> {
   bool _isFullScreen = true;
   Color _colorOfMarkAsCompleteButton;
   IconData _iconOfFullScreenButton = Icons.fullscreen;
+
   static int minYear = 2005;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
+
   int _selectedItemIndex = 0;
   List<String> subjectsList = ["French", "Maths", "English", "Additional Mathematics", "Chemistry", "Physics", "Biology", "Literature"];
   static int _marks = 0;
@@ -66,7 +68,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
           child: new FlatButton(
             shape: new CircleBorder(side: const BorderSide(color: Colors.white, )),
             padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
-            onPressed: () => _showDialogToGetMarks(),
+            onPressed: _showDialogToGetMarks,
             splashColor: Colors.deepPurpleAccent[400],
             textColor: Colors.white,
             child: new Center(
@@ -105,7 +107,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
           _buildChoiceListTile('Subject', Icons.subject, subjectsList),
           new FlatButton(
             child: new Text("Go!"),
-            onPressed: () {print("This will launch the WebView, once that is implemented.");},
+            onPressed: () => print("This will launch the WebView, once that is implemented."),
             padding: const EdgeInsets.all(22.0),
             shape: new CircleBorder(side: const BorderSide(color: Colors.deepPurple),),
             splashColor: Colors.deepPurpleAccent,
