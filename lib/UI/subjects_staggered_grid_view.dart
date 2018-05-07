@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../utils/subjects_staggered_grid_view_functions.dart' as gridViewFunctions;
 
@@ -17,11 +19,10 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 String level = 'O';
-List<String> subjectsList = ['Mathematics D', 'French', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Studies', "Biology", "chemistry", "Accounting", "Economics"];
+List<String> subjectsList = ['Mathematics D', 'Sociology', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Studies', "Biology", "chemistry", "Accounting", "Economics"];
 List<Widget> subjectTiles = [];
-
+Map urlList;
 class SubjectsStaggeredListView extends StatefulWidget {
-
   /// This specifies which function to execute when a GridTile is
   /// tapped.
   final String onTapFunction;
@@ -32,7 +33,20 @@ class SubjectsStaggeredListView extends StatefulWidget {
 }
 
 class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
-
+    // TODO Once we get Shared Pref up and running, we should fetch the list of
+    // subjects. Updated code should look like:
+    //
+    // SharedPreferences userConfig = await SharedPreferences.getInstance();
+    // userConfig.getString("level");
+    // List listOfSubjects = userConfig.getStringList("list_of_subjects");
+    // Get the url from our subjects_syllabus_urls.json file.
+  @override
+  void initState() {
+    rootBundle.loadString('assets/json/subjects_syllabus_urls.json').then((fileData){
+      urlList = json.decode(fileData);
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     /// Add tiles for each subject into [subjectTiles].
@@ -61,7 +75,7 @@ class _SubjectTile extends StatelessWidget {
   /// tapped.
   final String onTapFunction;
 
-  const _SubjectTile(this.subjectName, this.onTapFunction);
+  const _SubjectTile(this.subjectName, this.onTapFunction,);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +84,7 @@ class _SubjectTile extends StatelessWidget {
       elevation: 2.0,
       child: new InkWell(
         highlightColor: Colors.blue[700],
-        onTap: () => gridViewFunctions.handleonTap(context, subjectName, level, onTapFunction),
+        onTap: () => gridViewFunctions.handleonTap(context, subjectName, level, onTapFunction, urlList: urlList),
         onLongPress: () => Scaffold.of(context).showSnackBar(new SnackBar(
           content: new Text("Tap the subject you seek."),
         )),
