@@ -36,7 +36,522 @@
         "Medical imaging"
       ],
       "O level": [
+        "Measurement Of Physical Quantities",
+        "Speed, Velocity And Acceleration",
+        "Forces & Turning Effect Of Forces",
+        "Mass, Weight And Density",
+        "Work, Energy And Power",
+        "Pressure",
+        "Thermal Physics",
+        "General Wave Properties",
+        "Reflection And Refraction Of Light",
+        "Converging Lens",
+        "Electromagnetic Spectrum",
+        "Sound",
+        "Static Electricity",
+        "Current Electricity",
+        "D.C. Circuits",
+        "Practical Electric Circuitry",
+        "Magnetism & Electromagnetism",
+        "Radioactivity And The Nuclear Atom"
+      ]
+    }
+  },
+  "Accounting": {
+    "topic_list": {
+      "A level": [
+        "Control Accounts",
+        "Bank Reconciliation Statement",
+        "Depreciation of Non-Current Assets",
+        "Valuation of Inventory",
+        "Departmental Accounts",
+        "Partnership Dissolution",
+        "Partnership Accounts",
+        "Incomplete Records",
+        "Suspense Accounts and Errors",
+        "Accounts of limited Companies",
+        "Ratio Analysis",
+        "Overheads Absorption Costing",
+        "Break-Even Analysis",
+        "Marginal and Absorption Costing",
+        "Decision Making",
+        "Business Planning",
+        "Unit, Job and Batch Costing",
+        "Manufacturing Accounts",
+        "Non Profit Making Organisation",
+        "Published Company Accounts",
+        "Statement of Cash Flows",
+        "Business Purchase",
+        "Consignment Accounts",
+        "Joint Venture Accounts",
+        "Computerised Accounting Systems",
+        "Auditing and Stewardship of Limited Companies",
+        "Activity Based Costing",
+        "Capital Investment Appraisal",
+        "Standard Costing and Variance Analysis",
+        "Budgeting and Budgetary Control",
+        "Accounting Concepts and IAS"
+      ],
+      "O level": [
+        "The purpose of accounting",
+        "The accounting equation",
+        "The double entry system of book-keping",
+        "Business documents",
+        "Books of prime entry",
+        "The trial balance",
+        "Correction of errors",
+        "Bank reconciliation",
+        "Control Accounts",
+        "Capital and revenue expenditure and receipts",
+        "Accounting for depreciation and disposal of non-current assets",
+        "Other payables and other receivables",
+        "Irrecoverable debts and provision for doubtful debts",
+        "Valuation of inventory",
+        "Sole traders",
+        "Partnerships",
+        "Limited companies",
+        "Clubs and societies",
+        "Manufacturing accounts",
+        "Incomplete records",
+        "Calculation and understanding of accounting ratios",
+        "Interpretation of accounting ratios",
+        "Inter-firm comparison",
+        "Interested parties",
+        "Limitations of accounting statements",
+        "Accounting principles",
+        "Accounting policies"
+      ]
+    }
+  },
+  "Biology": {
+    "topic_list": {
+      "A level": [
+        "Cell Structure",
+        "Biological molecules",
+        "Enzymes",
+        "Cell membranes and transport",
+        "The mitotic cell cycle",
+        "Nucleic acids and protein synthesis",
+        "Transport in plants",
+        "TRansport in mammals",
+        "Gas exchange and smoking",
+        "Infectious disease",
+        "Immunity",
+        "Energy and respiration",
+        "Photosynthesis",
+        "Homeostasis",
+        "Control and co-ordination",
+        "Inherited change",
+        "Selection and evolution",
+        "Biodiversity, classification and conservation",
+        "Genetic technology"
+      ],
+      "O level": [
+        "Cell structure and organisation",
+        "Diffusion and osmosis",
+        "Enzymes",
+        "Plant nutrition",
+        "Animal nutrition",
+        "Transport in flowering plants",
+        "Tansport in humans",
+        "Respiration",
+        "Excretion",
+        "Homeostasis",
+        "Coordination and response",
+        "Support, movement and locomotion",
+        "The use and abuse of drugs",
+        "Microorganisms and biotechnology",
+        "Relationships of organisms with one another and with the environment",
+        "Development of organisms and continuity of life",
+        "Inheritance"
+      ]
+    }
+  },
+  "Business Studies": {
+    "topic_list": {
+      "A level": [
+        "Business and its environment",
+        "People in organisations",
+        "Maketing",
+        "Operations and project management",
+        "Finance and accounting",
+        "Strategic management"
+      ],
+      "O level": [
+        "Business activity",
+        "Classification of businesses",
+        "Enterprise, business growth and size",
+        "Types of business organisation",
+        "Business objectives and stakeholder objectives",
+        "Motivating employees",
+        "Organisation and management",
+        "Recruitment, selection and training of employees",
+        "Internal and external communication",
+        "Marketing, competition and the customer",
+        "Market research",
+        "Marketing mix",
+        "Marketing strategy",
+        "Production of goods and services",
+        "Costs, scale of production and break-even analysis",
+        "Achieving quality productions",
+        "Location decisions",
+        "Business finance: needs and resources",
+        "Cash-flow forecasting and working capital",
+        "Income Statements",
+        "Statement of financial position",
+        "Analysis of accounts",
+        "Economic issues",
+        "Environmental and ethical issues",
+        "Business and the international economy"
+      ]
+    }
+  },
+  "Chemistry": {
+    "topic_list": {
+      "A level": [
+        "Atoms, molecules and stoichiometry",
+        "Atomic structure",
+        "Chemical bonding",
+        "States of matter",
+        "Chemical energetics",
+        "Electrochemistry",
+        "Equilibria",
+        "Reaction kinetics",
+        "The Periodic Table:chemical periodicity",
+        "Group 2",
+        "Group 17",
+        "An introduction to the chemistry of transition elements",
+        "Nitrogen and sulfur",
+        "An introduction to organic chemistry",
+        "Hydrocarbons",
+        "Halogen derivatives",
+        "Hydroxy compounds",
+        "Carbonyl coompounds",
+        "Carboxylic acids and derivatives",
+        "Nitrogen compounds",
+        "Polymerisation",
+        "Analytical techniques",
+        "Organic synthesis"
+      ],
+      "O level": [
+        "Experimental design",
+        "Methods of purification and analysis",
+        "Identification of ions and gases",
+        "Kinetic particle theory",
+        "Atomic structure",
+        "Structure and properties of materials",
+        "Ionic bonding",
+        "Covalent bonding",
+        "Metallic bonding",
+        "Formulae, stoichiometry and the mole concept",
+        "Electrolysis",
+        "Energy from chemicals",
+        "The chemistry and uses of acids, bases and salts",
+        "The Periodic Table",
+        "Metals",
+        "Atmosphere and environment",
+        "Organic Chemistry"
+      ]
+    }
+  },
+  "Computer Science": {
+    "topic_list": {
+      "A level": [
+        "Information representation",
+        "Communication and Internet technologies",
+        "Hardware",
+        "Processor fundamentals",
+        "System software",
+        "Security, privacy and data integrity",
+        "Ethics and ownership",
+        "Database and data modelling",
+        "Algorithm design and problem-solving",
+        "Data representation",
+        "Programming",
+        "Software development",
+        "Data representation",
+        "Communication and Internet technologies",
+        "Hardware(Logic circuits)",
+        "System software(Vm)",
+        "Security",
+        "Monitoring and control systems",
+        "Computational thinking and problem-solving",
+        "Algorithm design methods",
+        "Further programming",
+        "Software development"
+      ],
+      "O level": [
+        "Data representation",
+        "Communication and Internet technologies",
+        "Hardware and software",
+        "Security",
+        "Ethics",
+        "Algorithm design and problem-solving",
+        "Programming",
+        "Databases"
+      ]
+    }
+  },
+  "Design and Technology": {
+    "topic_list": {
+      "A level": [
+        "Situation",
+        "Research",
+        "Specification",
+        "Concepts",
+        "Modelling",
+        "Development",
+        "Implementation",
+        "Testing and evaluation",
+        "Design and tech in society",
+        "Aesthetics",
+        "Ergonomics",
+        "Energy",
+        "Control",
+        "Materials",
+        "Materials processing",
+        "Product analysis",
+        "Health and safety",
+        "Design stimulus and methology",
+        "Production",
+        "Modelling",
+        "Metal properties",
+        "Processing",
+        "Tool technology",
+        "Wood properties",
+        "Plastic properties",
+        "Mechanisms",
+        "Structures",
+        "Structure failure",
+        "Power sources",
+        "Testing",
+        "Electronics and control",
+        "Circuits",
+        "Recording information",
+        "Drawing systems",
+        "Presentation",
+        "Geometry"
+      ],
+      "O level": [
+        "Observe need/requirement",
+        "Design brief/specification",
+        "Identification/research",
+        "Generation of possible ideas",
+        "Selection/organisation",
+        "Evaluation",
+        "Implementation and realisation",
+        "Health and safety",
+        "Initiation and development of ideas, and recording of data",
+        "Communication of design ideas",
+        "Use of technology in design and making",
+        "Design & technology in society",
+        "Practical design application",
+        "Environment and sustainability",
+        "Control",
+        "Identification of a need or opportunity with a brief analysis leading to a design brief",
+        "Research into the design brief resulting in a specification",
+        "Generation and exploration of design ideas",
+        "Development of proposed solution",
+        "Planning for production",
+        "Product realisation",
+        "Testing and evaluation",
+        "Types of material",
+        "Smart and modern materials",
+        "PLastics",
+        "Woods",
+        "Metals",
+        "Composites",
+        "Preparation of materials",
+        "Setting, measuring, marking out, testing",
+        "Shaping",
+        "Joining and assembly",
+        "Finishing"
+      ]
+    }
+  },
+  "Economics": {
+    "topic_list": {
+      "A level": [
+        "Basic economic ideas and resource allocation",
+        "The price system and the micro economy",
+        "Government micro economic intervention",
+        "The macro economy",
+        "Government macro intervention"
+      ],
+      "O level": [
+        "The nature of the economic problem",
+        "The factors of production",
+        "Opportunity cost",
+        "Production possibility curve diagrams (PPC)",
+        "Microeconomics and macroeconomics",
+        "The role of markets in allocating resources",
+        "Demand",
+        "Supply",
+        "Price determination",
+        "Price changes",
+        "Price elasticity of demand (PED)",
+        "Price elasticity of supply (PES)",
+        "Market economic system",
+        "Market failure",
+        "Mixed economic system",
+        "Money and banking",
+        "Households",
+        "Workers",
+        "Trade unions",
+        "Firms",
+        "Firms and production",
+        "Firms’ costs, revenue and objectives",
+        "Market structure",
+        "The role of government",
+        "The macroeconomic aims of government",
+        "Fiscal policy",
+        "Monetary policy",
+        "Supply-side policy",
+        "Economic growth",
+        "Employment and unemployment",
+        "Inflation and deflation",
+        "Living standards",
+        "Poverty",
+        "Population",
+        "Differences in economic development between countries",
+        "International specialisation",
+        "Globalisation, free trade and protection",
+        "Foreign exchange rates",
+        "Current account of balance of payments"
+      ]
+    }
+  },
+  "Addmaths": {
+    "topic_list": {
+      "O level": [
+        "Functions",
+        "Quadratic functions",
+        "Equations, inequalities and graphs",
+        "Indices and surds",
+        "Factors of polynomials",
+        "Simultaneous equations",
+        "Logarithmic and exponential functions",
+        "Straight line graphs",
+        "Circular measure",
+        "Trigonometry",
+        "Permutations and combinations",
+        "Series",
+        "Vectors in two dimensions",
+        "Differentiation and integration"
+      ]
+    }
+  },
+  "Mathematics": {
+    "topic_list": {
+      "A level": [
+        "Quadratics",
+        "Functions",
+        "Coordinate geometry",
+        "Circular measure",
+        "Trigonometry",
+        "Series",
+        "Differentiation",
+        "Integration",
+        "Logarithmic and exponential functions",
+        "Algebra",
+        "Numerical solution of equations",
+        "Vectors",
+        "Differential equations",
+        "Complex numbers",
+        "Forces and equilibrium",
+        "Kinematics of motion in a straight line",
+        "Momentum",
+        "Newton’s laws of motion",
+        "Energy, work and power",
+        "Representation of data",
+        "Permutations and combinations",
+        "Probability",
+        "Discrete random variables",
+        "The normal distribution",
+        "The Poisson distribution",
+        "Linear combinations of random variables",
+        "Continuous random variables",
+        "Sampling and estimation",
+        "Hypothesis tests"
+      ],
+      "O level": [
+        "Indices",
+        "Sequences",
+        "Variation",
+        "Graphs of functions",
+        "Function notation",
+        "Coordinate geometry",
+        "Geometrical terms",
+        "Geometrical construction",
+        "Similarity and congruence",
+        "Set language and notation",
+        "Standard form",
+        "Estimation",
+        "Limits of accuracy",
+        "Loci",
+        "Mensuration",
+        "Trigonometry",
+        "Vector in 2D",
+        "Matrices",
+        "Transformations",
+        "Probability",
+        "Categorical, numerical and grouped data",
+        "Statistical diagrams",
+        "Graphical representation of inequalities",
+        "Solutions of equations and inequalities"
+      ]
+    }
+  },
+  "Sociology": {
+    "topic_list": {
+      "A level": [
+        "The family and social change",
+        "Family roles, marriage and changing relationships",
+        "The social construction of age",
+        "The sociological perspective",
+        "Socialisation and the creation of social identity",
+        "Methods of research",
+        "The relationship between theory and methods",
+        "Education in social context",
+        "Structures and processes within schools",
+        "Development and inequality",
+        "Global issues",
+        "Ownership and control of the media",
+        "Media representation and effects",
+        "Religion and social change",
+        "Religious movements"
+      ],
+      "O level": [
+        "Theory and Methods",
+        "Culture, identity and socialisation",
+        "Social inequality",
+        "Family",
+        "Education",
+        "Crime, deviance and social control",
+        "Media"
       ]
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+      
+
+        
+        
+
+      
+
+
+      
+        
+      
+
