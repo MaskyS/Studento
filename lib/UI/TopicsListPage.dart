@@ -44,8 +44,12 @@ class _SubjectTopicsListPageState extends State<SubjectTopicsListPage> {
     rootBundle.loadString('assets/json/subjects_topic_lists.json')
     .then((String fileData){
       Map topicsListData = json.decode(fileData);
+      print(topicsListData);
       setState(() {
+        // TODO Need to show an alertDialog if topics are not available for
+        // this subject.
         topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
+
       });
     });
   }
