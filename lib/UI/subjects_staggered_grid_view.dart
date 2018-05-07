@@ -17,7 +17,7 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
 ];
 
 String level = 'O';
-List<String> subjectsList = ['Maths', 'French', 'Additional Mathematics', 'English', 'Design & Technology', 'Computer Science', "Hello World", "Damn Son", "Hello Torma", "Testing World"];
+List<String> subjectsList = ['Mathematics D', 'French', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Studies', "Biology", "chemistry", "Accounting", "Economics"];
 List<Widget> subjectTiles = [];
 
 class SubjectsStaggeredListView extends StatefulWidget {
@@ -66,8 +66,10 @@ class _SubjectTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Card(
-      elevation: 0.0,
+      color: new Color(0xFFf9f9f9),
+      elevation: 2.0,
       child: new InkWell(
+        highlightColor: Colors.blue[700],
         onTap: () => gridViewFunctions.handleonTap(context, subjectName, level, onTapFunction),
         onLongPress: () => Scaffold.of(context).showSnackBar(new SnackBar(
           content: new Text("Tap the subject you seek."),
@@ -76,20 +78,19 @@ class _SubjectTile extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 5.0),
           decoration: new BoxDecoration(
             border: new Border.all(
-              color: Colors.blue[900],
+              color: Colors.blue,
               width: 2.0,
             ),
-            color: Colors.blue,
           ),
           child: new Center(
             child: new  Text(
               gridViewFunctions.prettifySubjectName(subjectName),
               textAlign: TextAlign.center,
-              textScaleFactor: 1.2,
+              textScaleFactor: 1.1,
               overflow: TextOverflow.fade,
               style: new TextStyle(
-                fontWeight: FontWeight.normal,
-                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
             ),
           ),

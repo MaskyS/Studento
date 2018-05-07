@@ -65,7 +65,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
   Stepper _buildStepper(){
     return new Stepper(
-      currentStep: this.currentStep,
+      currentStep: currentStep,
       steps: buildSteps(),
       type: StepperType.vertical,
       onStepTapped: (step) {
@@ -94,32 +94,32 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   }
 
   void handleOnStepContinue(){
-      // Update the variable handling the current step value
-      // going back one step i.e adding 1, until its the length of the
-      // step.
-      if (currentStep < buildSteps().length - 1) {
-        setState(() {
-          currentStep++;
-        });
-      } else {
-        // Check that all steps have been completed. If positive, send
-        // the selected values off to WebView generator.
-        if (selectedComponent != null && selectedYear != null && selectedSeason != null){
-          String subjectCode = _getSubjectCode(widget.level, widget.subjectName);
-          String paperName = subjectCode + "_" + selectedSeason + selectedYear.toString().substring(2) + "_qp_" + selectedComponent.toString();
-          print("User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subjectName} with componentcode $subjectCode");
-          print("So the filename would be $paperName");
-        }
-        else {
-          // Set the current step to the step which was not completed.
-          // The uncompleted step has to be either Step 2 or 3 as year
-          // already has a default value.
-          setState(() {
-          currentStep= (selectedSeason == null) ? 1 : 2;
-          });
-        }
-      }
+    // Update the variable handling the current step value
+    // going back one step i.e adding 1, until its the length of the
+    // step.
+    if (currentStep < buildSteps().length - 1) {
+      setState(() {
+        currentStep++;
+      });
+
     }
+    // Check that all steps have been completed. If positive, send
+    // the selected values off to WebView generator.
+    else if (selectedComponent != null && selectedYear != null && selectedSeason != null) {
+      String subjectCode = _getSubjectCode(widget.level, widget.subjectName);
+      String paperName = subjectCode + "_" + selectedSeason + selectedYear.toString().substring(2) + "_qp_" + selectedComponent.toString();
+      print("User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subjectName} with componentcode $subjectCode");
+      print("So the filename would be $paperName");
+    }
+    else {
+      // Set the current step to the step which was not completed.
+      // The uncompleted step has to be either Step 2 or 3 as year
+      // already has a default value.
+      setState(() {
+      currentStep= (selectedSeason == null) ? 1 : 2;
+      });
+    }
+  }
 
   // init the step to 0th position
   int currentStep = 0;
@@ -160,8 +160,6 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
     Widget _content = new Center(
       child: new Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Text("Choose the year of the paper you seek."),
           new Padding(padding: new EdgeInsets.symmetric(vertical: 10.0),),
@@ -250,7 +248,15 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
               key: _menuKey,
               onSelected: (selectedDropDownItem) => handlePopUpChanged(selectedDropDownItem),
               itemBuilder: (BuildContext context) => components,
-              tooltip: "Tap me to select your component.",
+              child: new Row(
+                children: <Widget>[
+                  new Text( (selectedComponent != null)
+                    ? selectedComponent.toString()
+                    : '...'
+                  ),
+                  new Icon(Icons.arrow_drop_down,),
+                ],
+              ),
             ),
             onTap: () {
               // When ListTile is tapped, open the popUpMenu!
