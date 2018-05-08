@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'pages/HomePage.dart';
-import 'pages/PastPapersPage.dart';
+import 'pages/home_page.dart';
+import 'pages/past_papers_page.dart';
 import 'pages/syllabus.dart';
-import 'pages/EventsPage.dart';
-import 'pages/MarksCalculatorPage.dart';
-import 'pages/GetProPage.dart';
+import 'pages/events_page.dart';
+import 'pages/marks_calculator_page.dart';
+import 'pages/get_pro_page.dart';
 import 'pages/settings.dart';
-import 'pages/SchedulePage.dart';
-import 'pages/TodoListPage.dart';
+import 'pages/schedule_page.dart';
+import 'pages/todo_list_page.dart';
 import 'pages/topic_notes.dart';
 
 const String homeRoute = '/';
