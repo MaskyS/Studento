@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../utils/subjects_staggered_grid_view_functions.dart' as grid_view_functions;
 
+const String level = 'O';
+const List<String> subjectsList = ['Mathematics D', 'Sociology', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Studies', "Biology", "chemistry", "Accounting", "Economics"];
+Map urlList;
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(2, 1),
@@ -19,10 +22,6 @@ List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
   const StaggeredTile.count(2, 2),
 ];
 
-String level = 'O';
-List<String> subjectsList = ['Mathematics D', 'Sociology', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Studies', "Biology", "chemistry", "Accounting", "Economics"];
-List<Widget> subjectTiles = [];
-Map urlList;
 class SubjectsStaggeredListView extends StatefulWidget {
   /// This specifies which function to execute when a GridTile is
   /// tapped.
@@ -48,8 +47,11 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
+    List<_SubjectTile> subjectTiles = [];
+
     /// Add tiles for each subject into [subjectTiles].
     for (String subject in subjectsList) {
       subjectTiles.add(_SubjectTile(subject, widget.onTapFunction)) ;

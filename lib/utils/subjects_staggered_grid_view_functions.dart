@@ -57,12 +57,12 @@ String prettifySubjectName(String subjectName){
 /// When the subject Card is tapped, this function will push a new page, depending
 /// on what argument passed to the [onTapFunction] parameter.
 void handleonTap(BuildContext context, String subjectName, String level, String onTapFunction, {Map urlList}) {
-  //Navigator.pop(context);
+  Navigator.pop;
   // We mandatorily need urlList for [_getSubjectUrl].
   if (onTapFunction == 'syllabusPage'){
     assert(urlList != null);
   }
-
+  print(onTapFunction);
   switch (onTapFunction) {
     case 'pastPapersPage':
       // Open the Past Papers details selection page.

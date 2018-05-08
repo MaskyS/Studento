@@ -16,7 +16,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   String selectedSubject;
   final String level;
   _TopicSelectPageState(this.selectedSubject, this.level);
-  List<String> listOfSubjects = ["General Paper AS", "French", "Mathematics", "Chemistry", "Physics", "Biology", "Economics", "Computer Science"];
+  final List<String> listOfSubjects = ["General Paper AS", "French", "Mathematics", "Chemistry", "Physics", "Biology", "Economics", "Computer Science"];
 
   @override
   void initState() {
@@ -44,7 +44,6 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     rootBundle.loadString('assets/json/subjects_topic_lists.json')
     .then((String fileData){
       Map topicsListData = json.decode(fileData);
-      print(topicsListData);
       setState(() {
         // TODO Need to show an alertDialog if topics are not available for
         // this subject.
