@@ -59,23 +59,48 @@ class StudentoDrawer extends StatelessWidget {
   );
 
   final syllabusPageFragment = new DrawerFragment(
-    Icons.book,
-    "Syllabus",
-    "Access the syllabus of your subjects.",
-    'syllabus_page'
+    icon: Icons.book,
+    title: "Syllabus",
+    subtitle: "Access the syllabus of your subjects.",
+    routeName: 'syllabus_page',
   );
 
-  final eventsFragment = new DrawerFragment(Icons.notifications, "Events", "View or add reminders for exams/events.", 'events_page');
-  final marksCalculatorFragment = new DrawerFragment(Icons.assessment, "Marks Calculator", "Input your assignment scores, get your final mark. Simple.", 'marks_calculator_page');
+  final eventsFragment = new DrawerFragment(
+    icon: Icons.notifications,
+    title: "Events",
+    subtitle: "View or add reminders for exams/events.",
+    routeName: 'events_page',
+  );
 
-  final getProFragment = new DrawerFragment(Icons.card_membership, "Get Pro", "Buy us a cup of chai, we'll help you get rid of ads!", 'get_pro_page');
+  final marksCalculatorFragment = new DrawerFragment(
+    icon: Icons.assessment,
+    title: "Marks Calculator",
+    subtitle: "Input your assignment scores, get your final mark. Simple.",
+    routeName: 'marks_calculator_page',
+  );
+
+  final getProFragment = new DrawerFragment(
+    icon: Icons.card_membership,
+    title: "Get Pro",
+    subtitle: "Buy us a cup of chai, we'll help you get rid of ads!",
+    routeName: 'get_pro_page',
+  );
+
+
   final sendFeedbackFragment = new ListTile(
     leading: new Icon(Icons.feedback),
     title: new Text("Send Feedback"),
     subtitle: new Text("Report a nasty bug or send awesome ideas our way."),
     onTap: _launchBugReportingWebsite,
   );
-  final settingsFragment = new DrawerFragment(Icons.settings, "Settings", "Configure your app settings.", 'settings_page');
+
+  final settingsFragment = new DrawerFragment(
+    icon: Icons.settings,
+    title: "Settings",
+    subtitle: "Configure your app settings.",
+    routeName: 'settings_page',
+  );
+
 
   Widget build(BuildContext context){
     List<Widget> fragmentsList = [drawerHeader, homePageFragment, syllabusPageFragment, eventsFragment, marksCalculatorFragment, new Divider(),
