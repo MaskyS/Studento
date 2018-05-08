@@ -43,14 +43,43 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   void getTopicsList() {
     rootBundle.loadString('assets/json/subjects_topic_lists.json')
     .then((String fileData){
+      var _topicsList;
       Map topicsListData = json.decode(fileData);
+      try {
+        _topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
+      } catch(e){
+        return showDialog<Null>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return new AlertDialog(
+              title: new Text('Sorry!'),
+              content: new SingleChildScrollView(
+                child: new ListBody(
+                  children: <Widget>[
+                    new Padding(padding: const EdgeInsets.only(top: 12.0)),
+                    new Text('''No notes for this topic or subject :(
+\nThe good news is that you can request for it by clicking on 'Send Feedback' from the drawer and filing an issue.'''),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                new FlatButton(
+                  child: new Text('OK'),
+                  onPressed: () {
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
       setState(() {
-        // TODO Need to show an alertDialog if topics are not available for
-        // this subject.
-        topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
-
+      topicsList = _topicsList;
       });
     });
+
   }
 
   Widget _getBackground() {
