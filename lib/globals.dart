@@ -3,7 +3,7 @@ import './pages/syllabus.dart';
 import './pages/EventsPage.dart';
 import './pages/MarksCalculatorPage.dart';
 import './pages/GetProPage.dart';
-import './pages/SettingsPage.dart';
+import './pages/settings.dart';
 import './pages/SchedulePage.dart';
 import 'pages/TodoListPage.dart';
 import 'pages/topic_notes.dart';

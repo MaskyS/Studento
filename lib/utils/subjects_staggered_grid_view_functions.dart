@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import '../pages/past_paper_details_select.dart';
-import  '../UI/TopicsListPage.dart';
+import '../pages/sub-pages/past-papers/past_paper_details_select.dart';
+import  '../pages/sub-pages/topic-notes/topic-select.dart';
 import '../UI/studento_app_bar.dart';
 
 // ------------------------ PRIVATE FUNCTIONS ----------------------------- //
@@ -57,7 +57,7 @@ String prettifySubjectName(String subjectName){
 /// When the subject Card is tapped, this function will push a new page, depending
 /// on what argument passed to the [onTapFunction] parameter.
 void handleonTap(BuildContext context, String subjectName, String level, String onTapFunction, {Map urlList}) {
-  Navigator.pop(context);
+  //Navigator.pop(context);
   // We mandatorily need urlList for [_getSubjectUrl].
   if (onTapFunction == 'syllabusPage'){
     assert(urlList != null);
@@ -101,7 +101,7 @@ void handleonTap(BuildContext context, String subjectName, String level, String 
       // Open a page containing the topic list for the selected subject.
       Navigator.push(
         context,
-        new MaterialPageRoute(builder: (BuildContext context) => new SubjectTopicsListPage(subjectName, level)),
+        new MaterialPageRoute(builder: (BuildContext context) => new TopicSelectPage(subjectName, level)),
       );
     break;
   }

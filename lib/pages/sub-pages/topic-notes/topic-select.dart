@@ -4,18 +4,18 @@ import 'package:flutter/services.dart';
 
 List topicsList;
 
-class SubjectTopicsListPage extends StatefulWidget {
+class TopicSelectPage extends StatefulWidget {
   final String selectedSubject;
   final String level;
-  SubjectTopicsListPage(this.selectedSubject, this.level);
+  TopicSelectPage(this.selectedSubject, this.level);
   @override
-  _SubjectTopicsListPageState createState() => new _SubjectTopicsListPageState(selectedSubject, level);
+  _TopicSelectPageState createState() => new _TopicSelectPageState(selectedSubject, level);
 }
 
-class _SubjectTopicsListPageState extends State<SubjectTopicsListPage> {
+class _TopicSelectPageState extends State<TopicSelectPage> {
   String selectedSubject;
   final String level;
-  _SubjectTopicsListPageState(this.selectedSubject, this.level);
+  _TopicSelectPageState(this.selectedSubject, this.level);
   List<String> listOfSubjects = ["General Paper AS", "French", "Mathematics", "Chemistry", "Physics", "Biology", "Economics", "Computer Science"];
 
   @override
