@@ -12,8 +12,6 @@ class TimeTextWidget extends StatefulWidget {
 
 /// This class holds the UI and the logic for the Time and the greeting text
 /// you see on the Home Page.
-///
-/// @returns Container
 class _TimeTextWidgetState extends State<TimeTextWidget> {
   Timer _timer;
   DateTime _time;

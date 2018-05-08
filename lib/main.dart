@@ -10,7 +10,7 @@ import 'pages/GetProPage.dart';
 import 'pages/SettingsPage.dart';
 import 'pages/SchedulePage.dart';
 import 'pages/TodoListPage.dart';
-import 'pages/TopicNotesPage.dart';
+import 'pages/topic_notes.dart';
 
 void main() => runApp(new Studento());
 

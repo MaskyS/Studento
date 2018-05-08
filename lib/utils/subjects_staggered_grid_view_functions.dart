@@ -6,7 +6,7 @@ import '../UI/StudentoAppBar.dart';
 
 // ------------------------ PRIVATE FUNCTIONS ----------------------------- //
 
-/// Gets the syllabus url for the given [subject] of the given [url] from the
+/// Gets the syllabus url for the given [subject] of the given [level] from the
 /// given [urlList].
 String _getSubjectUrl(String subject, String level, Map urlList) {
   String url;
@@ -17,7 +17,7 @@ String _getSubjectUrl(String subject, String level, Map urlList) {
   return url;
 }
 
-/// Leads users to the Developer Feeding Area (DFA).
+/// Leads users to the Developer Feeding Area (satire).
 void _getPro(){
   // TODO Implement payment method.
   print("this will help developers survive.");
@@ -47,7 +47,6 @@ void _showSnackBar(BuildContext context){
 /// Prettifies the subject name by converting the name to uppercase and
 /// breaking lengthy names into two lines.
 String prettifySubjectName(String subjectName){
-  // Convert to uppercase.
   subjectName = subjectName.toUpperCase();
   // We determine if the subject name is lengthy by checking if it contains a space,
   // then split the name into two lines for better aesthetic.
@@ -55,11 +54,11 @@ String prettifySubjectName(String subjectName){
   return subjectName;
 }
 
-/// When subject card is tapped, this function will push a new page, depending
-/// on what argument is given to the [onTapFunction] parameter.
+/// When the subject Card is tapped, this function will push a new page, depending
+/// on what argument passed to the [onTapFunction] parameter.
 void handleonTap(BuildContext context, String subjectName, String level, String onTapFunction, {Map urlList}) {
-
-  // We need the urlList for [_getSubjectUrl].
+  Navigator.pop(context);
+  // We mandatorily need urlList for [_getSubjectUrl].
   if (onTapFunction == 'syllabusPage'){
     assert(urlList != null);
   }
@@ -99,7 +98,7 @@ void handleonTap(BuildContext context, String subjectName, String level, String 
     break;
 
     case 'topicNotesPage':
-    // Open a page containing the topic list for the selected subject.
+      // Open a page containing the topic list for the selected subject.
       Navigator.push(
         context,
         new MaterialPageRoute(builder: (BuildContext context) => new SubjectTopicsListPage(subjectName, level)),

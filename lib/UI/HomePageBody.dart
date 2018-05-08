@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import '../pages/SchedulePage.dart';
-import '../pages/PastPapersPage.dart';
-import '../pages/TodoListPage.dart';
-import '../pages/TopicNotesPage.dart';
 import '../UI/SliverStudentoAppBar.dart';
 
 /// The UI for the IconButtons on the HomePage and the text below them.
@@ -14,13 +10,13 @@ class HomePageButton extends StatelessWidget {
 
   @override
   Widget build (BuildContext context) {
-    final Container _buttonIcon = new Container(
+    Widget _buttonIcon = new Container(
       margin: new EdgeInsets.only(bottom: 10.0),
       child: new Image(image: new AssetImage("assets/icons/" + _iconFilePath)),
       constraints: new BoxConstraints.loose(new Size(45.0, 45.0)),
-      );
+    );
 
-    final Container _buttonText = new Container(
+    Widget _buttonText = new Container(
         alignment: Alignment.center,
         child: new Text(
           _title,
@@ -32,7 +28,6 @@ class HomePageButton extends StatelessWidget {
           ),
         ),
     );
-
 
     return new Container(
         width: 100.0,
@@ -46,20 +41,41 @@ class HomePageButton extends StatelessWidget {
 /// The SliverGrid part might look like confusing spaghetti code, so I recommend
 /// looking at https://goo.gl/tSV2ps.
 class HomePageBody extends StatelessWidget{
+  final List _iconButtonList = [
+    new HomePageButton('PAST PAPERS', 'exam_icon.png'),
+    new HomePageButton("SCHEDULE", 'schedule_icon.png'),
+    new HomePageButton("TODO LIST", 'todo-list_icon.png'),
+    new HomePageButton("TOPIC NOTES", 'notes_icon.png'),
+  ];
+
+  /// Takes [iconsButtonListIndex], figures out which button was pressed then
+  /// returns the appropriate page's [routeName].
+  String getPageToBePushed(int iconsButtonListIndex){
+    switch (iconsButtonListIndex) {
+      case 0:
+        return 'past_papers_page';
+        break;
+
+      case 1:
+        return 'schedule_page';
+        break;
+
+      case 2:
+        return 'todo_list_page';
+        break;
+
+      default:
+        return 'topic_notes_page';
+    }
+  }
+
   Widget build(BuildContext context){
-    List _iconButtonList = [
-      new HomePageButton('PAST PAPERS', 'exam_icon.png'),
-      new HomePageButton("SCHEDULE", 'schedule_icon.png'),
-      new HomePageButton("TODO LIST", 'todo-list_icon.png'),
-      new HomePageButton("TOPIC NOTES", 'notes_icon.png'),
-    ];
     return new CustomScrollView(
         slivers: <Widget>[
           new SliverStudentoAppBar(),
           new SliverGrid(
             gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 0.0,
               crossAxisSpacing: 1.0,
               childAspectRatio: 1.2,
             ),
@@ -68,21 +84,7 @@ class HomePageBody extends StatelessWidget{
               (BuildContext context, int index) {
                 return new GestureDetector(
                   onTap:  () {
-                    Navigator.push(
-                      context,
-                      new MaterialPageRoute(builder: (context) =>
-                      /// Ugly code but this is the best I could come with,
-                      /// since I can't use if/switch statements. The ternary
-                      /// operators will assign the correct route by checking
-                      /// the index of the _iconButtonList[]. In english, I mean
-                      /// that we check which button was pressed and hence
-                      /// provide the appropriate page.
-                      (index == 0) ? new PastPapersPage()
-                        :(index == 1) ? new SchedulePage()
-                        : (index == 2) ? new TodoListPage()
-                        : (index == 3) ? new TopicNotesPage() : new Error()
-                      ),
-                    );
+                    Navigator.pushNamed(context, getPageToBePushed(index));
                   },
 
                   child: new Container(
@@ -94,8 +96,6 @@ class HomePageBody extends StatelessWidget{
                     ),
                     child: new Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      // Here we place the Icon and text widgets.
                       children: <Widget>[_iconButtonList[index]],
                     ),
                   ),

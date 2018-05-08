@@ -39,10 +39,10 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   }
 
   List<Widget> _buildRandomQuoteWidget(){
-    // get a random number that will be used to get a quote from the list.
+    // Get a random number that will be used to get a quote from the list.
     final random = new Random();
     int randomIndex = random.nextInt(quotesList.length);
-    // get the random quote and the corresponding author.
+    // Get the random quote and the corresponding author.
     final String quoteString = quotesList[randomIndex]["Quote String"];
     final String quoteAuthorNameString = quotesList[randomIndex]["Quote Author"];
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '../utils/subjects_staggered_grid_view_functions.dart' as gridViewFunctions;
+import '../utils/subjects_staggered_grid_view_functions.dart' as grid_view_functions;
 
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
@@ -85,7 +85,7 @@ class _SubjectTile extends StatelessWidget {
       elevation: 2.0,
       child: new InkWell(
         highlightColor: Colors.blue[700],
-        onTap: () => gridViewFunctions.handleonTap(context, subjectName, level, onTapFunction, urlList: urlList),
+        onTap: () => grid_view_functions.handleonTap(context, subjectName, level, onTapFunction, urlList: urlList),
         onLongPress: () => Scaffold.of(context).showSnackBar(new SnackBar(
           content: new Text("Tap the subject you seek."),
         )),
@@ -99,7 +99,7 @@ class _SubjectTile extends StatelessWidget {
           ),
           child: new Center(
             child: new  Text(
-              gridViewFunctions.prettifySubjectName(subjectName),
+              grid_view_functions.prettifySubjectName(subjectName),
               textAlign: TextAlign.center,
               textScaleFactor: 1.1,
               overflow: TextOverflow.fade,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'TimeTextWidget.dart';
+import 'time_text_widget.dart';
 
 /*
  * Holds the beauty that is the Studento SliverAppBar, which is exclusively
