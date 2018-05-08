@@ -4,7 +4,6 @@ import '../UI/studento_drawer.dart';
 import '../UI/subjects_staggered_grid_view.dart';
 
 class TopicNotesPage extends StatefulWidget {
-  static String routeName = "topic_notes_page";
   @override
   _TopicNotesPageState createState() => new _TopicNotesPageState();
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../UI/studento_app_bar.dart';
 
 class TodoListPage extends StatelessWidget {
-    static String routeName = "todo_list_page";
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

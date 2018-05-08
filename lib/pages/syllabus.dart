@@ -6,7 +6,6 @@ import '../UI/subjects_staggered_grid_view.dart';
 
 
 class SyllabusPage extends StatefulWidget{
-  static String routeName = "syllabus_page";
   @override
   State<StatefulWidget> createState() {
     return new SyllabusPageState();

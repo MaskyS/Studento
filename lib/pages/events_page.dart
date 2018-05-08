@@ -3,7 +3,6 @@ import '../UI/studento_app_bar.dart';
 
 class EventsPage extends StatelessWidget {
 
-  static String routeName = "events_page";
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

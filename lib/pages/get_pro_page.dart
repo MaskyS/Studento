@@ -3,7 +3,6 @@ import '../UI/studento_app_bar.dart';
 
 class GetProPage extends StatelessWidget {
 
-  static String routeName = "get_pro_page";
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

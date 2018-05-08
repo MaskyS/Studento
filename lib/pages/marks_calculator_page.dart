@@ -3,7 +3,6 @@ import '../UI/studento_app_bar.dart';
 
 class MarksCalculatorPage extends StatelessWidget {
 
-  static String routeName = "marks_calculator_page";
   Widget build(BuildContext context){
 
     //Contains the layout of the page.

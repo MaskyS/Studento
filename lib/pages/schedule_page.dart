@@ -4,7 +4,6 @@ import '../UI/studento_app_bar.dart';
 
 
 class SchedulePage extends StatelessWidget {
-  static String routeName = "schedule_page";
 
   Widget build(BuildContext context){
 
