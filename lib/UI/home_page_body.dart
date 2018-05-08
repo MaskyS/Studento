@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../UI/SliverStudentoAppBar.dart';
+import '../UI/sliver_studento_app_bar.dart';
 
 /// The UI for the IconButtons on the HomePage and the text below them.
 class HomePageButton extends StatelessWidget {
@@ -50,7 +50,7 @@ class HomePageBody extends StatelessWidget{
 
   /// Takes [iconsButtonListIndex], figures out which button was pressed then
   /// returns the appropriate page's [routeName].
-  String getPageToBePushed(int iconsButtonListIndex){
+  String _getPageToBePushed(int iconsButtonListIndex){
     switch (iconsButtonListIndex) {
       case 0:
         return 'past_papers_page';
@@ -84,7 +84,7 @@ class HomePageBody extends StatelessWidget{
               (BuildContext context, int index) {
                 return new GestureDetector(
                   onTap:  () {
-                    Navigator.pushNamed(context, getPageToBePushed(index));
+                    Navigator.pushNamed(context, _getPageToBePushed(index));
                   },
 
                   child: new Container(

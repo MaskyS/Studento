@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'pages/HomePage.dart';
 import 'pages/PastPapersPage.dart';
-import 'pages/SyllabusPage.dart';
+import 'pages/syllabus.dart';
 import 'pages/EventsPage.dart';
 import 'pages/MarksCalculatorPage.dart';
 import 'pages/GetProPage.dart';

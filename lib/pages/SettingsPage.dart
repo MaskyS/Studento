@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../UI/StudentoAppBar.dart';
+import '../UI/studento_app_bar.dart';
 
 class SettingsPage extends StatelessWidget {
   static String routeName = "settings_page";

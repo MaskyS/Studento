@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../UI/StudentoAppBar.dart';
-import '../UI/StudentoDrawer.dart';
+import '../UI/studento_app_bar.dart';
+import '../UI/studento_drawer.dart';
 import '../UI/subjects_staggered_grid_view.dart';
 
 class TopicNotesPage extends StatefulWidget {

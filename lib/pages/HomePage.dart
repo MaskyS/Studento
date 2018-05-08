@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../UI/StudentoDrawer.dart';
-import '../UI/HomePageBody.dart';
+import '../UI/studento_drawer.dart';
+import '../UI/home_page_body.dart';
 
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../UI/StudentoAppBar.dart';
+import '../UI/studento_app_bar.dart';
 
 class EventsPage extends StatelessWidget {
 

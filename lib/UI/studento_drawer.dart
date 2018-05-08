@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../globals.dart' as globals;
-import '../UI/RandomQuoteContainer.dart';
+import '../UI/random_quote_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DrawerFragment extends StatelessWidget{
