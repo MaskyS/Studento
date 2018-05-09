@@ -1,17 +1,16 @@
-import 'dart:async';
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-// import 'package:flutter/foundation.dart';
-import 'package:simple_permissions/simple_permissions.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:simple_permissions/simple_permissions.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+
 class PastPaperView extends StatefulWidget {
   final String paperName;
   PastPaperView(this.paperName);
   @override
-  _PastPaperViewState createState() => new _PastPaperViewState(paperName);
+  _PastPaperViewState createState() => new _PastPaperViewState();
 }
 
 class _PastPaperViewState extends State<PastPaperView> {
@@ -19,11 +18,9 @@ class _PastPaperViewState extends State<PastPaperView> {
   bool _isFullScreen = true;
   Color _colorOfMarkAsCompleteButton;
   IconData _iconOfFullScreenButton = Icons.fullscreen;
-  final String paperName;
-  static int minYear = 2005;
+  static int minYear = 2008;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   static int _marks = 0;
-  _PastPaperViewState(this.paperName);
 
 
   Future<String> get _localPath async {
