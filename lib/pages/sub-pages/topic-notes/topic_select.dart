@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 List topicsList;
 
@@ -48,32 +50,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
       try {
         _topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
       } catch(e){
-        return showDialog<Null>(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return new AlertDialog(
-              title: new Text('Sorry!'),
-              content: new SingleChildScrollView(
-                child: new ListBody(
-                  children: <Widget>[
-                    new Padding(padding: const EdgeInsets.only(top: 12.0)),
-                    new Text('''No notes for this topic or subject :(
-\nThe good news is that you can request for it by clicking on 'Send Feedback' from the drawer and filing an issue.'''),
-                  ],
-                ),
-              ),
-              actions: <Widget>[
-                new FlatButton(
-                  child: new Text('OK'),
-                  onPressed: () {
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
-                  },
-                ),
-              ],
-            );
-          },
-        );
+        showNotesNotFoundDialog();
       }
       setState(() {
       topicsList = _topicsList;
@@ -150,6 +127,9 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   void _handleSelectedTopic(String selectedTopic){
     // TODO implement _handleSelectedTopic.
     print("you selected $selectedTopic");
+    // if(selectedTopic has notes available){
+    //   showNotesNotFoundDialog
+    // }
   }
 
   Widget _getTopicsListView() {
@@ -182,4 +162,50 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
+  /// Despite the vastness of the internet, we have not managed to find notes
+  /// for some topics, and in some cases, for entire subjects. So when a user
+  /// tries to tap on a subject/topic which does not have any notes, we show an
+  /// [AlertDialog] explaining the situation.
+  ///
+  /// (S)he can then file an issue or maybe even a PR. If the issue is popular,
+  /// developers will put in added effort to find notes as per the request.
+  Future<Null> showNotesNotFoundDialog(){
+    return showDialog<Null>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return new AlertDialog(
+          title: new Text('Sorry!'),
+          content: new SingleChildScrollView(
+            child: new ListBody(
+              children: <Widget>[
+                new Padding(padding: const EdgeInsets.only(top: 12.0)),
+                new Text('''No notes for this topic or subject :(
+\nThe good news is that you can request for it by filing an issue.'''),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('FILE ISSUE'),
+              onPressed: () async{
+                const url = 'https://github.com/MaskyS/studento/issues/';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not open $url. Check your internet connection and try again.';
+                }
+              },
+            ),
+            new FlatButton(
+              child: new Text('OK'),
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

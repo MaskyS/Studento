@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter/foundation.dart';
+import 'package:simple_permissions/simple_permissions.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
@@ -26,26 +27,25 @@ class _PastPaperViewState extends State<PastPaperView> {
 
 
   Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
+    final directory = await getExternalStorageDirectory();
     return directory.path;
   }
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    return new File('$path/checker.txt');
+    print("Path is $path");
+    return new File('$path/text.html');
   }
 
-  Future<String> readHtml() async {
+  void readHtml() async {
+    bool res = await SimplePermissions.requestPermission(Permission.WriteExternalStorage);
+    print("permission request result is " + res.toString());
     try {
       final file = await _localFile;
-      file.writeAsStringSync("0 1 2 3");
-      // Read the file
-      String contents = await file.readAsString();
-
-      return contents;
+      String contents = file.readAsStringSync();
+      html = contents;
     } catch (e) {
-      // If we encounter an error, return 0
-      return e.toString();
+      print(e.toString());
     }
   }
 
@@ -58,13 +58,15 @@ class _PastPaperViewState extends State<PastPaperView> {
     //     html = contents;
     //   });
     // });
-    rootBundle.loadString('assets/text.html').then((String fileData){
-      html= fileData;
-    });
+    // rootBundle.loadString('assets/text.html').then((String fileData){
+    //   html= fileData;
+    // });
+    readHtml();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    readHtml();
     List<Widget> actions;
     actions = [
       new SizedBox(

@@ -11,6 +11,7 @@ dependencies:
   flutter_search_bar: "^2.0.3"
   path_provider: "^0.4.0"
   flutter_staggered_grid_view: "^0.1.3"
+  simple_permissions: "^0.1.3"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -44,7 +45,14 @@ flutter:
     - assets/json/quotes.json
     - assets/json/subjects_syllabus_urls.json
     - assets/json/subjects_topic_lists.json
-
+    - assets/text.html
+    - assets/text/background1.jpg
+    - assets/text/background2.jpg
+    - assets/text/background3.jpg
+    - assets/text/background4.jpg
+    - assets/text/background5.jpg
+    - assets/text/background6.jpg
+    - assets/text/background7.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

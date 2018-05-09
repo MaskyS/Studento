@@ -52,13 +52,13 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
         backgroundColor: Colors.deepPurpleAccent,
         title: new Text("Past Papers for ${widget.subjectName}",textScaleFactor: 0.8,),
       ),
-       body: //new Center(child: //new RaisedButton(
-      //   onPressed: () => openPaper(''),
-      //   child: new Text("Open Webview"),
-      //   color: Colors.blue[700],
-      //   )
-      //)
-      new Container(child: _buildStepper(),),
+       body:new Center(child: new RaisedButton(
+        onPressed: () => openPaper(''),
+        child: new Text("Open Webview"),
+        color: Colors.blue[700],
+        )
+      )
+      //new Container(child: _buildStepper(),),
     );
 
   }
