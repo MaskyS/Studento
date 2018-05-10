@@ -18,12 +18,11 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   String selectedSubject;
   final String level;
   _TopicSelectPageState(this.selectedSubject, this.level);
-  final List<String> listOfSubjects = ["General Paper AS", "French", "Mathematics", "Chemistry", "Physics", "Biology", "Economics", "Computer Science"];
 
   @override
   void initState() {
-    getTopicsList();
     super.initState();
+    getTopicsList();
   }
 
   @override
@@ -42,21 +41,19 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
-  void getTopicsList() {
-    rootBundle.loadString('assets/json/subjects_topic_lists.json')
-    .then((String fileData){
-      var _topicsList;
-      Map topicsListData = json.decode(fileData);
-      try {
-        _topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
-      } catch(e){
-        showNotesNotFoundDialog();
-      }
-      setState(() {
-      topicsList = _topicsList;
-      });
-    });
+  void getTopicsList() async{
+    var _topicsList;
+    String _topicsListData= await rootBundle.loadString('assets/json/subjects_topic_lists.json');
+    Map topicsListData = json.decode(_topicsListData);
 
+    try {
+      _topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
+    } catch(e){
+      showNotesNotFoundDialog();
+    }
+    setState(() {
+      topicsList = _topicsList;
+    });
   }
 
   Widget _getBackground() {
@@ -64,7 +61,6 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
       constraints: new BoxConstraints.expand(height: 250.0),
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: (topicsList == null) ? <Widget>[new CircularProgressIndicator()]
         : <Widget>[
           new Text("$selectedSubject",
@@ -94,12 +90,12 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     return new Stack(
       children: <Widget>[
         new Container(
+         constraints: new BoxConstraints.expand(height: 250.0),
           child: new Image.asset(
             "assets/images/physics-background-img.jpg", //subject.picture,
             fit: BoxFit.cover,
             height: 300.0,
           ),
-          constraints: new BoxConstraints.expand(height: 250.0),
         ),
         subjectNameAndNoOfTopicsContainer,
       ],
@@ -132,7 +128,11 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     // }
   }
 
+  /// Returns a [ListView] that contains [ListTiles] for each available
+  /// topic.
   Widget _getTopicsListView() {
+    // If the topic list is still being loaded or happens to be empty,
+    // show a [CircularProgressIndicator].
     if (topicsList == null){
       return new CircularProgressIndicator();
     }

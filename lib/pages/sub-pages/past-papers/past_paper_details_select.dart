@@ -52,13 +52,13 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
         backgroundColor: Colors.deepPurpleAccent,
         title: new Text("Past Papers for ${widget.subjectName}",textScaleFactor: 0.8,),
       ),
-       body:new Center(child: new RaisedButton(
-        onPressed: () => openPaper(''),
-        child: new Text("Open Webview"),
-        color: Colors.blue[700],
-        )
-      )
-      //new Container(child: _buildStepper(),),
+       body: //new Center(child: new RaisedButton(
+      //   onPressed: () => openPaper(''),
+      //   child: new Text("Open Webview"),
+      //   color: Colors.blue[700],
+      //   )
+      // )
+      new Container(child: _buildStepper(),),
     );
 
   }
@@ -110,6 +110,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       String paperName = subjectCode + "_" + selectedSeason + selectedYear.toString().substring(2) + "_qp_" + selectedComponent.toString();
       print("User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subjectName} with componentcode $subjectCode");
       print("So the filename would be $paperName");
+      openPaper('url');
     }
     else {
       // Set the current step to the step which was not completed.

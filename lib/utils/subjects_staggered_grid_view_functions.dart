@@ -56,6 +56,10 @@ String prettifySubjectName(String subjectName){
 
 /// When the subject Card is tapped, this function will push a new page, depending
 /// on what argument passed to the [onTapFunction] parameter.
+///
+/// There are three possible arguments for the onTapFunction: ['syllabusPage'],
+/// ['pastPapersPage'], and ['topicNotesPage']. It's a piece of cake to deduce
+/// which page will be launched by looking at these arguments.
 void handleonTap(BuildContext context, String subjectName, String level, String onTapFunction, {Map urlList}) {
   Navigator.pop;
   // We mandatorily need urlList for [_getSubjectUrl].
@@ -65,14 +69,27 @@ void handleonTap(BuildContext context, String subjectName, String level, String 
   print(onTapFunction);
   switch (onTapFunction) {
     case 'pastPapersPage':
-      // Open the Past Papers details selection page.
+      // Open the past_paper_details_select page.
       Navigator.push(
         context,
         new MaterialPageRoute(builder: (BuildContext context) => new PaperDetailsSelectionPage(subjectName, level)),
       );
     break;
 
+    case 'topicNotesPage':
+      // Open topic_select page, which displays the topic list for the selected
+      // subject.
+      Navigator.push(
+        context,
+        new MaterialPageRoute(builder: (BuildContext context) => new TopicSelectPage(subjectName, level)),
+      );
+    break;
+
     case 'syllabusPage':
+    // Prevent Navigational state nests (i.e tapping back forever to get back
+    // to the home page).
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+
     /// Open up the WebView Scaffold which will display the pdf document of the
     /// requested syllabus.
       Navigator.push(
@@ -94,14 +111,6 @@ void handleonTap(BuildContext context, String subjectName, String level, String 
             ],),
           );
         }),
-      );
-    break;
-
-    case 'topicNotesPage':
-      // Open a page containing the topic list for the selected subject.
-      Navigator.push(
-        context,
-        new MaterialPageRoute(builder: (BuildContext context) => new TopicSelectPage(subjectName, level)),
       );
     break;
   }

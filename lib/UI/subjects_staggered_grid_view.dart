@@ -6,7 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../utils/subjects_staggered_grid_view_functions.dart' as grid_view_functions;
 
 const String level = 'O';
-const List<String> subjectsList = ['Mathematics D', 'Sociology', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Studies', "Biology", "chemistry", "Accounting", "Economics"];
+const List<String> subjectsList = ['Mathematics', 'Sociology', 'Additional Mathematics', 'Literature in English', 'Design & Technology', 'Computer Science', "Biology", "Chemistry", "Accounting", "Economics"];
 Map urlList;
 
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
@@ -42,10 +42,10 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
     // Get the url from our subjects_syllabus_urls.json file.
   @override
   void initState() {
+    super.initState();
     rootBundle.loadString('assets/json/subjects_syllabus_urls.json').then((fileData){
       urlList = json.decode(fileData);
     });
-    super.initState();
   }
 
   @override
@@ -115,7 +115,6 @@ class _SubjectTile extends StatelessWidget {
       ),
     );
   }
-
 
 }
 

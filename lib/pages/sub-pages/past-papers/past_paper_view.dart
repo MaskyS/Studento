@@ -40,7 +40,9 @@ class _PastPaperViewState extends State<PastPaperView> {
     try {
       final file = await _localFile;
       String contents = file.readAsStringSync();
-      html = contents;
+      setState(() {
+        html = contents;
+      });
     } catch (e) {
       print(e.toString());
     }
@@ -63,7 +65,6 @@ class _PastPaperViewState extends State<PastPaperView> {
   }
   @override
   Widget build(BuildContext context) {
-    readHtml();
     List<Widget> actions;
     actions = [
       new SizedBox(
