@@ -9,9 +9,8 @@ class TopicNotesPage extends StatefulWidget {
 }
 
 class _TopicNotesPageState extends State<TopicNotesPage> {
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new StudentoAppBar(
         title: new Text("Topic Notes"),
@@ -20,7 +19,4 @@ class _TopicNotesPageState extends State<TopicNotesPage> {
       body: new SubjectsStaggeredListView('topicNotesPage'),
     );
   }
-
-
 }
-

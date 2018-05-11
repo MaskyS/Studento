@@ -22,7 +22,6 @@ class _PastPaperViewState extends State<PastPaperView> {
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   static int _marks = 0;
 
-
   Future<String> get _localPath async {
     final directory = await getExternalStorageDirectory();
     return directory.path;
@@ -35,7 +34,8 @@ class _PastPaperViewState extends State<PastPaperView> {
   }
 
   void readHtml() async {
-    bool res = await SimplePermissions.requestPermission(Permission.WriteExternalStorage);
+    bool res = await SimplePermissions
+        .requestPermission(Permission.WriteExternalStorage);
     print("permission request result is " + res.toString());
     try {
       final file = await _localFile;
@@ -63,6 +63,7 @@ class _PastPaperViewState extends State<PastPaperView> {
     readHtml();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> actions;
@@ -73,7 +74,8 @@ class _PastPaperViewState extends State<PastPaperView> {
         child: new IconButton(
           icon: new Icon(_iconOfFullScreenButton),
           iconSize: 22.0,
-          padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
+          padding:
+              EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
           onPressed: _pressedFullScreenButton,
           color: Colors.white,
           tooltip: "Set full screen.",
@@ -95,18 +97,21 @@ class _PastPaperViewState extends State<PastPaperView> {
 
     // If the paper had been marked as completed and is now being unmarked,
     // remove the marks from the AppBar.
-    if (!_isCompleted){
+    if (!_isCompleted) {
       actions.removeLast();
     }
     // If "Marked as complete" button is pressed, display the marks.
-    else if (actions.length == 3){
+    else if (actions.length == 3) {
       actions.add(
         // Wrap the button in a SizedBox so as to reduce its size.
         new SizedBox(
           height: 1.0,
           width: 35.0,
           child: new FlatButton(
-            shape: new CircleBorder(side: const BorderSide(color: Colors.white, )),
+            shape: new CircleBorder(
+                side: const BorderSide(
+              color: Colors.white,
+            )),
             padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
             onPressed: _showDialogToGetMarks,
             splashColor: Colors.deepPurpleAccent[400],
@@ -114,7 +119,10 @@ class _PastPaperViewState extends State<PastPaperView> {
             child: new Center(
               child: new Text(
                 _marks.round().toString(),
-                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5,),
+                style: new TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13.5,
+                ),
               ),
             ),
           ),
@@ -122,13 +130,14 @@ class _PastPaperViewState extends State<PastPaperView> {
       );
     }
 
-    if (html == null){
+    if (html == null) {
       return new CircularProgressIndicator();
     }
 
     return new WebviewScaffold(
       // TODO fix assets loading.
-      url: new Uri.dataFromString(html, mimeType: 'text/html', parameters: { 'charset': 'utf-8' }).toString(),
+      url: new Uri.dataFromString(html,
+          mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
       appBar: new AppBar(
         title: new Text("Widget webview"),
       ),
@@ -137,26 +146,25 @@ class _PastPaperViewState extends State<PastPaperView> {
     );
   }
 
-
   /// Shows a dialog for user to choose the marks of the displayed paper.
   void _showDialogToGetMarks() {
     showDialog<int>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return new NumberPickerDialog.integer(
-          titlePadding: const EdgeInsets.all(10.0),
-          minValue: 0,
-          maxValue: 100,
-          initialIntegerValue: _marks,
-          title: new Text("Enter your marks for this paper:",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.w400),
-          ),
-        );
-      }
-    ).then((int pickedValue){
-      if (pickedValue != null){
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new NumberPickerDialog.integer(
+            titlePadding: const EdgeInsets.all(10.0),
+            minValue: 0,
+            maxValue: 100,
+            initialIntegerValue: _marks,
+            title: new Text(
+              "Enter your marks for this paper:",
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w400),
+            ),
+          );
+        }).then((int pickedValue) {
+      if (pickedValue != null) {
         setState(() => _marks = pickedValue);
       }
     });
@@ -167,12 +175,11 @@ class _PastPaperViewState extends State<PastPaperView> {
     // Else, we set the color of the icon to lime, and show the dialog so we
     // can get the marks the user has scored for this paper.
     setState(() {
-      if (_isCompleted){
+      if (_isCompleted) {
         _colorOfMarkAsCompleteButton = Colors.white;
-        _isCompleted= false;
-      }
-      else{
-         _colorOfMarkAsCompleteButton = Colors.limeAccent[700];
+        _isCompleted = false;
+      } else {
+        _colorOfMarkAsCompleteButton = Colors.limeAccent[700];
         _isCompleted = true;
         _showDialogToGetMarks();
       }
@@ -180,17 +187,15 @@ class _PastPaperViewState extends State<PastPaperView> {
   }
 
   void _pressedFullScreenButton() {
-    setState((){
-      if (_isFullScreen){
+    setState(() {
+      if (_isFullScreen) {
         //  TODO implement setFullscreen() method
         _iconOfFullScreenButton = Icons.fullscreen_exit;
         _isFullScreen = false;
-      }
-      else {
+      } else {
         _iconOfFullScreenButton = Icons.fullscreen;
         _isFullScreen = true;
       }
     });
   }
-
 }

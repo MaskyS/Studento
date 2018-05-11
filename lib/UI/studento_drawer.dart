@@ -3,16 +3,20 @@ import 'package:flutter/foundation.dart';
 import '../UI/random_quote_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DrawerFragment extends StatelessWidget{
+class DrawerFragment extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
   final String routeName;
 
-  DrawerFragment({@required this.icon, @required this.title, @required this.subtitle, @required this.routeName});
+  DrawerFragment(
+      {@required this.icon,
+      @required this.title,
+      @required this.subtitle,
+      @required this.routeName});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     _onTap(routeName) {
       Navigator.popAndPushNamed(context, routeName);
     }
@@ -24,13 +28,12 @@ class DrawerFragment extends StatelessWidget{
       onTap: () => _onTap(routeName),
     );
   }
-
 }
 
 class StudentoDrawer extends StatelessWidget {
   final bool usedInHomePage;
 
-  StudentoDrawer({this.usedInHomePage : false});
+  StudentoDrawer({this.usedInHomePage: false});
 
   static void _launchBugReportingWebsite() async {
     const url = 'https://github.com/MaskyS/studento/issues/';
@@ -47,7 +50,6 @@ class StudentoDrawer extends StatelessWidget {
     decoration: new BoxDecoration(
       color: Colors.deepPurpleAccent,
     ),
-
     child: new RandomQuoteContainer(),
   );
 
@@ -86,7 +88,6 @@ class StudentoDrawer extends StatelessWidget {
     routeName: 'get_pro_page',
   );
 
-
   final sendFeedbackFragment = new ListTile(
     leading: new Icon(Icons.feedback),
     title: new Text("Send Feedback"),
@@ -101,17 +102,24 @@ class StudentoDrawer extends StatelessWidget {
     routeName: 'settings_page',
   );
 
-
-  Widget build(BuildContext context){
-    List<Widget> fragmentsList = [drawerHeader, homePageFragment, syllabusPageFragment, eventsFragment, marksCalculatorFragment, new Divider(),
-      getProFragment, settingsFragment, sendFeedbackFragment];
+  Widget build(BuildContext context) {
+    List<Widget> fragmentsList = [
+      drawerHeader,
+      homePageFragment,
+      syllabusPageFragment,
+      eventsFragment,
+      marksCalculatorFragment,
+      new Divider(),
+      getProFragment,
+      settingsFragment,
+      sendFeedbackFragment
+    ];
     if (usedInHomePage) {
       fragmentsList.remove(homePageFragment);
     }
     // Put the header and all the fragments together in a ListView.
-    ListView fragmentListView= new ListView(children: fragmentsList);
+    ListView fragmentListView = new ListView(children: fragmentsList);
     final drawer = new Drawer(child: fragmentListView);
     return drawer;
   }
-
 }

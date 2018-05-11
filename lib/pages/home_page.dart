@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/sliver_studento_app_bar.dart';
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatelessWidget {
   static String routeName = "/";
   final List _iconButtonList = [
     new HomePageButton('PAST PAPERS', 'exam_icon.png'),
@@ -12,9 +12,9 @@ class HomePage extends StatelessWidget{
     new HomePageButton("TOPIC NOTES", 'notes_icon.png'),
   ];
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Scaffold(
-      drawer: new StudentoDrawer(usedInHomePage : true),
+      drawer: new StudentoDrawer(usedInHomePage: true),
       // Since this page has a SliverAppBar, we cannot use the appBar property
       // here, so the appBar is placed inside the body instead.
       body: _buildTopicListView(context),
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget{
 
   /// Takes [iconsButtonListIndex], figures out which button was pressed then
   /// returns the appropriate page's [routeName].
-  String _getPageToBePushed(int iconsButtonListIndex){
+  String _getPageToBePushed(int iconsButtonListIndex) {
     switch (iconsButtonListIndex) {
       case 0:
         return 'past_papers_page';
@@ -42,38 +42,40 @@ class HomePage extends StatelessWidget{
     }
   }
 
-  Widget _buildTopicListView(BuildContext context){
+  Widget _buildTopicListView(BuildContext context) {
     return new CustomScrollView(
-        slivers: <Widget>[
-          new SliverStudentoAppBar(),
-          new SliverGrid(
-            gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              crossAxisSpacing: 1.0,
-              childAspectRatio: 1.2,
-            ),
-
-            delegate: new SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return new GestureDetector(
-                  onTap:  () {
-                    Navigator.pushNamed(context, _getPageToBePushed(index));
-                  },
-
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      border: new Border(
-                        bottom: (index < 2) ? new BorderSide(color: Colors.blue[700]) : BorderSide.none,
-                        right: (index== 0 || index ==2) ? new BorderSide(color: Colors.blue[700]) : BorderSide.none,
-                      ),
-                    ),
-                    child: new Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[_iconButtonList[index]],
+      slivers: <Widget>[
+        new SliverStudentoAppBar(),
+        new SliverGrid(
+          gridDelegate: new SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200.0,
+            crossAxisSpacing: 1.0,
+            childAspectRatio: 1.2,
+          ),
+          delegate: new SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return new GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, _getPageToBePushed(index));
+                },
+                child: new Container(
+                  decoration: new BoxDecoration(
+                    border: new Border(
+                      bottom: (index < 2)
+                          ? new BorderSide(color: Colors.blue[700])
+                          : BorderSide.none,
+                      right: (index == 0 || index == 2)
+                          ? new BorderSide(color: Colors.blue[700])
+                          : BorderSide.none,
                     ),
                   ),
-                );
-              },
+                  child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[_iconButtonList[index]],
+                  ),
+                ),
+              );
+            },
             childCount: 4,
           ),
         ),
@@ -90,7 +92,7 @@ class HomePageButton extends StatelessWidget {
   HomePageButton(this._title, this._iconFilePath);
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     Widget _buttonIcon = new Container(
       margin: new EdgeInsets.only(bottom: 10.0),
       child: new Image(image: new AssetImage("assets/icons/" + _iconFilePath)),
@@ -98,22 +100,21 @@ class HomePageButton extends StatelessWidget {
     );
 
     Widget _buttonText = new Container(
-        alignment: Alignment.center,
-        child: new Text(
-          _title,
-          textAlign: TextAlign.center,
-          style: new TextStyle(
-            fontSize: 13.5,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
+      alignment: Alignment.center,
+      child: new Text(
+        _title,
+        textAlign: TextAlign.center,
+        style: new TextStyle(
+          fontSize: 13.5,
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
         ),
+      ),
     );
 
     return new Container(
-        width: 100.0,
-        child: new Column(children: <Widget>[_buttonIcon, _buttonText]),
+      width: 100.0,
+      child: new Column(children: <Widget>[_buttonIcon, _buttonText]),
     );
   }
-
-}// Hom
+} // Hom

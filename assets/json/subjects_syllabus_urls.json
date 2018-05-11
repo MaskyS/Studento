@@ -1,4 +1,5 @@
-{ "O level": {
+{
+  "O level": {
     "Accounting": {
       "subject_code": "7707",
       "url": "/414835-2020-2022-syllabus.pdf",
@@ -126,16 +127,15 @@
       "url": "/415060-2020-2022-syllabus.pdf",
       "expiry_year": "2022"
     },
-     "Physics": {
+    "Physics": {
       "subject_code": "9702",
       "url": "/329533-2019-2021-syllabus.pdf",
       "expiry_year": "2021"
     },
-     "Sociology": {
+    "Sociology": {
       "subject_code": "9699",
       "url": "/415056-2020-syllabus.pdf",
       "expiry_year": "2020"
     }
   }
-
 }

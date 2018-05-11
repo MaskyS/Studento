@@ -7,7 +7,6 @@ class TimeTextWidget extends StatefulWidget {
 
   @override
   _TimeTextWidgetState createState() => new _TimeTextWidgetState();
-
 }
 
 /// This class holds the UI and the logic for the Time and the greeting text
@@ -21,8 +20,8 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     super.initState();
     _time = new DateTime.now();
 
-    const duration = const Duration(
-        milliseconds: Duration.millisecondsPerSecond ~/ 4);
+    const duration =
+        const Duration(milliseconds: Duration.millisecondsPerSecond ~/ 4);
     _timer = new Timer.periodic(duration, _updateTime);
   }
 
@@ -44,13 +43,11 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     String timePeriod;
     final timeNow = new DateTime.now();
 
-    if (timeNow.hour > 2 && timeNow.hour < 12){
+    if (timeNow.hour > 2 && timeNow.hour < 12) {
       timePeriod = "Morning";
-    }
-    else if(timeNow.hour < 17){
+    } else if (timeNow.hour < 17) {
       timePeriod = "Afternoon";
-    }
-    else {
+    } else {
       timePeriod = "Evening";
     }
 
@@ -73,22 +70,17 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     final String _greeting = __getProperGreeting();
 
     Text _greetingWidget = new Text(_greeting,
-      style: new TextStyle(
-        fontSize: 16.0,
-        color: new Color(0xFFfafafa)
-      )
-    );
+        style: new TextStyle(fontSize: 16.0, color: new Color(0xFFfafafa)));
 
     Text _timeWidget = new Text(time,
-      style: new TextStyle(
-        fontSize: 60.0,
-        fontWeight: FontWeight.w800,
-        color: new Color(0xFFfafafa),
-        fontStyle: FontStyle.italic,
-      )
-    );
+        style: new TextStyle(
+          fontSize: 60.0,
+          fontWeight: FontWeight.w800,
+          color: new Color(0xFFfafafa),
+          fontStyle: FontStyle.italic,
+        ));
 
-    final Container _overview  =  new Container(
+    final Container _overview = new Container(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       margin: const EdgeInsets.only(top: 30.0),
       child: new Column(
@@ -102,5 +94,4 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     );
     return _overview;
   }
-
 }

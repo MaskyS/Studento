@@ -6,7 +6,6 @@ import 'routes.dart';
 void main() => runApp(new Studento());
 
 class Studento extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     // Hide the status bar. We don't want students to be distracted by
@@ -14,18 +13,13 @@ class Studento extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.values[1]]);
 
     // Lock app orientation to Portrait so rotating doesn't break the design.
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp
-    ]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
     return new MaterialApp(
-	    title: 'Studento',
+      title: 'Studento',
       routes: routes,
-      theme: new ThemeData(
-        fontFamily: 'Montserrat'
-      ),
+      theme: new ThemeData(fontFamily: 'Montserrat'),
     );
   }
-
 }

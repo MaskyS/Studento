@@ -13,7 +13,7 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
 
   void _getQuotes() {
     // Get the quotes from our json file and put it into quotesList.
-    rootBundle.loadString('assets/json/quotes.json').then((String fileData){
+    rootBundle.loadString('assets/json/quotes.json').then((String fileData) {
       setState(() {
         quotesList = json.decode(fileData);
       });
@@ -29,7 +29,7 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   @override
   Widget build(BuildContext context) {
     // While the quotes are being loaded, display a progress indicator.
-    if (quotesList == null){
+    if (quotesList == null) {
       return new CircularProgressIndicator();
     }
 
@@ -38,18 +38,20 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
     );
   }
 
-  List<Widget> _buildRandomQuoteWidget(){
+  List<Widget> _buildRandomQuoteWidget() {
     // Get a random number that will be used to get a quote from the list.
     final random = new Random();
     int randomIndex = random.nextInt(quotesList.length);
     // Get the random quote and the corresponding author.
     final String quoteString = quotesList[randomIndex]["Quote String"];
-    final String quoteAuthorNameString = quotesList[randomIndex]["Quote Author"];
+    final String quoteAuthorNameString =
+        quotesList[randomIndex]["Quote Author"];
 
     Container quoteTextContainer = new Container(
       alignment: Alignment.center,
       padding: new EdgeInsets.symmetric(vertical: 20.0),
-      child: new Text(quoteString,
+      child: new Text(
+        quoteString,
         textAlign: TextAlign.center,
         style: new TextStyle(
           fontSize: 18.0,
@@ -61,7 +63,8 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
     Container authorNameContainer = new Container(
       alignment: FractionalOffset.bottomRight,
       padding: new EdgeInsets.only(top: 5.0),
-      child: new Text(('- $quoteAuthorNameString'),
+      child: new Text(
+        ('- $quoteAuthorNameString'),
         textAlign: TextAlign.end,
         style: new TextStyle(
           fontWeight: FontWeight.w400,
@@ -70,7 +73,9 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
       ),
     );
 
-    return <Widget>[quoteTextContainer, authorNameContainer,];
+    return <Widget>[
+      quoteTextContainer,
+      authorNameContainer,
+    ];
   }
-
 }

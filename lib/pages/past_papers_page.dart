@@ -7,14 +7,11 @@ import '../UI/subjects_staggered_grid_view.dart';
 class PastPapersPage extends StatefulWidget {
   @override
   _PastPapersPageState createState() => new _PastPapersPageState();
-
 }
 
 class _PastPapersPageState extends State<PastPapersPage> {
-
   @override
   Widget build(BuildContext context) {
-
     return new Scaffold(
       drawer: new StudentoDrawer(),
       body: new SubjectsStaggeredListView('pastPapersPage'),
@@ -23,5 +20,4 @@ class _PastPapersPageState extends State<PastPapersPage> {
       ),
     );
   }
-
 }

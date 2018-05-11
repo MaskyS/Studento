@@ -10,7 +10,8 @@ class TopicSelectPage extends StatefulWidget {
   TopicSelectPage(this.selectedSubject, this.level);
 
   @override
-  _TopicSelectPageState createState() => new _TopicSelectPageState(selectedSubject, level);
+  _TopicSelectPageState createState() =>
+      new _TopicSelectPageState(selectedSubject, level);
 }
 
 class _TopicSelectPageState extends State<TopicSelectPage> {
@@ -30,8 +31,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
-        child: new Stack(
-        children: <Widget>[
+        child: new Stack(children: <Widget>[
           _getTopicsListView(),
           _getBackground(),
           _getGradient(),
@@ -41,14 +41,16 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
-  void getTopicsList() async{
+  void getTopicsList() async {
     var _topicsList;
-    String _topicsListData= await rootBundle.loadString('assets/json/subjects_topic_lists.json');
+    String _topicsListData =
+        await rootBundle.loadString('assets/json/subjects_topic_lists.json');
     Map topicsListData = json.decode(_topicsListData);
 
     try {
-      _topicsList = topicsListData[selectedSubject]['topic_list']['$level level'];
-    } catch(e){
+      _topicsList =
+          topicsListData[selectedSubject]['topic_list']['$level level'];
+    } catch (e) {
       showNotesNotFoundDialog();
     }
     setState(() {
@@ -61,25 +63,31 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
       constraints: new BoxConstraints.expand(height: 250.0),
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: (topicsList == null) ? <Widget>[new CircularProgressIndicator()]
-        : <Widget>[
-          new Text("$selectedSubject",
-            textAlign: TextAlign.center,
-            style: new TextStyle(
-              fontFamily: 'Mina',
-              color: Colors.white,
-              fontSize: 30.0,
-            ),
-          ),
-          new Padding(padding: const EdgeInsets.only(bottom: 4.0,)),
-          new Text("${topicsList.length} topics",
-            style: new TextStyle(
-              color: new Color(0xFFFefefe),
-              fontSize: 15.0,
-              fontWeight: FontWeight.w400,
-            ),
-          )
-        ],
+        children: (topicsList == null)
+            ? <Widget>[new CircularProgressIndicator()]
+            : <Widget>[
+                new Text(
+                  "$selectedSubject",
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(
+                    fontFamily: 'Mina',
+                    color: Colors.white,
+                    fontSize: 30.0,
+                  ),
+                ),
+                new Padding(
+                    padding: const EdgeInsets.only(
+                  bottom: 4.0,
+                )),
+                new Text(
+                  "${topicsList.length} topics",
+                  style: new TextStyle(
+                    color: new Color(0xFFFefefe),
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )
+              ],
       ),
     );
 
@@ -90,7 +98,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     return new Stack(
       children: <Widget>[
         new Container(
-         constraints: new BoxConstraints.expand(height: 250.0),
+          constraints: new BoxConstraints.expand(height: 250.0),
           child: new Image.asset(
             "assets/images/physics-background-img.jpg", //subject.picture,
             fit: BoxFit.cover,
@@ -107,20 +115,19 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
       height: 90.0,
       margin: new EdgeInsets.only(top: 160.0),
       decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          stops: [0.0, 1.0],
-          begin: const FractionalOffset(0.0, 0.0),
-          end: const FractionalOffset(0.0, 1.0),
-          colors: <Color>[
-            new Color(0),
-            Colors.white,
-          ],
-        )
-      ),
+          gradient: new LinearGradient(
+        stops: [0.0, 1.0],
+        begin: const FractionalOffset(0.0, 0.0),
+        end: const FractionalOffset(0.0, 1.0),
+        colors: <Color>[
+          new Color(0),
+          Colors.white,
+        ],
+      )),
     );
   }
 
-  void _handleSelectedTopic(String selectedTopic){
+  void _handleSelectedTopic(String selectedTopic) {
     // TODO implement _handleSelectedTopic.
     print("you selected $selectedTopic");
     // if(selectedTopic has notes available){
@@ -133,22 +140,25 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   Widget _getTopicsListView() {
     // If the topic list is still being loaded or happens to be empty,
     // show a [CircularProgressIndicator].
-    if (topicsList == null){
+    if (topicsList == null) {
       return new CircularProgressIndicator();
     }
 
     return new ListView.builder(
       padding: new EdgeInsets.fromLTRB(0.0, 250.0, 0.0, 32.0),
       itemCount: topicsList.length,
-      itemBuilder: (BuildContext context, int index){
+      itemBuilder: (BuildContext context, int index) {
         String topicName = topicsList[index];
         return new Column(children: <Widget>[
           new Divider(),
           new ListTile(
             title: new Text(topicName),
-            trailing: new Icon(Icons.arrow_forward_ios, size: 16.0,),
+            trailing: new Icon(
+              Icons.arrow_forward_ios,
+              size: 16.0,
+            ),
             enabled: true,
-            onTap: () =>_handleSelectedTopic(topicName),
+            onTap: () => _handleSelectedTopic(topicName),
           ),
         ]);
       },
@@ -169,7 +179,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   ///
   /// (S)he can then file an issue or maybe even a PR. If the issue is popular,
   /// developers will put in added effort to find notes as per the request.
-  Future<Null> showNotesNotFoundDialog(){
+  Future<Null> showNotesNotFoundDialog() {
     return showDialog<Null>(
       context: context,
       barrierDismissible: false,
@@ -188,7 +198,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
           actions: <Widget>[
             new FlatButton(
               child: new Text('FILE ISSUE'),
-              onPressed: () async{
+              onPressed: () async {
                 const url = 'https://github.com/MaskyS/studento/issues/';
                 if (await canLaunch(url)) {
                   await launch(url);

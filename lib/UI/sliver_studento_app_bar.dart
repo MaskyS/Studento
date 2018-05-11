@@ -7,11 +7,12 @@ import 'time_text_widget.dart';
  *
  * @returns SilverAppBar
  */
-class SliverStudentoAppBar extends StatelessWidget{
+class SliverStudentoAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return new SliverAppBar(
       expandedHeight: 290.0,
-      title: new Text("Studento",
+      title: new Text(
+        "Studento",
         style: new TextStyle(
           fontFamily: 'Mina',
           fontSize: 26.0,
@@ -22,18 +23,22 @@ class SliverStudentoAppBar extends StatelessWidget{
       backgroundColor: Colors.deepPurpleAccent,
       actions: <Widget>[
         new IconButton(
-          icon: new Icon(Icons.notifications_active), /// TODO 1
+          icon: new Icon(Icons.notifications_active),
+
+          /// TODO 1
           /// TODO 2
           color: Colors.white,
-          onPressed: () {print("This will open up your schedule page! In the future anyway :P");},
+          onPressed: () {
+            print(
+                "This will open up your schedule page! In the future anyway :P");
+          },
         )
       ],
       flexibleSpace: new TimeTextWidget(),
       pinned: true,
     );
   }
-
-  }
+}
 
 ///TODO 1:
 /// Implement dynamic icon setup, i.e. The icon should change depending on how
