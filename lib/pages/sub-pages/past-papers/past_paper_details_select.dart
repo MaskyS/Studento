@@ -256,7 +256,6 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       title: new Text("Component"),
       isActive: (currentStep == 2) ? true : false,
       content: new Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Center(
