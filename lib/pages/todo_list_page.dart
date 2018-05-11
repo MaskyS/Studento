@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import '../UI/studento_app_bar.dart';
 import 'package:flutter/foundation.dart';
-
-
+import '../UI/studento_app_bar.dart';
 
 class ToDoItem extends StatelessWidget {
   /// The main title of the [ToDoItem].
@@ -20,12 +18,16 @@ class ToDoItem extends StatelessWidget {
   /// color-code the [ToDoItem]s.
   final String category;
   ToDoItem(
-      {@required this.title, @required this.dueDate, @required this.category, this.details});
+      {@required this.title,
+      @required this.dueDate,
+      @required this.category,
+      this.details});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onHorizontalDragStart: (DragStartDetails dragStartDetails) => _dismissItem(dragStartDetails),
+      onHorizontalDragStart: (DragStartDetails dragStartDetails) =>
+          _dismissItem(dragStartDetails),
       child: ListTile(
         title: new Text(title),
         subtitle: new Text(
@@ -51,27 +53,27 @@ class ToDoItem extends StatelessWidget {
 
   void _showDetailsOfItem(BuildContext context) {
     showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return SimpleDialog(
-          title: Text("Details"),
-          contentPadding: const EdgeInsets.all(20.0),
-          children: <Widget>[
-            Center(
-              widthFactor: 50.0,
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Text("Details"),
+            contentPadding: const EdgeInsets.all(20.0),
+            children: <Widget>[
+              Center(
+                widthFactor: 50.0,
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-            )
-          ],
-        );
-      });
+              )
+            ],
+          );
+        });
   }
 
   void _dismissItem(DragStartDetails details) {
@@ -89,7 +91,8 @@ List<ToDoItem> toDoList = [
   ),
   ToDoItem(
     title: "Brush Teeth",
-    details: "Up and down, left and right, we brush, \nwe brush, we brush. It is a true joy, to brush.",
+    details:
+        "Up and down, left and right, we brush, \nwe brush, we brush. It is a true joy, to brush.",
     dueDate: new DateTime(2018),
     category: 'Routine',
   ),
@@ -106,13 +109,11 @@ class _TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: StudentoAppBar(),
+      body: ListView(children: toDoList),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue[700],
         child: Icon(Icons.add),
         onPressed: () => _addTask(context),
-      ),
-      body: ListView(
-        children: toDoList,
       ),
     );
   }
@@ -124,26 +125,54 @@ class _TodoListPageState extends State<TodoListPage> {
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
-            title: Text("Create new Task"),
+            titlePadding: const EdgeInsets.only(bottom: 5.0),
+            title: new Container(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Text("ADD TASK",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              color: Colors.deepPurpleAccent,
+            ),
             contentPadding: const EdgeInsets.all(20.0),
             children: <Widget>[
               Text("This is where we need to enter details"),
+              Padding(
+                padding: const EdgeInsets.all(6.0),
+              ),
               TextField(
+                decoration: InputDecoration(
+                    labelText: "Title",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+              ),
+              new TextFormField(
+                decoration: InputDecoration(
+                    hintText: "Extra details about this ToDo",
+                    labelText: "Details",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                    )),
+                maxLines: 10,
               ),
               SimpleDialogOption(
                 child: RaisedButton(
-                  shape: new RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
                   color: Colors.blue[700],
                   onPressed: () {
                     Navigator.pop(context);
                     saveTask();
                   },
-                  child: Text(
-                    "SAVE",
-                    style: const TextStyle(
-                      color: Colors.white,
-                    )
-                  ),
+                  child: Text("SAVE",
+                      style: const TextStyle(
+                        color: Colors.white,
+                      )),
                 ),
               ),
             ],
@@ -159,5 +188,3 @@ class _TodoListPageState extends State<TodoListPage> {
     print("Task has been saved");
   }
 }
-
-
