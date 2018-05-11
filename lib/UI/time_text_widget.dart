@@ -18,11 +18,11 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
   @override
   void initState() {
     super.initState();
-    _time = new DateTime.now();
+    _time = DateTime.now();
 
     const duration =
         const Duration(milliseconds: Duration.millisecondsPerSecond ~/ 4);
-    _timer = new Timer.periodic(duration, _updateTime);
+    _timer = Timer.periodic(duration, _updateTime);
   }
 
   @override
@@ -33,7 +33,7 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
 
   void _updateTime(Timer _) {
     setState(() {
-      _time = new DateTime.now();
+      _time = DateTime.now();
     });
   }
 
@@ -41,11 +41,11 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
   String __getProperGreeting() {
     String greeting;
     String timePeriod;
-    final timeNow = new DateTime.now();
+    final int currentHour = DateTime.now().hour;
 
-    if (timeNow.hour > 2 && timeNow.hour < 12) {
+    if (currentHour > 2 && currentHour < 12) {
       timePeriod = "Morning";
-    } else if (timeNow.hour < 17) {
+    } else if (currentHour < 17) {
       timePeriod = "Afternoon";
     } else {
       timePeriod = "Evening";
@@ -66,26 +66,26 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
       return '${twoDigits(date.hour)}:${twoDigits(date.minute)}';
     }
 
+    final Color studentoWhite = Color(0xFFfafafa);
     final String time = formatTime(_time);
     final String _greeting = __getProperGreeting();
 
-    Text _greetingWidget = new Text(_greeting,
-        style: new TextStyle(fontSize: 16.0, color: new Color(0xFFfafafa)));
+    Text _greetingWidget =
+        Text(_greeting, style: TextStyle(fontSize: 16.0, color: studentoWhite));
 
-    Text _timeWidget = new Text(time,
-        style: new TextStyle(
+    Text _timeWidget = Text(time,
+        style: TextStyle(
           fontSize: 60.0,
           fontWeight: FontWeight.w800,
-          color: new Color(0xFFfafafa),
+          color: studentoWhite,
           fontStyle: FontStyle.italic,
         ));
 
-    final Container _overview = new Container(
+    final Container _overview = Container(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       margin: const EdgeInsets.only(top: 30.0),
-      child: new Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           _timeWidget,
           _greetingWidget,
