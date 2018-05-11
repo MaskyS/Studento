@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-List topicsList;
-
 class TopicSelectPage extends StatefulWidget {
   final String selectedSubject;
   final String level;
   TopicSelectPage(this.selectedSubject, this.level);
+
   @override
   _TopicSelectPageState createState() => new _TopicSelectPageState(selectedSubject, level);
 }
 
 class _TopicSelectPageState extends State<TopicSelectPage> {
+  List topicsList;
   String selectedSubject;
   final String level;
   _TopicSelectPageState(this.selectedSubject, this.level);

@@ -5,6 +5,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'past_paper_view.dart';
 
 class PaperDetailsSelectionPage extends StatefulWidget {
+
   final String level;
   final String subjectName;
   PaperDetailsSelectionPage(this.subjectName, this.level);
@@ -30,12 +31,11 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
   @override
   void initState() {
+    super.initState();
     /// Load the json and decode it, then put it into [subjectCodesList].
     rootBundle.loadString('assets/json/subjects_syllabus_urls.json').then((String fileData){
       subjectCodesList = json.decode(fileData);
     });
-
-    super.initState();
   }
 
   void openPaper(url){
@@ -117,12 +117,12 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       // The uncompleted step has to be either Step 2 or 3 as year
       // already has a default value.
       setState(() {
-      currentStep= (selectedSeason == null) ? 1 : 2;
+      currentStep = (selectedSeason == null) ? 1 : 2;
       });
     }
   }
 
-  // init the step to 0th position
+  // Init the step to 0th position
   int currentStep = 0;
 
   List<Step> buildSteps(){
@@ -245,6 +245,11 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
           new ListTile(
             leading: new Icon(Icons.blur_circular),
             title: new Text("Component"),
+            onTap: () {
+              // When ListTile is tapped, open the popUpMenu!
+              dynamic popUpMenustate = _menuKey.currentState;
+              popUpMenustate.showButtonMenu();
+            },
             trailing: new PopupMenuButton(
               key: _menuKey,
               onSelected: (selectedDropDownItem) => handlePopUpChanged(selectedDropDownItem),
@@ -253,17 +258,12 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
                 children: <Widget>[
                   new Text( (selectedComponent != null)
                     ? selectedComponent.toString()
-                    : '...'
+                    : '...',
                   ),
                   new Icon(Icons.arrow_drop_down,),
                 ],
               ),
             ),
-            onTap: () {
-              // When ListTile is tapped, open the popUpMenu!
-              dynamic popUpMenustate = _menuKey.currentState;
-              popUpMenustate.showButtonMenu();
-            },
           ),
           new Divider(),
         ],
