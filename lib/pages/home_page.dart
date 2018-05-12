@@ -4,7 +4,6 @@ import '../UI/studento_drawer.dart';
 import '../UI/sliver_studento_app_bar.dart';
 
 class HomePage extends StatelessWidget {
-  static String routeName = "/";
   final List _iconButtonList = [
     new HomePageButton('PAST PAPERS', 'exam_icon.png'),
     new HomePageButton("SCHEDULE", 'schedule_icon.png'),

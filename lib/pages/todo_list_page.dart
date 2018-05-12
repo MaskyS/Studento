@@ -25,12 +25,34 @@ class ToDoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragStart: (DragStartDetails dragStartDetails) =>
-          _dismissItem(dragStartDetails),
+    return Dismissible(
+      key: GlobalKey(),
+      direction: DismissDirection.horizontal,
+      onDismissed: (DismissDirection direction) =>
+          direction == DismissDirection.startToEnd ? onComplete() : onDelete(),
+      background: Container(
+        color: Colors.lightGreen,
+        child: const ListTile(
+          leading: const Icon(
+            Icons.archive,
+            color: Colors.white,
+            size: 36.0,
+          ),
+        ),
+      ),
+      secondaryBackground: Container(
+        color: Colors.redAccent,
+        child: const ListTile(
+          trailing: const Icon(
+            Icons.delete,
+            color: Colors.white,
+            size: 36.0,
+          ),
+        ),
+      ),
       child: ListTile(
-        title: new Text(title),
-        subtitle: new Text(
+        title: Text(title),
+        subtitle: Text(
           details,
           softWrap: true,
           overflow: TextOverflow.ellipsis,
@@ -49,6 +71,14 @@ class ToDoItem extends StatelessWidget {
         onTap: () => _showDetailsOfItem(context),
       ),
     );
+  }
+
+  void onComplete() {
+    print("Task completed");
+  }
+
+  void onDelete() {
+    print("Task deleted");
   }
 
   void _showDetailsOfItem(BuildContext context) {
@@ -74,11 +104,6 @@ class ToDoItem extends StatelessWidget {
             ],
           );
         });
-  }
-
-  void _dismissItem(DragStartDetails details) {
-    print(details.globalPosition);
-    toDoList.removeWhere((item) => item.title == title);
   }
 }
 

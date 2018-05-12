@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/subjects_staggered_grid_view.dart';
+import 'package:connectivity/connectivity.dart';
 
 class SyllabusPage extends StatefulWidget {
   @override
@@ -12,6 +13,12 @@ class SyllabusPage extends StatefulWidget {
 
 class SyllabusPageState extends State<SyllabusPage> {
   @override
+  void initState() {
+    super.initState();
+    checkifConnected();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
       drawer: new StudentoDrawer(),
@@ -20,5 +27,28 @@ class SyllabusPageState extends State<SyllabusPage> {
         title: new Text("Syllabus"),
       ),
     );
+  }
+
+  void checkifConnected() async {
+    var connectivityResult = await (new Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              contentPadding: const EdgeInsets.all(20.0),
+              title: Text("Connection error"),
+              content: Text(
+                  "Accessing syllabus requires an internet connection. Please connect to the internet and try again."),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () =>
+                      Navigator.of(context).popUntil(ModalRoute.withName('/')),
+                )
+              ],
+            );
+          });
+    }
   }
 }
