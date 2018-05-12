@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/subjects_staggered_grid_view.dart';
+import '../pages/sub-pages/topic-notes/topic_select.dart';
 
 class TopicNotesPage extends StatefulWidget {
   @override
@@ -16,7 +17,18 @@ class _TopicNotesPageState extends State<TopicNotesPage> {
         title: new Text("Topic Notes"),
       ),
       drawer: new StudentoDrawer(),
-      body: new SubjectsStaggeredListView('topicNotesPage'),
+      body: new SubjectsStaggeredListView(openTopicsListPage),
+    );
+  }
+
+  void openTopicsListPage(String subject, String level) {
+    // Open topic_select page, which displays the topic list for the selected
+    // subject.
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+          builder: (BuildContext context) =>
+              new TopicSelectPage(subject, level)),
     );
   }
 }
