@@ -29,6 +29,12 @@ class SyllabusPageState extends State<SyllabusPage> {
     );
   }
 
+  /// In this free version of Studento, syllabus are only available online.
+  /// To prevent any nasty errors, we check if the device is connnected
+  /// beforehand, and display an [AlertDialog] if we're offline.
+  ///
+  /// One thing to note is that if the user is connected to a mobile hotspot
+  /// without internet connection, this method is not going to work.
   void checkifConnected() async {
     var connectivityResult = await (new Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
