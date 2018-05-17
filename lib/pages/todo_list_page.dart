@@ -1,215 +1,421 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import '../UI/studento_app_bar.dart';
+import '../UI/studento_drawer.dart';
+import '../UI/date_time_item.dart';
+import '../model/todo_item.dart';
+import '../util/database_client.dart';
 
-class ToDoItem extends StatelessWidget {
-  /// The main title of the [ToDoItem].
-  final String title;
+/// We need this key in order to access and modify [TodoListPage]'s [todoItemList]
+///  in [_CreateNewTodoPageState].
+final TodoListPagekey = GlobalKey<_TodoListPageState>();
 
-  /// Optional extra details about the [ToDoItem].
-  final String details;
-
-  /// The time before which user has to complete the [ToDoItem]. If not
-  /// completed by then, then we should classify this to-do as
-  final DateTime dueDate;
-
-  /// The category of the [ToDoItem]. This can be one of the user's subjects,
-  /// or a custom category created by the user. We can use this to sort and
-  /// color-code the [ToDoItem]s.
-  final String category;
-  ToDoItem(
-      {@required this.title,
-      @required this.dueDate,
-      @required this.category,
-      this.details});
-
-  @override
-  Widget build(BuildContext context) {
-    return Dismissible(
-      key: GlobalKey(),
-      direction: DismissDirection.horizontal,
-      onDismissed: (DismissDirection direction) =>
-          direction == DismissDirection.startToEnd ? onComplete() : onDelete(),
-      background: Container(
-        color: Colors.lightGreen,
-        child: const ListTile(
-          leading: const Icon(
-            Icons.archive,
-            color: Colors.white,
-            size: 36.0,
-          ),
-        ),
-      ),
-      secondaryBackground: Container(
-        color: Colors.redAccent,
-        child: const ListTile(
-          trailing: const Icon(
-            Icons.delete,
-            color: Colors.white,
-            size: 36.0,
-          ),
-        ),
-      ),
-      child: ListTile(
-        title: Text(title),
-        subtitle: Text(
-          details,
-          softWrap: true,
-          overflow: TextOverflow.ellipsis,
-        ),
-        trailing: CircleAvatar(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          radius: 16.0,
-          child: Text(
-            "${dueDate.day}",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
-        isThreeLine: true,
-        onTap: () => _showDetailsOfItem(context),
-      ),
-    );
-  }
-
-  void onComplete() {
-    print("Task completed");
-  }
-
-  void onDelete() {
-    print("Task deleted");
-  }
-
-  void _showDetailsOfItem(BuildContext context) {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: Text("Details"),
-            contentPadding: const EdgeInsets.all(20.0),
-            children: <Widget>[
-              Center(
-                widthFactor: 50.0,
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              )
-            ],
-          );
-        });
-  }
-}
-
-List<ToDoItem> toDoList = [
-  ToDoItem(
-    title: "Get Dressed",
-    details: "I need to get dressed",
-    dueDate: new DateTime.now(),
-    category: 'Life',
-  ),
-  ToDoItem(
-    title: "Brush Teeth",
-    details:
-        "Up and down, left and right, we brush, \nwe brush, we brush. It is a true joy, to brush.",
-    dueDate: new DateTime(2018),
-    category: 'Routine',
-  ),
-];
-
+/// A tab where the user can consult his todo-list.
 class TodoListPage extends StatefulWidget {
+  TodoListPage({Key key}) : super(key: TodoListPagekey);
   @override
-  _TodoListPageState createState() => new _TodoListPageState();
+  _TodoListPageState createState() => _TodoListPageState();
 }
 
 class _TodoListPageState extends State<TodoListPage> {
-  GlobalKey dialogKey = GlobalKey();
+  /// This map holds two lists: [activeTodoItems] and [completedTodoItems].
+  /// The reason we are not using these as two separate lists is because then
+  /// it's a lot more work to transfer a [TodoItem] from one list to the
+  /// other.
+  Map<String, List<TodoItem>> _todoItemList = <String, List<TodoItem>>{
+    "activeTodoItems": [],
+    "completedTodoItems": []
+  };
 
+  /// Getter for [_todoItemList].
+  Map<String, List<TodoItem>> get todoItemList => _todoItemList;
+
+  /// The key we use throughout this code to access one of the two list values
+  /// in [_todoItemList]. On first run this is set to [activeTodoItems] as we
+  /// want the user to first see the active items tab.
+  String selectedList = "activeTodoItems";
+
+  /// holds the BuildContext of the body of the [Scaffold] in TodoListPage.
+  /// We need this to show [Snackbar]s.
+  BuildContext _scaffoldContext;
+
+  var db = DatabaseHelper();
+
+  /// Denotes which tab in the BottomNavigationBar is selected.
+  /// [0] stands for the [Active] tab and [1] is for the [Completed] tab.
+  int _selectedTab = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    readToDoList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StudentoAppBar(),
-      body: ListView(children: toDoList),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[700],
-        child: Icon(Icons.add),
-        onPressed: () => _addTask(context),
+      drawer: StudentoDrawer(),
+      appBar: StudentoAppBar(
+        title: Text("Todo List"),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.search),
+          color: Colors.white,
+          onPressed: () => print("You have tried to search."),)
+        ]),
+      body: (todoItemList["activeTodoItems"].length == 0 && _selectedTab == 0) ?
+       Center(child: Text("Hooray, you don't have todo items left!",)) :
+        Builder(builder: (BuildContext context) {
+        _scaffoldContext = context;
+        return Column(
+          children: <Widget>[
+            Flexible(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8.0),
+                reverse: false,
+                itemCount: todoItemList[selectedList].length,
+                itemBuilder: (_, int index) => _buildDismissible(index),
+              ),
+            ),
+            Divider(
+              height: 1.0,
+            ),
+          ],
+        );
+      }),
+      bottomNavigationBar: _buildBottomNavigationBar(),
+      floatingActionButton: _buildFloatingActionButton(),
+    );
+  }
+
+  /// The background builder for the Dismissible in [TodoListPage].
+  Widget _buildDissmissibleBackground(
+          {Color color,
+          IconData icon,
+          FractionalOffset align = FractionalOffset.centerLeft}) =>
+      Container(
+        height: 42.0,
+        color: color,
+        child: Icon(icon, color: Colors.white70),
+        alignment: align,
+      );
+
+  /// The background for delete swipe action.
+  Widget _buildSecondaryDismissibleBackground() => _buildDissmissibleBackground(
+      color: Colors.red,
+      icon: Icons.delete,
+      align: FractionalOffset.centerRight);
+
+  /// The background for the complete swipe action.
+  /// In case this function is used in the Completed tab,
+  /// this background is the same as the primary background.
+  /// TODO The key of the dismissible is duplicated when widget is rebuilt,
+  /// we need to fix that.
+  Widget _buildDismissible(int index) {
+    return Dismissible(
+      background: selectedList == "activeTodoItems"
+          ? _buildDissmissibleBackground(color: Colors.lime, icon: Icons.check)
+          : _buildSecondaryDismissibleBackground(),
+      secondaryBackground: _buildSecondaryDismissibleBackground(),
+      onDismissed: (direction) {
+        int _id = todoItemList[selectedList][index].id;
+        if (_selectedTab == 0) {
+          direction == DismissDirection.startToEnd
+              ? completeTodoItem(_id, index)
+              : deleteTodoItem(_id, index);
+        } else {
+          deleteTodoItem(_id, index);
+        }
+      },
+      key: GlobalKey(),
+      child: todoItemList[selectedList][index],
+    );
+  }
+
+  /// Builds the [BotttomNavigationBar] that contains the Active and
+  /// Completed tab.
+  Widget _buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      fixedColor: Colors.blue[700],
+      currentIndex: _selectedTab,
+      onTap: (int screen) => switchTabs(screen),
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.timer), title: Text("Active")),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.check_circle), title: Text("Completed"))
+      ],
+    );
+  }
+
+  /// Returns a FloatingActionButton that opens up [CreateNewTodoPage] when tapped.
+  Widget _buildFloatingActionButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.of(context).push(
+              MaterialPageRoute(
+                  fullscreenDialog: true,
+                  builder: (_) => CreateNewTodoPage(_scaffoldContext)),
+            );
+      },
+      tooltip: "Create Todo",
+      backgroundColor: Colors.blue[700],
+      foregroundColor: Colors.white,
+      child: Icon(
+        Icons.add,
+        size: 30.0,
+      ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5.0))),
+    );
+  }
+
+  /// Gets the lists of active and completed [todoItem]s from the database
+  /// and pushes them into [todoItemList["activeTodoItems"]] and
+  /// [todoItemList["completedTodoItems"]] respectively.
+  void readToDoList() async {
+    List activeItems = await db.getItems(isComplete: true);
+    activeItems.forEach((item) {
+      TodoItem todoItem = TodoItem.fromMap(item);
+      setState(() {
+        todoItemList["activeTodoItems"].insert(0, todoItem);
+      });
+      print("Db items: ${todoItem.itemName}");
+    });
+
+    List completedItems = await db.getItems(isComplete: false);
+    completedItems.forEach((item) {
+      TodoItem todoItem = TodoItem.fromMap(item);
+      setState(() {
+        todoItemList["completedTodoItems"].insert(0, todoItem);
+      });
+    });
+  }
+
+  /// Mark the item as complete by changing its [isComplete] property to [true].
+  /// Then, we update the database record as well as the [todoItemList].
+  void completeTodoItem(int id, int index) async {
+    TodoItem updatedItem = await db.getItem(id);
+    updatedItem.isComplete = true;
+    db.updateItem(updatedItem);
+    setState(() {
+      TodoListPagekey.currentState.todoItemList["activeTodoItems"]
+          .removeAt(index);
+      TodoListPagekey.currentState.todoItemList["completedTodoItems"]
+          .insert(0, updatedItem);
+    });
+  }
+
+  /// The item whose id is passed is deleted from the database and the
+  /// [todoItemList]. User is then notified by a [SnackBar]. If "UNDO" action
+  /// in the [SnackBar] is pressed, item is restored.
+  void deleteTodoItem(int id, int index) async {
+    TodoItem deletedItem = await db.getItem(id);
+    db.deleteItem(id);
+    setState(() {
+      // Remove item from the list.
+      todoItemList[selectedList].removeAt(index);
+    });
+
+    Scaffold.of(_scaffoldContext).showSnackBar(SnackBar(
+          content: Text("This To-do has been deleted."),
+          action: SnackBarAction(
+            label: "UNDO",
+            onPressed: () {
+              setState(() {
+                db.saveItem(deletedItem);
+                // Add item back into the list at its original position.
+                todoItemList[selectedList].insert(index, deletedItem);
+              });
+            },
+          ),
+        ));
+  }
+
+  /// Called when the user presses on of the
+  /// [BottomNavigationBarItem] with corresponding
+  /// tab index. Based on the index, we update the
+  /// [selectedList] as well as [_selectedTab].
+  void switchTabs(int tab) {
+    String _selectedList;
+    if (tab == 0)
+      _selectedList = "activeTodoItems";
+    else
+      _selectedList = "completedTodoItems";
+
+    setState(() {
+      _selectedTab = tab;
+      selectedList = _selectedList;
+    });
+  }
+}
+
+class CreateNewTodoPage extends StatefulWidget {
+  /// The context of the [Scaffold] in [TodoListPage]. We need this
+  /// BuildContext to show the [SnackBar]s.
+  BuildContext _scaffoldContext;
+
+  CreateNewTodoPage(this._scaffoldContext);
+  @override
+  _CreateNewTodoPageState createState() => _CreateNewTodoPageState();
+}
+
+class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
+  final TextEditingController _titleEditingController = TextEditingController();
+  final TextEditingController _detailsEditingController =
+      TextEditingController();
+  var db = DatabaseHelper();
+  DateTime _dueDate = DateTime.now();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: StudentoAppBar(title: Text("Create Todo")),
+      body: _buildForm(),
+    );
+  }
+
+  Widget _buildForm() {
+    return Form(
+      onWillPop: showConfirmationDialog,
+      child: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            alignment: Alignment.bottomLeft,
+            child: TextField(
+              controller: _titleEditingController,
+              decoration: InputDecoration(
+                  filled: true,
+                  icon: Icon(Icons.note_add),
+                  hintText: "E.g do Physics homework",
+                  labelText: "Title",
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                    borderRadius: BorderRadius.circular(5.0),
+                  )),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            alignment: Alignment.bottomLeft,
+            child: TextField(
+              controller: _detailsEditingController,
+              maxLines: 10,
+              decoration: InputDecoration(
+                  filled: true,
+                  contentPadding: const EdgeInsets.all(15.0),
+                  icon: Icon(Icons.details),
+                  hintText: "E.g Physics book Pg 345 Ex 12-45",
+                  labelText: "Details",
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                    borderRadius: BorderRadius.circular(5.0),
+                  )),
+            ),
+          ),
+          _buildDueDateSection(),
+          RaisedButton.icon(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            textColor: Colors.white,
+            color: Colors.blue[700],
+            label: Text("ADD TODO"),
+            icon: Icon(Icons.add),
+            onPressed: () {
+              addNewTodoItem(
+                  _titleEditingController.text, _detailsEditingController.text);
+            },
+          )
+        ],
       ),
     );
   }
 
-  /// This will show a [SimpleDialog] where user can enter details of a new
-  /// [ToDoItem]
-  void _addTask(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            titlePadding: const EdgeInsets.only(bottom: 5.0),
-            title: new Container(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text("ADD TASK",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              color: Colors.deepPurpleAccent,
-            ),
-            contentPadding: const EdgeInsets.all(20.0),
-            children: <Widget>[
-              Text("This is where we need to enter details"),
-              Padding(
-                padding: const EdgeInsets.all(6.0),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    labelText: "Title",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-              ),
-              new TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Extra details about this ToDo",
-                    labelText: "Details",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
-                    )),
-                maxLines: 10,
-              ),
-              SimpleDialogOption(
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                  color: Colors.blue[700],
-                  onPressed: () {
-                    Navigator.pop(context);
-                    saveTask();
-                  },
-                  child: Text("SAVE",
-                      style: const TextStyle(
-                        color: Colors.white,
-                      )),
-                ),
-              ),
-            ],
-          );
-        });
-    print("This will add a new task");
+  /// Returns the dueDate selector widget.
+  Widget _buildDueDateSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "Due Date",
+          textScaleFactor: 1.5,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.all(8.0),
+          child: DateTimeItem(
+            dateTime: _dueDate,
+            onChanged: (DateTime value) {
+              setState(() {
+                _dueDate = value;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+        )
+      ],
+    );
   }
 
-  void saveTask(/*ToDoItem toDoItem*/) {
+  /// Add a toDoItem to the database and [todoItemList].
+  void addNewTodoItem(String title, String details) async {
+    _titleEditingController.clear();
+    _detailsEditingController.clear();
+    print(
+        " the title is:$title \n The detail is: $details, dueDate is: $_dueDate");
+    TodoItem todoItem = TodoItem(title, _dueDate.toString(), details);
+    int savedItemId = await db.saveItem(todoItem);
+
+    TodoItem addedItem = await db.getItem(savedItemId);
     setState(() {
-      //toDoList.add(/*toDoItem*/);
+      String _selectedList = TodoListPagekey.currentState.selectedList;
+      print("$_selectedList");
+      TodoListPagekey.currentState.todoItemList["$_selectedList"]
+          .insert(0, addedItem);
     });
-    print("Task has been saved");
+
+    print("Item saved with id: $savedItemId");
+    Navigator.of(context).pop();
+    Scaffold.of(widget._scaffoldContext).showSnackBar(SnackBar(
+          content: Text("Task has been saved."),
+          duration: Duration(seconds: 2),
+        ));
+  }
+
+  /// If user presses the close IconButton, show a dialog to confirm whether
+  /// (s)he wants to discard the new todo.
+  Future<bool> showConfirmationDialog() async {
+    final ThemeData theme = Theme.of(context);
+    final TextStyle dialogTextStyle =
+        theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
+
+    return await showDialog<bool>(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text('Discard new Todo?', style: dialogTextStyle),
+              actions: <Widget>[
+                FlatButton(
+                    child: const Text('CANCEL'),
+                    onPressed: () {
+                      Navigator.of(context).pop(
+                          false); // Pops the confirmation dialog but not the tab.
+                    }),
+                FlatButton(
+                    child: const Text('DISCARD'),
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+
+                      /// Returning true to [showConfirmationDialog] will pop again.
+                    })
+              ],
+            );
+          },
+        ) ??
+        false;
   }
 }

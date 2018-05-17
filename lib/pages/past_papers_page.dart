@@ -22,7 +22,7 @@ class _PastPapersPageState extends State<PastPapersPage> {
     );
   }
 
-  void openPastPapersDetailsSelect(String subject, String level){
+  void openPastPapersDetailsSelect(String subject, String level) {
     // Open the past_paper_details_select page.
     Navigator.push(
       context,

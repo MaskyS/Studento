@@ -11,7 +11,7 @@ class PaperDetailsSelectionPage extends StatefulWidget {
 
   @override
   PaperDetailsSelectionPageState createState() =>
-      new PaperDetailsSelectionPageState();
+      PaperDetailsSelectionPageState();
 }
 
 class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
@@ -25,12 +25,14 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     23,
     24,
   ];
-  final GlobalKey _menuKey = new GlobalKey();
+  final GlobalKey _menuKey = GlobalKey();
 
   Map subjectCodesList;
 
   /// Gets the subject code of the specified subject of the specified level.
   String _getSubjectCode(String level, String subject) {
+    // TODO If past papers are unavailable for the subject, we should show
+    // an AlertDialog and notify the user.
     return subjectCodesList["$level level"][subject]['subject_code'];
   }
 

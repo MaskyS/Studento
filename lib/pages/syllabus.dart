@@ -39,7 +39,7 @@ class SyllabusPageState extends State<SyllabusPage> {
     rootBundle
         .loadString('assets/json/subjects_syllabus_urls.json')
         .then((fileData) {
-      urlList = json.decode(fileData);
+        urlList = json.decode(fileData);
     });
   }
 
