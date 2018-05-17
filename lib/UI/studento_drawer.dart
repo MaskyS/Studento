@@ -18,7 +18,8 @@ class DrawerFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _onTap(routeName) {
-      Navigator.pushReplacementNamed(context, routeName);
+      Navigator.pushReplacementNamed(context, '/');
+      Navigator.pushNamed(context, routeName);
     }
 
     return new ListTile(
