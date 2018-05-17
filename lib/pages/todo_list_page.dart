@@ -372,9 +372,7 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
 
     TodoItem addedItem = await db.getItem(savedItemId);
     setState(() {
-      String _selectedList = TodoListPagekey.currentState.selectedList;
-      print("$_selectedList");
-      TodoListPagekey.currentState.todoItemList["$_selectedList"]
+      TodoListPagekey.currentState.todoItemList["activeTodoItems"]
           .insert(0, addedItem);
     });
 
