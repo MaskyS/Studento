@@ -79,8 +79,8 @@ class TodoItem extends StatelessWidget {
     }
     else _dateUnitsLeft = '';
     print(_dateUnitsLeft);
-    int numba = int.tryParse(_dateUnitsLeft.split(" ")[0]) ?? 0;
-    if (numba > 1) _dateUnitsLeft = _dateUnitsLeft + 's';
+    int dateUnits = int.tryParse(_dateUnitsLeft.split(" ")[0]) ?? 0;
+    if (dateUnits > 1) _dateUnitsLeft = _dateUnitsLeft + 's';
     String dateUnitsLeft = (_dateUnitsLeft != '') ? "$_dateUnitsLeft left" : '';
 
 
