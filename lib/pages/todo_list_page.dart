@@ -8,11 +8,11 @@ import '../util/database_client.dart';
 
 /// We need this key in order to access and modify [TodoListPage]'s [todoItemList]
 ///  in [_CreateNewTodoPageState].
-final TodoListPagekey = GlobalKey<_TodoListPageState>();
+final todoListPagekey = GlobalKey<_TodoListPageState>();
 
 /// A tab where the user can consult his todo-list.
 class TodoListPage extends StatefulWidget {
-  TodoListPage({Key key}) : super(key: TodoListPagekey);
+  TodoListPage({Key key}) : super(key: todoListPagekey);
   @override
   _TodoListPageState createState() => _TodoListPageState();
 }
@@ -126,7 +126,7 @@ class _TodoListPageState extends State<TodoListPage> {
           deleteTodoItem(_id, index);
         }
       },
-      key: GlobalKey(),
+      key: new UniqueKey(),
       child: todoItemList[selectedList][index],
     );
   }
@@ -197,9 +197,9 @@ class _TodoListPageState extends State<TodoListPage> {
     updatedItem.isComplete = true;
     db.updateItem(updatedItem);
     setState(() {
-      TodoListPagekey.currentState.todoItemList["activeTodoItems"]
+      todoListPagekey.currentState.todoItemList["activeTodoItems"]
           .removeAt(index);
-      TodoListPagekey.currentState.todoItemList["completedTodoItems"]
+      todoListPagekey.currentState.todoItemList["completedTodoItems"]
           .insert(0, updatedItem);
     });
   }
@@ -372,7 +372,7 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
 
     TodoItem addedItem = await db.getItem(savedItemId);
     setState(() {
-      TodoListPagekey.currentState.todoItemList["activeTodoItems"]
+      todoListPagekey.currentState.todoItemList["activeTodoItems"]
           .insert(0, addedItem);
     });
 

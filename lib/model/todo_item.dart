@@ -55,58 +55,60 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _tooltip = (isComplete == true)
+        ? "Swipe to remove this item."
+        : "Swipe right to mark this task as complete, or left to delete it.";
     return Container(
         child: Tooltip(
-          message:
-              "Swipe right to mark this task as complete, or left to delete it.",
-          child: ListTile(
-               isThreeLine: true,
-              onTap: () {
-                print("You tapped the Todo with $id");
-              },
-              leading: CircleAvatar(
-                backgroundColor: Colors.deepPurpleAccent,
-                radius: 4.0,
-              ),
-              title: Text(
-                _itemName,
-                textScaleFactor: 1.2,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      message: _tooltip,
+      child: ListTile(
+          isThreeLine: true,
+          onTap: () {
+            print("You tapped the Todo with $id");
+          },
+          leading: CircleAvatar(
+            backgroundColor: Colors.deepPurpleAccent,
+            radius: 4.0,
+          ),
+          title: Text(
+            _itemName,
+            textScaleFactor: 1.2,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      new Text(
-                        _details,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    ],
+                  new Text(
+                    _details,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                    ),
                   ),
-                  Row(
-                    children: <Widget>[
-                      new Icon(
-                        Icons.timer,
-                        size: 12.0,
-                      ),
-                      new Padding(
-                        padding: EdgeInsets.only(right: 5.0),
-                      ),
-                      new Text(
-                        _dueDate,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  )
                 ],
-              )),
-        ));
+              ),
+              Row(
+                children: <Widget>[
+                  new Icon(
+                    Icons.timer,
+                    size: 12.0,
+                  ),
+                  new Padding(
+                    padding: EdgeInsets.only(right: 5.0),
+                  ),
+                  new Text(
+                    _dueDate,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          )),
+    ));
   }
 }
