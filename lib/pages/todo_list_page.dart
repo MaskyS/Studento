@@ -24,7 +24,7 @@ class _TodoListPageState extends State<TodoListPage> {
   /// other.
   Map<String, List<TodoItem>> _todoItemList = <String, List<TodoItem>>{
     "activeTodoItems": [],
-    "completedTodoItems": []
+    "completedTodoItems": [],
   };
 
   /// Getter for [_todoItemList].
@@ -362,7 +362,7 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
   }
 
   /// Add a toDoItem to the database and [todoItemList].
-  void addNewTodoItem(String title, String details) async {
+  void addNewTodoItem( String title, String details) async {
     _titleEditingController.clear();
     _detailsEditingController.clear();
     print(

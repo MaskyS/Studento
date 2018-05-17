@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
             (BuildContext context, int index) {
               return new GestureDetector(
                 onTap: () {
-                  Navigator.popAndPushNamed(context, _getPageToBePushed(index));
+                  Navigator.pushReplacementNamed(context, _getPageToBePushed(index));
                 },
                 child: new Container(
                   decoration: new BoxDecoration(
