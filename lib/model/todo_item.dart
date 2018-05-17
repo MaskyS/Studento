@@ -55,6 +55,35 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DateTime dateNow = DateTime.now();
+    final int todoDueYear = int.parse(dueDate.substring(0, 3));
+    final int todoDueMonth = int.parse(dueDate.substring(5, 7));
+    final int todoDueDay = int.parse(dueDate.substring(8,10));
+    final int todoDueHour = int.parse(dueDate.substring(11, 13));
+    final int todoDueMinute = int.parse(dueDate.substring(14, 16));
+    String _dateUnitsLeft;
+    Color color = Colors.black87;
+    if (todoDueYear > dateNow.year) {
+      _dateUnitsLeft = "${todoDueYear - dateNow.year} year";
+    } else if (todoDueMonth > dateNow.month){
+      _dateUnitsLeft = "${todoDueMonth - dateNow.month} month";
+    } else if (todoDueDay > dateNow.day){
+      _dateUnitsLeft = "${todoDueDay - dateNow.day} day";
+    } else if (todoDueHour > dateNow.hour){
+      _dateUnitsLeft = "${todoDueHour - dateNow.hour} hour";
+    } else if (todoDueMinute > dateNow.minute){
+      _dateUnitsLeft = "${todoDueMinute - dateNow.minute} minute";
+    } else if (todoDueMinute < dateNow.minute){
+      _dateUnitsLeft = "0 minutes";
+      color = Colors.redAccent;
+    }
+    else _dateUnitsLeft = '';
+    print(_dateUnitsLeft);
+    int numba = int.tryParse(_dateUnitsLeft.split(" ")[0]) ?? 0;
+    if (numba > 1) _dateUnitsLeft = _dateUnitsLeft + 's';
+    String dateUnitsLeft = (_dateUnitsLeft != '') ? "$_dateUnitsLeft left" : '';
+
+
     String _tooltip = (isComplete == true)
         ? "Swipe to remove this item."
         : "Swipe right to mark this task as complete, or left to delete it.";
@@ -72,12 +101,12 @@ class TodoItem extends StatelessWidget {
           ),
           title: Text(
             _itemName,
-            textScaleFactor: 1.2,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            textScaleFactor: 1.1,
           ),
           subtitle: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              Padding(padding: const EdgeInsets.all(1.5),),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -99,8 +128,9 @@ class TodoItem extends StatelessWidget {
                     padding: EdgeInsets.only(right: 5.0),
                   ),
                   new Text(
-                    _dueDate,
+                    dateUnitsLeft,
                     style: TextStyle(
+                      color: color,
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold,
                     ),

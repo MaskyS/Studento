@@ -63,7 +63,16 @@ class _TodoListPageState extends State<TodoListPage> {
           onPressed: () => print("You have tried to search."),)
         ]),
       body: (todoItemList["activeTodoItems"].length == 0 && _selectedTab == 0) ?
-       Center(child: Text("Hooray, you don't have todo items left!",)) :
+        Center(
+          child: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: <Widget>[
+            Icon(Icons.check_circle, color: Colors.lime, size: 50.0,),
+            Padding(padding: const EdgeInsets.all(10.0),),
+            Text("Hooray, you don't have any todo items!"),
+         ]),
+        ) :
+
         Builder(builder: (BuildContext context) {
         _scaffoldContext = context;
         return Column(
