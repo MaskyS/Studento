@@ -58,7 +58,7 @@ class DatabaseHelper {
     assert (isComplete != null);
     var whereArg = isComplete == true ? 1 : 0;
     var dbClient = await db;
-    var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE $columnIsComplete = $whereArg ORDER BY $columnItemName ASC");
+    var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE $columnIsComplete = $whereArg ORDER BY $columnDueDate ASC");
 
     return result.toList();
   }

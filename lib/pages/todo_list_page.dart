@@ -416,7 +416,6 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
                     child: const Text('DISCARD'),
                     onPressed: () {
                       Navigator.of(context).pop(true);
-
                       /// Returning true to [showConfirmationDialog] will pop again.
                     })
               ],
