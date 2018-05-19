@@ -181,7 +181,7 @@ class _TodoListPageState extends State<TodoListPage> {
   /// and pushes them into [todoItemList["activeTodoItems"]] and
   /// [todoItemList["completedTodoItems"]] respectively.
   void readToDoList() async {
-    List activeItems = await db.getItems(isComplete: true);
+    List activeItems = await db.getItems(isComplete: false);
     activeItems.forEach((item) {
       TodoItem todoItem = TodoItem.fromMap(item);
       setState(() {
@@ -190,7 +190,7 @@ class _TodoListPageState extends State<TodoListPage> {
       print("Db items: ${todoItem.itemName}");
     });
 
-    List completedItems = await db.getItems(isComplete: false);
+    List completedItems = await db.getItems(isComplete: true);
     completedItems.forEach((item) {
       TodoItem todoItem = TodoItem.fromMap(item);
       setState(() {
