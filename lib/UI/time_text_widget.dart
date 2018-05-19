@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:studentapp/globals.dart' as globals;
+import '../globals.dart' as globals;
 
 class TimeTextWidget extends StatefulWidget {
   TimeTextWidget({Key key}) : super(key: key);

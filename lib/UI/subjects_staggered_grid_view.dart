@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:studentapp/globals.dart';
+import '../globals.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
