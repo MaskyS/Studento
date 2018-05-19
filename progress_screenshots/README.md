@@ -1,4 +1,4 @@
-##This folder holds some screenshots to record how the project's UI evolved over commits.
+#This folder holds some screenshots to record how the project's UI evolved over commits.
 
 ![screenshot](./flutter_01.png)
 ![screenshot](./flutter_02.png)
@@ -12,3 +12,5 @@
 ![screenshot](./flutter_10.png)
 ![screenshot](./flutter_11.png)
 ![screenshot](./flutter_12.png)
+![screenshot](./flutter_13.png)
+![screenshot](./flutter_14.png)
