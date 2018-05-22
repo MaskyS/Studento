@@ -86,7 +86,7 @@ class SyllabusPageState extends State<SyllabusPage> {
   void launchWebView(String subject, String level) {
     // Prevent Navigational state nests (i.e tapping back forever to get back
     // to the home page).
-    Navigator.popUntil(context, ModalRoute.withName('/'));
+    Navigator.popUntil(context, ModalRoute.withName('home_page'));
 
     /// Open up the WebView Scaffold which will display the pdf document of the
     /// requested syllabus.
@@ -135,7 +135,7 @@ class SyllabusPageState extends State<SyllabusPage> {
                 FlatButton(
                   child: new Text("OK"),
                   onPressed: () =>
-                      Navigator.of(context).popUntil(ModalRoute.withName('/')),
+                      Navigator.of(context).popUntil(ModalRoute.withName('home_page')),
                 )
               ],
             );

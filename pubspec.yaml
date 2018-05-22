@@ -6,7 +6,7 @@ dependencies:
     sdk: flutter
   connectivity: "^0.3.0"
   shared_preferences: "0.4.1"
-  jaguar: "^2.0.2"
+  jaguar_flutter_asset: ^1.1.5
   flutter_webview_plugin: "^0.1.5"
   url_launcher: "^3.0.0"
   numberpicker: "^0.1.0"
@@ -43,9 +43,10 @@ flutter:
     - assets/icons/notes_icon.png
     - assets/icons/todo-list_icon.png
     - assets/json/quotes.json
+    - assets/json/subjects_list.json
     - assets/json/subjects_syllabus_urls.json
     - assets/json/subjects_topic_lists.json
-    - assets/text.html
+    - assets/9706_w14_qp_23.html
     - assets/text/background1.jpg
     - assets/text/background2.jpg
     - assets/text/background3.jpg

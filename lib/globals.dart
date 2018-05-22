@@ -2,7 +2,7 @@
 String userName = "Romeo";
 String level = 'O';
 List<String> subjectsList = [
-  'Mathematics',
+  'Mathematics D',
   'Sociology',
   'Additional Mathematics',
   'Literature in English',

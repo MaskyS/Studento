@@ -1,10 +1,13 @@
-import 'dart:io';
-import 'dart:async';
+// import 'dart:io';
+// import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:jaguar/jaguar.dart';
+import 'package:jaguar_flutter_asset/jaguar_flutter_asset.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:simple_permissions/simple_permissions.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:simple_permissions/simple_permissions.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import '../../../UI/studento_app_bar.dart';
 
 class PastPaperView extends StatefulWidget {
   final String paperName;
@@ -14,44 +17,46 @@ class PastPaperView extends StatefulWidget {
 }
 
 class _PastPaperViewState extends State<PastPaperView> {
-  bool _isCompleted = false;
+  bool _isCompleted;
   bool _isFullScreen = true;
-  Color _colorOfMarkAsCompleteButton;
+  Color _colorOfMarkAsCompleteButton = Colors.white;
   IconData _iconOfFullScreenButton = Icons.fullscreen;
   static int minYear = 2008;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   static int _marks = 0;
 
-  Future<String> get _localPath async {
-    final directory = await getExternalStorageDirectory();
-    return directory.path;
-  }
+  // Future<String> get _localPath async {
+  //   final directory = await getExternalStorageDirectory();
+  //   return directory.path;
+  // }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    print("Path is $path");
-    return new File('$path/text.html');
-  }
+  // Future<File> get _localFile async {
+  //   final path = await _localPath;
+  //   print("Path is $path");
+  //   return new File('$path/text.html');
+  // }
 
-  void readHtml() async {
-    bool res = await SimplePermissions
-        .requestPermission(Permission.WriteExternalStorage);
-    print("permission request result is " + res.toString());
-    try {
-      final file = await _localFile;
-      String contents = file.readAsStringSync();
-      setState(() {
-        html = contents;
-      });
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  // void readHtml() async {
+  //   bool res = await SimplePermissions
+  //       .requestPermission(Permission.WriteExternalStorage);
+  //   print("permission request result is " + res.toString());
+  //   try {
+  //     final file = await _localFile;
+  //     String contents = file.readAsStringSync();
+  //     setState(() {
+  //       html = contents;
+  //     });
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 
-  String html;
+  // String html;
 
   @override
   void initState() {
+    super.initState();
+    startLocalServer();
     // readHtml().then((String contents){
     //   setState(() {
     //     html = contents;
@@ -60,14 +65,45 @@ class _PastPaperViewState extends State<PastPaperView> {
     // rootBundle.loadString('assets/text.html').then((String fileData){
     //   html= fileData;
     // });
-    readHtml();
-    super.initState();
+
+//    readHtml();
   }
 
   @override
   Widget build(BuildContext context) {
+    // if (html == null) {
+    //   return new CircularProgressIndicator();
+    // }
+
+    return new WebviewScaffold(
+      url: "http://localhost:8080/${widget.paperName}.html",
+      // TODO fix assets loading.
+      // url: new Uri.dataFromString(html,
+      //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
+      appBar: new StudentoAppBar(
+        title: new Text("Webview"),
+        actions: _getActions(),
+      ),
+      withZoom: true,
+      withLocalStorage: true,
+    );
+  }
+
+  List<Widget> _getActions() {
     List<Widget> actions;
     actions = [
+      new SizedBox(
+        height: 25.0,
+        width: 30.0,
+        child: new IconButton(
+          icon: const Icon(Icons.check_circle),
+          iconSize: 18.0,
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          onPressed: _pressedMarkAsCompleteButton,
+          color: _colorOfMarkAsCompleteButton,
+          tooltip: "Mark this paper as completed.",
+        ),
+      ),
       new SizedBox(
         height: 24.0,
         width: 30.0,
@@ -79,18 +115,6 @@ class _PastPaperViewState extends State<PastPaperView> {
           onPressed: _pressedFullScreenButton,
           color: Colors.white,
           tooltip: "Set full screen.",
-        ),
-      ),
-      new SizedBox(
-        height: 25.0,
-        width: 30.0,
-        child: new IconButton(
-          icon: const Icon(Icons.beenhere),
-          iconSize: 18.0,
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-          onPressed: _pressedMarkAsCompleteButton,
-          color: _colorOfMarkAsCompleteButton,
-          tooltip: "Mark this paper as completed.",
         ),
       ),
     ];
@@ -129,21 +153,7 @@ class _PastPaperViewState extends State<PastPaperView> {
         ),
       );
     }
-
-    if (html == null) {
-      return new CircularProgressIndicator();
-    }
-
-    return new WebviewScaffold(
-      // TODO fix assets loading.
-      url: new Uri.dataFromString(html,
-          mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
-      appBar: new AppBar(
-        title: new Text("Widget webview"),
-      ),
-      withZoom: true,
-      withLocalStorage: true,
-    );
+    return actions;
   }
 
   /// Shows a dialog for user to choose the marks of the displayed paper.
@@ -175,7 +185,7 @@ class _PastPaperViewState extends State<PastPaperView> {
     // Else, we set the color of the icon to lime, and show the dialog so we
     // can get the marks the user has scored for this paper.
     setState(() {
-      if (_isCompleted) {
+      if (_isCompleted == true) {
         _colorOfMarkAsCompleteButton = Colors.white;
         _isCompleted = false;
       } else {
@@ -197,5 +207,13 @@ class _PastPaperViewState extends State<PastPaperView> {
         _isFullScreen = true;
       }
     });
+  }
+
+  void startLocalServer() async {
+    final server = new Jaguar();
+    server.addApi(new FlutterAssetServer());
+    await server.serve();
+
+    server.log.onRecord.listen((r) => print(r));
   }
 }

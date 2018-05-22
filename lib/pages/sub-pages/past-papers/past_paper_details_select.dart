@@ -18,23 +18,15 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   static int minYear = 2008;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   int selectedComponent;
-  static String selectedSeason;
+  final GlobalKey _menuKey = GlobalKey();
+  String selectedSeason;
   List<int> componentsList = [
     11,
     12,
     23,
     24,
   ];
-  final GlobalKey _menuKey = GlobalKey();
-
   Map subjectCodesList;
-
-  /// Gets the subject code of the specified subject of the specified level.
-  String _getSubjectCode(String level, String subject) {
-    // TODO If past papers are unavailable for the subject, we should show
-    // an AlertDialog and notify the user.
-    return subjectCodesList["$level level"][subject]['subject_code'];
-  }
 
   @override
   void initState() {
@@ -46,15 +38,6 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
         .then((String fileData) {
       subjectCodesList = json.decode(fileData);
     });
-  }
-
-  void openPaper(url) {
-    url = "9706_w14_qp_23";
-    Navigator
-        .of(context)
-        .push(new MaterialPageRoute(builder: (BuildContext context) {
-      return new PastPaperView(url);
-    }));
   }
 
   @override
@@ -77,6 +60,21 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
         child: _buildStepper(),
       ),
     );
+  }
+
+  /// Gets the subject code of the specified subject of the specified level.
+  String _getSubjectCode(String level, String subject) {
+    // TODO If past papers are unavailable for the subject, we should show
+    // an AlertDialog and notify the user.
+    return subjectCodesList["$level level"][subject]['subject_code'];
+  }
+
+  void openPaper(String paperName) {
+    Navigator
+        .of(context)
+        .push(new MaterialPageRoute(builder: (BuildContext context) {
+      return new PastPaperView(paperName);
+    }));
   }
 
   Stepper _buildStepper() {
@@ -123,16 +121,14 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
         selectedYear != null &&
         selectedSeason != null) {
       String subjectCode = _getSubjectCode(widget.level, widget.subjectName);
-      String paperName = subjectCode +
-          "_" +
-          selectedSeason +
+      String paperName = "${subjectCode}_$selectedSeason" +
           selectedYear.toString().substring(2) +
           "_qp_" +
           selectedComponent.toString();
       print(
           "User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subjectName} with componentcode $subjectCode");
       print("So the filename would be $paperName");
-      openPaper('url');
+      openPaper("$paperName");
     } else {
       // Set the current step to the step which was not completed.
       // The uncompleted step has to be either Step 2 or 3 as year
@@ -150,7 +146,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     List<Step> steps = [
       _buildYearSelectionStep(),
       _buildSeasonSelectionStep(),
-      _buildPaperSelectionStep()
+      _buildComponentSelectionStep()
     ];
     return steps;
   }
@@ -237,7 +233,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     );
   }
 
-  Step _buildPaperSelectionStep() {
+  Step _buildComponentSelectionStep() {
     List<PopupMenuItem> components = [];
 
     void handlePopUpChanged(int value) {

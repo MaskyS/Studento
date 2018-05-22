@@ -10,7 +10,7 @@ import 'pages/schedule_page.dart';
 import 'pages/todo_list_page.dart';
 import 'pages/topic_notes.dart';
 
-const String homeRoute = '/';
+const String homeRoute = 'home_page';
 
 const String pastPapersPageRoute = 'past_papers_page';
 const String schedulePageRoute = 'schedule_page';

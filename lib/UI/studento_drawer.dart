@@ -18,7 +18,7 @@ class DrawerFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _onTap(routeName) {
-      Navigator.pushReplacementNamed(context, '/');
+      Navigator.pushReplacementNamed(context, 'home_page');
       Navigator.pushNamed(context, routeName);
     }
 
@@ -58,7 +58,7 @@ class StudentoDrawer extends StatelessWidget {
     title: "Home",
     icon: Icons.home,
     subtitle: "Go back to the home page.",
-    routeName: '/',
+    routeName: 'home_page',
   );
 
   final syllabusPageFragment = new DrawerFragment(
