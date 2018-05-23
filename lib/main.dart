@@ -5,11 +5,11 @@ import 'pages/setup.dart';
 
 import 'routes.dart';
 
-void main() => runApp(new Studento());
+void main() => runApp(Studento());
 
   class Studento extends StatefulWidget {
     @override
-    _StudentoState createState() => new _StudentoState();
+    _StudentoState createState() => _StudentoState();
   }
 
   class _StudentoState extends State<Studento> {
@@ -17,7 +17,7 @@ void main() => runApp(new Studento());
 
     void isRunBefore() async{
       hasRunBefore = await SharedPreferencesHelper.getIsFirstRun();
-      if (!(hasRunBefore == true)) hasRunBefore = false;
+      if (hasRunBefore != true) hasRunBefore = false;
     }
     @override
       void initState() {
@@ -35,11 +35,11 @@ void main() => runApp(new Studento());
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
 
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Studento',
       home: (hasRunBefore == true) ? routes[homeRoute] : Setup(),
       routes: routes,
-      theme: new ThemeData(fontFamily: 'Montserrat'),
+      theme: ThemeData(fontFamily: 'Montserrat'),
     );
   }
 }

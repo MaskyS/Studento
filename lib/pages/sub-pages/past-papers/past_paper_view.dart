@@ -211,7 +211,7 @@ class _PastPaperViewState extends State<PastPaperView> {
 
   void startLocalServer() async {
     final server = new Jaguar();
-    server.addApi(new FlutterAssetServer());
+    server.addApi(new FlutterAssetServer(match: "/html/*"));
     await server.serve();
 
     server.log.onRecord.listen((r) => print(r));

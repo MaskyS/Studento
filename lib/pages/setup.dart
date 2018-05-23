@@ -201,7 +201,7 @@ class _SetupState extends State<Setup> {
         .of(context)
         .pushNamedAndRemoveUntil('home_page', ModalRoute.withName('home_page'));
     // We no longer need to show setup pages to user.
-    SharedPreferencesHelper.setIsFirstRun(false);
+    SharedPreferencesHelper.setIsFirstRun(true);
   }
 }
 
