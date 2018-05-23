@@ -13,7 +13,7 @@ class PastPaperView extends StatefulWidget {
   final String paperName;
   PastPaperView(this.paperName);
   @override
-  _PastPaperViewState createState() => new _PastPaperViewState();
+  _PastPaperViewState createState() => _PastPaperViewState();
 }
 
 class _PastPaperViewState extends State<PastPaperView> {
@@ -80,8 +80,8 @@ class _PastPaperViewState extends State<PastPaperView> {
       // TODO fix assets loading.
       // url: new Uri.dataFromString(html,
       //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
-      appBar: new StudentoAppBar(
-        title: new Text("Webview"),
+      appBar: StudentoAppBar(
+        title: Text("Webview"),
         actions: _getActions(),
       ),
       withZoom: true,
@@ -92,10 +92,10 @@ class _PastPaperViewState extends State<PastPaperView> {
   List<Widget> _getActions() {
     List<Widget> actions;
     actions = [
-      new SizedBox(
+      SizedBox(
         height: 25.0,
         width: 30.0,
-        child: new IconButton(
+        child: IconButton(
           icon: const Icon(Icons.check_circle),
           iconSize: 18.0,
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
@@ -104,11 +104,11 @@ class _PastPaperViewState extends State<PastPaperView> {
           tooltip: "Mark this paper as completed.",
         ),
       ),
-      new SizedBox(
+      SizedBox(
         height: 24.0,
         width: 30.0,
-        child: new IconButton(
-          icon: new Icon(_iconOfFullScreenButton),
+        child: IconButton(
+          icon: Icon(_iconOfFullScreenButton),
           iconSize: 22.0,
           padding:
               EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
@@ -128,11 +128,11 @@ class _PastPaperViewState extends State<PastPaperView> {
     else if (actions.length == 3) {
       actions.add(
         // Wrap the button in a SizedBox so as to reduce its size.
-        new SizedBox(
+        SizedBox(
           height: 1.0,
           width: 35.0,
-          child: new FlatButton(
-            shape: new CircleBorder(
+          child: FlatButton(
+            shape: CircleBorder(
                 side: const BorderSide(
               color: Colors.white,
             )),
@@ -140,10 +140,10 @@ class _PastPaperViewState extends State<PastPaperView> {
             onPressed: _showDialogToGetMarks,
             splashColor: Colors.deepPurpleAccent[400],
             textColor: Colors.white,
-            child: new Center(
-              child: new Text(
+            child: Center(
+              child:Text(
                 _marks.round().toString(),
-                style: new TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 13.5,
                 ),
@@ -162,12 +162,12 @@ class _PastPaperViewState extends State<PastPaperView> {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new NumberPickerDialog.integer(
+          return NumberPickerDialog.integer(
             titlePadding: const EdgeInsets.all(10.0),
             minValue: 0,
             maxValue: 100,
             initialIntegerValue: _marks,
-            title: new Text(
+            title: Text(
               "Enter your marks for this paper:",
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.w400),
@@ -210,8 +210,8 @@ class _PastPaperViewState extends State<PastPaperView> {
   }
 
   void startLocalServer() async {
-    final server = new Jaguar();
-    server.addApi(new FlutterAssetServer(match: "/html/*"));
+    final server = Jaguar();
+    server.addApi(FlutterAssetServer(match: "/html/*"));
     await server.serve();
 
     server.log.onRecord.listen((r) => print(r));
