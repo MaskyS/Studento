@@ -109,7 +109,7 @@ class _PastPaperViewState extends State<PastPaperView> {
       // url: new Uri.dataFromString(html,
       //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
       appBar: StudentoAppBar(
-        title: Text("Webview"),
+        title: Text("View Paper"),
         actions: actions,
       ),
     );

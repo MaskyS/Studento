@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../UI/studento_app_bar.dart';
+import '../../../util/jaguar_laucher.dart';
 
 class TopicSelectPage extends StatefulWidget {
   final String selectedSubject;
@@ -11,7 +14,7 @@ class TopicSelectPage extends StatefulWidget {
 
   @override
   _TopicSelectPageState createState() =>
-      new _TopicSelectPageState(selectedSubject, level);
+      _TopicSelectPageState(selectedSubject, level);
 }
 
 class _TopicSelectPageState extends State<TopicSelectPage> {
@@ -127,12 +130,16 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
-  void _handleSelectedTopic(String selectedTopic) {
+  Widget _handleSelectedTopic(String selectedTopic) {
     // TODO implement _handleSelectedTopic.
     print("you selected $selectedTopic");
-    // if(selectedTopic has notes available){
-    //   showNotesNotFoundDialog
-    // }
+    JaguarLauncher.startLocalServer(serverRoot: 'topic-notes');
+    return new WebviewScaffold(
+      url: 'http://localhost:8080/$selectedTopic.html',
+      appBar: StudentoAppBar(
+        title: Text("View Topic"),
+      ),
+    );
   }
 
   /// Returns a [ListView] that contains [ListTiles] for each available
