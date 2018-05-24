@@ -254,13 +254,13 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       content: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Center(
+          Center(
               child: new Text("Select the component of the paper you seek.")),
-          new Padding(
+          Padding(
             padding: new EdgeInsets.symmetric(vertical: 10.0),
           ),
-          new Divider(),
-          new ListTile(
+          Divider(),
+          ListTile(
             leading: new Icon(Icons.blur_circular),
             title: new Text("Component"),
             onTap: () {
@@ -272,18 +272,16 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
               key: _menuKey,
               itemBuilder: (BuildContext context) => components,
               onSelected: handlePopUpChanged,
-              child: new Container(
-                width: 50.0,
-                child: Row(
-                  children: <Widget>[
-                    Text((selectedComponent != null) ? selectedComponent.toString() : ''),
-                    Icon(Icons.arrow_drop_down)
-                  ],
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text((selectedComponent != null) ? selectedComponent.toString() : ''),
+                  Icon(Icons.arrow_drop_down)
+                ],
               ),
             ),
           ),
-          new Divider(),
+          Divider(),
         ],
       ),
     );

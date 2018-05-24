@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'time_text_widget.dart';
 
-/*
- * Holds the beauty that is the Studento SliverAppBar, which is exclusively
- * used in the Home Page.
- *
- * @returns SilverAppBar
- */
+/// The SliverAppBar that is used exclusively in the Home Page.
 class SliverStudentoAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return new SliverAppBar(

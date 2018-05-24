@@ -7,8 +7,8 @@ abstract class JaguarLauncher{
   /// [serverRoot], which itself must be within assets folder.
   /// So, if `img` is supplied as argument, the local server will start at
   /// `assets/img`.
-  static void startLocalServer({ @required String serverRoot}) async {
-    final server = Jaguar();
+  static void startLocalServer({ @required String serverRoot, int serverPort}) async {
+    final server = Jaguar(port: serverPort ?? 8080);
     server.addApi(FlutterAssetServer(match: "/html/$serverRoot/*"));
     await server.serve();
 

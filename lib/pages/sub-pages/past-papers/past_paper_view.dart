@@ -105,7 +105,6 @@ class _PastPaperViewState extends State<PastPaperView> {
 
     return new WebviewScaffold(
       url: "http://localhost:8080/${widget.paperName}.html",
-      // TODO fix assets loading.
       // url: new Uri.dataFromString(html,
       //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
       appBar: StudentoAppBar(

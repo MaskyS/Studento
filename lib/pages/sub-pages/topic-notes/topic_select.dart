@@ -131,11 +131,10 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   Widget _handleSelectedTopic(String selectedTopic) {
-    // TODO implement _handleSelectedTopic.
     print("you selected $selectedTopic");
-    JaguarLauncher.startLocalServer(serverRoot: 'topic-notes');
+    JaguarLauncher.startLocalServer(serverRoot: 'topic-notes', serverPort: 8090);
     return new WebviewScaffold(
-      url: 'http://localhost:8080/$selectedTopic.html',
+      url: 'http://localhost:8090/$selectedTopic.html',
       appBar: StudentoAppBar(
         title: Text("View Topic"),
       ),

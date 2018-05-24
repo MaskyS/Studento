@@ -108,6 +108,7 @@ class TodoItem extends StatelessWidget {
             children: <Widget>[
               Padding(padding: const EdgeInsets.all(1.5),),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   new Text(
