@@ -72,10 +72,6 @@ class _PastPaperViewState extends State<PastPaperView> {
 
   @override
   Widget build(BuildContext context) {
-    if (actions.length == 3){
-      actions.removeLast();
-    }
-
     actions = getActions();
 
     if (_isCompleted == true){

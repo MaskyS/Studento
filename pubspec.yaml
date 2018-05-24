@@ -46,6 +46,7 @@ flutter:
     - assets/json/subjects_list.json
     - assets/json/subjects_syllabus_urls.json
     - assets/json/subjects_topic_lists.json
+    # TODO Uncomment once we move over all the files.
     # - assets/html/
     # - assets/html/past-papers/
     # - assets/html/topic-notes/
@@ -105,6 +106,63 @@ flutter:
     # - assets/html/past-papers/assets/9708/
     # - assets/html/past-papers/assets/9709/
     # - assets/html/past-papers/assets/9716/
+
+
+    # - assets/html/topic-notes/2010/
+    # - assets/html/topic-notes/2210/
+    # - assets/html/topic-notes/2251/
+    # - assets/html/topic-notes/2281/
+    # - assets/html/topic-notes/4024/
+    # - assets/html/topic-notes/4037/
+    # - assets/html/topic-notes/5054/
+    # - assets/html/topic-notes/5070/
+    # - assets/html/topic-notes/5090/
+    # - assets/html/topic-notes/6043/
+    # - assets/html/topic-notes/7048/
+    # - assets/html/topic-notes/7110/
+    # - assets/html/topic-notes/7115/
+    # - assets/html/topic-notes/7707/
+    # - assets/html/topic-notes/8021/
+    # - assets/html/topic-notes/8682/
+    # - assets/html/topic-notes/9071/
+    # - assets/html/topic-notes/9093/
+    # - assets/html/topic-notes/9608/
+    # - assets/html/topic-notes/9699/
+    # - assets/html/topic-notes/9700/
+    # - assets/html/topic-notes/9702/
+    # - assets/html/topic-notes/9705/
+    # - assets/html/topic-notes/9706/
+    # - assets/html/topic-notes/9708/
+    # - assets/html/topic-notes/9709/
+    # - assets/html/topic-notes/9716/
+
+    # - assets/html/topic-notes/assets/2010/
+    # - assets/html/topic-notes/assets/2210/
+    # - assets/html/topic-notes/assets/2251/
+    # - assets/html/topic-notes/assets/2281/
+    # - assets/html/topic-notes/assets/4024/
+    # - assets/html/topic-notes/assets/4037/
+    # - assets/html/topic-notes/assets/5054/
+    # - assets/html/topic-notes/assets/5070/
+    # - assets/html/topic-notes/assets/5090/
+    # - assets/html/topic-notes/assets/6043/
+    # - assets/html/topic-notes/assets/7048/
+    # - assets/html/topic-notes/assets/7110/
+    # - assets/html/topic-notes/assets/7115/
+    # - assets/html/topic-notes/assets/7707/
+    # - assets/html/topic-notes/assets/8021/
+    # - assets/html/topic-notes/assets/8682/
+    # - assets/html/topic-notes/assets/9071/
+    # - assets/html/topic-notes/assets/9093/
+    # - assets/html/topic-notes/assets/9608/
+    # - assets/html/topic-notes/assets/9699/
+    # - assets/html/topic-notes/assets/9700/
+    # - assets/html/topic-notes/assets/9702/
+    # - assets/html/topic-notes/assets/9705/
+    # - assets/html/topic-notes/assets/9706/
+    # - assets/html/topic-notes/assets/9708/
+    # - assets/html/topic-notes/assets/9709/
+    # - assets/html/topic-notes/assets/9716/
 
     - assets/text/background1.jpg
     - assets/text/background2.jpg
