@@ -79,18 +79,24 @@ class _SubjectTile extends StatelessWidget {
       color: new Color(0xFFf9f9f9),
       elevation: 2.0,
       child: new InkWell(
-        highlightColor: Colors.blue[700],
         onTap: () => onTapFunction(subjectName, level),
         onLongPress: () => Scaffold.of(context).showSnackBar(new SnackBar(
               content: new Text("Tap the subject you seek."),
             )),
         child: new Container(
           padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 5.0),
-          decoration: new BoxDecoration(
-            border: new Border.all(
-              color: Colors.blue,
-              width: 2.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(2.0, 0.0),
+              stops: [0.0, 0.5],
+              tileMode: TileMode.clamp,
+              colors: [
+                Colors.deepPurpleAccent,
+                Colors.blue[700],
+              ],
             ),
+            border: new Border.all(color: Colors.black54, width: 2.0),
           ),
           child: new Center(
             child: new Text(
@@ -100,7 +106,7 @@ class _SubjectTile extends StatelessWidget {
               overflow: TextOverflow.fade,
               style: new TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
           ),

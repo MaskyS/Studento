@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'util/shared_prefs_interface.dart';
 import 'pages/setup.dart';
+import 'pages/home_page.dart';
 
 import 'routes.dart';
 
@@ -37,7 +38,7 @@ void main() => runApp(Studento());
 
     return MaterialApp(
       title: 'Studento',
-      home: (hasRunBefore == true) ? routes[homeRoute] : Setup(),
+      home: (hasRunBefore == true) ? HomePage() : Setup(),
       routes: routes,
       theme: ThemeData(fontFamily: 'Montserrat'),
     );
