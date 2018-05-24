@@ -1,13 +1,12 @@
 // import 'dart:io';
 // import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:jaguar/jaguar.dart';
-import 'package:jaguar_flutter_asset/jaguar_flutter_asset.dart';
 import 'package:numberpicker/numberpicker.dart';
 // import 'package:path_provider/path_provider.dart';
 // import 'package:simple_permissions/simple_permissions.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import '../../../UI/studento_app_bar.dart';
+import '../../../util/jaguar_laucher.dart';
 
 class PastPaperView extends StatefulWidget {
   final String paperName;
@@ -56,7 +55,7 @@ class _PastPaperViewState extends State<PastPaperView> {
   @override
   void initState() {
     super.initState();
-    startLocalServer();
+    JaguarLauncher.startLocalServer(serverRoot: 'past-papers');
     // readHtml().then((String contents){
     //   setState(() {
     //     html = contents;
@@ -207,13 +206,5 @@ class _PastPaperViewState extends State<PastPaperView> {
         _isFullScreen = true;
       }
     });
-  }
-
-  void startLocalServer() async {
-    final server = Jaguar();
-    server.addApi(FlutterAssetServer(match: "/html/*"));
-    await server.serve();
-
-    server.log.onRecord.listen((r) => print(r));
   }
 }
