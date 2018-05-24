@@ -234,12 +234,10 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   }
 
   Step _buildComponentSelectionStep() {
-    List<PopupMenuItem> components = [];
+    List<PopupMenuItem<int>> components = [];
 
     void handlePopUpChanged(int value) {
-      setState(() {
-        selectedComponent = value;
-      });
+      setState(() => selectedComponent = value);
     }
 
     // Add each component name into the list of PopupMenuItems, [components]
@@ -270,22 +268,18 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
               dynamic popUpMenustate = _menuKey.currentState;
               popUpMenustate.showButtonMenu();
             },
-            trailing: new PopupMenuButton(
+            trailing: PopupMenuButton(
               key: _menuKey,
-              onSelected: (selectedDropDownItem) =>
-                  handlePopUpChanged(selectedDropDownItem),
               itemBuilder: (BuildContext context) => components,
-              child: new Row(
-                children: <Widget>[
-                  new Text(
-                    (selectedComponent != null)
-                        ? selectedComponent.toString()
-                        : '...',
-                  ),
-                  new Icon(
-                    Icons.arrow_drop_down,
-                  ),
-                ],
+              onSelected: handlePopUpChanged,
+              child: new Container(
+                width: 50.0,
+                child: Row(
+                  children: <Widget>[
+                    Text((selectedComponent != null) ? selectedComponent.toString() : ''),
+                    Icon(Icons.arrow_drop_down)
+                  ],
+                ),
               ),
             ),
           ),

@@ -20,6 +20,7 @@ class _PastPaperViewState extends State<PastPaperView> {
   bool _isFullScreen = true;
   Color _colorOfMarkAsCompleteButton = Colors.white;
   IconData _iconOfFullScreenButton = Icons.fullscreen;
+  List<Widget> actions;
   static int minYear = 2008;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   static int _marks = 0;
@@ -55,6 +56,7 @@ class _PastPaperViewState extends State<PastPaperView> {
   @override
   void initState() {
     super.initState();
+    actions = getActions();
     JaguarLauncher.startLocalServer(serverRoot: 'past-papers');
     // readHtml().then((String contents){
     //   setState(() {
@@ -70,61 +72,13 @@ class _PastPaperViewState extends State<PastPaperView> {
 
   @override
   Widget build(BuildContext context) {
-    // if (html == null) {
-    //   return new CircularProgressIndicator();
-    // }
-
-    return new WebviewScaffold(
-      url: "http://localhost:8080/${widget.paperName}.html",
-      // TODO fix assets loading.
-      // url: new Uri.dataFromString(html,
-      //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
-      appBar: StudentoAppBar(
-        title: Text("Webview"),
-        actions: _getActions(),
-      ),
-      withZoom: true,
-      withLocalStorage: true,
-    );
-  }
-
-  List<Widget> _getActions() {
-    List<Widget> actions;
-    actions = [
-      SizedBox(
-        height: 25.0,
-        width: 30.0,
-        child: IconButton(
-          icon: const Icon(Icons.check_circle),
-          iconSize: 18.0,
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-          onPressed: _pressedMarkAsCompleteButton,
-          color: _colorOfMarkAsCompleteButton,
-          tooltip: "Mark this paper as completed.",
-        ),
-      ),
-      SizedBox(
-        height: 24.0,
-        width: 30.0,
-        child: IconButton(
-          icon: Icon(_iconOfFullScreenButton),
-          iconSize: 22.0,
-          padding:
-              EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
-          onPressed: _pressedFullScreenButton,
-          color: Colors.white,
-          tooltip: "Set full screen.",
-        ),
-      ),
-    ];
-
-    // If the paper had been marked as completed and is now being unmarked,
-    // remove the marks from the AppBar.
-    if (!_isCompleted) {
+    if (actions.length == 3){
       actions.removeLast();
     }
-    // If "Marked as complete" button is pressed, display the marks.
-    else if (actions.length == 3) {
+
+    actions = getActions();
+
+    if (_isCompleted == true){
       actions.add(
         // Wrap the button in a SizedBox so as to reduce its size.
         SizedBox(
@@ -152,6 +106,47 @@ class _PastPaperViewState extends State<PastPaperView> {
         ),
       );
     }
+
+    return new WebviewScaffold(
+      url: "http://localhost:8080/${widget.paperName}.html",
+      // TODO fix assets loading.
+      // url: new Uri.dataFromString(html,
+      //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
+      appBar: StudentoAppBar(
+        title: Text("Webview"),
+        actions: actions,
+      ),
+    );
+  }
+
+  List<Widget> getActions() {
+    actions = [
+      SizedBox(
+        height: 25.0,
+        width: 30.0,
+        child: IconButton(
+          icon: const Icon(Icons.check_circle),
+          iconSize: 18.0,
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
+          onPressed: _pressedMarkAsCompleteButton,
+          color: _colorOfMarkAsCompleteButton,
+          tooltip: "Mark this paper as completed.",
+        ),
+      ),
+      SizedBox(
+        height: 24.0,
+        width: 30.0,
+        child: IconButton(
+          icon: Icon(_iconOfFullScreenButton),
+          iconSize: 22.0,
+          padding:
+              EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
+          onPressed: _pressedFullScreenButton,
+          color: Colors.white,
+          tooltip: "Set full screen.",
+        ),
+      ),
+    ];
     return actions;
   }
 
@@ -172,8 +167,9 @@ class _PastPaperViewState extends State<PastPaperView> {
               style: const TextStyle(fontWeight: FontWeight.w400),
             ),
           );
-        }).then((int pickedValue) {
-      if (pickedValue != null) {
+        }
+    ).then((int pickedValue) {
+      if (pickedValue != null){
         setState(() => _marks = pickedValue);
       }
     });
