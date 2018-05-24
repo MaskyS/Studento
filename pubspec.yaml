@@ -46,6 +46,66 @@ flutter:
     - assets/json/subjects_list.json
     - assets/json/subjects_syllabus_urls.json
     - assets/json/subjects_topic_lists.json
+    - assets/html/
+    - assets/html/past-papers/
+    - assets/html/topic-notes/
+
+    - assets/html/past-papers/2010/
+    - assets/html/past-papers/2210/
+    - assets/html/past-papers/2251/
+    - assets/html/past-papers/2281/
+    - assets/html/past-papers/4024/
+    - assets/html/past-papers/4037/
+    - assets/html/past-papers/5054/
+    - assets/html/past-papers/5070/
+    - assets/html/past-papers/5090/
+    - assets/html/past-papers/6043/
+    - assets/html/past-papers/7048/
+    - assets/html/past-papers/7110/
+    - assets/html/past-papers/7115/
+    - assets/html/past-papers/7707/
+    - assets/html/past-papers/8021/
+    - assets/html/past-papers/8682/
+    - assets/html/past-papers/9071/
+    - assets/html/past-papers/9093/
+    - assets/html/past-papers/9608/
+    - assets/html/past-papers/9699/
+    - assets/html/past-papers/9700/
+    - assets/html/past-papers/9702/
+    - assets/html/past-papers/9705/
+    - assets/html/past-papers/9706/
+    - assets/html/past-papers/9708/
+    - assets/html/past-papers/9709/
+    - assets/html/past-papers/9716/
+
+    - assets/html/past-papers/assets/2010/
+    - assets/html/past-papers/assets/2210/
+    - assets/html/past-papers/assets/2251/
+    - assets/html/past-papers/assets/2281/
+    - assets/html/past-papers/assets/4024/
+    - assets/html/past-papers/assets/4037/
+    - assets/html/past-papers/assets/5054/
+    - assets/html/past-papers/assets/5070/
+    - assets/html/past-papers/assets/5090/
+    - assets/html/past-papers/assets/6043/
+    - assets/html/past-papers/assets/7048/
+    - assets/html/past-papers/assets/7110/
+    - assets/html/past-papers/assets/7115/
+    - assets/html/past-papers/assets/7707/
+    - assets/html/past-papers/assets/8021/
+    - assets/html/past-papers/assets/8682/
+    - assets/html/past-papers/assets/9071/
+    - assets/html/past-papers/assets/9093/
+    - assets/html/past-papers/assets/9608/
+    - assets/html/past-papers/assets/9699/
+    - assets/html/past-papers/assets/9700/
+    - assets/html/past-papers/assets/9702/
+    - assets/html/past-papers/assets/9705/
+    - assets/html/past-papers/assets/9706/
+    - assets/html/past-papers/assets/9708/
+    - assets/html/past-papers/assets/9709/
+    - assets/html/past-papers/assets/9716/
+
     - assets/9706_w14_qp_23.html
     - assets/text/background1.jpg
     - assets/text/background2.jpg
