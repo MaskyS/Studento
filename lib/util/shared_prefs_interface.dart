@@ -26,6 +26,13 @@ abstract class SharedPreferencesHelper {
     print("level has been set to: $level");
   }
 
+    static Future<String> getName() async {
+    var userData = await SharedPreferences.getInstance();
+    String name = userData.getString("user_name");
+
+    return name;
+  }
+
   static void setName(String name) async {
     var userData = await SharedPreferences.getInstance();
     userData.setString("user_name", name);

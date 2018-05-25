@@ -88,11 +88,12 @@ class TodoItem extends StatelessWidget {
         ? "Swipe to remove this item."
         : "Swipe right to mark this task as complete, or left to delete it.";
     return Container(
-        child: Tooltip(
-      message: _tooltip,
-      child: ListTile(
+      child: Tooltip(
+        message: _tooltip,
+        child: ListTile(
           isThreeLine: true,
           onTap: () {
+            //TODO Implement TODO View Details.
             print("You tapped the Todo with $id");
           },
           leading: CircleAvatar(
@@ -139,7 +140,9 @@ class TodoItem extends StatelessWidget {
                 ],
               )
             ],
-          )),
-    ));
+          )
+        ),
+      ),
+    );
   }
 }

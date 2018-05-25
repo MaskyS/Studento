@@ -13,15 +13,11 @@ class TopicSelectPage extends StatefulWidget {
   TopicSelectPage(this.selectedSubject, this.level);
 
   @override
-  _TopicSelectPageState createState() =>
-      _TopicSelectPageState(selectedSubject, level);
+  _TopicSelectPageState createState() => _TopicSelectPageState();
 }
 
 class _TopicSelectPageState extends State<TopicSelectPage> {
   List topicsList;
-  String selectedSubject;
-  final String level;
-  _TopicSelectPageState(this.selectedSubject, this.level);
 
   @override
   void initState() {
@@ -52,7 +48,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
 
     try {
       _topicsList =
-          topicsListData[selectedSubject]['topic_list']['$level level'];
+          topicsListData[widget.selectedSubject]['topic_list']['${widget.level} level'];
     } catch (e) {
       showNotesNotFoundDialog();
     }
@@ -70,7 +66,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
             ? <Widget>[new CircularProgressIndicator()]
             : <Widget>[
                 new Text(
-                  "$selectedSubject",
+                  "${widget.selectedSubject}",
                   textAlign: TextAlign.center,
                   style: new TextStyle(
                     fontFamily: 'Mina',

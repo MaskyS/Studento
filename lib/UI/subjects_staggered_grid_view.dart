@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../globals.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../util/shared_prefs_interface.dart';
 
 class SubjectsStaggeredListView extends StatefulWidget {
   final List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
@@ -30,15 +29,17 @@ class SubjectsStaggeredListView extends StatefulWidget {
 
 class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
   Map urlList;
-  // TODO Once we get Shared Pref up and running, we should fetch the list of
-  // subjects. Updated code should look like:
-  //
-  // SharedPreferences userConfig = await SharedPreferences.getInstance();
-  // userConfig.getString("level");
-  // List listOfSubjects = userConfig.getStringList("list_of_subjects");
-  // Get the url from our subjects_syllabus_urls.json file.
+  List<String> subjectsList;
+  String level;
+
+  getUserData() async{
+    subjectsList = await SharedPreferencesHelper.getSubjectsList();
+    level = await SharedPreferencesHelper.getLevel();
+  }
+
   @override
   void initState() {
+    getUserData();
     super.initState();
   }
 
@@ -48,7 +49,7 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
 
     /// Add tiles for each subject into [subjectTiles].
     for (String subject in subjectsList) {
-      subjectTiles.add(_SubjectTile(subject, widget.onTapFunction));
+      subjectTiles.add(_SubjectTile(subject, level, widget.onTapFunction));
     }
 
     return new Padding(
@@ -64,8 +65,10 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
 class _SubjectTile extends StatelessWidget {
   /// The name of the subject the tile will be displaying.
   final String subjectName;
+  final String level;
   const _SubjectTile(
     this.subjectName,
+    this.level,
     this.onTapFunction,
   );
 

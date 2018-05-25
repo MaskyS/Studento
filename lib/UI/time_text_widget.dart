@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../globals.dart' as globals;
+import '../util/shared_prefs_interface.dart';
 
 class TimeTextWidget extends StatefulWidget {
   TimeTextWidget({Key key}) : super(key: key);
@@ -14,10 +14,16 @@ class TimeTextWidget extends StatefulWidget {
 class _TimeTextWidgetState extends State<TimeTextWidget> {
   Timer _timer;
   DateTime _time;
+  String userName;
+
+  getUserName() async{
+    userName = await SharedPreferencesHelper.getName();
+  }
 
   @override
   void initState() {
     super.initState();
+    getUserName();
     _time = DateTime.now();
 
     const duration =
@@ -51,7 +57,7 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
       timePeriod = "Evening";
     }
 
-    greeting = "Good $timePeriod, ${globals.userName}.";
+    greeting = "Good $timePeriod, $userName.";
     return greeting;
   }
 

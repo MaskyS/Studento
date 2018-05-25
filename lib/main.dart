@@ -16,14 +16,13 @@ void main() => runApp(Studento());
   class _StudentoState extends State<Studento> {
     bool hasRunBefore;
 
-    void isRunBefore() async{
+    void checkIfRunBefore() async{
       hasRunBefore = await SharedPreferencesHelper.getIsFirstRun();
       if (hasRunBefore != true) hasRunBefore = false;
     }
     @override
       void initState() {
-        isRunBefore();
-        // TODO: implement initState
+        checkIfRunBefore();
         super.initState();
       }
   @override
