@@ -30,7 +30,10 @@ class SyllabusPageState extends State<SyllabusPage> {
       drawer: new StudentoDrawer(),
       body: new SubjectsStaggeredListView(launchWebView),
       appBar: new StudentoAppBar(
-        title: new Text("Syllabus"),
+        title: new Text(
+          "Syllabus",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

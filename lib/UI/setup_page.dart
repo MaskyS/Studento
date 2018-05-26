@@ -42,7 +42,7 @@ class _SetupPageState extends State<SetupPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: widget.onFloatingButtonPressed,
-        backgroundColor: Colors.blue[700],
+        backgroundColor: Color(0xFF5fbff9),
         child: Icon(Icons.arrow_forward),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -101,7 +101,7 @@ class _SetupPageState extends State<SetupPage> {
               tileMode: TileMode.clamp,
               colors: [
                 Colors.deepPurpleAccent,
-                Colors.blue[700],
+                Color(0xFF5fbff9),
               ],
             ),
           ),

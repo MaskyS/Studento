@@ -14,7 +14,9 @@ class _TopicNotesPageState extends State<TopicNotesPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new StudentoAppBar(
-        title: new Text("Topic Notes"),
+        title: new Text("Topic Notes",
+        style: TextStyle(color: Colors.white),
+      ),
       ),
       drawer: new StudentoDrawer(),
       body: new SubjectsStaggeredListView(openTopicsListPage),

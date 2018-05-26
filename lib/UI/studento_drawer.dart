@@ -3,43 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../UI/random_quote_container.dart';
 
-class DrawerFragment extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final String routeName;
-  final Function onTap;
-
-    void _onTap(String routeName, BuildContext context) {
-      Navigator.pushReplacementNamed(context, 'home_page');
-      Navigator.pushNamed(context, routeName);
-    }
-
-  DrawerFragment(
-      {@required this.icon,
-      @required this.title,
-      @required this.subtitle,
-      this.routeName,
-      this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      subtitle: Text(subtitle),
-      onTap: () => onTap ?? _onTap(routeName, context),
-    );
-  }
-}
-
 class StudentoDrawer extends StatelessWidget {
   final bool usedInHomePage;
 
   StudentoDrawer({this.usedInHomePage: false});
 
   static void _launchBugReportingWebsite() async {
+    print("You're a good user, thanks for reporting bugs.");
     const url = 'https://github.com/MaskyS/studento/issues/';
     if (await canLaunch(url)) {
       await launch(url);
@@ -125,5 +95,36 @@ class StudentoDrawer extends StatelessWidget {
     ListView fragmentListView = ListView(children: fragmentsList);
     final drawer = Drawer(child: fragmentListView);
     return drawer;
+  }
+}
+
+class DrawerFragment extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final String routeName;
+  final Function onTap;
+
+    void _onTap(String routeName, BuildContext context) {
+      Navigator.pushReplacementNamed(context, 'home_page');
+      Navigator.pushNamed(context, routeName);
+    }
+
+  DrawerFragment(
+      {@required this.icon,
+      @required this.title,
+      @required this.subtitle,
+      this.routeName,
+      this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title),
+      subtitle: Text(subtitle),
+      onTap: () => onTap ?? _onTap(routeName, context),
+    );
   }
 }

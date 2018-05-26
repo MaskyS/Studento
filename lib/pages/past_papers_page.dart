@@ -17,7 +17,10 @@ class _PastPapersPageState extends State<PastPapersPage> {
       drawer: new StudentoDrawer(),
       body: new SubjectsStaggeredListView(openPastPapersDetailsSelect),
       appBar: new StudentoAppBar(
-        title: new Text('Past Papers'),
+        title: new Text(
+          'Past Papers',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

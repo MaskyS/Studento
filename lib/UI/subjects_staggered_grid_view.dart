@@ -112,7 +112,7 @@ class _SubjectTile extends StatelessWidget {
               tileMode: TileMode.clamp,
               colors: [
                 Colors.deepPurpleAccent,
-                Colors.blue[700],
+                Color(0xFF5fbff9),
               ],
             ),
             border: new Border.all(color: Colors.black54, width: 2.0),

@@ -33,7 +33,7 @@ class _SubjectsListState extends State<SubjectsList> {
       itemBuilder: (_, int index) {
         Map<String, dynamic> currentSubject = listOfSubjects[index];
         return CheckboxListTile(
-          activeColor: Colors.blue[700],
+          activeColor: Color(0xFF5fbff9),
           value: currentSubject["selected"],
           selected: currentSubject["selected"],
           title: Text(currentSubject["subject_name"]),

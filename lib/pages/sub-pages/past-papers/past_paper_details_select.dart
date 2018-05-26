@@ -48,6 +48,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
         title: new Text(
           "Past Papers for ${widget.subjectName}",
           textScaleFactor: 0.8,
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: //new Center(child: new RaisedButton(

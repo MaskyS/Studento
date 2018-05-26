@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'util/shared_prefs_interface.dart';
-import 'pages/setup.dart';
+import 'pages/intro.dart';
 import 'pages/home_page.dart';
 
 import 'routes.dart';
@@ -17,8 +17,7 @@ void main() => runApp(Studento());
     bool hasRunBefore;
 
     void checkIfRunBefore() async{
-      hasRunBefore = await SharedPreferencesHelper.getIsFirstRun();
-      if (hasRunBefore != true) hasRunBefore = false;
+      hasRunBefore = await SharedPreferencesHelper.getIsFirstRun() ?? false;
     }
     @override
       void initState() {
@@ -37,9 +36,14 @@ void main() => runApp(Studento());
 
     return MaterialApp(
       title: 'Studento',
-      home: (hasRunBefore == true) ? HomePage() : Setup(),
+      home: (hasRunBefore == true) ? HomePage() : IntroPage(),
       routes: routes,
-      theme: ThemeData(fontFamily: 'Montserrat'),
+      theme: ThemeData(
+        fontFamily: 'Montserrat',
+        primaryIconTheme: IconThemeData(color: Colors.white),
+        primaryColor: Color(0xFF5fbff9),
+        accentColor: Color(0xFF5fbff9),
+      ),
     );
   }
 }

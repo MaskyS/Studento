@@ -56,7 +56,10 @@ class _TodoListPageState extends State<TodoListPage> {
     return Scaffold(
       drawer: StudentoDrawer(),
       appBar: StudentoAppBar(
-        title: Text("Todo List"),
+        title: Text(
+          "Todo List",
+          style: TextStyle(color: Colors.white),
+        ),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search),
           color: Colors.white,
