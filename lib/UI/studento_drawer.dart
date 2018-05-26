@@ -62,10 +62,10 @@ class StudentoDrawer extends StatelessWidget {
     routeName: 'get_pro_page',
   );
 
-  final sendFeedbackFragment = DrawerFragment(
-    icon: Icons.feedback,
-    title: "Send Feedback",
-    subtitle: "Report a nasty bug or send awesome ideas our way.",
+  final sendFeedbackFragment = ListTile(
+    leading: Icon(Icons.feedback),
+    title: Text("Send Feedback"),
+    subtitle: Text("Report a nasty bug or send awesome ideas our way."),
     onTap: _launchBugReportingWebsite,
   );
 
@@ -103,7 +103,6 @@ class DrawerFragment extends StatelessWidget {
   final String title;
   final String subtitle;
   final String routeName;
-  final Function onTap;
 
     void _onTap(String routeName, BuildContext context) {
       Navigator.pushReplacementNamed(context, 'home_page');
@@ -114,8 +113,8 @@ class DrawerFragment extends StatelessWidget {
       {@required this.icon,
       @required this.title,
       @required this.subtitle,
-      this.routeName,
-      this.onTap});
+      this.routeName,}
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,7 @@ class DrawerFragment extends StatelessWidget {
       leading: Icon(icon),
       title: Text(title),
       subtitle: Text(subtitle),
-      onTap: () => onTap ?? _onTap(routeName, context),
+      onTap: () => _onTap(routeName, context),
     );
   }
 }
