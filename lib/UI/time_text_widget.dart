@@ -17,7 +17,8 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
   String userName;
 
   getUserName() async{
-    userName = await SharedPreferencesHelper.getName();
+    String _userName = await SharedPreferencesHelper.getName();
+    setState(() => userName = _userName);
   }
 
   @override
@@ -38,9 +39,9 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
   }
 
   void _updateTime(Timer _) {
-    setState(() {
-      _time = DateTime.now();
-    });
+    setState(() =>
+      _time = DateTime.now()
+    );
   }
 
   // Say good morning, afternoon or evening as suitable.

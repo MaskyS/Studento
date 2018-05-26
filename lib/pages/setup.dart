@@ -76,10 +76,10 @@ class _SetupState extends State<Setup> {
     );
 
     return ListView(children: <Widget>[
-          TextFormField(
+          TextField(
             controller: nameController,
-            onSaved: SharedPreferencesHelper.setName,
-            onFieldSubmitted: validateName,
+            onSubmitted: (errorText == null) ? SharedPreferencesHelper.setName : validateName,
+            onChanged: validateName,
             decoration: nameTextFieldDeco,
           ),
           Padding(padding: EdgeInsets.only(top: 25.0)),
@@ -176,13 +176,10 @@ class _SetupState extends State<Setup> {
     }
   }
 
-  void validateAndPushSessionsPage() {
+  void validateAndPushSessionsPage() =>
     SharedPreferencesHelper.getSubjectsList().then((List<String> subjectsList) {
-      if (subjectsList != null) {
-        pushNextPage(2);
-      }
+      if (subjectsList.isNotEmpty) pushNextPage(2);
     });
-  }
 
   void pushPermissionsPage() async{
     pushNextPage(3);

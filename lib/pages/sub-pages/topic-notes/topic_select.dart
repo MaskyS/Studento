@@ -48,7 +48,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
 
     try {
       _topicsList =
-          topicsListData[widget.selectedSubject]['topic_list']['${widget.level} level'];
+          topicsListData[widget.selectedSubject]['topic_list']['${widget.level}'];
     } catch (e) {
       showNotesNotFoundDialog();
     }

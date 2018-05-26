@@ -181,6 +181,7 @@ class _PastPaperViewState extends State<PastPaperView> {
       } else {
         _colorOfMarkAsCompleteButton = Colors.limeAccent[700];
         _isCompleted = true;
+        Navigator.of(context).pop();
         _showDialogToGetMarks();
       }
     });

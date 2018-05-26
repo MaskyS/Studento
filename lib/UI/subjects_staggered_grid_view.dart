@@ -14,6 +14,13 @@ class SubjectsStaggeredListView extends StatefulWidget {
     const StaggeredTile.count(2, 1),
     const StaggeredTile.count(2, 2),
     const StaggeredTile.count(2, 2),
+    const StaggeredTile.count(2, 2),
+    const StaggeredTile.count(2, 1),
+    const StaggeredTile.count(2, 2),
+    const StaggeredTile.count(2, 1),
+    const StaggeredTile.count(2, 2),
+    const StaggeredTile.count(2, 2),
+    const StaggeredTile.count(2, 2),
   ];
 
   /// This specifies which function to execute when a GridTile is
@@ -33,8 +40,13 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
   String level;
 
   getUserData() async{
-    subjectsList = await SharedPreferencesHelper.getSubjectsList();
-    level = await SharedPreferencesHelper.getLevel();
+    List<String> _subjectsList = await SharedPreferencesHelper.getSubjectsList();
+    String _level = await SharedPreferencesHelper.getLevel();
+    setState(() {
+      subjectsList = _subjectsList;
+      level = _level;
+    });
+
   }
 
   @override
@@ -46,6 +58,10 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
   @override
   Widget build(BuildContext context) {
     List<_SubjectTile> subjectTiles = [];
+
+    if (subjectsList == null){
+      return new Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     /// Add tiles for each subject into [subjectTiles].
     for (String subject in subjectsList) {

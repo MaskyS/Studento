@@ -66,7 +66,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   String _getSubjectCode(String level, String subject) {
     // TODO If past papers are unavailable for the subject, we should show
     // an AlertDialog and notify the user.
-    return subjectCodesList["$level level"][subject]['subject_code'];
+    return subjectCodesList["$level"][subject]['subject_code'];
   }
 
   void openPaper(String paperName) {

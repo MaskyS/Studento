@@ -54,7 +54,7 @@ class SyllabusPageState extends State<SyllabusPage> {
   String _getSubjectUrl(String subject, String level, Map urlList) {
     String url;
 
-    url = urlList["$level level"][subject]['url'];
+    url = urlList["$level"][subject]['url'];
     url =
         "https://docs.google.com/gview?embedded=true&url=http://www.cambridgeinternational.org/images" +
             "$url";

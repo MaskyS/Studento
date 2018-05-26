@@ -91,56 +91,47 @@ class TodoItem extends StatelessWidget {
       child: Tooltip(
         message: _tooltip,
         child: ListTile(
-          isThreeLine: true,
           onTap: () {
             //TODO Implement TODO View Details.
+            // We probably want a modal bottom sheet in here.
             print("You tapped the Todo with $id");
           },
+          title: Text(_itemName, textScaleFactor: 1.1,),
           leading: CircleAvatar(
             backgroundColor: Colors.deepPurpleAccent,
             radius: 4.0,
           ),
-          title: Text(
-            _itemName,
-            textScaleFactor: 1.1,
-          ),
-          subtitle: new Column(
+          subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Padding(padding: const EdgeInsets.all(1.5),),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  new Text(
-                    _details,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                    ),
-                  ),
-                ],
+              Text(
+                _details,
+                style: TextStyle(
+                  fontSize: 12.0,
+                ),
               ),
-              Row(
-                children: <Widget>[
-                  new Icon(
-                    Icons.timer,
-                    size: 12.0,
-                  ),
-                  new Padding(
-                    padding: EdgeInsets.only(right: 5.0),
-                  ),
-                  new Text(
-                    dateUnitsLeft,
-                    style: TextStyle(
-                      color: color,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              )
             ],
-          )
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(
+                Icons.timer,
+                size: 12.0,
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 5.0),
+              ),
+              Text(
+                dateUnitsLeft,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
