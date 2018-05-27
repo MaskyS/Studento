@@ -310,7 +310,8 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
             alignment: Alignment.bottomLeft,
             child: TextField(
               controller: _detailsEditingController,
-              maxLines: 10,
+              maxLength: 300,
+              maxLines: 3,
               decoration: InputDecoration(
                   filled: true,
                   contentPadding: const EdgeInsets.all(15.0),
