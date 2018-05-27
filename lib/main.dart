@@ -43,6 +43,7 @@ void main() => runApp(Studento());
         primaryIconTheme: IconThemeData(color: Colors.white),
         primaryColor: Color(0xFF5fbff9),
         accentColor: Color(0xFF5fbff9),
+        buttonColor: Color(0xFFfc6dab),
       ),
     );
   }

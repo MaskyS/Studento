@@ -165,7 +165,9 @@ class _SetupState extends State<Setup> {
 
   void validateAndPushSessionsPage() =>
     SharedPreferencesHelper.getSubjectsList().then((List<String> subjectsList) {
-      if (subjectsList.isNotEmpty && subjectsList != null) pushNextPage(2);
+      if (subjectsList.isNotEmpty && subjectsList != null && subjectsList.length > 4) {
+        pushNextPage(2);
+      }
     });
 
   void pushPermissionsPage() async{

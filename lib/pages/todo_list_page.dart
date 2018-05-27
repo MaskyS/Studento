@@ -147,7 +147,6 @@ class _TodoListPageState extends State<TodoListPage> {
   /// Completed tab.
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
-      fixedColor: Colors.blue[700],
       currentIndex: _selectedTab,
       onTap: (int screen) => switchTabs(screen),
       items: [
@@ -169,7 +168,6 @@ class _TodoListPageState extends State<TodoListPage> {
             );
       },
       tooltip: "Create Todo",
-      backgroundColor: Colors.blue[700],
       foregroundColor: Colors.white,
       child: Icon(
         Icons.add,
@@ -280,7 +278,7 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StudentoAppBar(title: Text("Create Todo")),
+      appBar: StudentoAppBar(title: Text("Create Todo", style: TextStyle(color: Color(0xFFFEFEFE))),),
       body: _buildForm(),
     );
   }
@@ -330,7 +328,6 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             textColor: Colors.white,
-            color: Colors.blue[700],
             label: Text("ADD TODO"),
             icon: Icon(Icons.add),
             onPressed: () {
