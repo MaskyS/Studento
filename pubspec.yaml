@@ -17,6 +17,7 @@ dependencies:
   sqflite: "^0.8.9"
   quiver: '>=0.29.0 <0.30.0'
   intl: "^0.15.6"
+  firebase_analytics: ^0.3.3
 
 dev_dependencies:
   flutter_test:

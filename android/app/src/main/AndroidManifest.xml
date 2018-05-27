@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.studentapp">
+    package="com.MaskyS.studento">
 
     <!-- The INTERNET permission is required for development. Specifically,
          flutter needs it to communicate with the running application
@@ -16,8 +16,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="studentapp"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Studento"
+        android:icon="@mipmap/icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

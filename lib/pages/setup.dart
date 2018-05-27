@@ -76,41 +76,31 @@ class _SetupState extends State<Setup> {
     );
 
     return ListView(children: <Widget>[
-          TextField(
-            controller: nameController,
-            onSubmitted: (errorText == null) ? SharedPreferencesHelper.setName : validateName,
-            onChanged: validateName,
-            decoration: nameTextFieldDeco,
-          ),
-          Padding(padding: EdgeInsets.only(top: 25.0)),
-          Text(
-            "Which Cambridge International Examination are you taking part in?",
-            style: TextStyle(color: Colors.black54),
-          ),
-          RadioListTile(
-            title: Text("O Level"),
-            value: "O level",
-            groupValue: selectedLevel,
-            selected: false,
-            onChanged: (String level) {
-              SharedPreferencesHelper.setLevel(level);
-              setState(() {
-                selectedLevel = level;
-              });
-            },
-          ),
-          RadioListTile(
-            title: Text("A Level"),
-            value: "A level",
-            groupValue: selectedLevel,
-            selected: false,
-            onChanged: (String level) {
-              SharedPreferencesHelper.setLevel(level);
-              setState(() {
-                selectedLevel = level;
-              });
-            },
-          ),
+      TextField(
+        controller: nameController,
+        onSubmitted: validateName,
+        onChanged: validateName,
+        decoration: nameTextFieldDeco,
+      ),
+      Padding(padding: EdgeInsets.only(top: 25.0)),
+      Text(
+        "Which Cambridge International Examination are you taking part in?",
+        style: TextStyle(color: Colors.black54),
+      ),
+      RadioListTile(
+        title: Text("O Level"),
+        value: "O level",
+        groupValue: selectedLevel,
+        selected: false,
+        onChanged: (String level) => setState(() => selectedLevel = level),
+      ),
+      RadioListTile(
+        title: Text("A Level"),
+        value: "A level",
+        groupValue: selectedLevel,
+        selected: false,
+        onChanged: (String level) => setState(() => selectedLevel = level),
+      ),
     ]);
   }
 
@@ -142,6 +132,7 @@ class _SetupState extends State<Setup> {
   }
 
   /// Check if name is empty, made up of only spaces or contains any digits.
+  /// If so, set an error text for the name TextField.
   void validateName(String name) {
     if (name == null ||
         name.isEmpty ||
@@ -163,22 +154,18 @@ class _SetupState extends State<Setup> {
   }
 
   void validateAndPushSubjectsPage() {
-    String msg;
-    if (errorText != null) {
-      msg = "The name you entered doesn't look right. Please try again.";
-    } else if (selectedLevel == null) {
-      msg = "Please fill out all the details first";
-    }
-    if (msg != null) {
-      setState(() => errorText = msg);
-    } else {
+    if (selectedLevel == null || nameController.text.isEmpty) {
+      setState(() => errorText = "Please fill out all the details first");
+    } else if (errorText == null){
+      SharedPreferencesHelper.setName(nameController.text);
+      SharedPreferencesHelper.setLevel(selectedLevel);
       pushNextPage(1);
     }
   }
 
   void validateAndPushSessionsPage() =>
     SharedPreferencesHelper.getSubjectsList().then((List<String> subjectsList) {
-      if (subjectsList.isNotEmpty) pushNextPage(2);
+      if (subjectsList.isNotEmpty && subjectsList != null) pushNextPage(2);
     });
 
   void pushPermissionsPage() async{
@@ -188,7 +175,7 @@ class _SetupState extends State<Setup> {
   void requestPermissionsAndPushHomePage() async {
     bool result = false;
 
-    while (result == false) {
+    while (!result) {
       result = await SimplePermissions
           .requestPermission(Permission.WriteExternalStorage);
       print("permission request result is " + result.toString());
@@ -197,7 +184,8 @@ class _SetupState extends State<Setup> {
     Navigator
         .of(context)
         .pushNamedAndRemoveUntil('home_page', ModalRoute.withName('home_page'));
-    // We no longer need to show setup pages to user.
+    // We don't need to show setup/intro pages to user when the app is started
+    // again.
     SharedPreferencesHelper.setIsFirstRun(true);
   }
 }

@@ -42,7 +42,7 @@ class _SubjectsListState extends State<SubjectsList> {
             {
               setState(() {
                 listOfSubjects[index]["selected"] = isSelected;
-                if (isSelected){
+                if (isSelected) {
                   selectedSubjects.add(currentSubject["subject_name"]);
                 }
                 else{
