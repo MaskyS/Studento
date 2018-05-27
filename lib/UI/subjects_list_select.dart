@@ -13,6 +13,7 @@ class SubjectsList extends StatefulWidget {
 class _SubjectsListState extends State<SubjectsList> {
   String selectedLevel;
   List<String> selectedSubjects = [];
+  List<String> selectedSubjectsCodes = [];
   Map<String, dynamic> decodedSubjectData;
   List<Map<String, dynamic>> listOfSubjects = [];
 
@@ -40,16 +41,24 @@ class _SubjectsListState extends State<SubjectsList> {
           secondary: Text(currentSubject["subject_code"]),
           onChanged: (bool isSelected)
             {
+              /// Temporary workaround to store subjects and their codes
+              /// kinda together. I know, terrible data architecture. But hey,
+              /// this is for the sake of SQ. TODO Fix this through database
+              /// implementation or by using 1 or 2 json files ONLY.
               setState(() {
                 listOfSubjects[index]["selected"] = isSelected;
                 if (isSelected) {
                   selectedSubjects.add(currentSubject["subject_name"]);
+                  selectedSubjectsCodes.add(currentSubject["subject_code"]);
                 }
                 else{
                   selectedSubjects.removeWhere((String subject) => subject == currentSubject["subject_name"]);
+                  selectedSubjects.removeWhere((String subjectCode) => subjectCode == currentSubject["subject_code"]);
                 }
                 print(selectedSubjects);
+                print(selectedSubjectsCodes);
                 SharedPreferencesHelper.setSubjectsList(selectedSubjects);
+                SharedPreferencesHelper.setSubjectsCodesList(selectedSubjectsCodes);
               });
             },
         );

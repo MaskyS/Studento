@@ -57,7 +57,7 @@ class _PastPaperViewState extends State<PastPaperView> {
   void initState() {
     super.initState();
     actions = getActions();
-    JaguarLauncher.startLocalServer(serverRoot: 'past-papers');
+    JaguarLauncher.startLocalServer();
     // readHtml().then((String contents){
     //   setState(() {
     //     html = contents;
@@ -103,8 +103,12 @@ class _PastPaperViewState extends State<PastPaperView> {
       );
     }
 
+    String subjectCode = widget.paperName.substring(0,4);
     return new WebviewScaffold(
-      url: "http://localhost:8080/${widget.paperName}.html",
+      url: "http://localhost:8080/html/past-papers/$subjectCode/${widget.paperName}.html",
+      withLocalUrl: true,
+      withZoom: true,
+      withJavascript: true,
       // url: new Uri.dataFromString(html,
       //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
       appBar: StudentoAppBar(

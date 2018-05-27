@@ -54,6 +54,22 @@ abstract class SharedPreferencesHelper {
     print("subjects has been set to $subjectsList");
   }
 
+    /// Really bad stuff, to be fixed. TODO get a better data
+    /// architecture.
+    static Future<List<String>> getSubjectsCodesList() async{
+    var userData = await SharedPreferences.getInstance();
+    List<String> subjectsCodesList = userData.getStringList("subjects_codes");
+
+    return subjectsCodesList;
+  }
+
+  static void setSubjectsCodesList(List subjectsCodesList) async{
+    var userData = await SharedPreferences.getInstance();
+    userData.setStringList("subjects_codes", subjectsCodesList);
+
+    print("subjects codes has been set to $subjectsCodesList");
+  }
+
   static Future<String> getSessionLength() async{
     var userData = await SharedPreferences.getInstance();
     String sessionLength = userData.getString("session_length");

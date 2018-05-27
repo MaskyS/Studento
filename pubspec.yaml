@@ -61,7 +61,7 @@ flutter:
     # - assets/html/past-papers/4037/
     # - assets/html/past-papers/5054/
     # - assets/html/past-papers/5070/
-    # - assets/html/past-papers/5090/
+    - assets/html/past-papers/5090/
     # - assets/html/past-papers/6043/
     # - assets/html/past-papers/7048/
     # - assets/html/past-papers/7110/
@@ -116,14 +116,14 @@ flutter:
     # - assets/html/topic-notes/2281/
     # - assets/html/topic-notes/4024/
     # - assets/html/topic-notes/4037/
-    # - assets/html/topic-notes/5054/
+    - assets/html/topic-notes/5054/
     # - assets/html/topic-notes/5070/
-    # - assets/html/topic-notes/5090/
+    - assets/html/topic-notes/5090/
     # - assets/html/topic-notes/6043/
     # - assets/html/topic-notes/7048/
     # - assets/html/topic-notes/7110/
     # - assets/html/topic-notes/7115/
-    # - assets/html/topic-notes/7707/
+    - assets/html/topic-notes/7707/
     # - assets/html/topic-notes/8021/
     # - assets/html/topic-notes/8682/
     # - assets/html/topic-notes/9071/

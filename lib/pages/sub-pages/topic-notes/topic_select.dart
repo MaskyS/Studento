@@ -6,6 +6,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../UI/studento_app_bar.dart';
 import '../../../util/jaguar_laucher.dart';
+import '../../../util/shared_prefs_interface.dart';
 
 class TopicSelectPage extends StatefulWidget {
   final String selectedSubject;
@@ -18,11 +19,14 @@ class TopicSelectPage extends StatefulWidget {
 
 class _TopicSelectPageState extends State<TopicSelectPage> {
   List topicsList;
+  String subjectCode;
 
   @override
   void initState() {
     super.initState();
+    JaguarLauncher.startLocalServer(serverPort: 8090);
     getTopicsList();
+    getSubjectCode();
   }
 
   @override
@@ -40,6 +44,14 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
+  void getSubjectCode() async{
+    List<String> subjectCodesList = await SharedPreferencesHelper.getSubjectsCodesList();
+    List<String> subjectsList = await SharedPreferencesHelper.getSubjectsList();
+
+    int indexOfSubjectCode = subjectsList.indexOf(widget.selectedSubject);
+    subjectCode  = subjectCodesList[indexOfSubjectCode];
+  }
+
   void getTopicsList() async {
     var _topicsList;
     String _topicsListData =
@@ -52,9 +64,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     } catch (e) {
       showNotesNotFoundDialog();
     }
-    setState(() {
-      topicsList = _topicsList;
-    });
+    setState(() => topicsList = _topicsList);
   }
 
   Widget _getBackground() {
@@ -126,13 +136,17 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
-  Widget _handleSelectedTopic(String selectedTopic) {
+  void _handleSelectedTopic(String selectedTopic) {
     print("you selected $selectedTopic");
-    JaguarLauncher.startLocalServer(serverRoot: 'topic-notes', serverPort: 8090);
-    return new WebviewScaffold(
-      url: 'http://localhost:8090/$selectedTopic.html',
-      appBar: StudentoAppBar(
-        title: Text("View Topic"),
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => new WebviewScaffold(
+          url: 'http://localhost:8090/html/topic-notes/$subjectCode/$selectedTopic.html',
+          withZoom: true,
+          appBar: StudentoAppBar(
+            title: Text("View Topic", style: TextStyle(color: Colors.white,)),
+          ),
+        ),
       ),
     );
   }
