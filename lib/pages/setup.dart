@@ -176,12 +176,9 @@ class _SetupState extends State<Setup> {
 
   void requestPermissionsAndPushHomePage() async {
     bool result = false;
-
-    while (!result) {
-      result = await SimplePermissions
-          .requestPermission(Permission.WriteExternalStorage);
-      print("permission request result is " + result.toString());
-    }
+    result = await SimplePermissions
+        .requestPermission(Permission.WriteExternalStorage);
+    print("permission request result is " + result.toString());
 
     Navigator
         .of(context)
