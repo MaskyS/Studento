@@ -17,7 +17,9 @@ void main() => runApp(Studento());
     bool hasRunBefore;
 
     void checkIfRunBefore() async{
-      hasRunBefore = await SharedPreferencesHelper.getIsFirstRun() ?? false;
+      bool _hasRunBefore = await SharedPreferencesHelper.getIsFirstRun() ?? false;
+      setState(() => hasRunBefore = _hasRunBefore);
+      print("Has run before is $hasRunBefore");
     }
     @override
       void initState() {
@@ -26,6 +28,7 @@ void main() => runApp(Studento());
       }
   @override
   Widget build(BuildContext context) {
+    if (hasRunBefore == null) return Container(child: CircularProgressIndicator());
     // Hide the status bar. We don't want students to be distracted by
     // notifications.
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.values[1]]);
@@ -36,13 +39,15 @@ void main() => runApp(Studento());
 
     return MaterialApp(
       title: 'Studento',
-      home: (hasRunBefore == true) ? HomePage() : IntroPage(),
+      home: (hasRunBefore) ? HomePage() : IntroPage(),
       routes: routes,
       theme: ThemeData(
         fontFamily: 'Montserrat',
         primaryIconTheme: IconThemeData(color: Colors.white),
+        // Studento Blue
         primaryColor: Color(0xFF5fbff9),
         accentColor: Color(0xFF5fbff9),
+        // Studento Pink
         buttonColor: Color(0xFFfc6dab),
       ),
     );

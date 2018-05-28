@@ -186,13 +186,12 @@ class _SetupState extends State<Setup> {
       print("permission request result is " + result.toString());
     }
 
-
-    Navigator
-        .of(context)
-        .pushNamedAndRemoveUntil('home_page', ModalRoute.withName('home_page'));
     // We don't need to show setup/intro pages to user when the app is started
     // again.
     SharedPreferencesHelper.setIsFirstRun(true);
+    Navigator
+        .of(context)
+        .pushNamedAndRemoveUntil('home_page', ModalRoute.withName('home_page'));
   }
 }
 
