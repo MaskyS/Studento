@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 import '../UI/subjects_list_select.dart';
 import '../UI/setup_page.dart';
+import 'package:device_info/device_info.dart';
 import '../util/shared_prefs_interface.dart';
+
 
 class Setup extends StatefulWidget {
   Setup({Key key, this.title}) : super(key: key);
@@ -175,10 +177,15 @@ class _SetupState extends State<Setup> {
   }
 
   void requestPermissionsAndPushHomePage() async {
-    bool result = false;
-    result = await SimplePermissions
-        .requestPermission(Permission.WriteExternalStorage);
-    print("permission request result is " + result.toString());
+    DeviceInfoPlugin deviceInfo = new DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    if (int.parse(androidInfo.version.release.substring(0,1)) >= 6){
+      bool result = false;
+      result = await SimplePermissions
+          .requestPermission(Permission.WriteExternalStorage);
+      print("permission request result is " + result.toString());
+    }
+
 
     Navigator
         .of(context)
