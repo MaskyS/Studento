@@ -78,7 +78,7 @@ flutter:
     # - assets/html/past-papers/9700/
     # - assets/html/past-papers/9702/
     # - assets/html/past-papers/9705/
-    # - assets/html/past-papers/9706/
+    - assets/html/past-papers/9706/
     # - assets/html/past-papers/9708/
     # - assets/html/past-papers/9709/
     # - assets/html/past-papers/9716/

@@ -13,19 +13,21 @@ void main() => runApp(Studento());
     _StudentoState createState() => _StudentoState();
   }
 
-  class _StudentoState extends State<Studento> {
-    bool hasRunBefore;
+class _StudentoState extends State<Studento> {
+  bool hasRunBefore;
 
-    void checkIfRunBefore() async{
-      bool _hasRunBefore = await SharedPreferencesHelper.getIsFirstRun() ?? false;
-      setState(() => hasRunBefore = _hasRunBefore);
-      print("Has run before is $hasRunBefore");
-    }
-    @override
-      void initState() {
-        checkIfRunBefore();
-        super.initState();
-      }
+  void checkIfRunBefore() async{
+    bool _hasRunBefore = await SharedPreferencesHelper.getIsFirstRun() ?? false;
+    setState(() => hasRunBefore = _hasRunBefore);
+    print("Has run before is $hasRunBefore");
+  }
+
+  @override
+  void initState() {
+    checkIfRunBefore();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (hasRunBefore == null) return Container(child: CircularProgressIndicator());
