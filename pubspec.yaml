@@ -132,10 +132,11 @@ flutter:
     # - assets/html/topic-notes/9093/
     # - assets/html/topic-notes/9608/
     # - assets/html/topic-notes/9699/
-    # - assets/html/topic-notes/9700/
+    - assets/html/topic-notes/9700/
     # - assets/html/topic-notes/9702/
     # - assets/html/topic-notes/9705/
-    # - assets/html/topic-notes/9706/
+    - assets/html/topic-notes/9706/
+    - assets/html/topic-notes/9706/Control Accounts.html
     # - assets/html/topic-notes/9708/
     # - assets/html/topic-notes/9709/
     # - assets/html/topic-notes/9716/
