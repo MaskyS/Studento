@@ -97,4 +97,14 @@ abstract class SharedPreferencesHelper {
 
     print("session_length has been set to: $noOfSessions");
   }
+  static Future<bool> getIsScheduleSet() async{
+   var userData = await SharedPreferences.getInstance();
+   bool isScheduleSet = userData.getBool("is_schedule_set");
+   return isScheduleSet;
+  }
+
+  static void setIsScheduleSet(bool isSetScheduleSet) async{
+    var userData = await SharedPreferences.getInstance();
+    userData.setBool("is_schedule_set", isSetScheduleSet);
+  }
 }

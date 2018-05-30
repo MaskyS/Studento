@@ -14,11 +14,13 @@ class StudentoAppBar extends AppBar {
           fontSize: 26.0,
         ),
       ),
+      PreferredSizeWidget bottom,
       List<Widget> actions})
       : super(
             key: key,
             title: title,
             actions: actions,
             centerTitle: true,
-            backgroundColor: Colors.deepPurpleAccent);
+            backgroundColor: Colors.deepPurpleAccent,
+            bottom: bottom);
 }
