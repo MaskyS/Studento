@@ -16,13 +16,13 @@ class PastPaperView extends StatefulWidget {
 
 class _PastPaperViewState extends State<PastPaperView> {
   bool _isCompleted;
-  bool _isFullScreen = true;
   Color _colorOfMarkAsCompleteButton = Colors.white;
-  IconData _iconOfFullScreenButton = Icons.fullscreen;
   List<Widget> actions;
   static int minYear = 2008;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   static int _marks = 0;
+  String subjectCode;
+
 
   // Future<String> get _localPath async {
   //   final directory = await getExternalStorageDirectory();
@@ -72,6 +72,7 @@ class _PastPaperViewState extends State<PastPaperView> {
   @override
   Widget build(BuildContext context) {
     actions = getActions();
+    subjectCode = widget.paperName.substring(0,4);
 
     if (_isCompleted == true){
       actions.add(
@@ -102,7 +103,6 @@ class _PastPaperViewState extends State<PastPaperView> {
       );
     }
 
-    String subjectCode = widget.paperName.substring(0,4);
     return WebviewScaffold(
       url: "http://localhost:8080/html/past-papers/$subjectCode/${widget.paperName}.html",
       withLocalUrl: true,
@@ -135,13 +135,13 @@ class _PastPaperViewState extends State<PastPaperView> {
         height: 25.0,
         width: 30.0,
         child: IconButton(
-          icon: Icon(_iconOfFullScreenButton),
+          icon: Text("MS"),
           iconSize: 22.0,
           padding:
               EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
-          onPressed: _pressedFullScreenButton,
+          onPressed: _pressedMarkingSchemeButton,
           color: Colors.white,
-          tooltip: "Set full screen.",
+          tooltip: "View Marking Scheme",
         ),
       ),
     ];
@@ -190,16 +190,14 @@ class _PastPaperViewState extends State<PastPaperView> {
     });
   }
 
-  void _pressedFullScreenButton() {
-    setState(() {
-      if (_isFullScreen) {
-        //  TODO implement setFullscreen() method
-        _iconOfFullScreenButton = Icons.fullscreen_exit;
-        _isFullScreen = false;
-      } else {
-        _iconOfFullScreenButton = Icons.fullscreen;
-        _isFullScreen = true;
-      }
-    });
+  void _pressedMarkingSchemeButton() {
+    var msFileName = widget.paperName.replaceFirst('_qp_', '_ms_');
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => new WebviewScaffold(
+          url: "http://localhost:8080/html/past-papers/$subjectCode/$msFileName.html",
+        ),
+      ),
+    );
   }
 }
