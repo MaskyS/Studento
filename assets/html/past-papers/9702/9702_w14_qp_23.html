@@ -1,0 +1,491 @@
+<html>
+<head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+span.cls_004{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_004{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_005{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_005{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_003{font-family:Arial,serif;font-size:10.1px;color:rgb(35,31,31);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_003{font-family:Arial,serif;font-size:10.1px;color:rgb(35,31,31);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_002{font-family:Arial,serif;font-size:10.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_002{font-family:Arial,serif;font-size:10.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_006{font-family:Arial,serif;font-size:8.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_006{font-family:Arial,serif;font-size:8.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_007{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_007{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_008{font-family:Arial,serif;font-size:8.3px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_008{font-family:Arial,serif;font-size:8.3px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_009{font-family:Arial,serif;font-size:12.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_009{font-family:Arial,serif;font-size:12.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_010{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_010{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_011{font-family:Arial,serif;font-size:6.0px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_011{font-family:Arial,serif;font-size:6.0px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_012{font-family:Arial,serif;font-size:15.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_012{font-family:Arial,serif;font-size:15.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_013{font-family:Arial,serif;font-size:14.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_013{font-family:Arial,serif;font-size:14.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_023{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: line-through}
+div.cls_023{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_014{font-family:Arial,serif;font-size:12.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_014{font-family:Arial,serif;font-size:12.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_024{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: line-through}
+div.cls_024{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_015{font-family:"Verdana",serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_015{font-family:"Verdana",serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_017{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_017{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_018{font-family:Arial,serif;font-size:11.3px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_018{font-family:Arial,serif;font-size:11.3px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_016{font-family:Arial,serif;font-size:7.8px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_016{font-family:Arial,serif;font-size:7.8px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_019{font-family:Arial,serif;font-size:11.6px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_019{font-family:Arial,serif;font-size:11.6px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_020{font-family:"Bookman Old Style Italic",serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+div.cls_020{font-family:"Bookman Old Style Italic",serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:italic;text-decoration: none}
+span.cls_021{font-family:Times,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_021{font-family:Times,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_025{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: underline}
+div.cls_025{font-family:Arial,serif;font-size:11.1px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+span.cls_022{font-family:Arial,serif;font-size:7.0px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_022{font-family:Arial,serif;font-size:7.0px;color:rgb(35,31,31);font-weight:normal;font-style:normal;text-decoration: none}
+-->
+</style>
+<script type="text/javascript" src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/wz_jsgraphics.js"></script>
+</head>
+<body>
+<div style="position:absolute;left:50%;margin-left:-297px;top:0px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background01.jpg" width=595 height=841></div>
+<div style="position:absolute;left:126.85px;top:84.36px" class="cls_004"><span class="cls_004">Cambridge International Examinations</span></div>
+<div style="position:absolute;left:126.85px;top:97.36px" class="cls_005"><span class="cls_005">Cambridge International Advanced Subsidiary and Advanced Level</span></div>
+<div style="position:absolute;left:56.69px;top:234.33px" class="cls_003"><span class="cls_003">PHYSICS</span></div>
+<div style="position:absolute;left:498.83px;top:233.33px" class="cls_004"><span class="cls_004">9702/23</span></div>
+<div style="position:absolute;left:56.69px;top:251.33px" class="cls_002"><span class="cls_002">Paper 2  AS Structured Questions</span></div>
+<div style="position:absolute;left:423.74px;top:251.33px" class="cls_003"><span class="cls_003">October/November 2014</span></div>
+<div style="position:absolute;left:508.02px;top:268.33px" class="cls_003"><span class="cls_003">1 hour</span></div>
+<div style="position:absolute;left:56.69px;top:285.33px" class="cls_002"><span class="cls_002">Candidates answer on the Question Paper.</span></div>
+<div style="position:absolute;left:56.69px;top:302.33px" class="cls_002"><span class="cls_002">No Additional Materials are required.</span></div>
+<div style="position:absolute;left:56.69px;top:329.92px" class="cls_003"><span class="cls_003">READ THESE INSTRUCTIONS FIRST</span></div>
+<div style="position:absolute;left:56.69px;top:351.92px" class="cls_002"><span class="cls_002">Write your Centre number, candidate number and name on all the work you hand in.</span></div>
+<div style="position:absolute;left:56.69px;top:363.92px" class="cls_002"><span class="cls_002">Write in dark blue or black pen.</span></div>
+<div style="position:absolute;left:56.69px;top:375.92px" class="cls_002"><span class="cls_002">You may use an HB pencil for any diagrams or graphs.</span></div>
+<div style="position:absolute;left:56.69px;top:387.92px" class="cls_002"><span class="cls_002">Do not use staples, paper clips, glue or correction fluid.</span></div>
+<div style="position:absolute;left:56.69px;top:399.92px" class="cls_002"><span class="cls_002">DO </span><span class="cls_003">NOT</span><span class="cls_002"> WRITE IN ANY BARCODES.</span></div>
+<div style="position:absolute;left:56.69px;top:421.92px" class="cls_002"><span class="cls_002">Answer </span><span class="cls_003">all</span><span class="cls_002"> questions.</span></div>
+<div style="position:absolute;left:56.69px;top:443.92px" class="cls_002"><span class="cls_002">Electronic calculators may be used.</span></div>
+<div style="position:absolute;left:56.69px;top:455.92px" class="cls_002"><span class="cls_002">You may lose marks if you do not show your working or if you do not use appropriate units.</span></div>
+<div style="position:absolute;left:56.69px;top:477.92px" class="cls_002"><span class="cls_002">At the end of the examination, fasten all your work securely together.</span></div>
+<div style="position:absolute;left:56.69px;top:489.92px" class="cls_002"><span class="cls_002">The number of marks is given in brackets [  ] at the end of each question or part question.</span></div>
+<div style="position:absolute;left:157.96px;top:736.64px" class="cls_002"><span class="cls_002">This document consists of </span><span class="cls_003">14</span><span class="cls_002"> printed pages and </span><span class="cls_003">2</span><span class="cls_002"> blank pages.</span></div>
+<div style="position:absolute;left:56.69px;top:760.64px" class="cls_006"><span class="cls_006">DC (ST/SW) 110052</span></div>
+<div style="position:absolute;left:56.69px;top:770.64px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:490.23px;top:768.64px" class="cls_003"><span class="cls_003">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:851px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background02.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">2</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">Data</span></div>
+<div style="position:absolute;left:49.61px;top:89.26px" class="cls_005"><span class="cls_005">speed of light in free space,</span></div>
+<div style="position:absolute;left:267.38px;top:88.17px" class="cls_007"><span class="cls_007">c</span><span class="cls_005"> = 3.00 × 10</span><span class="cls_008"><sup>8</sup></span><span class="cls_005"> m s</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:49.61px;top:117.26px" class="cls_005"><span class="cls_005">permeability of free space,</span></div>
+<div style="position:absolute;left:261.38px;top:116.17px" class="cls_009"><span class="cls_009">m</span><span class="cls_008"><sub>0</sub></span><span class="cls_005"> = 4</span><span class="cls_009">p</span><span class="cls_005"> × 10</span><span class="cls_008"><sup>-7</sup></span><span class="cls_005"> Hm</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:49.61px;top:145.26px" class="cls_005"><span class="cls_005">permittivity of free space,</span></div>
+<div style="position:absolute;left:263.03px;top:144.16px" class="cls_009"><span class="cls_009">ε</span><span class="cls_008"><sub>0</sub></span><span class="cls_005"> = 8.85 × 10</span><span class="cls_008"><sup>-12</sup></span><span class="cls_005"> Fm</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:254.75px;top:168.60px" class="cls_005"><span class="cls_005">1</span></div>
+<div style="position:absolute;left:238.52px;top:175.26px" class="cls_005"><span class="cls_005">(</span></div>
+<div style="position:absolute;left:276.38px;top:174.16px" class="cls_005"><span class="cls_005">= 8.99 </span><span class="cls_010">× </span><span class="cls_005">10</span><span class="cls_008"><sup>9</sup></span><span class="cls_005"> m F</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005">)</span></div>
+<div style="position:absolute;left:246.81px;top:180.60px" class="cls_005"><span class="cls_005">4</span><span class="cls_010">p</span><span class="cls_009">ε</span><span class="cls_008"><sub>0</sub></span></div>
+<div style="position:absolute;left:49.61px;top:203.26px" class="cls_005"><span class="cls_005">elementary charge,</span></div>
+<div style="position:absolute;left:266.77px;top:202.16px" class="cls_007"><span class="cls_007">e</span><span class="cls_005"> = 1.60 × 10</span><span class="cls_008"><sup>-19</sup></span><span class="cls_005"> C</span></div>
+<div style="position:absolute;left:49.61px;top:231.26px" class="cls_005"><span class="cls_005">the Planck constant,</span></div>
+<div style="position:absolute;left:266.77px;top:230.16px" class="cls_007"><span class="cls_007">h</span><span class="cls_005"> = 6.63 × 10</span><span class="cls_008"><sup>-34</sup></span><span class="cls_005"> J s</span></div>
+<div style="position:absolute;left:49.61px;top:259.27px" class="cls_005"><span class="cls_005">unified atomic mass constant,</span></div>
+<div style="position:absolute;left:266.77px;top:258.17px" class="cls_007"><span class="cls_007">u</span><span class="cls_005"> = 1.66 × 10</span><span class="cls_008"><sup>-27</sup></span><span class="cls_005"> kg</span></div>
+<div style="position:absolute;left:49.61px;top:287.27px" class="cls_005"><span class="cls_005">rest mass of electron,</span></div>
+<div style="position:absolute;left:259.13px;top:286.17px" class="cls_007"><span class="cls_007">m</span><span class="cls_008"><sub>e</sub></span><span class="cls_005"> = 9.11 × 10</span><span class="cls_008"><sup>-31</sup></span><span class="cls_005"> kg</span></div>
+<div style="position:absolute;left:49.61px;top:315.27px" class="cls_005"><span class="cls_005">rest mass of proton,</span></div>
+<div style="position:absolute;left:259.13px;top:314.17px" class="cls_007"><span class="cls_007">m</span><span class="cls_008"><sub>p</sub></span><span class="cls_005"> = 1.67 × 10</span><span class="cls_008"><sup>-27</sup></span><span class="cls_005"> kg</span></div>
+<div style="position:absolute;left:49.61px;top:343.27px" class="cls_005"><span class="cls_005">molar gas constant,</span></div>
+<div style="position:absolute;left:264.94px;top:342.17px" class="cls_007"><span class="cls_007">R</span><span class="cls_005"> = 8.31 J K</span><span class="cls_008"><sup>-1 </sup></span><span class="cls_005">mol</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:49.61px;top:371.27px" class="cls_005"><span class="cls_005">the Avogadro constant,</span></div>
+<div style="position:absolute;left:259.44px;top:370.17px" class="cls_007"><span class="cls_007">N</span><span class="cls_008"><sub>A</sub></span><span class="cls_005"> = 6.02 × 10</span><span class="cls_008"><sup>23 </sup></span><span class="cls_005">mol</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:49.61px;top:399.27px" class="cls_005"><span class="cls_005">the Boltzmann constant,</span></div>
+<div style="position:absolute;left:267.38px;top:398.17px" class="cls_007"><span class="cls_007">k</span><span class="cls_005"> = 1.38 × 10</span><span class="cls_008"><sup>-23</sup></span><span class="cls_005"> J K</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:49.61px;top:427.27px" class="cls_005"><span class="cls_005">gravitational constant,</span></div>
+<div style="position:absolute;left:264.32px;top:426.17px" class="cls_007"><span class="cls_007">G</span><span class="cls_005"> = 6.67 × 10</span><span class="cls_008"><sup>-11</sup></span><span class="cls_005"> N m</span><span class="cls_008"><sup>2 </sup></span><span class="cls_005">kg</span><span class="cls_008"><sup>-2</sup></span></div>
+<div style="position:absolute;left:49.61px;top:455.27px" class="cls_005"><span class="cls_005">acceleration of free fall,</span></div>
+<div style="position:absolute;left:266.77px;top:454.17px" class="cls_007"><span class="cls_007">g</span><span class="cls_005"> = 9.81 m s</span><span class="cls_008"><sup>-2</sup></span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:1702px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background03.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">3</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">Formulae</span></div>
+<div style="position:absolute;left:49.61px;top:93.26px" class="cls_005"><span class="cls_005">uniformly accelerated motion,</span></div>
+<div style="position:absolute;left:268.04px;top:89.26px" class="cls_007"><span class="cls_007">s</span><span class="cls_005"> = </span><span class="cls_007">ut</span><span class="cls_005"> + </span><span class="cls_011"> </span><span class="cls_012">Q</span><span class="cls_013"> </span><span class="cls_007">at</span><span class="cls_008"><sup>2</sup></span></div>
+<div style="position:absolute;left:262.36px;top:108.17px" class="cls_007"><span class="cls_007">v</span><span class="cls_008"><sup>2</sup></span><span class="cls_005"> = </span><span class="cls_007">u</span><span class="cls_008"><sup>2</sup></span><span class="cls_011"> </span><span class="cls_005">+</span><span class="cls_011"> </span><span class="cls_005">2</span><span class="cls_007">as</span></div>
+<div style="position:absolute;left:49.61px;top:137.76px" class="cls_005"><span class="cls_005">work done on/by a gas,</span></div>
+<div style="position:absolute;left:263.16px;top:136.76px" class="cls_007"><span class="cls_007">W</span><span class="cls_005"> = </span><span class="cls_007">p</span><span class="cls_009">D</span><span class="cls_007">V</span></div>
+<div style="position:absolute;left:49.61px;top:168.76px" class="cls_005"><span class="cls_005">gravitational potential,</span></div>
+<div style="position:absolute;left:267.29px;top:162.18px" class="cls_009"><span class="cls_009">φ</span><span class="cls_005">  = - </span><span class="cls_023"><sup>Gm</sup></span></div>
+<div style="position:absolute;left:306.81px;top:176.18px" class="cls_007"><span class="cls_007">r</span></div>
+<div style="position:absolute;left:49.61px;top:197.26px" class="cls_005"><span class="cls_005">hydrostatic pressure,</span></div>
+<div style="position:absolute;left:267.43px;top:196.26px" class="cls_007"><span class="cls_007">p</span><span class="cls_005"> = </span><span class="cls_009">ρ</span><span class="cls_007">gh</span></div>
+<div style="position:absolute;left:49.61px;top:227.26px" class="cls_005"><span class="cls_005">pressure of an ideal gas,</span></div>
+<div style="position:absolute;left:267.43px;top:220.54px" class="cls_007"><span class="cls_007">p</span><span class="cls_005"> =  </span><span class="cls_012">Q </span><span class="cls_023"><sup>Nm</sup></span></div>
+<div style="position:absolute;left:302.07px;top:226.16px" class="cls_007"><span class="cls_007">V</span><span class="cls_005"> &lt;</span><span class="cls_007"><sup>c</sup></span><span class="cls_008">2</span><span class="cls_005">></span></div>
+<div style="position:absolute;left:49.61px;top:256.27px" class="cls_005"><span class="cls_005">simple harmonic motion,</span></div>
+<div style="position:absolute;left:267.43px;top:255.17px" class="cls_007"><span class="cls_007">a</span><span class="cls_005"> = - </span><span class="cls_009">ω </span><span class="cls_008"><sup>2</sup></span><span class="cls_007">x</span></div>
+<div style="position:absolute;left:49.61px;top:283.27px" class="cls_005"><span class="cls_005">velocity of particle in s.h.m.,</span></div>
+<div style="position:absolute;left:267.38px;top:283.27px" class="cls_007"><span class="cls_007">v</span><span class="cls_005"> = </span><span class="cls_007">v</span><span class="cls_008"><sub>0</sub></span><span class="cls_005"> cos </span><span class="cls_010">ω</span><span class="cls_007">t</span></div>
+<div style="position:absolute;left:267.38px;top:298.77px" class="cls_007"><span class="cls_007">v</span><span class="cls_005"> = ± </span><span class="cls_009">ω</span></div>
+<div style="position:absolute;left:313.90px;top:298.49px" class="cls_005"><span class="cls_005">(</span><span class="cls_007">x</span><span class="cls_008"><sub>02</sub></span><span class="cls_005"> - </span><span class="cls_007">x</span><span class="cls_008"><sup>2</sup></span><span class="cls_005">)</span></div>
+<div style="position:absolute;left:300.62px;top:322.99px" class="cls_007"><span class="cls_007">Q</span></div>
+<div style="position:absolute;left:49.61px;top:329.27px" class="cls_005"><span class="cls_005">electric potential,</span></div>
+<div style="position:absolute;left:266.21px;top:329.27px" class="cls_007"><span class="cls_007">V</span><span class="cls_005">  =</span></div>
+<div style="position:absolute;left:291.79px;top:335.99px" class="cls_005"><span class="cls_005">4</span><span class="cls_009">pε</span><span class="cls_008"><sub>0</sub></span><span class="cls_007">r</span></div>
+<div style="position:absolute;left:49.61px;top:358.77px" class="cls_005"><span class="cls_005">capacitors in series,</span></div>
+<div style="position:absolute;left:256.43px;top:358.77px" class="cls_005"><span class="cls_005">1/</span><span class="cls_007">C</span><span class="cls_005"> = 1/</span><span class="cls_007">C</span><span class="cls_008"><sub>1</sub></span><span class="cls_005"> + 1/</span><span class="cls_007">C</span><span class="cls_008"><sub>2</sub></span><span class="cls_005"> + . . .</span></div>
+<div style="position:absolute;left:49.61px;top:385.77px" class="cls_005"><span class="cls_005">capacitors in parallel,</span></div>
+<div style="position:absolute;left:265.60px;top:385.77px" class="cls_007"><span class="cls_007">C</span><span class="cls_005"> = </span><span class="cls_007">C</span><span class="cls_008"><sub>1</sub></span><span class="cls_005"> + </span><span class="cls_007">C</span><span class="cls_008"><sub>2</sub></span><span class="cls_005"> + . . .</span></div>
+<div style="position:absolute;left:49.61px;top:414.27px" class="cls_005"><span class="cls_005">energy of charged capacitor,</span></div>
+<div style="position:absolute;left:263.16px;top:412.17px" class="cls_007"><span class="cls_007">W</span><span class="cls_005"> =  </span><span class="cls_012">Q </span><span class="cls_007">QV</span></div>
+<div style="position:absolute;left:49.61px;top:442.77px" class="cls_005"><span class="cls_005">resistors in series,</span></div>
+<div style="position:absolute;left:265.60px;top:442.77px" class="cls_007"><span class="cls_007">R</span><span class="cls_005"> = </span><span class="cls_007">R</span><span class="cls_008"><sub>1</sub></span><span class="cls_005"> + </span><span class="cls_007">R</span><span class="cls_008"><sub>2</sub></span><span class="cls_005"> + . . .</span></div>
+<div style="position:absolute;left:49.61px;top:471.27px" class="cls_005"><span class="cls_005">resistors in parallel,</span></div>
+<div style="position:absolute;left:256.43px;top:471.27px" class="cls_005"><span class="cls_005">1/</span><span class="cls_007">R</span><span class="cls_005"> = 1/</span><span class="cls_007">R</span><span class="cls_008"><sub>1</sub></span><span class="cls_005"> + 1/</span><span class="cls_007">R</span><span class="cls_008"><sub>2</sub></span><span class="cls_005"> + . . .</span></div>
+<div style="position:absolute;left:49.61px;top:499.77px" class="cls_005"><span class="cls_005">alternating current/voltage,</span></div>
+<div style="position:absolute;left:267.54px;top:498.77px" class="cls_014"><span class="cls_014">x</span><span class="cls_005"> = </span><span class="cls_014">x</span><span class="cls_008"><sub>0 </sub></span><span class="cls_005">sin </span><span class="cls_009">ω </span><span class="cls_007">t</span></div>
+<div style="position:absolute;left:49.61px;top:528.27px" class="cls_005"><span class="cls_005">radioactive decay,</span></div>
+<div style="position:absolute;left:267.54px;top:527.27px" class="cls_014"><span class="cls_014">x</span><span class="cls_005"> = </span><span class="cls_014">x</span><span class="cls_008"><sub>0 </sub></span><span class="cls_005">exp(-</span><span class="cls_009"> λ</span><span class="cls_007">t</span><span class="cls_005"> )</span></div>
+<div style="position:absolute;left:49.61px;top:559.27px" class="cls_005"><span class="cls_005">decay constant,</span></div>
+<div style="position:absolute;left:266.96px;top:552.26px" class="cls_009"><span class="cls_009">λ</span><span class="cls_005"> = </span><span class="cls_024"><sup>0.693</sup></span></div>
+<div style="position:absolute;left:301.55px;top:566.27px" class="cls_007"><span class="cls_007">t</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+<div style="position:absolute;left:492.48px;top:793.15px" class="cls_004"><span class="cls_004">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:2553px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background04.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">4</span></div>
+<div style="position:absolute;left:179.96px;top:61.26px" class="cls_005"><span class="cls_005">Answer </span><span class="cls_004">all </span><span class="cls_005">the questions in the spaces provided.</span></div>
+<div style="position:absolute;left:49.61px;top:87.26px" class="cls_004"><span class="cls_004">1</span></div>
+<div style="position:absolute;left:72.29px;top:87.26px" class="cls_004"><span class="cls_004">(a) </span><span class="cls_005"> The kilogram, metre and second are S</span><span class="cls_015">I</span><span class="cls_005"> base units.</span></div>
+<div style="position:absolute;left:94.96px;top:113.26px" class="cls_005"><span class="cls_005">State two other base units.</span></div>
+<div style="position:absolute;left:94.96px;top:139.26px" class="cls_005"><span class="cls_005">1</span></div>
+<div style="position:absolute;left:94.96px;top:165.26px" class="cls_005"><span class="cls_005">2</span></div>
+<div style="position:absolute;left:533.44px;top:178.26px" class="cls_005"><span class="cls_005">[2]</span></div>
+<div style="position:absolute;left:72.29px;top:204.26px" class="cls_004"><span class="cls_004">(b) </span><span class="cls_005"> Determine the S</span><span class="cls_015">I</span><span class="cls_005"> base units of</span></div>
+<div style="position:absolute;left:95.92px;top:230.26px" class="cls_004"><span class="cls_004">(i) </span><span class="cls_005">  stress,</span></div>
+<div style="position:absolute;left:282.08px;top:347.27px" class="cls_005"><span class="cls_005">S</span><span class="cls_015">I</span><span class="cls_005"> base units</span></div>
+<div style="position:absolute;left:533.15px;top:347.27px" class="cls_005"><span class="cls_005">[2]</span></div>
+<div style="position:absolute;left:92.86px;top:373.27px" class="cls_004"><span class="cls_004">(ii) </span><span class="cls_005">  the Young modulus.</span></div>
+<div style="position:absolute;left:282.08px;top:490.27px" class="cls_005"><span class="cls_005">S</span><span class="cls_015">I</span><span class="cls_005"> base units</span></div>
+<div style="position:absolute;left:533.15px;top:490.27px" class="cls_005"><span class="cls_005">[1]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:3404px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background05.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">5</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">2 </span><span class="cls_005">   A microphone detects a musical note of frequency </span><span class="cls_007">f</span><span class="cls_005">. The microphone is connected to a cathode-</span></div>
+<div style="position:absolute;left:72.28px;top:74.26px" class="cls_005"><span class="cls_005">ray oscilloscope (c.r.o.). The signal from the microphone is observed on the c.r.o. as illustrated in</span></div>
+<div style="position:absolute;left:72.28px;top:87.26px" class="cls_005"><span class="cls_005">Fig. 2.1.</span></div>
+<div style="position:absolute;left:434.73px;top:263.80px" class="cls_005"><span class="cls_005">1.0 cm</span></div>
+<div style="position:absolute;left:390.00px;top:302.30px" class="cls_005"><span class="cls_005">1.0 cm</span></div>
+<div style="position:absolute;left:278.90px;top:332.69px" class="cls_004"><span class="cls_004">Fig. 2.1</span></div>
+<div style="position:absolute;left:72.29px;top:357.59px" class="cls_005"><span class="cls_005">The time-base setting of the c.r.o. is 0.50 ms cm</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005">. The</span><span class="cls_008"><sup> </sup></span><span class="cls_005">Y-plate setting is 2.5 mV cm</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:72.29px;top:384.69px" class="cls_004"><span class="cls_004">(a) </span><span class="cls_005"> Use Fig. 2.1 to determine</span></div>
+<div style="position:absolute;left:95.92px;top:410.69px" class="cls_004"><span class="cls_004">(i) </span><span class="cls_005">  the amplitude of the signal,</span></div>
+<div style="position:absolute;left:290.08px;top:475.69px" class="cls_005"><span class="cls_005">amplitude =</span></div>
+<div style="position:absolute;left:513.59px;top:475.69px" class="cls_005"><span class="cls_005">mV [2]</span></div>
+<div style="position:absolute;left:92.86px;top:501.69px" class="cls_004"><span class="cls_004">(ii) </span><span class="cls_005">  the frequency </span><span class="cls_007">f</span><span class="cls_005">,</span></div>
+<div style="position:absolute;left:334.70px;top:566.69px" class="cls_007"><span class="cls_007">f</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:516.65px;top:566.69px" class="cls_005"><span class="cls_005">Hz [3]</span></div>
+<div style="position:absolute;left:89.80px;top:592.69px" class="cls_004"><span class="cls_004">(iii) </span><span class="cls_005">  the actual uncertainty in </span><span class="cls_007">f</span><span class="cls_005"> caused by reading the scale on the c.r.o.</span></div>
+<div style="position:absolute;left:251.11px;top:683.69px" class="cls_005"><span class="cls_005">actual uncertainty =</span></div>
+<div style="position:absolute;left:516.65px;top:683.69px" class="cls_005"><span class="cls_005">Hz [2]</span></div>
+<div style="position:absolute;left:72.29px;top:709.69px" class="cls_004"><span class="cls_004">(b) </span><span class="cls_005"> State </span><span class="cls_007">f</span><span class="cls_005"> with its actual uncertainty.</span></div>
+<div style="position:absolute;left:291.35px;top:748.69px" class="cls_007"><span class="cls_007">f</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:407.13px;top:748.69px" class="cls_005"><span class="cls_005">±</span></div>
+<div style="position:absolute;left:516.42px;top:748.69px" class="cls_005"><span class="cls_005">Hz [1]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+<div style="position:absolute;left:492.48px;top:793.15px" class="cls_004"><span class="cls_004">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:4255px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background06.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">6</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">3</span></div>
+<div style="position:absolute;left:72.29px;top:61.26px" class="cls_004"><span class="cls_004">(a) </span><span class="cls_005"> Force is a vector quantity. State three other vector quantities.</span></div>
+<div style="position:absolute;left:94.96px;top:87.26px" class="cls_005"><span class="cls_005">1</span></div>
+<div style="position:absolute;left:94.96px;top:113.26px" class="cls_005"><span class="cls_005">2</span></div>
+<div style="position:absolute;left:94.96px;top:139.26px" class="cls_005"><span class="cls_005">3</span></div>
+<div style="position:absolute;left:533.44px;top:152.26px" class="cls_005"><span class="cls_005">[2]</span></div>
+<div style="position:absolute;left:72.29px;top:165.26px" class="cls_004"><span class="cls_004">(b) </span><span class="cls_005"> Three coplanar forces </span><span class="cls_007">X</span><span class="cls_005">, </span><span class="cls_007">Y</span><span class="cls_005"> and </span><span class="cls_007">Z</span><span class="cls_005"> act on an object, as shown in Fig. 3.1.</span></div>
+<div style="position:absolute;left:423.49px;top:192.61px" class="cls_017"><span class="cls_017">Y</span></div>
+<div style="position:absolute;left:221.81px;top:215.57px" class="cls_005"><span class="cls_005">object</span></div>
+<div style="position:absolute;left:339.78px;top:233.68px" class="cls_018"><span class="cls_018">θ</span></div>
+<div style="position:absolute;left:148.90px;top:240.88px" class="cls_017"><span class="cls_017">X</span></div>
+<div style="position:absolute;left:307.55px;top:300.33px" class="cls_017"><span class="cls_017">Z</span></div>
+<div style="position:absolute;left:278.90px;top:323.38px" class="cls_004"><span class="cls_004">Fig. 3.1</span></div>
+<div style="position:absolute;left:94.96px;top:349.38px" class="cls_005"><span class="cls_005">The force </span><span class="cls_007">Z</span><span class="cls_005"> is vertical and </span><span class="cls_007">X</span><span class="cls_005"> is horizontal. The force </span><span class="cls_007">Y</span><span class="cls_005"> is at an angle </span><span class="cls_010">θ</span><span class="cls_005"> to the horizontal. The</span></div>
+<div style="position:absolute;left:94.96px;top:362.38px" class="cls_005"><span class="cls_005">force </span><span class="cls_007">Z</span><span class="cls_005"> is kept constant at 70 N.</span></div>
+<div style="position:absolute;left:94.96px;top:388.38px" class="cls_005"><span class="cls_005">In an experiment, the magnitude of force </span><span class="cls_007">X</span><span class="cls_005"> is varied. The magnitude and direction of force </span><span class="cls_007">Y</span></div>
+<div style="position:absolute;left:94.96px;top:401.38px" class="cls_005"><span class="cls_005">are adjusted so that the object remains in equilibrium.</span></div>
+<div style="position:absolute;left:94.96px;top:427.38px" class="cls_005"><span class="cls_005">Fig. 3.2 shows the variation of the magnitude of force </span><span class="cls_007">Y</span><span class="cls_005"> with the magnitude of force</span><span class="cls_007"> X</span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:123.74px;top:477.71px" class="cls_005"><span class="cls_005">130</span></div>
+<div style="position:absolute;left:98.57px;top:501.77px" class="cls_017"><span class="cls_017">Y</span><span class="cls_016"> </span><span class="cls_005">/</span><span class="cls_016"> </span><span class="cls_005">N</span></div>
+<div style="position:absolute;left:123.74px;top:534.41px" class="cls_005"><span class="cls_005">110</span></div>
+<div style="position:absolute;left:129.86px;top:591.11px" class="cls_005"><span class="cls_005">90</span></div>
+<div style="position:absolute;left:129.86px;top:647.81px" class="cls_005"><span class="cls_005">70</span></div>
+<div style="position:absolute;left:129.85px;top:704.50px" class="cls_005"><span class="cls_005">50</span></div>
+<div style="position:absolute;left:142.13px;top:712.78px" class="cls_005"><span class="cls_005">0</span></div>
+<div style="position:absolute;left:195.77px;top:712.78px" class="cls_005"><span class="cls_005">20</span></div>
+<div style="position:absolute;left:252.47px;top:712.78px" class="cls_005"><span class="cls_005">40</span></div>
+<div style="position:absolute;left:309.17px;top:712.78px" class="cls_005"><span class="cls_005">60</span></div>
+<div style="position:absolute;left:365.87px;top:712.78px" class="cls_005"><span class="cls_005">80</span></div>
+<div style="position:absolute;left:419.51px;top:712.78px" class="cls_005"><span class="cls_005">100</span></div>
+<div style="position:absolute;left:476.23px;top:712.78px" class="cls_005"><span class="cls_005">120</span></div>
+<div style="position:absolute;left:441.73px;top:723.78px" class="cls_017"><span class="cls_017">X</span><span class="cls_005"> /</span><span class="cls_016"> </span><span class="cls_005">N</span></div>
+<div style="position:absolute;left:278.90px;top:749.16px" class="cls_004"><span class="cls_004">Fig. 3.2</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:5106px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background07.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">7</span></div>
+<div style="position:absolute;left:95.92px;top:61.26px" class="cls_004"><span class="cls_004">(i) </span><span class="cls_005">  Use Fig. 3.2 to estimate the magnitude of </span><span class="cls_007">Y</span><span class="cls_005"> for </span><span class="cls_007">X</span><span class="cls_005"> = 0.</span></div>
+<div style="position:absolute;left:330.42px;top:87.26px" class="cls_007"><span class="cls_007">Y</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:522.15px;top:87.26px" class="cls_005"><span class="cls_005">N [1]</span></div>
+<div style="position:absolute;left:92.86px;top:113.26px" class="cls_004"><span class="cls_004">(ii) </span><span class="cls_005">  State and explain the value of </span><span class="cls_010">θ</span><span class="cls_005"> for </span><span class="cls_007">X</span><span class="cls_005"> = 0.</span></div>
+<div style="position:absolute;left:119.94px;top:191.26px" class="cls_005"><span class="cls_005">.......................................................................................................................................[2]</span></div>
+<div style="position:absolute;left:89.80px;top:217.26px" class="cls_004"><span class="cls_004">(iii) </span><span class="cls_005">  The magnitude of </span><span class="cls_007">X</span><span class="cls_005"> is increased to 160 N. Use resolution of forces to calculate the value</span></div>
+<div style="position:absolute;left:117.64px;top:230.26px" class="cls_005"><span class="cls_005">of</span></div>
+<div style="position:absolute;left:117.64px;top:256.27px" class="cls_004"><span class="cls_004">1.</span></div>
+<div style="position:absolute;left:140.32px;top:256.27px" class="cls_005"><span class="cls_005">angle </span><span class="cls_010">θ</span><span class="cls_005">,</span></div>
+<div style="position:absolute;left:332.03px;top:412.27px" class="cls_010"><span class="cls_010">θ</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:525.70px;top:412.27px" class="cls_005"><span class="cls_005">° [2]</span></div>
+<div style="position:absolute;left:117.64px;top:438.27px" class="cls_004"><span class="cls_004">2.</span></div>
+<div style="position:absolute;left:140.32px;top:438.27px" class="cls_005"><span class="cls_005">the magnitude of force </span><span class="cls_007">Y</span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:330.42px;top:633.27px" class="cls_007"><span class="cls_007">Y</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:522.15px;top:633.27px" class="cls_005"><span class="cls_005">N [2]</span></div>
+<div style="position:absolute;left:72.29px;top:659.27px" class="cls_004"><span class="cls_004">(c) </span><span class="cls_005"> The angle </span><span class="cls_010">θ</span><span class="cls_005"> decreases as </span><span class="cls_007">X</span><span class="cls_005"> increases. Explain why the object cannot be in equilibrium for</span></div>
+<div style="position:absolute;left:94.96px;top:672.27px" class="cls_010"><span class="cls_010">θ</span><span class="cls_005"> = 0.</span></div>
+<div style="position:absolute;left:95.48px;top:750.27px" class="cls_005"><span class="cls_005">...............................................................................................................................................[1]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+<div style="position:absolute;left:492.48px;top:793.15px" class="cls_004"><span class="cls_004">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:5957px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background08.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">8</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">4</span></div>
+<div style="position:absolute;left:72.29px;top:61.26px" class="cls_004"><span class="cls_004">(a)</span></div>
+<div style="position:absolute;left:94.96px;top:61.26px" class="cls_005"><span class="cls_005">State the principle of conservation of momentum.</span></div>
+<div style="position:absolute;left:95.48px;top:139.26px" class="cls_005"><span class="cls_005">...............................................................................................................................................[2]</span></div>
+<div style="position:absolute;left:72.29px;top:165.26px" class="cls_004"><span class="cls_004">(b)</span></div>
+<div style="position:absolute;left:94.96px;top:165.26px" class="cls_005"><span class="cls_005">A ball X and a ball Y are travelling along the same straight line in the same direction, as</span></div>
+<div style="position:absolute;left:94.96px;top:178.26px" class="cls_005"><span class="cls_005">shown in Fig. 4.1.</span></div>
+<div style="position:absolute;left:105.20px;top:205.61px" class="cls_005"><span class="cls_005">X</span></div>
+<div style="position:absolute;left:248.47px;top:205.61px" class="cls_005"><span class="cls_005">Y</span></div>
+<div style="position:absolute;left:95.88px;top:233.40px" class="cls_005"><span class="cls_005">400 g</span></div>
+<div style="position:absolute;left:146.51px;top:232.40px" class="cls_005"><span class="cls_005">0.65</span><span class="cls_016"> </span><span class="cls_005">m</span><span class="cls_016"> </span><span class="cls_005">s</span><span class="cls_006"><sup>-1</sup></span></div>
+<div style="position:absolute;left:243.64px;top:233.40px" class="cls_005"><span class="cls_005">600 g</span></div>
+<div style="position:absolute;left:291.09px;top:232.40px" class="cls_005"><span class="cls_005">0.45</span><span class="cls_016"> </span><span class="cls_005">m</span><span class="cls_016"> </span><span class="cls_005">s</span><span class="cls_006"><sup>-1</sup></span></div>
+<div style="position:absolute;left:278.90px;top:256.45px" class="cls_004"><span class="cls_004">Fig. 4.1</span></div>
+<div style="position:absolute;left:94.96px;top:281.35px" class="cls_005"><span class="cls_005">Ball X has mass 400 g and horizontal velocity 0.65 m s</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:94.96px;top:294.35px" class="cls_005"><span class="cls_005">Ball Y has mass 600 g and horizontal velocity 0.45 m s</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:94.96px;top:320.35px" class="cls_005"><span class="cls_005">Ball X catches up and collides with ball Y. After the collision, X has horizontal velocity 0.41 m s</span><span class="cls_008"><sup>-1</sup></span></div>
+<div style="position:absolute;left:94.96px;top:334.45px" class="cls_005"><span class="cls_005">and Y has horizontal velocity </span><span class="cls_007">v</span><span class="cls_005">, as shown in Fig. 4.2.</span></div>
+<div style="position:absolute;left:337.33px;top:361.80px" class="cls_005"><span class="cls_005">X</span></div>
+<div style="position:absolute;left:488.53px;top:361.80px" class="cls_005"><span class="cls_005">Y</span></div>
+<div style="position:absolute;left:328.00px;top:389.22px" class="cls_005"><span class="cls_005">400 g</span></div>
+<div style="position:absolute;left:379.43px;top:388.22px" class="cls_005"><span class="cls_005">0.41</span><span class="cls_016"> </span><span class="cls_005">m</span><span class="cls_016"> </span><span class="cls_005">s</span><span class="cls_006"><sup>-1</sup></span></div>
+<div style="position:absolute;left:483.69px;top:389.22px" class="cls_005"><span class="cls_005">600</span><span class="cls_016"> </span><span class="cls_005">g</span><span class="cls_017">    v</span></div>
+<div style="position:absolute;left:278.90px;top:412.28px" class="cls_004"><span class="cls_004">Fig. 4.2</span></div>
+<div style="position:absolute;left:94.96px;top:438.28px" class="cls_005"><span class="cls_005">Calculate</span></div>
+<div style="position:absolute;left:95.92px;top:464.28px" class="cls_004"><span class="cls_004">(i) </span><span class="cls_005">  the total initial momentum of the two balls,</span></div>
+<div style="position:absolute;left:282.75px;top:568.28px" class="cls_005"><span class="cls_005">momentum =</span></div>
+<div style="position:absolute;left:515.28px;top:568.28px" class="cls_005"><span class="cls_005">N s [3]</span></div>
+<div style="position:absolute;left:92.86px;top:594.28px" class="cls_004"><span class="cls_004">(ii) </span><span class="cls_005">  the velocity </span><span class="cls_007">v</span><span class="cls_005">,</span></div>
+<div style="position:absolute;left:332.26px;top:713.62px" class="cls_007"><span class="cls_007">v</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:504.88px;top:712.52px" class="cls_005"><span class="cls_005">m s</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005"> [2]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:6808px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background09.jpg" width=595 height=841></div>
+<div style="position:absolute;left:294.58px;top:35.87px" class="cls_004"><span class="cls_004">9</span></div>
+<div style="position:absolute;left:89.80px;top:61.26px" class="cls_004"><span class="cls_004">(iii) </span><span class="cls_005">  the total initial kinetic energy of the two balls.</span></div>
+<div style="position:absolute;left:269.90px;top:191.26px" class="cls_005"><span class="cls_005">kinetic energy =</span></div>
+<div style="position:absolute;left:524.59px;top:191.26px" class="cls_005"><span class="cls_005">J [3]</span></div>
+<div style="position:absolute;left:72.29px;top:217.26px" class="cls_004"><span class="cls_004">(c) </span><span class="cls_005"> Explain how you would check whether the collision is elastic.</span></div>
+<div style="position:absolute;left:95.48px;top:269.27px" class="cls_005"><span class="cls_005">...............................................................................................................................................[1]</span></div>
+<div style="position:absolute;left:72.29px;top:295.27px" class="cls_004"><span class="cls_004">(d) </span><span class="cls_005"> Use Newton’s third law to explain why, during the collision, the change in momentum of X is</span></div>
+<div style="position:absolute;left:94.96px;top:308.27px" class="cls_005"><span class="cls_005">equal and opposite to the change in momentum of Y.</span></div>
+<div style="position:absolute;left:95.48px;top:412.27px" class="cls_005"><span class="cls_005">...............................................................................................................................................[2]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+<div style="position:absolute;left:492.48px;top:793.15px" class="cls_004"><span class="cls_004">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:7659px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background10.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">10</span></div>
+<div style="position:absolute;left:262.10px;top:61.23px" class="cls_004"><span class="cls_004">BLANK PAGE</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:8510px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background11.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">11</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">5 </span><span class="cls_005">   Distinguish between </span><span class="cls_007">evaporation</span><span class="cls_005"> and </span><span class="cls_007">boiling</span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:72.28px;top:87.26px" class="cls_005"><span class="cls_005">evaporation:</span></div>
+<div style="position:absolute;left:72.28px;top:165.26px" class="cls_005"><span class="cls_005">boiling:</span></div>
+<div style="position:absolute;left:533.44px;top:230.26px" class="cls_005"><span class="cls_005">[4]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+<div style="position:absolute;left:492.48px;top:793.15px" class="cls_004"><span class="cls_004">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:9361px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background12.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">12</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">6</span></div>
+<div style="position:absolute;left:72.29px;top:61.26px" class="cls_004"><span class="cls_004">(a) </span><span class="cls_005"> A wire has length 100 cm and diameter 0.38 mm. The metal of the wire has resistivity</span></div>
+<div style="position:absolute;left:94.96px;top:73.17px" class="cls_005"><span class="cls_005">4.5 × 10</span><span class="cls_008"><sup>-7</sup></span><span class="cls_005"> </span><span class="cls_010">Ω</span><span class="cls_005"> m.</span></div>
+<div style="position:absolute;left:94.96px;top:100.26px" class="cls_005"><span class="cls_005">Show that the resistance of the wire is 4.0 </span><span class="cls_010">Ω</span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:533.44px;top:217.26px" class="cls_005"><span class="cls_005">[3]</span></div>
+<div style="position:absolute;left:72.29px;top:243.26px" class="cls_004"><span class="cls_004">(b) </span><span class="cls_005"> The ends B and D of the wire in </span><span class="cls_004">(a) </span><span class="cls_005">are connected to a cell X, as shown in Fig. 6.1.</span></div>
+<div style="position:absolute;left:205.53px;top:274.59px" class="cls_005"><span class="cls_005">2.0 V</span></div>
+<div style="position:absolute;left:288.18px;top:279.26px" class="cls_005"><span class="cls_005">cell X</span></div>
+<div style="position:absolute;left:243.11px;top:312.76px" class="cls_005"><span class="cls_005">1.0</span><span class="cls_016"> </span><span class="cls_019">Ω</span></div>
+<div style="position:absolute;left:256.44px;top:370.72px" class="cls_020"><span class="cls_020">l</span></div>
+<div style="position:absolute;left:197.48px;top:394.63px" class="cls_005"><span class="cls_005">B</span></div>
+<div style="position:absolute;left:302.85px;top:394.63px" class="cls_005"><span class="cls_005">C</span></div>
+<div style="position:absolute;left:358.18px;top:394.63px" class="cls_005"><span class="cls_005">D</span></div>
+<div style="position:absolute;left:227.86px;top:414.92px" class="cls_005"><span class="cls_005">1.5 V</span></div>
+<div style="position:absolute;left:365.44px;top:432.26px" class="cls_005"><span class="cls_005">metal wire</span></div>
+<div style="position:absolute;left:262.72px;top:453.59px" class="cls_005"><span class="cls_005">0.50</span></div>
+<div style="position:absolute;left:285.65px;top:453.09px" class="cls_019"><span class="cls_019">Ω</span></div>
+<div style="position:absolute;left:314.19px;top:454.26px" class="cls_005"><span class="cls_005">cell Y</span></div>
+<div style="position:absolute;left:278.90px;top:485.47px" class="cls_004"><span class="cls_004">Fig. 6.1</span></div>
+<div style="position:absolute;left:94.96px;top:511.47px" class="cls_005"><span class="cls_005">The cell X has electromotive force (e.m.f.) 2.0 V and internal resistance 1.0 </span><span class="cls_010">Ω</span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:94.96px;top:537.47px" class="cls_005"><span class="cls_005">A cell Y of e.m.f. 1.5 V and internal resistance 0.50 </span><span class="cls_010">Ω</span><span class="cls_005"> is connected to the wire at points B and</span></div>
+<div style="position:absolute;left:94.96px;top:550.47px" class="cls_005"><span class="cls_005">C, as shown in Fig. 6.1.</span></div>
+<div style="position:absolute;left:94.96px;top:576.47px" class="cls_005"><span class="cls_005">The point C is distance</span><span class="cls_021"> </span><span class="cls_020">l</span><span class="cls_005"> from point B. The current in cell Y is zero.</span></div>
+<div style="position:absolute;left:94.96px;top:602.47px" class="cls_005"><span class="cls_005">Calculate</span></div>
+<div style="position:absolute;left:94.96px;top:628.47px" class="cls_004"><span class="cls_004">(i)  </span><span class="cls_005">the current in cell X,</span></div>
+<div style="position:absolute;left:303.53px;top:734.82px" class="cls_005"><span class="cls_005">current =</span></div>
+<div style="position:absolute;left:522.76px;top:734.82px" class="cls_005"><span class="cls_005">A [2]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:10212px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background13.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">13</span></div>
+<div style="position:absolute;left:92.86px;top:61.26px" class="cls_004"><span class="cls_004">(ii) </span><span class="cls_005">  the potential difference (p.d.) across the wire BD,</span></div>
+<div style="position:absolute;left:320.46px;top:156.96px" class="cls_005"><span class="cls_005">p.d. =</span></div>
+<div style="position:absolute;left:522.76px;top:156.96px" class="cls_005"><span class="cls_005">V [1]</span></div>
+<div style="position:absolute;left:89.80px;top:182.96px" class="cls_004"><span class="cls_004">(iii) </span><span class="cls_005">  the distance </span><span class="cls_020">l</span><span class="cls_007">.</span></div>
+<div style="position:absolute;left:334.68px;top:286.96px" class="cls_020"><span class="cls_020">l</span><span class="cls_005"> =</span></div>
+<div style="position:absolute;left:515.43px;top:286.96px" class="cls_005"><span class="cls_005">cm [2]</span></div>
+<div style="position:absolute;left:72.29px;top:312.96px" class="cls_004"><span class="cls_004">(c) </span><span class="cls_005"> The connection at C is moved so that </span><span class="cls_020">l</span><span class="cls_005"> is increased. Explain why the e.m.f. of cell Y is less</span></div>
+<div style="position:absolute;left:94.96px;top:325.96px" class="cls_005"><span class="cls_005">than its terminal p.d.</span></div>
+<div style="position:absolute;left:95.48px;top:403.96px" class="cls_005"><span class="cls_005">...............................................................................................................................................[2]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+<div style="position:absolute;left:492.48px;top:793.15px" class="cls_004"><span class="cls_004">[Turn over</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:11063px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background14.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">14</span></div>
+<div style="position:absolute;left:49.61px;top:61.26px" class="cls_004"><span class="cls_004">7</span></div>
+<div style="position:absolute;left:72.29px;top:61.26px" class="cls_004"><span class="cls_004">(a)</span></div>
+<div style="position:absolute;left:95.92px;top:61.26px" class="cls_004"><span class="cls_004">(i) </span><span class="cls_005">  Explain what is meant by a </span><span class="cls_007">progressive transverse</span><span class="cls_005"> wave.</span></div>
+<div style="position:absolute;left:117.64px;top:87.26px" class="cls_005"><span class="cls_005">progressive:</span></div>
+<div style="position:absolute;left:117.64px;top:139.26px" class="cls_005"><span class="cls_005">transverse:</span></div>
+<div style="position:absolute;left:533.44px;top:178.26px" class="cls_005"><span class="cls_005">[2]</span></div>
+<div style="position:absolute;left:92.86px;top:204.26px" class="cls_004"><span class="cls_004">(ii) </span><span class="cls_005">  Define frequency.</span></div>
+<div style="position:absolute;left:119.94px;top:256.27px" class="cls_005"><span class="cls_005">.......................................................................................................................................[1]</span></div>
+<div style="position:absolute;left:72.29px;top:282.27px" class="cls_004"><span class="cls_004">(b)</span></div>
+<div style="position:absolute;left:94.96px;top:282.27px" class="cls_005"><span class="cls_005">The variation with distance </span><span class="cls_007">x</span><span class="cls_005"> of displacement </span><span class="cls_007">y</span><span class="cls_005"> for a transverse wave is shown in Fig. 7.1.</span></div>
+<div style="position:absolute;left:133.94px;top:309.61px" class="cls_005"><span class="cls_005">2.0</span></div>
+<div style="position:absolute;left:320.37px;top:317.45px" class="cls_005"><span class="cls_005">R</span></div>
+<div style="position:absolute;left:101.79px;top:325.72px" class="cls_017"><span class="cls_017">y</span><span class="cls_005"> /</span><span class="cls_016"> </span><span class="cls_005">cm</span></div>
+<div style="position:absolute;left:133.94px;top:337.96px" class="cls_005"><span class="cls_005">1.0</span></div>
+<div style="position:absolute;left:270.39px;top:357.62px" class="cls_005"><span class="cls_005">Q</span></div>
+<div style="position:absolute;left:369.34px;top:357.62px" class="cls_005"><span class="cls_005">S</span></div>
+<div style="position:absolute;left:143.11px;top:366.31px" class="cls_005"><span class="cls_005">0</span></div>
+<div style="position:absolute;left:151.13px;top:375.29px" class="cls_005"><span class="cls_005">0</span></div>
+<div style="position:absolute;left:203.58px;top:375.99px" class="cls_005"><span class="cls_005">0.4</span></div>
+<div style="position:absolute;left:260.28px;top:375.98px" class="cls_005"><span class="cls_005">0.8</span></div>
+<div style="position:absolute;left:316.98px;top:375.98px" class="cls_005"><span class="cls_005">1.2</span></div>
+<div style="position:absolute;left:373.68px;top:375.98px" class="cls_005"><span class="cls_005">1.6</span></div>
+<div style="position:absolute;left:430.38px;top:375.98px" class="cls_005"><span class="cls_005">2.0</span></div>
+<div style="position:absolute;left:453.03px;top:382.21px" class="cls_017"><span class="cls_017">x</span><span class="cls_005"> /</span><span class="cls_016"> </span><span class="cls_005">cm</span></div>
+<div style="position:absolute;left:127.82px;top:394.66px" class="cls_005"><span class="cls_005">-1.0</span></div>
+<div style="position:absolute;left:235.67px;top:414.62px" class="cls_005"><span class="cls_005">P</span></div>
+<div style="position:absolute;left:406.64px;top:414.62px" class="cls_005"><span class="cls_005">T</span></div>
+<div style="position:absolute;left:127.82px;top:423.01px" class="cls_005"><span class="cls_005">–2.0</span></div>
+<div style="position:absolute;left:278.90px;top:446.06px" class="cls_004"><span class="cls_004">Fig. 7.1</span></div>
+<div style="position:absolute;left:94.96px;top:472.06px" class="cls_005"><span class="cls_005">On Fig. 7.1, five points are labelled.</span></div>
+<div style="position:absolute;left:94.96px;top:498.06px" class="cls_005"><span class="cls_005">Use Fig. 7.1 to state any two points having a phase difference of</span></div>
+<div style="position:absolute;left:94.96px;top:524.06px" class="cls_004"><span class="cls_004">(i)</span></div>
+<div style="position:absolute;left:117.64px;top:524.06px" class="cls_005"><span class="cls_005">zero,</span></div>
+<div style="position:absolute;left:119.94px;top:550.06px" class="cls_005"><span class="cls_005">.......................................................................................................................................[1]</span></div>
+<div style="position:absolute;left:92.86px;top:576.06px" class="cls_004"><span class="cls_004">(ii)</span></div>
+<div style="position:absolute;left:117.64px;top:576.06px" class="cls_005"><span class="cls_005">270°.</span></div>
+<div style="position:absolute;left:119.94px;top:602.06px" class="cls_005"><span class="cls_005">.......................................................................................................................................[1]</span></div>
+<div style="position:absolute;left:72.29px;top:628.06px" class="cls_004"><span class="cls_004">(c)</span></div>
+<div style="position:absolute;left:94.96px;top:628.06px" class="cls_005"><span class="cls_005">The frequency of the wave in </span><span class="cls_004">(b) </span><span class="cls_005">is 15 Hz.</span></div>
+<div style="position:absolute;left:94.96px;top:654.06px" class="cls_005"><span class="cls_005">Calculate the speed of the wave in </span><span class="cls_004">(b)</span><span class="cls_005">.</span></div>
+<div style="position:absolute;left:307.80px;top:771.06px" class="cls_005"><span class="cls_005">speed =</span></div>
+<div style="position:absolute;left:504.88px;top:769.96px" class="cls_005"><span class="cls_005">m s</span><span class="cls_008"><sup>-1</sup></span><span class="cls_005"> [3]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:11914px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background15.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">15</span></div>
+<div style="position:absolute;left:72.29px;top:61.26px" class="cls_004"><span class="cls_004">(d) </span><span class="cls_005"> Two waves of the same frequency have amplitudes 1.4 cm and 2.1 cm.</span></div>
+<div style="position:absolute;left:94.96px;top:87.26px" class="cls_005"><span class="cls_005">Calculate the ratio</span></div>
+<div style="position:absolute;left:205.57px;top:105.76px" class="cls_025"><span class="cls_025">intensity of wave of amplitude 1.4 cm</span></div>
+<div style="position:absolute;left:205.57px;top:113.26px" class="cls_005"><span class="cls_005">intensity of wave of amplitude 2.1 cm  .</span></div>
+<div style="position:absolute;left:316.48px;top:282.27px" class="cls_005"><span class="cls_005">ratio =</span></div>
+<div style="position:absolute;left:533.15px;top:282.27px" class="cls_005"><span class="cls_005">[2]</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+<div style="position:absolute;left:50%;margin-left:-297px;top:12765px;width:595px;height:841px;border-style:outset;overflow:hidden">
+<div style="position:absolute;left:0px;top:0px">
+<img src="14214f80-637b-11e8-b174-0cc47a792c0a_id_14214f80-637b-11e8-b174-0cc47a792c0a_files/background16.jpg" width=595 height=841></div>
+<div style="position:absolute;left:291.52px;top:35.87px" class="cls_004"><span class="cls_004">16</span></div>
+<div style="position:absolute;left:262.10px;top:61.23px" class="cls_004"><span class="cls_004">BLANK PAGE</span></div>
+<div style="position:absolute;left:49.61px;top:734.29px" class="cls_022"><span class="cls_022">Permission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every</span></div>
+<div style="position:absolute;left:49.61px;top:743.29px" class="cls_022"><span class="cls_022">reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the</span></div>
+<div style="position:absolute;left:49.61px;top:752.29px" class="cls_022"><span class="cls_022">publisher will be pleased to make amends at the earliest possible opportunity.</span></div>
+<div style="position:absolute;left:49.61px;top:770.29px" class="cls_022"><span class="cls_022">Cambridge International Examinations is part of the Cambridge Assessment Group. Cambridge Assessment is the brand name of University of Cambridge Local</span></div>
+<div style="position:absolute;left:49.61px;top:779.29px" class="cls_022"><span class="cls_022">Examinations Syndicate (UCLES), which is itself a department of the University of Cambridge.</span></div>
+<div style="position:absolute;left:49.61px;top:796.15px" class="cls_006"><span class="cls_006">© UCLES 2014</span></div>
+<div style="position:absolute;left:269.40px;top:796.15px" class="cls_006"><span class="cls_006">9702/23/O/N/14</span></div>
+</div>
+
+</body>
+</html>
