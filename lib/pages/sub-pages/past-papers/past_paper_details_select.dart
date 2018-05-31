@@ -163,7 +163,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
           );
         }
       ).then( (int pickedYear) {
-        pickedYear ?? setState(() => selectedYear = pickedYear);
+        if (pickedYear != null) setState(() => selectedYear = pickedYear);
       });
     }
 
