@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'util/shared_prefs_interface.dart';
-import 'pages/intro.dart';
-import 'pages/home_page.dart';
 
 import 'routes.dart';
+import 'pages/home_page.dart';
+import 'pages/intro.dart';
+
 
 void main() => runApp(Studento());
 

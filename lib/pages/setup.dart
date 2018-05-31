@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+
+import 'package:device_info/device_info.dart';
 import 'package:simple_permissions/simple_permissions.dart';
+
 import '../UI/subjects_list_select.dart';
 import '../UI/setup_page.dart';
-import 'package:device_info/device_info.dart';
 import '../util/shared_prefs_interface.dart';
 
 
 class Setup extends StatefulWidget {
-  Setup({Key key, this.title}) : super(key: key);
   final String title;
+  Setup({Key key, this.title}) : super(key: key);
+
+
   @override
-  _SetupState createState() => new _SetupState();
+  _SetupState createState() => _SetupState();
 }
 
 class _SetupState extends State<Setup> {
@@ -177,7 +181,7 @@ class _SetupState extends State<Setup> {
   }
 
   void requestPermissionsAndPushHomePage() async {
-    DeviceInfoPlugin deviceInfo = new DeviceInfoPlugin();
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     if (int.parse(androidInfo.version.release.substring(0,1)) >= 6){
       bool result = false;
@@ -198,7 +202,7 @@ class _SetupState extends State<Setup> {
 /// Slider for setting the length of each user's session/period.
 class SessionsLengthSlider extends StatefulWidget {
   @override
-  _SessionsLengthSliderState createState() => new _SessionsLengthSliderState();
+  _SessionsLengthSliderState createState() => _SessionsLengthSliderState();
 }
 
 class _SessionsLengthSliderState extends State<SessionsLengthSlider> {
@@ -206,7 +210,7 @@ class _SessionsLengthSliderState extends State<SessionsLengthSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
@@ -252,14 +256,14 @@ class _SessionsLengthSliderState extends State<SessionsLengthSlider> {
 /// Slider for setting the number of sessions in a school day.
 class NoOfSessionsSlider extends StatefulWidget {
   @override
-  _NoOfSessionsSliderState createState() => new _NoOfSessionsSliderState();
+  _NoOfSessionsSliderState createState() => _NoOfSessionsSliderState();
 }
 
 class _NoOfSessionsSliderState extends State<NoOfSessionsSlider> {
   int noOfSessions = 8;
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(

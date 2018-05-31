@@ -35,7 +35,7 @@ class TodoItem extends StatelessWidget {
   int get id => _id;
 
   Map<String, dynamic> toMap() {
-    var map = new Map<String, dynamic>();
+    var map = Map<String, dynamic>();
     map["itemName"] = _itemName;
     map["details"] = _details;
     map["dueDate"] = _dueDate;

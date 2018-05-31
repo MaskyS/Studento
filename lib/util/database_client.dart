@@ -7,7 +7,7 @@ import '../model/todo_item.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = new DatabaseHelper.internal();
+  static final DatabaseHelper _instance = DatabaseHelper.internal();
   factory DatabaseHelper() => _instance;
 
   final String tableName = "todoTbl";
@@ -74,7 +74,7 @@ class DatabaseHelper {
     var dbClient = await db;
     var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE id = $id");
     if (result.length == 0) return null;
-    return new TodoItem.fromMap(result.first);
+    return TodoItem.fromMap(result.first);
   }
 
   Future<int> deleteItem(int id) async {

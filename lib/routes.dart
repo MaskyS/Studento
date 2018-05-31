@@ -24,14 +24,14 @@ const String settingsPageRoute = 'settings_page';
 const String todoListPageRoute = 'todo_list_page';
 
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
-  homeRoute: (BuildContext context) => new HomePage(),
-  pastPapersPageRoute: (BuildContext context) => new PastPapersPage(),
-  schedulePageRoute: (BuildContext context) => new SchedulePage(),
-  syllabusPageRoute: (BuildContext context) => new SyllabusPage(),
-  topicNotesPageRoute: (BuildContext context) => new TopicNotesPage(),
-  eventsPageRoute: (BuildContext context) => new EventsPage(),
-  marksCalculatorPageRoute: (BuildContext context) => new MarksCalculatorPage(),
-  getProPageRoute: (BuildContext context) => new GetProPage(),
-  settingsPageRoute: (BuildContext context) => new SettingsPage(),
-  todoListPageRoute: (BuildContext context) => new TodoListPage(),
+  homeRoute: (BuildContext context) => HomePage(),
+  pastPapersPageRoute: (BuildContext context) => PastPapersPage(),
+  schedulePageRoute: (BuildContext context) => SchedulePage(),
+  syllabusPageRoute: (BuildContext context) => SyllabusPage(),
+  topicNotesPageRoute: (BuildContext context) => TopicNotesPage(),
+  eventsPageRoute: (BuildContext context) => EventsPage(),
+  marksCalculatorPageRoute: (BuildContext context) => MarksCalculatorPage(),
+  getProPageRoute: (BuildContext context) => GetProPage(),
+  settingsPageRoute: (BuildContext context) => SettingsPage(),
+  todoListPageRoute: (BuildContext context) => TodoListPage(),
 };

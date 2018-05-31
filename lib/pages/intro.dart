@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +11,12 @@ import 'setup.dart';
 /// license that can be found in the Flutter project's LICENSE file.
 class IntroPage extends StatefulWidget {
   @override
-  State createState() => new IntroPageState();
+  State createState() => IntroPageState();
 }
 
 class IntroPageState extends State<IntroPage> {
 
-  final _controller = new PageController();
+  final _controller = PageController();
 
   static const _kDuration = const Duration(milliseconds: 300);
 
@@ -24,22 +25,22 @@ class IntroPageState extends State<IntroPage> {
   final _kArrowColor = Colors.black.withOpacity(0.8);
 
   final List<Widget> _pages = <Widget>[
-    new IntroPageModel(
+    IntroPageModel(
       title: "Past Papers",
       subtitle: "Access past papers offline anytime, anywhere, from your pocket.",
       mainIcon: Icons.library_books,
     ),
-    new IntroPageModel(
+    IntroPageModel(
       title: "Topic Notes",
       subtitle: "The best notes you can find, so you can learn without hassle.",
       mainIcon: Icons.subtitles,
     ),
-    new IntroPageModel(
+    IntroPageModel(
       title: "Todo List",
       subtitle: "A virtual todo list that brings tracking homework and tasks to the next level.",
       mainIcon: Icons.assignment,
     ),
-    new IntroPageModel(
+    IntroPageModel(
       title: "Schedule",
       subtitle: "Be productive and keep track of classes by using Studento's schedule feature",
       mainIcon: Icons.table_chart,
@@ -48,14 +49,14 @@ class IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFF5fbff9),
-      body: new IconTheme(
-        data: new IconThemeData(color: _kArrowColor),
-        child: new Stack(
+      body: IconTheme(
+        data: IconThemeData(color: _kArrowColor),
+        child: Stack(
           children: <Widget>[
             PageView.builder(
-              physics: new AlwaysScrollableScrollPhysics(),
+              physics: AlwaysScrollableScrollPhysics(),
               controller: _controller,
               itemBuilder: (BuildContext context, int index) {
                 return _pages[index % _pages.length];
@@ -65,8 +66,8 @@ class IntroPageState extends State<IntroPage> {
               bottom: 70.0,
               left: 0.0,
               right: 0.0,
-              child: new Center(
-                  child: new DotsIndicator(
+              child: Center(
+                  child: DotsIndicator(
                     controller: _controller,
                     itemCount: _pages.length,
                     onPageSelected: (int page) {
@@ -79,17 +80,19 @@ class IntroPageState extends State<IntroPage> {
                   ),
                 ),
             ),
-            new Positioned(
+            Positioned(
               bottom: 20.0,
               left: 0.0,
               right: 0.0,
-              child: new Center(
+              child: Center(
                 child: FlatButton(
                   color: Colors.deepPurpleAccent,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   child: Text("GET STARTED!"),
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => Setup())),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => Setup()),
+                  ),
                 ),
               ),
             ),
@@ -140,16 +143,16 @@ class DotsIndicator extends AnimatedWidget {
       ),
     );
     double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedness;
-    return new Container(
+    return Container(
       width: _kDotSpacing,
-      child: new Center(
-        child: new Material(
+      child: Center(
+        child: Material(
           color: color,
           type: MaterialType.circle,
-          child: new Container(
+          child: Container(
             width: _kDotSize * zoom,
             height: _kDotSize * zoom,
-            child: new InkWell(
+            child: InkWell(
               onTap: () => onPageSelected(index),
             ),
           ),
@@ -159,9 +162,9 @@ class DotsIndicator extends AnimatedWidget {
   }
 
   Widget build(BuildContext context) {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: new List<Widget>.generate(itemCount, _buildDot),
+      children: List<Widget>.generate(itemCount, _buildDot),
     );
   }
 }
@@ -174,13 +177,13 @@ class IntroPageModel extends StatelessWidget {
   IntroPageModel({@required this.title, @required this.subtitle, @required this.mainIcon});
   @override
   Widget build(BuildContext context) {
-    return new ConstrainedBox(
+    return ConstrainedBox(
       constraints: const BoxConstraints.expand(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(padding: EdgeInsets.all(40.0),),
-          new Text(
+          Text(
             title,
             textScaleFactor: 2.0,
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -194,7 +197,7 @@ class IntroPageModel extends StatelessWidget {
             color: Color(0xFFFAFAFA),
           ),
           Padding(padding: EdgeInsets.all(55.0),),
-          new Text(
+          Text(
             subtitle,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white),
