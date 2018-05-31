@@ -5,7 +5,7 @@ import 'package:numberpicker/numberpicker.dart';
 // import 'package:path_provider/path_provider.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import '../../../UI/studento_app_bar.dart';
-import '../../../util/jaguar_laucher.dart';
+import '../../../util/jaguar_launcher.dart';
 
 class PastPaperView extends StatefulWidget {
   final String paperName;

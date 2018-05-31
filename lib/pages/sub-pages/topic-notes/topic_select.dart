@@ -8,7 +8,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../UI/studento_app_bar.dart';
-import '../../../util/jaguar_laucher.dart';
+import '../../../util/jaguar_launcher.dart';
 import '../../../util/shared_prefs_interface.dart';
 
 class TopicSelectPage extends StatefulWidget {
