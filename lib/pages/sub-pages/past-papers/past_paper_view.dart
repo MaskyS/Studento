@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 // import 'package:path_provider/path_provider.dart';
-// import 'package:simple_permissions/simple_permissions.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import '../../../UI/studento_app_bar.dart';
 import '../../../util/jaguar_laucher.dart';
@@ -104,7 +103,7 @@ class _PastPaperViewState extends State<PastPaperView> {
     }
 
     String subjectCode = widget.paperName.substring(0,4);
-    return new WebviewScaffold(
+    return WebviewScaffold(
       url: "http://localhost:8080/html/past-papers/$subjectCode/${widget.paperName}.html",
       withLocalUrl: true,
       withZoom: true,
@@ -112,9 +111,7 @@ class _PastPaperViewState extends State<PastPaperView> {
       // url: new Uri.dataFromString(html,
       //     mimeType: 'text/html', parameters: {'charset': 'utf-8'}).toString(),
       appBar: StudentoAppBar(
-        title: Text("View Paper",
-          style: TextStyle(color: Colors.white),
-        ),
+        title: "View Paper",
         actions: actions,
       ),
     );
@@ -126,7 +123,7 @@ class _PastPaperViewState extends State<PastPaperView> {
         height: 25.0,
         width: 30.0,
         child: IconButton(
-          icon: const Icon(Icons.check_circle),
+          icon: Icon(Icons.check_circle),
           iconSize: 18.0,
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
           onPressed: _pressedMarkAsCompleteButton,
@@ -135,7 +132,7 @@ class _PastPaperViewState extends State<PastPaperView> {
         ),
       ),
       SizedBox(
-        height: 24.0,
+        height: 25.0,
         width: 30.0,
         child: IconButton(
           icon: Icon(_iconOfFullScreenButton),

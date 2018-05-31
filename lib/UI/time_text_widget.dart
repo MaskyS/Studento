@@ -6,7 +6,7 @@ class TimeTextWidget extends StatefulWidget {
   TimeTextWidget({Key key}) : super(key: key);
 
   @override
-  _TimeTextWidgetState createState() => new _TimeTextWidgetState();
+  _TimeTextWidgetState createState() => _TimeTextWidgetState();
 }
 
 /// This class holds the UI and the logic for the Time and the greeting text
@@ -28,7 +28,7 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     _time = DateTime.now();
 
     const duration =
-        const Duration(milliseconds: Duration.millisecondsPerSecond ~/ 4);
+        Duration(milliseconds: Duration.millisecondsPerSecond ~/ 4);
     _timer = Timer.periodic(duration, _updateTime);
   }
 
@@ -77,20 +77,27 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     final String time = formatTime(_time);
     final String _greeting = __getProperGreeting();
 
-    Text _greetingWidget =
-        Text(_greeting, style: TextStyle(fontSize: 16.0, color: studentoWhite));
+    Text _greetingWidget = Text(
+      _greeting,
+      style: TextStyle(
+        fontSize: 16.0,
+        color: studentoWhite
+      ),
+    );
 
-    Text _timeWidget = Text(time,
-        style: TextStyle(
-          fontSize: 60.0,
-          fontWeight: FontWeight.w800,
-          color: studentoWhite,
-          fontStyle: FontStyle.italic,
-        ));
+    Text _timeWidget = Text(
+      time,
+      style: TextStyle(
+        fontSize: 60.0,
+        fontWeight: FontWeight.w800,
+        color: studentoWhite,
+        fontStyle: FontStyle.italic,
+      ),
+    );
 
     final Container _overview = Container(
-      padding: const EdgeInsets.symmetric(vertical: 15.0),
-      margin: const EdgeInsets.only(top: 30.0),
+      padding: EdgeInsets.symmetric(vertical: 15.0),
+      margin: EdgeInsets.only(top: 30.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

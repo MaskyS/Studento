@@ -4,23 +4,17 @@ import 'package:flutter/material.dart';
 
 class StudentoAppBar extends AppBar {
   StudentoAppBar(
-      {Key key,
-      Widget title: const Text(
-        "Studento",
-        style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Mina',
-          fontWeight: FontWeight.w700,
-          fontSize: 26.0,
-        ),
-      ),
-      PreferredSizeWidget bottom,
-      List<Widget> actions})
-      : super(
-            key: key,
-            title: title,
-            actions: actions,
-            centerTitle: true,
-            backgroundColor: Colors.deepPurpleAccent,
-            bottom: bottom);
+    {Key key,
+    String title: "Studento",
+    TextStyle titleStyle : const TextStyle(color: Colors.white),
+    PreferredSizeWidget bottom,
+    List<Widget> actions}
+  ): super(
+    key: key,
+    title: Text(title, style: titleStyle),
+    actions: actions,
+    centerTitle: true,
+    backgroundColor: Colors.deepPurpleAccent,
+    bottom: bottom
+  );
 }

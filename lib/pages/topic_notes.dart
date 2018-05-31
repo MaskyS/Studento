@@ -6,20 +6,16 @@ import '../pages/sub-pages/topic-notes/topic_select.dart';
 
 class TopicNotesPage extends StatefulWidget {
   @override
-  _TopicNotesPageState createState() => new _TopicNotesPageState();
+  _TopicNotesPageState createState() => _TopicNotesPageState();
 }
 
 class _TopicNotesPageState extends State<TopicNotesPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new StudentoAppBar(
-        title: new Text("Topic Notes",
-        style: TextStyle(color: Colors.white),
-      ),
-      ),
-      drawer: new StudentoDrawer(),
-      body: new SubjectsStaggeredListView(openTopicsListPage),
+    return Scaffold(
+      drawer: StudentoDrawer(),
+      appBar: StudentoAppBar(title: "Topic Notes"),
+      body: SubjectsStaggeredListView(openTopicsListPage),
     );
   }
 
@@ -28,9 +24,9 @@ class _TopicNotesPageState extends State<TopicNotesPage> {
     // subject.
     Navigator.push(
       context,
-      new MaterialPageRoute(
-          builder: (BuildContext context) =>
-              new TopicSelectPage(subject, level)),
+      MaterialPageRoute(
+        builder: (BuildContext context) => TopicSelectPage(subject, level)
+      ),
     );
   }
 }

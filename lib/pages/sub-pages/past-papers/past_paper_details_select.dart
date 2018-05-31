@@ -1,8 +1,12 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numberpicker/numberpicker.dart';
+
 import 'past_paper_view.dart';
+import '../../../UI/studento_app_bar.dart';
+
 
 class PaperDetailsSelectionPage extends StatefulWidget {
   final String level;
@@ -19,6 +23,9 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   int selectedComponent;
   final GlobalKey _menuKey = GlobalKey();
+  /// This string is used so we know from which season a paper is.
+  /// This can have two values: ["s"] and ["w"] because those are the file
+  /// names for our papers. Example, 4024_s14_qp_12.html
   String selectedSeason;
   List<int> componentsList = [
     11,
@@ -42,24 +49,15 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        backgroundColor: Colors.deepPurpleAccent,
-        title: new Text(
-          "Past Papers for ${widget.subjectName}",
-          textScaleFactor: 0.8,
-          style: TextStyle(color: Colors.white),
+    return Scaffold(
+      appBar: StudentoAppBar(
+        title: "Past Papers for ${widget.subjectName}",
+        titleStyle: TextStyle(
+          fontSize: 15.0,
+          color: Colors.white,
         ),
       ),
-      body: //new Center(child: new RaisedButton(
-          //   onPressed: () => openPaper(''),
-          //   child: new Text("Open Webview"),
-          //   color: Colors.blue[700],
-          //   )
-          // )
-          new Container(
-        child: _buildStepper(),
-      ),
+      body: Container(child: _buildStepper()),
     );
   }
 
@@ -72,39 +70,34 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
   void openPaper(String paperName) {
     Navigator
-        .of(context)
-        .push(new MaterialPageRoute(builder: (BuildContext context) {
-      return new PastPaperView(paperName);
+    .of(context)
+    .push(MaterialPageRoute(builder: (BuildContext context) {
+      return PastPaperView(paperName);
     }));
   }
 
   Stepper _buildStepper() {
-    return new Stepper(
-        currentStep: currentStep,
-        steps: buildSteps(),
-        type: StepperType.vertical,
-        onStepTapped: (step) {
-          // On hitting step itself, change the state and jump to that step.
-          setState(() {
-            // Update the variable handling the current step value
-            // jump to the tapped step.
-            currentStep = step;
-          });
-        },
-        onStepCancel: () {
-          // On hitting cancel button, change the state
-          setState(() {
-            // Update the variable handling the current step value
-            // going back one step i.e subtracting 1, until its 0.
-            if (currentStep > 0) {
-              currentStep = currentStep - 1;
-            } else {
-              currentStep = 0;
-            }
-          });
-        },
-        // On hitting continue button, change the state.
-        onStepContinue: () => handleOnStepContinue());
+    return Stepper(
+      currentStep: currentStep,
+      steps: buildSteps(),
+      type: StepperType.vertical,
+      // Update the variable handling the current step value and
+      // jump to the tapped step.
+      onStepTapped: (int step) => setState(() => currentStep = step),
+      onStepCancel: () {
+        // On hitting cancel button, change the state
+        setState(() {
+          // Update the variable handling the current step value
+          // going back one step i.e subtracting 1, until its 0.
+          if (currentStep > 0) {
+            currentStep = currentStep - 1;
+          } else {
+            currentStep = 0;
+          }
+        });
+      },
+      // On hitting continue button, change the state.
+      onStepContinue: () => handleOnStepContinue());
   }
 
   void handleOnStepContinue() {
@@ -112,31 +105,30 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     // going back one step i.e adding 1, until its the length of the
     // step.
     if (currentStep < buildSteps().length - 1) {
-      setState(() {
-        currentStep++;
-      });
+      setState(() => currentStep++);
     }
     // Check that all steps have been completed. If positive, send
     // the selected values off to WebView generator.
-    else if (selectedComponent != null &&
-        selectedYear != null &&
-        selectedSeason != null) {
-      String subjectCode = _getSubjectCode(widget.level, widget.subjectName);
-      String paperName = "${subjectCode}_$selectedSeason" +
+    else if (
+      selectedComponent != null &&
+      selectedYear != null &&
+      selectedSeason != null)
+      {
+        String subjectCode = _getSubjectCode(widget.level, widget.subjectName);
+        String paperName = "${subjectCode}_$selectedSeason" +
           selectedYear.toString().substring(2) +
           "_qp_" +
           selectedComponent.toString();
-      print(
+
+        openPaper("$paperName");
+        print(
           "User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subjectName} with componentcode $subjectCode");
-      print("So the filename would be $paperName");
-      openPaper("$paperName");
-    } else {
-      // Set the current step to the step which was not completed.
-      // The uncompleted step has to be either Step 2 or 3 as year
-      // already has a default value.
-      setState(() {
-        currentStep = (selectedSeason == null) ? 1 : 2;
-      });
+        print("So the filename would be $paperName");
+      } else {
+        // Set the current step to the step which was not completed.
+        // The uncompleted step has to be either Step 2 or 3 as year
+        // already has a default value.
+        setState(() => currentStep = (selectedSeason == null) ? 1 : 2);
     }
   }
 
@@ -157,72 +149,67 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     /// year of the desired paper.
     void _showDialogToGetYear() {
       showDialog<int>(
-          context: context,
-          builder: (BuildContext context) {
-            return new NumberPickerDialog.integer(
-              titlePadding: const EdgeInsets.all(10.0),
-              minValue: minYear,
-              maxValue: new DateTime.now().year,
-              initialIntegerValue: selectedYear,
-              title: new Text(
-                "Select year of the paper:",
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontWeight: FontWeight.w400),
-              ),
-            );
-          }).then((int pickedYear) {
-        if (pickedYear != null) {
-          setState(() => selectedYear = pickedYear);
+        context: context,
+        builder: (BuildContext context) {
+          return NumberPickerDialog.integer(
+            titlePadding: EdgeInsets.all(10.0),
+            minValue: minYear,
+            maxValue: DateTime.now().year,
+            initialIntegerValue: selectedYear,
+            title: Text(
+              "Select year of the paper:",
+              textAlign: TextAlign.center,
+            ),
+          );
         }
+      ).then( (int pickedYear) {
+        pickedYear ?? setState(() => selectedYear = pickedYear);
       });
     }
 
-    Widget _content = new Center(
-        child: new Column(
-      children: <Widget>[
-        new Text("Choose the year of the paper you seek."),
-        new Padding(
-          padding: new EdgeInsets.symmetric(vertical: 10.0),
-        ),
-        new Divider(),
-        new ListTile(
-          enabled: true,
-          leading: new Icon(Icons.date_range),
-          onTap: _showDialogToGetYear,
-          title: new Text("Year"),
-          trailing: new Text(selectedYear.toString()),
-        ),
-        new Divider(),
-      ],
-    ));
+    Widget _content = Center(
+      child: Column(
+        children: <Widget>[
+          Text("Choose the year of the paper you seek."),
+          Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+          Divider(),
+          ListTile(
+            enabled: true,
+            leading: Icon(Icons.date_range),
+            onTap: _showDialogToGetYear,
+            title: Text("Year"),
+            trailing: Text(selectedYear.toString()),
+          ),
+          Divider(),
+        ],
+      )
+    );
 
-    return new Step(
-      title: new Text("Year"),
+    return Step(
+      title: Text("Year"),
       content: _content,
       isActive: (currentStep == 0) ? true : false,
     );
   }
 
   Step _buildSeasonSelectionStep() {
-    void handleRadioChanged(String value) {
-      setState(() {
-        selectedSeason = value;
-      });
-    }
+    void handleRadioChanged(String value) =>
+      setState(() => selectedSeason = value);
 
-    return new Step(
-      title: new Text("Season"),
+
+    return Step(
+      title: Text("Season"),
       isActive: (currentStep == 1) ? true : false,
-      content: new Column(
+      content: Column(
         children: <Widget>[
-          new RadioListTile(
-            title: new Text("Summer"),
+          RadioListTile(
+            title: Text("Summer"),
             groupValue: selectedSeason,
             value: "s",
             onChanged: (String value) => handleRadioChanged(value),
           ),
-          new RadioListTile(
-            title: new Text("Winter"),
+          RadioListTile(
+            title: Text("Winter"),
             groupValue: selectedSeason,
             value: "w",
             onChanged: (String value) => handleRadioChanged(value),
@@ -235,33 +222,35 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   Step _buildComponentSelectionStep() {
     List<PopupMenuItem<int>> components = [];
 
-    void handlePopUpChanged(int value) {
+    void handlePopUpChanged(int value) =>
       setState(() => selectedComponent = value);
-    }
 
     // Add each component name into the list of PopupMenuItems, [components]
+    // TODO use map function instead for this.
     for (int component in componentsList) {
-      components.add(new PopupMenuItem(
-        child: new Text("$component"),
-        value: component,
-      ));
+      components.add(
+        PopupMenuItem(
+          child: Text("$component"),
+          value: component,
+        )
+      );
     }
 
-    return new Step(
-      title: new Text("Component"),
+    return Step(
+      title: Text("Component"),
       isActive: (currentStep == 2) ? true : false,
-      content: new Column(
+      content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(
-              child: new Text("Select the component of the paper you seek.")),
-          Padding(
-            padding: new EdgeInsets.symmetric(vertical: 10.0),
+          Text(
+            "Select the component of the paper you seek.",
+            textAlign: TextAlign.start,
           ),
+          Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
           Divider(),
           ListTile(
-            leading: new Icon(Icons.blur_circular),
-            title: new Text("Component"),
+            leading: Icon(Icons.blur_circular),
+            title: Text("Component"),
             onTap: () {
               // When ListTile is tapped, open the popUpMenu!
               dynamic popUpMenustate = _menuKey.currentState;

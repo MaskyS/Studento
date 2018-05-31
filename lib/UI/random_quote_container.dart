@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class RandomQuoteContainer extends StatefulWidget {
   @override
-  RandomQuoteContainerState createState() => new RandomQuoteContainerState();
+  RandomQuoteContainerState createState() => RandomQuoteContainerState();
 }
 
 class RandomQuoteContainerState extends State<RandomQuoteContainer> {
@@ -14,59 +14,59 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   void _getQuotes() {
     // Get the quotes from our json file and put it into quotesList.
     rootBundle.loadString('assets/json/quotes.json').then((String fileData) {
-      setState(() {
-        quotesList = json.decode(fileData);
-      });
+      setState(() =>
+        quotesList = json.decode(fileData)
+      );
     });
   }
 
   @override
   void initState() {
-    _getQuotes();
     super.initState();
+    _getQuotes();
   }
 
   @override
   Widget build(BuildContext context) {
     // While the quotes are being loaded, display a progress indicator.
     if (quotesList == null) {
-      return new CircularProgressIndicator();
+      return CircularProgressIndicator();
     }
 
-    return new ListView(
+    return ListView(
       children: _buildRandomQuoteWidget(),
     );
   }
 
   List<Widget> _buildRandomQuoteWidget() {
     // Get a random number that will be used to get a quote from the list.
-    final random = new Random();
+    final random = Random();
     int randomIndex = random.nextInt(quotesList.length);
     // Get the random quote and the corresponding author.
     final String quoteString = quotesList[randomIndex]["Quote String"];
     final String quoteAuthorNameString =
         quotesList[randomIndex]["Quote Author"];
 
-    Container quoteTextContainer = new Container(
+    Container quoteTextContainer = Container(
       alignment: Alignment.center,
-      padding: new EdgeInsets.symmetric(vertical: 20.0),
-      child: new Text(
+      padding: EdgeInsets.symmetric(vertical: 20.0),
+      child: Text(
         quoteString,
         textAlign: TextAlign.center,
-        style: new TextStyle(
+        style: TextStyle(
           fontSize: 18.0,
           color: Colors.white,
         ),
       ),
     );
 
-    Container authorNameContainer = new Container(
+    Container authorNameContainer = Container(
       alignment: FractionalOffset.bottomRight,
-      padding: new EdgeInsets.only(top: 5.0),
-      child: new Text(
+      padding: EdgeInsets.only(top: 5.0),
+      child: Text(
         ('- $quoteAuthorNameString'),
         textAlign: TextAlign.end,
-        style: new TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w400,
           color: Colors.white,
         ),

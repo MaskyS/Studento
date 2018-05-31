@@ -31,7 +31,7 @@ class SubjectsStaggeredListView extends StatefulWidget {
 
   @override
   _SubjectsStaggeredListViewState createState() =>
-      new _SubjectsStaggeredListViewState();
+    _SubjectsStaggeredListViewState();
 }
 
 class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
@@ -60,7 +60,7 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
     List<_SubjectTile> subjectTiles = [];
 
     if (subjectsList == null){
-      return new Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     /// Add tiles for each subject into [subjectTiles].
@@ -68,13 +68,14 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
       subjectTiles.add(_SubjectTile(subject, level, widget.onTapFunction));
     }
 
-    return new Padding(
-        padding: const EdgeInsets.only(top: 12.0),
-        child: new StaggeredGridView.count(
-          crossAxisCount: 4,
-          staggeredTiles: widget._staggeredTiles,
-          children: subjectTiles,
-        ));
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0),
+      child: StaggeredGridView.count(
+        crossAxisCount: 4,
+        staggeredTiles: widget._staggeredTiles,
+        children: subjectTiles,
+      ),
+    );
   }
 }
 
@@ -94,15 +95,17 @@ class _SubjectTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Card(
-      color: new Color(0xFFf9f9f9),
+    return Card(
       elevation: 2.0,
-      child: new InkWell(
+      child: InkWell(
         onTap: () => onTapFunction(subjectName, level),
-        onLongPress: () => Scaffold.of(context).showSnackBar(new SnackBar(
-              content: new Text("Tap the subject you seek."),
-            )),
-        child: new Container(
+        onLongPress: () => Scaffold
+          .of(context)
+          .showSnackBar(SnackBar(
+              content: Text("Tap the subject you seek."),
+          )
+        ),
+        child: Container(
           padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 5.0),
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -115,15 +118,15 @@ class _SubjectTile extends StatelessWidget {
                 Color(0xFF5fbff9),
               ],
             ),
-            border: new Border.all(color: Colors.black54, width: 2.0),
+            border: Border.all(color: Colors.black54, width: 2.0),
           ),
-          child: new Center(
-            child: new Text(
+          child: Center(
+            child: Text(
               prettifySubjectName(subjectName),
               textAlign: TextAlign.center,
               textScaleFactor: 1.1,
               overflow: TextOverflow.fade,
-              style: new TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),

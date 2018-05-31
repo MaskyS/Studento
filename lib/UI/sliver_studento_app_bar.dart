@@ -4,34 +4,33 @@ import 'time_text_widget.dart';
 /// The SliverAppBar that is used exclusively in the Home Page.
 class SliverStudentoAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
-    return new SliverAppBar(
+    return SliverAppBar(
+      pinned: true,
+      centerTitle: true,
       expandedHeight: 290.0,
-      title: new Text(
+      backgroundColor: Colors.deepPurpleAccent,
+      flexibleSpace: TimeTextWidget(),
+      title: Text(
         "Studento",
-        style: new TextStyle(
+        style: TextStyle(
           color: Colors.white,
           fontFamily: 'Mina',
           fontSize: 26.0,
           fontWeight: FontWeight.bold,
         ),
       ),
-      centerTitle: true,
-      backgroundColor: Colors.deepPurpleAccent,
       actions: <Widget>[
-        new IconButton(
-          icon: new Icon(Icons.notifications_active),
-
+        IconButton(
+          icon: Icon(Icons.notifications_active),
           /// TODO 1
           /// TODO 2
           color: Colors.white,
-          onPressed: () {
+          onPressed: () =>
             print(
-                "This will open up your schedule page! In the future anyway :P");
-          },
-        )
+                "This will open up your schedule page! In the future anyway :P"),
+        ),
       ],
-      flexibleSpace: new TimeTextWidget(),
-      pinned: true,
+
     );
   }
 }

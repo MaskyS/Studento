@@ -4,7 +4,7 @@ import '../util/shared_prefs_interface.dart';
 
 class SchedulePage extends StatefulWidget {
   @override
-  _SchedulePageState createState() => new _SchedulePageState();
+  _SchedulePageState createState() => _SchedulePageState();
 }
 
 class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderStateMixin {
@@ -43,10 +43,10 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
 
   Widget build(BuildContext context) {
     //Contains the layout of the page.
-    return new Scaffold(
-      appBar: new StudentoAppBar(
-        title: Text("Schedule", style: TextStyle(color: Colors.white),),
-        bottom: new TabBar(
+    return Scaffold(
+      appBar: StudentoAppBar(
+        title: "Schedule",
+        bottom: TabBar(
           controller: _tabController,
           tabs: dayTabs,
           indicatorColor: Colors.blue.shade400,

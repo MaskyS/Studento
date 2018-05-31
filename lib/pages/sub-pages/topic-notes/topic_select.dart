@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../../UI/studento_app_bar.dart';
 import '../../../util/jaguar_laucher.dart';
 import '../../../util/shared_prefs_interface.dart';
@@ -31,10 +34,10 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Container(
-        constraints: new BoxConstraints.expand(),
-        child: new Stack(children: <Widget>[
+    return Scaffold(
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        child: Stack(children: <Widget>[
           _getTopicsListView(),
           _getBackground(),
           _getGradient(),
@@ -68,35 +71,34 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   Widget _getBackground() {
-    final Widget subjectNameAndNoOfTopicsContainer = new Container(
-      constraints: new BoxConstraints.expand(height: 250.0),
-      child: new Column(
+    final Widget subjectNameAndNoOfTopicsContainer = Container(
+      constraints: BoxConstraints.expand(height: 250.0),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: (topicsList == null)
-            ? <Widget>[new CircularProgressIndicator()]
-            : <Widget>[
-                new Text(
-                  "${widget.selectedSubject}",
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(
-                    fontFamily: 'Mina',
-                    color: Colors.white,
-                    fontSize: 30.0,
-                  ),
-                ),
-                new Padding(
-                    padding: const EdgeInsets.only(
-                  bottom: 4.0,
-                )),
-                new Text(
-                  "${topicsList.length} topics",
-                  style: new TextStyle(
-                    color: new Color(0xFFFefefe),
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                )
-              ],
+          ? <Widget>[CircularProgressIndicator()]
+          : <Widget>[
+            Text(
+              "${widget.selectedSubject}",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Mina',
+                color: Colors.white,
+                fontSize: 30.0,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 4.0),
+            ),
+            Text(
+              "${topicsList.length} topics",
+              style: TextStyle(
+                color: Color(0xFFFefefe),
+                fontSize: 15.0,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
       ),
     );
 
@@ -104,11 +106,11 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     // Also, instead of the background image let's get some fancy animation
     // like https://www.youtube.com/watch?v=MAET-z1apKA on a dark purple
     // background or the like.
-    return new Stack(
+    return Stack(
       children: <Widget>[
-        new Container(
-          constraints: new BoxConstraints.expand(height: 250.0),
-          child: new Image.asset(
+        Container(
+          constraints: BoxConstraints.expand(height: 250.0),
+          child: Image.asset(
             "assets/images/physics-background-img.jpg", //subject.picture,
             fit: BoxFit.cover,
             height: 300.0,
@@ -120,16 +122,16 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   Widget _getGradient() {
-    return new Container(
+    return Container(
       height: 90.0,
-      margin: new EdgeInsets.only(top: 160.0),
-      decoration: new BoxDecoration(
-          gradient: new LinearGradient(
+      margin: EdgeInsets.only(top: 160.0),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
         stops: [0.0, 1.0],
-        begin: const FractionalOffset(0.0, 0.0),
-        end: const FractionalOffset(0.0, 1.0),
+        begin: FractionalOffset(0.0, 0.0),
+        end: FractionalOffset(0.0, 1.0),
         colors: <Color>[
-          new Color(0),
+          Color(0),
           Colors.white,
         ],
       )),
@@ -140,12 +142,10 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     print("you selected $selectedTopic");
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => new WebviewScaffold(
+        builder: (_) => WebviewScaffold(
           url: 'http://localhost:8090/html/topic-notes/$subjectCode/$selectedTopic.html',
           withZoom: true,
-          appBar: StudentoAppBar(
-            title: Text("View Topic", style: TextStyle(color: Colors.white,)),
-          ),
+          appBar: StudentoAppBar(title: "View Topic"),
         ),
       ),
     );
@@ -157,19 +157,19 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     // If the topic list is still being loaded or happens to be empty,
     // show a [CircularProgressIndicator].
     if (topicsList == null) {
-      return new CircularProgressIndicator();
+      return CircularProgressIndicator();
     }
 
-    return new ListView.builder(
-      padding: new EdgeInsets.fromLTRB(0.0, 250.0, 0.0, 32.0),
+    return ListView.builder(
+      padding: EdgeInsets.fromLTRB(0.0, 250.0, 0.0, 32.0),
       itemCount: topicsList.length,
       itemBuilder: (BuildContext context, int index) {
         String topicName = topicsList[index];
-        return new Column(children: <Widget>[
-          new Divider(),
-          new ListTile(
-            title: new Text(topicName),
-            trailing: new Icon(
+        return Column(children: <Widget>[
+          Divider(),
+          ListTile(
+            title: Text(topicName),
+            trailing: Icon(
               Icons.arrow_forward_ios,
               size: 16.0,
             ),
@@ -182,9 +182,9 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   Container _getToolbar(BuildContext context) {
-    return new Container(
-      margin: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      child: new BackButton(color: Colors.white),
+    return Container(
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      child: BackButton(color: Colors.white),
     );
   }
 
@@ -200,20 +200,20 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return new AlertDialog(
-          title: new Text('Sorry!'),
-          content: new SingleChildScrollView(
-            child: new ListBody(
+        return AlertDialog(
+          title: Text('Sorry!'),
+          content: SingleChildScrollView(
+            child: ListBody(
               children: <Widget>[
-                new Padding(padding: const EdgeInsets.only(top: 12.0)),
-                new Text('''No notes for this topic or subject :(
+                Padding(padding: EdgeInsets.only(top: 12.0)),
+                Text('''No notes for this topic or subject :(
 \nThe good news is that you can request for it by filing an issue.'''),
               ],
             ),
           ),
           actions: <Widget>[
-            new FlatButton(
-              child: new Text('FILE ISSUE'),
+            FlatButton(
+              child: Text('FILE ISSUE'),
               onPressed: () async {
                 const url = 'https://github.com/MaskyS/studento/issues/';
                 if (await canLaunch(url)) {
@@ -223,11 +223,11 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
                 }
               },
             ),
-            new FlatButton(
-              child: new Text('OK'),
-              onPressed: () {
-                Navigator.popUntil(context, ModalRoute.withName('/'));
-              },
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () => Navigator.popUntil(
+                context, ModalRoute.withName('/')
+              ),
             ),
           ],
         );

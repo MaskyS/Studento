@@ -33,7 +33,7 @@ class SetupPage extends StatefulWidget {
       this.body,
       this.onFloatingButtonPressed});
   @override
-  _SetupPageState createState() => new _SetupPageState();
+  _SetupPageState createState() => _SetupPageState();
 }
 
 class _SetupPageState extends State<SetupPage> {
@@ -75,7 +75,7 @@ class _SetupPageState extends State<SetupPage> {
             child:  Padding(
               padding: const EdgeInsets.all(8.0),
               child: widget.body,
-              ),
+            ),
           ),
         ],
       ),

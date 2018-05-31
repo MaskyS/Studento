@@ -19,12 +19,12 @@ class _SubjectsListState extends State<SubjectsList> {
 
   @override
   initState(){
+    super.initState();
     // Get the level of the user.
     SharedPreferencesHelper.getLevel().then(
       (String level) => selectedLevel = level
     );
     getSubjects();
-    super.initState();
   }
 
   @override

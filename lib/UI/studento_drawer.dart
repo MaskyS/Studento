@@ -4,6 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../UI/random_quote_container.dart';
 
 class StudentoDrawer extends StatelessWidget {
+
+  /// Whether this drawer is being used in the HomePage. If so, we'll remove
+  /// the fragment that navigates to the HomePage on tap.
   final bool usedInHomePage;
 
   StudentoDrawer({this.usedInHomePage: false});
@@ -88,12 +91,16 @@ class StudentoDrawer extends StatelessWidget {
       settingsFragment,
       sendFeedbackFragment
     ];
+
     if (usedInHomePage) {
       fragmentsList.remove(homePageFragment);
     }
-    // Put the header and all the fragments together in a ListView.
-    ListView fragmentListView = ListView(children: fragmentsList);
-    final drawer = Drawer(child: fragmentListView);
+
+    final drawer = Drawer(
+      child: ListView(
+        children: fragmentsList,
+      )
+    );
     return drawer;
   }
 }
@@ -104,17 +111,17 @@ class DrawerFragment extends StatelessWidget {
   final String subtitle;
   final String routeName;
 
-    void _onTap(String routeName, BuildContext context) {
-      Navigator.pushReplacementNamed(context, 'home_page');
-      Navigator.pushNamed(context, routeName);
-    }
-
   DrawerFragment(
       {@required this.icon,
       @required this.title,
       @required this.subtitle,
       this.routeName,}
   );
+
+  void _onTap(String routeName, BuildContext context) {
+    Navigator.pushReplacementNamed(context, 'home_page');
+    Navigator.pushNamed(context, routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
