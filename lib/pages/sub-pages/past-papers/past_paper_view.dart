@@ -121,10 +121,10 @@ class _PastPaperViewState extends State<PastPaperView> {
     actions = [
       SizedBox(
         height: 25.0,
-        width: 30.0,
+        width: 40.0,
         child: IconButton(
           icon: Icon(Icons.check_circle),
-          iconSize: 18.0,
+          iconSize: 20.0,
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
           onPressed: _pressedMarkAsCompleteButton,
           color: _colorOfMarkAsCompleteButton,
@@ -133,12 +133,18 @@ class _PastPaperViewState extends State<PastPaperView> {
       ),
       SizedBox(
         height: 25.0,
-        width: 30.0,
+        width: 40.0,
         child: IconButton(
-          icon: Text("MS"),
-          iconSize: 22.0,
+          icon: Text(
+            "MS",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          iconSize: 25.0,
           padding:
-              EdgeInsets.only(top: 8.0, bottom: 8.0, left: 0.0, right: 50.0),
+              EdgeInsets.symmetric(vertical: 8.0),
           onPressed: _pressedMarkingSchemeButton,
           color: Colors.white,
           tooltip: "View Marking Scheme",
@@ -192,10 +198,33 @@ class _PastPaperViewState extends State<PastPaperView> {
 
   void _pressedMarkingSchemeButton() {
     var msFileName = widget.paperName.replaceFirst('_qp_', '_ms_');
+
+    Widget markingSchemeActionButton = SizedBox(
+      height: 25.0,
+      width: 40.0,
+      child: IconButton(
+        iconSize: 25.0,
+        color: Colors.white,
+        tooltip: "View Marking Scheme",
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        onPressed: () => Navigator.of(context).pop(),
+        icon: Text(
+          "QP",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => new WebviewScaffold(
+        builder: (_) => WebviewScaffold(
           url: "http://localhost:8080/html/past-papers/$subjectCode/$msFileName.html",
+          appBar: StudentoAppBar(
+            title: "View marking scheme",
+            actions: <Widget>[markingSchemeActionButton],
+          ),
         ),
       ),
     );
