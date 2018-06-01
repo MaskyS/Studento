@@ -7,7 +7,7 @@ import '../util/shared_prefs_interface.dart';
 /// subjects.
 class SubjectsList extends StatefulWidget {
   @override
-  _SubjectsListState createState() => new _SubjectsListState();
+  _SubjectsListState createState() => _SubjectsListState();
 }
 
 class _SubjectsListState extends State<SubjectsList> {

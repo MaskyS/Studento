@@ -76,7 +76,7 @@ flutter:
     # - assets/html/past-papers/9608/
     # - assets/html/past-papers/9699/
     # - assets/html/past-papers/9700/
-    # - assets/html/past-papers/9702/
+    - assets/html/past-papers/9702/
     # - assets/html/past-papers/9705/
     - assets/html/past-papers/9706/
     # - assets/html/past-papers/9708/
@@ -136,7 +136,6 @@ flutter:
     # - assets/html/topic-notes/9702/
     # - assets/html/topic-notes/9705/
     - assets/html/topic-notes/9706/
-    - assets/html/topic-notes/9706/Control Accounts.html
     # - assets/html/topic-notes/9708/
     # - assets/html/topic-notes/9709/
     # - assets/html/topic-notes/9716/
