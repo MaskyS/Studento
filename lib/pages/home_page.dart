@@ -106,7 +106,7 @@ class HomePageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget _buttonIcon = Container(
       margin: EdgeInsets.only(bottom: 10.0),
-      child: Image(image: AssetImage("assets/icons/" + iconFilePath)),
+      child: Image(image: AssetImage("assets/icons/$iconFilePath")),
       constraints: BoxConstraints.loose(Size(45.0, 45.0)),
     );
 

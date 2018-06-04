@@ -10,6 +10,7 @@ dependencies:
   jaguar_flutter_asset: ^1.1.5
   flutter_webview_plugin: "^0.1.5"
   url_launcher: "^3.0.0"
+  launch_review: "^1.0.1"
   numberpicker: "^0.1.0"
   # flutter_search_bar: "^2.0.3" # not used right now
   path_provider: "^0.4.0"
