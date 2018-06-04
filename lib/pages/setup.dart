@@ -170,11 +170,27 @@ class _SetupState extends State<Setup> {
   }
 
   void validateAndPushSessionsPage() =>
-    SharedPreferencesHelper.getSubjectsList().then((List<String> subjectsList) {
-      if (subjectsList.isNotEmpty && subjectsList != null && subjectsList.length > 4) {
-        pushNextPage(2);
-      }
-    });
+    SharedPreferencesHelper
+      .getSubjectsList()
+      .then(
+        (List<String> subjectsList) {
+          if (subjectsList.isNotEmpty && subjectsList != null && subjectsList.length >= 4) {
+            pushNextPage(2);
+          } else {
+            showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                content: Text("You need to select 4 or more subjects."),
+                actions: <Widget>[
+                  FlatButton(child: Text("OK"),
+                  onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
+            );
+          }
+        }
+  );
 
   void pushPermissionsPage() async{
     pushNextPage(3);
