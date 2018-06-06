@@ -84,6 +84,7 @@ class _SetupState extends State<Setup> {
     return ListView(children: <Widget>[
       TextField(
         controller: nameController,
+        keyboardType: TextInputType.text,
         onSubmitted: validateName,
         onChanged: validateName,
         decoration: nameTextFieldDeco,
@@ -137,27 +138,31 @@ class _SetupState extends State<Setup> {
     ]);
   }
 
-  /// Check if name is empty, made up of only spaces or contains any digits.
-  /// If so, set an error text for the name TextField.
+  /// Validate input by checking if it is empty, made up of only spaces
+  /// or contains any digits. If so, set an error text for the name TextField.
   void validateName(String name) {
     if (name == null ||
         name.isEmpty ||
         name.replaceAll(' ', '').isEmpty ||
         name.contains(RegExp(r'\d+'))) {
-      setState(
-          () => errorText = "Your name doesn't look right. Please try again.");
+
+      setState(() =>
+        errorText = "Your name doesn't look right. Please try again."
+      );
+
     } else if (errorText != null) {
       setState(() => errorText = null);
     }
+
   }
 
   /// Pushes the [SetupPage] which is found at [pageIndex] in the [List]
   /// returned by [setupPages()]
-  void pushNextPage(int pageIndex) {
+  void pushNextPage(int pageIndex) =>
     Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => setupPages()[pageIndex]),
-        );
-  }
+      MaterialPageRoute(builder: (_) => setupPages()[pageIndex]),
+  );
+
 
   void validateAndPushSubjectsPage() {
     if (selectedLevel == null || nameController.text.isEmpty) {
@@ -196,9 +201,12 @@ class _SetupState extends State<Setup> {
     pushNextPage(3);
   }
 
+  /// If Android version is Marshmello or above, we need to request permissions
+  /// first, then we push the HomePage.
   void requestPermissionsAndPushHomePage() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+
     if (int.parse(androidInfo.version.release.substring(0,1)) >= 6){
       bool result = false;
       result = await SimplePermissions
@@ -206,12 +214,15 @@ class _SetupState extends State<Setup> {
       print("permission request result is " + result.toString());
     }
 
-    // We don't need to show setup/intro pages to user when the app is started
-    // again.
+    // Record that setup has been completed, so next time the app is launched,
+    // We jump straight to the home page instead of the setup page.
     SharedPreferencesHelper.setIsFirstRun(true);
-    Navigator
-        .of(context)
-        .pushNamedAndRemoveUntil('home_page', ModalRoute.withName('home_page'));
+
+    Navigator.of(context)
+      .pushNamedAndRemoveUntil(
+        'home_page',
+        ModalRoute.withName('home_page')
+    );
   }
 }
 
