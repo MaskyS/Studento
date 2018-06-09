@@ -8,15 +8,21 @@ class TodoItem extends StatelessWidget {
   bool isComplete;
   int _id;
 
-  TodoItem(this._itemName, this._dueDate, this._details, {this.isComplete});
+  TodoItem(
+    this._itemName,
+    this._dueDate,
+    this._details,
+    {this.isComplete}
+  );
 
-  bool operator ==(todoItem) =>
+  bool operator ==(Object todoItem) =>
+    identical(this, todoItem) ||
       todoItem is TodoItem &&
-      itemName == todoItem.itemName &&
-      dueDate == todoItem.dueDate &&
-      details == todoItem.details &&
-      id == todoItem.id &&
-      isComplete == todoItem.isComplete;
+        itemName == todoItem.itemName &&
+        dueDate == todoItem.dueDate &&
+        details == todoItem.details &&
+        id == todoItem.id &&
+        isComplete == todoItem.isComplete;
 
   int get hashCode =>
       hash4(itemName.hashCode, dueDate.hashCode, details.hashCode, id.hashCode);
@@ -55,38 +61,31 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DateTime dateNow = DateTime.now();
-    final int todoDueYear = int.parse(dueDate.substring(0, 3));
-    final int todoDueMonth = int.parse(dueDate.substring(5, 7));
-    final int todoDueDay = int.parse(dueDate.substring(8,10));
-    final int todoDueHour = int.parse(dueDate.substring(11, 13));
-    final int todoDueMinute = int.parse(dueDate.substring(14, 16));
-    String _dateUnitsLeft;
-    Color color = Colors.black87;
-    if (todoDueYear > dateNow.year) {
-      _dateUnitsLeft = "${todoDueYear - dateNow.year} year";
-    } else if (todoDueMonth > dateNow.month){
-      _dateUnitsLeft = "${todoDueMonth - dateNow.month} month";
-    } else if (todoDueDay > dateNow.day){
-      _dateUnitsLeft = "${todoDueDay - dateNow.day} day";
-    } else if (todoDueHour > dateNow.hour){
-      _dateUnitsLeft = "${todoDueHour - dateNow.hour} hour";
-    } else if (todoDueMinute > dateNow.minute){
-      _dateUnitsLeft = "${todoDueMinute - dateNow.minute} minute";
-    } else if (todoDueMinute < dateNow.minute){
-      _dateUnitsLeft = "0 minutes";
-      color = Colors.redAccent;
-    }
-    else _dateUnitsLeft = '';
-    print(_dateUnitsLeft);
-    int dateUnits = int.tryParse(_dateUnitsLeft.split(" ")[0]) ?? 0;
-    if (dateUnits > 1) _dateUnitsLeft = _dateUnitsLeft + 's';
-    String dateUnitsLeft = (_dateUnitsLeft != '') ? "$_dateUnitsLeft left" : '';
-
-
-    String _tooltip = (isComplete == true)
+    String _tooltip = (isComplete)
         ? "Swipe to remove this item."
         : "Swipe right to mark this task as complete, or left to delete it.";
+
+    final DateTime dateNow = DateTime.now();
+    Duration timeLeft = DateTime.parse(dueDate).difference(dateNow);
+    Color timeLeftTextColor = Colors.black87;
+    String timeLeftString = ' ';
+
+    if (timeLeft.inDays > 0) timeLeftString = "${timeLeft.inDays} day";
+      else if (timeLeft.inHours > 0) timeLeftString = "${timeLeft.inHours} hour";
+        else if (timeLeft.inMinutes > 0) {
+          timeLeftString = "${timeLeft.inMinutes} minute";
+          timeLeftTextColor = Colors.redAccent;
+        }
+
+    /// Add 's' if the no of days, months, whatever is more than 1
+    int durationLeft = int.tryParse(timeLeftString.split(" ")[0]); // e.g value: 12
+    String timeUnit = timeLeftString.split(" ")[1]; // e.g value: "day"
+    if (durationLeft != null) {
+
+      if (durationLeft > 1) timeUnit += 's'; // for e.g, "day" becomes "days".
+      timeLeftString = "$durationLeft $timeUnit left";
+    }
+    print("$timeLeftString hello");
     return Container(
       child: Tooltip(
         message: _tooltip,
@@ -106,9 +105,7 @@ class TodoItem extends StatelessWidget {
             children: <Widget>[
               Text(
                 _details,
-                style: TextStyle(
-                  fontSize: 12.0,
-                ),
+                textScaleFactor: 1.1,
               ),
             ],
           ),
@@ -123,9 +120,9 @@ class TodoItem extends StatelessWidget {
                 padding: EdgeInsets.only(right: 5.0),
               ),
               Text(
-                dateUnitsLeft,
+                timeLeftString,
                 style: TextStyle(
-                  color: color,
+                  color: timeLeftTextColor,
                   fontSize: 12.0,
                   fontWeight: FontWeight.bold,
                 ),
