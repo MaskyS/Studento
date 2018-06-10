@@ -50,12 +50,8 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StudentoAppBar(
+      appBar: StudentoAppBar (
         title: "Past Papers for ${widget.subjectName}",
-        titleStyle: TextStyle(
-          fontSize: 15.0,
-          color: Colors.white,
-        ),
       ),
       body: Container(child: _buildStepper()),
     );
@@ -71,34 +67,33 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   void openPaper(String paperName) {
     Navigator
     .of(context)
-    .push(MaterialPageRoute(builder: (BuildContext context) {
-      return PastPaperView(paperName);
-    }));
+    .push(MaterialPageRoute(
+      builder: (_) => PastPaperView(paperName)
+    ));
   }
 
-  Stepper _buildStepper() {
-    return Stepper(
-      currentStep: currentStep,
-      steps: buildSteps(),
-      type: StepperType.vertical,
-      // Update the variable handling the current step value and
-      // jump to the tapped step.
-      onStepTapped: (int step) => setState(() => currentStep = step),
-      onStepCancel: () {
-        // On hitting cancel button, change the state
-        setState(() {
-          // Update the variable handling the current step value
-          // going back one step i.e subtracting 1, until its 0.
-          if (currentStep > 0) {
-            currentStep = currentStep - 1;
-          } else {
-            currentStep = 0;
-          }
-        });
-      },
-      // On hitting continue button, change the state.
-      onStepContinue: () => handleOnStepContinue());
-  }
+  Stepper _buildStepper() => Stepper(
+    steps: buildSteps(),
+    currentStep: currentStep,
+    type: StepperType.vertical,
+    // Update the variable handling the current step value and
+    // jump to the tapped step.
+    onStepTapped: (int step) => setState(() => currentStep = step),
+    // On hitting continue button, change the state.
+    onStepContinue: () => handleOnStepContinue(),
+    onStepCancel: () {
+      // On hitting cancel button, change the state
+      setState(() {
+        // Update the variable handling the current step value
+        // going back one step i.e subtracting 1, until its 0.
+        if (currentStep > 0) {
+          currentStep = currentStep - 1;
+        } else {
+          currentStep = 0;
+        }
+      });
+    },
+  );
 
   void handleOnStepContinue() {
     // Update the variable handling the current step value
@@ -148,25 +143,22 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   Step _buildYearSelectionStep() {
     /// Shows a dialog containing a [NumericalPicker] for the user to choose the
     /// year of the desired paper.
-    void _showDialogToGetYear() {
+    void _showDialogToGetYear() =>
       showDialog<int>(
         context: context,
-        builder: (BuildContext context) {
-          return NumberPickerDialog.integer(
-            titlePadding: EdgeInsets.all(10.0),
-            minValue: minYear,
-            maxValue: DateTime.now().year,
-            initialIntegerValue: selectedYear,
-            title: Text(
-              "Select year of the paper:",
-              textAlign: TextAlign.center,
-            ),
-          );
-        }
+        builder: (_) => NumberPickerDialog.integer(
+          titlePadding: EdgeInsets.all(10.0),
+          minValue: minYear,
+          maxValue: DateTime.now().year,
+          initialIntegerValue: selectedYear,
+          title: Text(
+            "Select year of the paper:",
+            textAlign: TextAlign.center,
+          ),
+        ),
       ).then( (int pickedYear) {
         if (pickedYear != null) setState(() => selectedYear = pickedYear);
-      });
-    }
+    });
 
     Widget _content = Center(
       child: Column(
@@ -183,7 +175,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
           ),
           Divider(),
         ],
-      )
+      ),
     );
 
     return Step(
@@ -194,27 +186,25 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   }
 
   Step _buildSeasonSelectionStep() {
-    void handleRadioChanged(String value) =>
+    void setSelectedSeason(String value) =>
       setState(() => selectedSeason = value);
 
+    Widget buildSeasonRadioTile({@required String title}) => RadioListTile(
+      title: Text(title),
+      groupValue: selectedSeason,
+      value: title.substring(0,1).toLowerCase(), // the value needs to be 's',
+      //  'w', etc because that's how seasons are denoted in the file name of
+      //  the papers.
+      onChanged: setSelectedSeason,
+    );
 
     return Step(
       title: Text("Season"),
       isActive: (currentStep == 1) ? true : false,
       content: Column(
         children: <Widget>[
-          RadioListTile(
-            title: Text("Summer"),
-            groupValue: selectedSeason,
-            value: "s",
-            onChanged: (String value) => handleRadioChanged(value),
-          ),
-          RadioListTile(
-            title: Text("Winter"),
-            groupValue: selectedSeason,
-            value: "w",
-            onChanged: (String value) => handleRadioChanged(value),
-          ),
+          buildSeasonRadioTile(title: "Summer"),
+          buildSeasonRadioTile(title: "Winter"),
         ],
       ),
     );
@@ -226,16 +216,13 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     void handlePopUpChanged(int value) =>
       setState(() => selectedComponent = value);
 
-    // Add each component name into the list of PopupMenuItems, [components]
-    // TODO use map function instead for this.
-    for (int component in componentsList) {
-      components.add(
+    components = componentsList.map(
+      (int component) =>
         PopupMenuItem(
           child: Text("$component"),
           value: component,
         )
-      );
-    }
+    ).toList();
 
     return Step(
       title: Text("Component"),
@@ -259,12 +246,12 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
             },
             trailing: PopupMenuButton(
               key: _menuKey,
-              itemBuilder: (BuildContext context) => components,
+              itemBuilder: (_) => components,
               onSelected: handlePopUpChanged,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text((selectedComponent != null) ? selectedComponent.toString() : ''),
+                  Text((selectedComponent != null) ? "$selectedComponent" : ''),
                   Icon(Icons.arrow_drop_down)
                 ],
               ),
