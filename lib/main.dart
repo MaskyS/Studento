@@ -32,10 +32,7 @@ class _StudentoState extends State<Studento> {
 
   @override
   Widget build(BuildContext context) {
-    if (hasRunBefore == null) return Container(child: CircularProgressIndicator());
-    // Hide the status bar. We don't want students to be distracted by
-    // notifications.
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.values[1]]);
+    if (hasRunBefore == null) return Center(child: CircularProgressIndicator());
 
     // Lock app orientation to Portrait so rotating doesn't break the design.
     SystemChrome.setPreferredOrientations(
