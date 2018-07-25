@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../util/shared_prefs_interface.dart';
 
+/// This class holds the UI and the logic for the Time and the greeting text
+/// you see on the Home Page.
 class TimeTextWidget extends StatefulWidget {
   TimeTextWidget({Key key}) : super(key: key);
 
@@ -9,8 +11,6 @@ class TimeTextWidget extends StatefulWidget {
   _TimeTextWidgetState createState() => _TimeTextWidgetState();
 }
 
-/// This class holds the UI and the logic for the Time and the greeting text
-/// you see on the Home Page.
 class _TimeTextWidgetState extends State<TimeTextWidget> {
   Timer _timer;
   DateTime _time;
