@@ -95,7 +95,7 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
       ),
     );
 
-    final Container _overview = Container(
+    return Container(
       padding: EdgeInsets.symmetric(vertical: 15.0),
       margin: EdgeInsets.only(top: 30.0),
       child: Column(
@@ -106,6 +106,5 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
         ],
       ),
     );
-    return _overview;
   }
 }
