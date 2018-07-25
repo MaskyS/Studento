@@ -1,3 +1,7 @@
+/// Based on Original Flutter Code, which was written by the Flutter project
+/// authors. Please see the AUTHORS file of the Flutter project for details.
+/// All rights reserved. Use of this source code is governed by a BSD-style
+/// license that can be found in the Flutter project's LICENSE file.
 import 'dart:math';
 
 import 'package:meta/meta.dart';
@@ -5,10 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'setup.dart';
 
-/// Based on Original Flutter Code, which was written by the Flutter project
-/// authors. Please see the AUTHORS file of the Flutter project for details.
-/// All rights reserved. Use of this source code is governed by a BSD-style
-/// license that can be found in the Flutter project's LICENSE file.
+/// Template for each page which showcases the features of the Studento.
 class IntroPage extends StatefulWidget {
   @override
   State createState() => IntroPageState();
@@ -47,6 +48,42 @@ class IntroPageState extends State<IntroPage> {
     ),
   ];
 
+  Widget buildGetStartedButton() => Positioned(
+    bottom: 20.0,
+    left: 0.0,
+    right: 0.0,
+    child: Center(
+      child: FlatButton(
+        color: Colors.deepPurpleAccent,
+        textColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Text("GET STARTED!"),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => Setup()),
+        ),
+      ),
+    ),
+  );
+  
+  Widget buildPageIndicatorButton() => Positioned(
+    bottom: 70.0,
+    left: 0.0,
+    right: 0.0,
+    child: Center(
+        child: DotsIndicator(
+          controller: _controller,
+          itemCount: _pages.length,
+          onPageSelected: (int page) {
+            _controller.animateToPage(
+              page,
+              duration: _kDuration,
+              curve: _kCurve,
+            );
+          },
+        ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,40 +99,8 @@ class IntroPageState extends State<IntroPage> {
                 return _pages[index % _pages.length];
               },
             ),
-            Positioned(
-              bottom: 70.0,
-              left: 0.0,
-              right: 0.0,
-              child: Center(
-                  child: DotsIndicator(
-                    controller: _controller,
-                    itemCount: _pages.length,
-                    onPageSelected: (int page) {
-                      _controller.animateToPage(
-                        page,
-                        duration: _kDuration,
-                        curve: _kCurve,
-                      );
-                    },
-                  ),
-                ),
-            ),
-            Positioned(
-              bottom: 20.0,
-              left: 0.0,
-              right: 0.0,
-              child: Center(
-                child: FlatButton(
-                  color: Colors.deepPurpleAccent,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  child: Text("GET STARTED!"),
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => Setup()),
-                  ),
-                ),
-              ),
-            ),
+            buildPageIndicatorButton(),
+            buildGetStartedButton(),
           ],
         ),
       ),
@@ -170,39 +175,52 @@ class DotsIndicator extends AnimatedWidget {
 }
 
 class IntroPageModel extends StatelessWidget {
+
   final String title;
   final String subtitle;
   final IconData mainIcon;
 
-  IntroPageModel({@required this.title, @required this.subtitle, @required this.mainIcon});
+  IntroPageModel({
+    @required this.title, 
+    @required this.subtitle, 
+    @required this.mainIcon
+  });
+  
+  Widget buildTitle() => Text(
+    title,
+    textScaleFactor: 2.0,
+    style: TextStyle(
+      color: Colors.white, 
+      fontWeight: FontWeight.bold
+    ),
+  );
+
+  Widget buildMainIcon() => Icon(
+    mainIcon,
+    size: 100.0,
+    color: Color(0xFFFAFAFA),
+  );
+
+  Widget buildSubtitle() => Text(
+    subtitle,
+    textAlign: TextAlign.center,
+    style: TextStyle(color: Colors.white),
+    textScaleFactor: 1.2,
+  );
+
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints.expand(),
+      constraints: BoxConstraints.expand(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Padding(padding: EdgeInsets.all(40.0),),
-          Text(
-            title,
-            textScaleFactor: 2.0,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          Padding(
-            padding: EdgeInsets.all(55.0),
-          ),
-          Icon(
-            mainIcon,
-            size: 100.0,
-            color: Color(0xFFFAFAFA),
-          ),
-          Padding(padding: EdgeInsets.all(55.0),),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white),
-            textScaleFactor: 1.2,
-          )
+          Padding(padding: EdgeInsets.all(40.0)),
+          buildTitle(),
+          Padding(padding: EdgeInsets.all(55.0)),
+          buildMainIcon(),
+          Padding(padding: EdgeInsets.all(55.0)),
+          buildSubtitle(),
         ],
       ),
     );
