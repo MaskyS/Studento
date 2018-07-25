@@ -37,43 +37,75 @@ class SetupPage extends StatefulWidget {
 }
 
 class _SetupPageState extends State<SetupPage> {
+  BoxDecoration topBackgroundDecoration = BoxDecoration(
+    gradient: LinearGradient(
+      begin: FractionalOffset(0.0, 0.0),
+      end: FractionalOffset(2.0, 0.0),
+      stops: [0.0, 0.5],
+      tileMode: TileMode.clamp,
+      colors: [
+        Colors.deepPurpleAccent,
+        Color(0xFF5fbff9),
+      ],
+    ),
+  );
+ 
+  Widget buildTopBackground(IconData icon) => Column(
+    children: <Widget>[
+      Container(
+        height: 200.0,
+        width: MediaQuery.of(context).size.width,
+        child: Icon(
+          icon,
+          size: 50.0,
+          color: Colors.white,
+        ),
+        decoration: topBackgroundDecoration,
+      ),
+    ],
+  );
+
+  Widget buildTitleAndSubtitle() => Padding(
+    padding: EdgeInsets.only(left: 25.0, top: 40.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          widget.title,
+          textAlign: TextAlign.start,
+          textScaleFactor: 1.5,
+        ),
+        Padding(padding: EdgeInsets.only(top: 15.0)),
+        Text(
+          widget.subtitle,
+          style: TextStyle(color: Colors.black54),
+        ),
+      ],
+    ),
+  );
+
+  Widget buildNextButton() => FloatingActionButton(
+    child: Icon(Icons.arrow_forward),
+    onPressed: widget.onFloatingButtonPressed,
+    backgroundColor: Color(0xFF5fbff9), // Imperialish blue
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5.0),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: widget.onFloatingButtonPressed,
-        backgroundColor: Color(0xFF5fbff9),
-        child: Icon(Icons.arrow_forward),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-      ),
+      floatingActionButton: buildNextButton(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           buildTopBackground(widget.leadIcon),
-          Padding(
-            padding: EdgeInsets.only(left: 25.0, top: 40.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  widget.title,
-                  textAlign: TextAlign.start,
-                  textScaleFactor: 1.5,
-                ),
-                Padding(padding: EdgeInsets.only(top: 15.0)),
-                Text(
-                  widget.subtitle,
-                  style: TextStyle(color: Colors.black54),
-                ),
-              ],
-            ),
-          ),
+          buildTitleAndSubtitle(),
           Expanded(
             flex: 2,
             child:  Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: widget.body,
             ),
           ),
@@ -82,31 +114,4 @@ class _SetupPageState extends State<SetupPage> {
     );
   }
 
-  Widget buildTopBackground(IconData icon) {
-    return Column(
-      children: <Widget>[
-        Container(
-          height: 200.0,
-          width: MediaQuery.of(context).size.width,
-          child: Icon(
-            icon,
-            size: 50.0,
-            color: Colors.white,
-          ),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: FractionalOffset(0.0, 0.0),
-              end: FractionalOffset(2.0, 0.0),
-              stops: [0.0, 0.5],
-              tileMode: TileMode.clamp,
-              colors: [
-                Colors.deepPurpleAccent,
-                Color(0xFF5fbff9),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }

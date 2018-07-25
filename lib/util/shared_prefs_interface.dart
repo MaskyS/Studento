@@ -12,6 +12,7 @@ abstract class SharedPreferencesHelper {
     var userData = await SharedPreferences.getInstance();
     userData.setBool("is_first_run", isFirstRun);
   }
+
   static Future<String> getLevel() async {
     var userData = await SharedPreferences.getInstance();
     String level = userData.getString("level");
