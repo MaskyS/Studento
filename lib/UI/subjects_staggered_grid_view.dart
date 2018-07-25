@@ -60,7 +60,7 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
     List<_SubjectTile> subjectTiles = [];
 
     if (subjectsList == null){
-      return Scaffold(body: Center(child: CircularProgressIndicator()));
+    return Center(child: CircularProgressIndicator());
     }
 
     /// Add tiles for each subject into [subjectTiles].
@@ -92,6 +92,16 @@ class _SubjectTile extends StatelessWidget {
   /// This callback function will be executed when GridTile is
   /// tapped.
   final Function(String subject, String level) onTapFunction;
+
+  /// Prettifies the subject name by converting the name to uppercase and
+  /// breaking lengthy names into two lines.
+  String prettifySubjectName(String subjectName) {
+    subjectName = subjectName.toUpperCase();
+    // We determine if the subject name is lengthy by checking if it contains a space,
+    // then split the name into two lines for better aesthetic.
+    subjectName = subjectName.replaceFirst(" ", " \n");
+    return subjectName;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,15 +145,5 @@ class _SubjectTile extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  /// Prettifies the subject name by converting the name to uppercase and
-  /// breaking lengthy names into two lines.
-  String prettifySubjectName(String subjectName) {
-    subjectName = subjectName.toUpperCase();
-    // We determine if the subject name is lengthy by checking if it contains a space,
-    // then split the name into two lines for better aesthetic.
-    subjectName = subjectName.replaceFirst(" ", " \n");
-    return subjectName;
   }
 }
