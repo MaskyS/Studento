@@ -48,6 +48,14 @@ class IntroPageState extends State<IntroPage> {
     ),
   ];
 
+  Widget scrollableIntroPageBuilder() => PageView.builder(
+    physics: AlwaysScrollableScrollPhysics(),
+    controller: _controller,
+    itemBuilder: (BuildContext context, int index) {
+      return _pages[index % _pages.length];
+    },
+  );
+  
   Widget buildGetStartedButton() => Positioned(
     bottom: 20.0,
     left: 0.0,
@@ -92,13 +100,7 @@ class IntroPageState extends State<IntroPage> {
         data: IconThemeData(color: _kArrowColor),
         child: Stack(
           children: <Widget>[
-            PageView.builder(
-              physics: AlwaysScrollableScrollPhysics(),
-              controller: _controller,
-              itemBuilder: (BuildContext context, int index) {
-                return _pages[index % _pages.length];
-              },
-            ),
+            scrollableIntroPageBuilder(),
             buildPageIndicatorButton(),
             buildGetStartedButton(),
           ],
