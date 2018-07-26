@@ -69,7 +69,7 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
+      padding: EdgeInsets.only(top: 12.0),
       child: StaggeredGridView.count(
         crossAxisCount: 4,
         staggeredTiles: widget._staggeredTiles,

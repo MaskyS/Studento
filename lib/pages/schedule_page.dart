@@ -34,13 +34,24 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
       (int value) => setState(() => noOfSessions = value)
     );
 
+    final int currentDay = DateTime.now().weekday;
+    final bool isWeekDay =  currentDay > 5;
+    int initialIndex;
+
+    if (isWeekDay) {
+      // initialIndex starts at zero, but [DateTime.weekday()] returns values starting from 1.
+      // To fix that, we minus 1.
+      initialIndex = currentDay - 1;
+    } else {
+      // During the weekend, set initialIndex to 0 show the schedule for the next Monday.
+      initialIndex = 0;
+    }
+
     _tabController = TabController(
-      length: dayTabs.length,
       vsync: this,
-      // The initial tab should be on the current day, unless if it's the
-      // weekend. In that case we should show the schedule for the next Monday.
-      initialIndex: DateTime.now().weekday > 5 ? 0 : DateTime.now().weekday
-      );
+      length: dayTabs.length,
+      initialIndex: initialIndex,
+    );
   }
 
   @override
