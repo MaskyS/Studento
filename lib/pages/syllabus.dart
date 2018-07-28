@@ -12,12 +12,11 @@ import '../UI/subjects_staggered_grid_view.dart';
 
 class SyllabusPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return SyllabusPageState();
-  }
+  State<StatefulWidget> createState() => SyllabusPageState();
 }
 
 class SyllabusPageState extends State<SyllabusPage> {
+  /// List of urls for accessing syllabus.
   Map urlList;
 
   @override
@@ -126,8 +125,7 @@ class SyllabusPageState extends State<SyllabusPage> {
     if (connectivityResult == ConnectivityResult.none) {
       showDialog(
         context: context,
-        builder: (_) {
-          return AlertDialog(
+        builder: (_) => AlertDialog(
             contentPadding: const EdgeInsets.all(20.0),
             title: Text("Connection error"),
             content: Text(
@@ -141,8 +139,7 @@ class SyllabusPageState extends State<SyllabusPage> {
                 ),
               ),
             ],
-          );
-        }
+        ),
       );
     }
   }

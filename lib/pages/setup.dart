@@ -172,8 +172,9 @@ class _SetupState extends State<Setup> {
 
 
   void validateAndPushSubjectsPage() {
+    validateName(nameController.text);
     if (selectedLevel == null || nameController.text.isEmpty) {
-      setState(() => errorText = "Please fill out all the details first");
+      setState(() => errorText = "Please fill out all the details first.");
     } else if (errorText == null){
       SharedPreferencesHelper.setName(nameController.text);
       SharedPreferencesHelper.setLevel(selectedLevel);
@@ -218,7 +219,7 @@ class _SetupState extends State<Setup> {
       bool result = false;
       result = await SimplePermissions
           .requestPermission(Permission.WriteExternalStorage);
-      print("permission request result is " + result.toString());
+      print("permission request result is $result.");
     }
 
     // Record that setup has been completed, so next time the app is launched,
@@ -280,7 +281,7 @@ class _SessionsLengthSliderState extends State<SessionsLengthSlider> {
 
   /// Updates the session length in both the slider and in shared_prefs.
   void saveSessionsLength(double length){
-    String _length = length.toString();
+    String _length = "${length.toInt()}";
 
     SharedPreferencesHelper.setSessionLength(_length);
     setState(() => sessionLength = _length);

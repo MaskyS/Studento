@@ -51,8 +51,8 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
 
   @override
   void initState() {
-    getUserData();
     super.initState();
+    getUserData();
   }
 
   @override

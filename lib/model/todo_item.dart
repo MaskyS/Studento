@@ -66,7 +66,7 @@ class TodoItem extends StatelessWidget {
         : "Swipe right to mark this task as complete, or left to delete it.";
 
     final DateTime dateNow = DateTime.now();
-    Duration timeLeft = dateNow.difference(DateTime.parse(dueDate));
+    Duration timeLeft = DateTime.parse(dueDate).difference(dateNow);
     Color timeLeftTextColor = Colors.black87;
     String timeLeftString = ' ';
 
