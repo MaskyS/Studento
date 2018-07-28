@@ -16,23 +16,23 @@ void main() => runApp(Studento());
   }
 
 class _StudentoState extends State<Studento> {
-  bool hasRunBefore;
+  bool isSetupComplete;
 
-  void checkIfRunBefore() async{
-    bool _hasRunBefore = await SharedPreferencesHelper.getIsFirstRun() ?? false;
-    setState(() => hasRunBefore = _hasRunBefore);
-    print("Has run before is $hasRunBefore");
+  void checkifSetupComplete() async{
+    bool _isSetupComplete = await SharedPreferencesHelper.getIsFirstRun() ?? false;
+    setState(() => isSetupComplete = _isSetupComplete);
+    print("Has run before is $isSetupComplete");
   }
 
   @override
   void initState() {
-    checkIfRunBefore();
+    checkifSetupComplete();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (hasRunBefore == null) return Center(child: CircularProgressIndicator());
+    if (isSetupComplete == null) return Center(child: CircularProgressIndicator());
 
     // Lock app orientation to Portrait so rotating doesn't break the design.
     SystemChrome.setPreferredOrientations(
@@ -40,7 +40,7 @@ class _StudentoState extends State<Studento> {
 
     return MaterialApp(
       title: 'Studento',
-      home: (hasRunBefore) ? HomePage() : IntroPage(),
+      home: (isSetupComplete) ? HomePage() : IntroPage(),
       routes: routes,
       theme: ThemeData(
         fontFamily: 'Montserrat',
