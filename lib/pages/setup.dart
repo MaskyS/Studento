@@ -32,6 +32,12 @@ class _SetupState extends State<Setup> {
   String selectedLevel;
 
   @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return setupPages()[pageIndex];
   }
@@ -81,33 +87,34 @@ class _SetupState extends State<Setup> {
       ),
     );
 
+    Widget buildNameTextField() => TextField(
+      controller: nameController,
+      keyboardType: TextInputType.text,
+      onSubmitted: validateName,
+      onChanged: validateName,
+      decoration: nameTextFieldDeco,
+    );
+    
+    Widget buildLevelRadioListTile(String level) => RadioListTile(
+      title: Text(level),
+      value: level,
+      groupValue: selectedLevel,
+      selected: false,
+      onChanged: (String level) => setState(() => selectedLevel = level),
+    ); 
+
+    Widget oLevelRadioListTile = buildLevelRadioListTile("O level");
+    Widget aLevelRadioListTile = buildLevelRadioListTile("A level");
+
     return ListView(children: <Widget>[
-      TextField(
-        controller: nameController,
-        keyboardType: TextInputType.text,
-        onSubmitted: validateName,
-        onChanged: validateName,
-        decoration: nameTextFieldDeco,
-      ),
+      buildNameTextField(),
       Padding(padding: EdgeInsets.only(top: 25.0)),
       Text(
         "Which Cambridge International Examination are you taking part in?",
         style: TextStyle(color: Colors.black54),
       ),
-      RadioListTile(
-        title: Text("O Level"),
-        value: "O level",
-        groupValue: selectedLevel,
-        selected: false,
-        onChanged: (String level) => setState(() => selectedLevel = level),
-      ),
-      RadioListTile(
-        title: Text("A Level"),
-        value: "A level",
-        groupValue: selectedLevel,
-        selected: false,
-        onChanged: (String level) => setState(() => selectedLevel = level),
-      ),
+      oLevelRadioListTile,
+      aLevelRadioListTile,
     ]);
   }
 
@@ -149,8 +156,8 @@ class _SetupState extends State<Setup> {
       setState(() =>
         errorText = "Your name doesn't look right. Please try again."
       );
-
     } else if (errorText != null) {
+      // Remove any previous error messages. 
       setState(() => errorText = null);
     }
 
