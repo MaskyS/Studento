@@ -80,18 +80,22 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
 }
 
 class _SubjectTile extends StatelessWidget {
+
   /// The name of the subject the tile will be displaying.
   final String subjectName;
+
+  /// Level of user, i.e "O/A Level"
   final String level;
+
+  /// This callback function will be executed when GridTile is
+  /// tapped.
+  final Function(String subject, String level) onTapFunction;
+
   const _SubjectTile(
     this.subjectName,
     this.level,
     this.onTapFunction,
   );
-
-  /// This callback function will be executed when GridTile is
-  /// tapped.
-  final Function(String subject, String level) onTapFunction;
 
   /// Prettifies the subject name by converting the name to uppercase and
   /// breaking lengthy names into two lines.
@@ -105,42 +109,53 @@ class _SubjectTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    void showHelpTextWhenLongPressed() {
+      String msg = "Tap the subject you seek.";
+      Scaffold
+        .of(context)
+        .showSnackBar(SnackBar(
+          content: Text(msg),
+        )
+      );
+    }
+
+    const LinearGradient backgroundGradient = LinearGradient(
+      begin: FractionalOffset(0.0, 0.0),
+      end: FractionalOffset(2.0, 0.0),
+      stops: [0.0, 0.5],
+      tileMode: TileMode.clamp,
+      colors: [
+        Colors.deepPurpleAccent,
+        Color(0xFF5fbff9), // Imperialish blue.
+      ],
+    );
+
+    TextStyle subjectNameStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    );
+
+    Widget subjectNameText = Text(
+      prettifySubjectName(subjectName),
+      textAlign: TextAlign.center,
+      textScaleFactor: 1.1,
+      overflow: TextOverflow.fade,
+      style: subjectNameStyle,
+    );
+
     return Card(
       elevation: 2.0,
       child: InkWell(
         onTap: () => onTapFunction(subjectName, level),
-        onLongPress: () => Scaffold
-          .of(context)
-          .showSnackBar(SnackBar(
-              content: Text("Tap the subject you seek."),
-          )
-        ),
+        onLongPress: () => showHelpTextWhenLongPressed,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 5.0),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: FractionalOffset(0.0, 0.0),
-              end: FractionalOffset(2.0, 0.0),
-              stops: [0.0, 0.5],
-              tileMode: TileMode.clamp,
-              colors: [
-                Colors.deepPurpleAccent,
-                Color(0xFF5fbff9),
-              ],
-            ),
-            border: Border.all(color: Colors.black54, width: 2.0),
-          ),
+          padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 5.0),
           child: Center(
-            child: Text(
-              prettifySubjectName(subjectName),
-              textAlign: TextAlign.center,
-              textScaleFactor: 1.1,
-              overflow: TextOverflow.fade,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+              child: subjectNameText),
+          decoration: BoxDecoration(
+            gradient: backgroundGradient,
+            border: Border.all(color: Colors.black54, width: 2.0),
           ),
         ),
       ),
