@@ -5,23 +5,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import '../../../UI/notes_not_found_dialog.dart';
 
 import '../../../UI/studento_app_bar.dart';
 import '../../../util/jaguar_launcher.dart';
 import '../../../util/shared_prefs_interface.dart';
 
 class TopicSelectPage extends StatefulWidget {
+  /// The subject which was selected from the user's subject list.
+  /// We'll be showing the topics for this subject only on this page.
   final String selectedSubject;
+
+  /// Level of user. i.e O level/A level. 
   final String level;
-  TopicSelectPage(this.selectedSubject, this.level);
+  
+  TopicSelectPage(
+    this.selectedSubject, 
+    this.level
+  );
 
   @override
   _TopicSelectPageState createState() => _TopicSelectPageState();
 }
 
 class _TopicSelectPageState extends State<TopicSelectPage> {
+
+  /// The List of topics of the selected subject.
   List topicsList;
+
+  /// The syllabus code of the selected subject.  
   String subjectCode;
 
   @override
@@ -47,7 +60,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     );
   }
 
-  void getSubjectCode() async{
+  void getSubjectCode() async {
     List<String> subjectCodesList = await SharedPreferencesHelper.getSubjectsCodesList();
     List<String> subjectsList = await SharedPreferencesHelper.getSubjectsList();
 
@@ -56,7 +69,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   void getTopicsList() async {
-    var _topicsList;
+    List _topicsList;
     String _topicsListData =
         await rootBundle.loadString('assets/json/subjects_topic_lists.json');
     Map topicsListData = json.decode(_topicsListData);
@@ -64,6 +77,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     try {
       _topicsList =
           topicsListData[widget.selectedSubject]['topic_list']['${widget.level}'];
+
     } catch (e) {
       showNotesNotFoundDialog();
     }
@@ -71,36 +85,44 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   Widget _getBackground() {
-    final Widget subjectNameAndNoOfTopicsContainer = Container(
+  
+    Widget buildBackgroundImage() => Container(
       constraints: BoxConstraints.expand(height: 250.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: (topicsList == null)
-          ? <Widget>[CircularProgressIndicator()]
-          : <Widget>[
+      child: Image.asset(
+        "assets/images/physics-background-img.jpg", //subject.picture,
+        fit: BoxFit.cover,
+        height: 300.0,
+      ),
+    );
+  
+    Widget buildOverviewContainer() {
+      if (topicsList == null) {
+        return Center(child: CircularProgressIndicator());
+      }
+      return Container(
+        constraints: BoxConstraints.expand(height: 250.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
             Text(
               "${widget.selectedSubject}",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Mina',
-                color: Colors.white,
-                fontSize: 30.0,
-              ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 4.0),
-            ),
+            Padding(padding: EdgeInsets.only(bottom: 4.0)),
             Text(
               "${topicsList.length} topics",
-              style: TextStyle(
+              textScaleFactor: 1.2,
+              style: TextStyle(  
                 color: Color(0xFFFefefe),
                 fontSize: 15.0,
                 fontWeight: FontWeight.w400,
-              ),
-            ),
+              )
+              // TODO Add style from https://github.com/MaskyS/studento/commit/08f0c77b8d5830b42223da057b9932f3143de25e
+            )
           ],
-      ),
-    );
+        ),
+      );
+    }
 
     // TODO Turn this into a SliverAppBar for better mobility.
     // Also, instead of the background image let's get some fancy animation
@@ -108,15 +130,8 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     // background or the like.
     return Stack(
       children: <Widget>[
-        Container(
-          constraints: BoxConstraints.expand(height: 250.0),
-          child: Image.asset(
-            "assets/images/physics-background-img.jpg", //subject.picture,
-            fit: BoxFit.cover,
-            height: 300.0,
-          ),
-        ),
-        subjectNameAndNoOfTopicsContainer,
+        buildBackgroundImage(),
+        buildOverviewContainer(),
       ],
     );
   }
@@ -139,11 +154,12 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   }
 
   void _handleSelectedTopic(String selectedTopic) {
+    String url = "http://localhost:8090/html/topic-notes/$subjectCode/$selectedTopic.html";
     print("you selected $selectedTopic");
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => WebviewScaffold(
-          url: 'http://localhost:8090/html/topic-notes/$subjectCode/$selectedTopic.html',
+          url: url,
           withZoom: true,
           appBar: StudentoAppBar(title: "View Topic"),
         ),
@@ -183,7 +199,8 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
 
   Container _getToolbar(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      margin: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top),
       child: BackButton(color: Colors.white),
     );
   }
@@ -199,39 +216,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
     return showDialog<Null>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Sorry!'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Padding(padding: EdgeInsets.only(top: 12.0)),
-                Text('''No notes for this topic or subject :(
-\nThe good news is that you can request for it by filing an issue.'''),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('FILE ISSUE'),
-              onPressed: () async {
-                const url = 'https://github.com/MaskyS/studento/issues/';
-                if (await canLaunch(url)) {
-                  await launch(url);
-                } else {
-                  throw 'Could not open $url. Check your internet connection and try again.';
-                }
-              },
-            ),
-            FlatButton(
-              child: Text('OK'),
-              onPressed: () => Navigator.popUntil(
-                context, ModalRoute.withName('/')
-              ),
-            ),
-          ],
-        );
-      },
+      builder: (_) => NotesNotFoundAlertDialog(),
     );
   }
 }
