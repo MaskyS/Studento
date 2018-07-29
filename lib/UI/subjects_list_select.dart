@@ -17,55 +17,6 @@ class _SubjectsListState extends State<SubjectsList> {
   Map<String, dynamic> decodedSubjectData;
   List<Map<String, dynamic>> listOfSubjects = [];
 
-  @override
-  initState(){
-    super.initState();
-    // Get the level of the user.
-    SharedPreferencesHelper.getLevel().then(
-      (String level) => selectedLevel = level
-    );
-    getSubjects();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: listOfSubjects.length,
-      itemBuilder: (_, int index) {
-        Map<String, dynamic> currentSubject = listOfSubjects[index];
-        return CheckboxListTile(
-          activeColor: Color(0xFF5fbff9),
-          value: currentSubject["selected"],
-          selected: currentSubject["selected"],
-          title: Text(currentSubject["subject_name"]),
-          secondary: Text(currentSubject["subject_code"]),
-          onChanged: (bool isSelected)
-            {
-              /// Temporary workaround to store subjects and their codes
-              /// kinda together. I know, terrible data architecture. But hey,
-              /// this is for the sake of SQ. TODO Fix this through database
-              /// implementation or by using 1 or 2 json files ONLY.
-              setState(() {
-                listOfSubjects[index]["selected"] = isSelected;
-                if (isSelected) {
-                  selectedSubjects.add(currentSubject["subject_name"]);
-                  selectedSubjectsCodes.add(currentSubject["subject_code"]);
-                }
-                else{
-                  selectedSubjects.removeWhere((String subject) => subject == currentSubject["subject_name"]);
-                  selectedSubjects.removeWhere((String subjectCode) => subjectCode == currentSubject["subject_code"]);
-                }
-                print(selectedSubjects);
-                print(selectedSubjectsCodes);
-                SharedPreferencesHelper.setSubjectsList(selectedSubjects);
-                SharedPreferencesHelper.setSubjectsCodesList(selectedSubjectsCodes);
-              });
-            },
-        );
-      }
-    );
-  }
-
   /// Gets all the subjects and their component code Studento offers, and pushes
   /// them into [listOfSubjects].
   void getSubjects() async {
@@ -92,6 +43,67 @@ class _SubjectsListState extends State<SubjectsList> {
       }
     });
 
+  }
+
+  @override
+  initState(){
+    super.initState();
+    // Get the level of the user.
+    SharedPreferencesHelper.getLevel().then(
+      (String level) => selectedLevel = level
+    );
+    getSubjects();
+  }
+
+    /// Temporary workaround to store subjects and their codes
+    // kinda together. I know, terrible data architecture. But hey,
+    /// this is for the sake of SQ. TODO Fix this through database
+    /// implementation or by using 1 or 2 json files ONLY.
+  void addOrRemoveSubjectFromSubjectsList(bool isSelected, int index, String subjectName, String subjectCode) {
+    setState(() {
+      listOfSubjects[index]["selected"] = isSelected;
+      if (isSelected) {
+        selectedSubjects.add(subjectName);
+        selectedSubjectsCodes.add(subjectCode);
+      }
+      else{
+        selectedSubjects.removeWhere((String subject) => subject == subjectName);
+        selectedSubjects.removeWhere((String _subjectCode) => _subjectCode == subjectCode);
+      }
+      print(selectedSubjects);
+      print(selectedSubjectsCodes);
+      SharedPreferencesHelper.setSubjectsList(selectedSubjects);
+      SharedPreferencesHelper.setSubjectsCodesList(selectedSubjectsCodes);
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    Map<String, dynamic> currentSubject;
+    return ListView.builder(
+      itemCount: listOfSubjects.length,
+      itemBuilder: (_, int index) {
+
+        currentSubject = listOfSubjects[index];
+        String subjectName  = currentSubject["subject_name"];
+        String subjectCode = currentSubject["subject_code"];
+        bool isSubjectSelected = currentSubject['selected'];
+
+        return CheckboxListTile(
+          activeColor: Color(0xFF5fbff9),
+          value: isSubjectSelected,
+          selected: isSubjectSelected,
+          title: Text(subjectName),
+          secondary: Text(subjectCode),
+          onChanged: (bool isSelected) 
+              => addOrRemoveSubjectFromSubjectsList(
+                isSelected, 
+                index, 
+                subjectName, 
+                subjectCode
+          ),
+        );
+      }
+    );
   }
 
 }
