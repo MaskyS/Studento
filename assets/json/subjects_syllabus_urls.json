@@ -1,141 +1,168 @@
 {
-  "O level": {
-    "Accounting": {
-      "subject_code": "7707",
-      "url": "/414835-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Biology": {
-      "subject_code": "5090",
-      "url": "/414736-2020-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Business Studies": {
-      "subject_code": "7115",
-      "url": "/414795-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Chemistry": {
-      "subject_code": "5070",
-      "url": "/414727-2020-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Computer Studies": {
-      "subject_code": "2210",
-      "url": "/414609-2020-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Design & Communication": {
-      "subject_code": "7048",
-      "url": "/414782-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Design & Technology": {
-      "subject_code": "6043",
-      "url": "/414750-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Economics": {
-      "subject_code": "2281",
-      "url": "/414635-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Literature in English": {
-      "subject_code": "2010",
-      "url": "/414592-2020-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Additional Mathematics": {
-      "subject_code": "4037",
-      "url": "/414712-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Mathematics D": {
-      "subject_code": "4024",
-      "url": "/253875-2018-2020-syllabus.pdf",
-      "expiry_year": "2020"
-    },
-    "Physics": {
-      "subject_code": "5054",
-      "url": "/414718-2020-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Principles of Accounts": {
-      "subject_code": "7110",
-      "url": "/203286-2017-2019-syllabus.pdf",
-      "expiry_year": "2019"
-    },
-    "Sociology": {
-      "subject_code": "2251",
-      "url": "/414628-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    }
+
+  "comment by the developer since json doesn't support comments": "these are 'O' level subjects.",
+
+  "7707": 
+  {
+    "url": "/414835-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
   },
-  "A level": {
-    "Accounting": {
-      "subject_code": "9706",
-      "url": "/329550-2019-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Biology": {
-      "subject_code": "9700",
-      "url": "/329527-2019-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Chemistry": {
-      "subject_code": "9701",
-      "url": "/329530-2019-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "Computer Science": {
-      "subject_code": "9608",
-      "url": "/415023-2020-syllabus.pdf",
-      "expiry_year": "2020"
-    },
-    "Design & Technology": {
-      "subject_code": "9705",
-      "url": "/415058-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Economics": {
-      "subject_code": "9708",
-      "url": "/329552-2019-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "English Language": {
-      "subject_code": "9093",
-      "url": "/414955-2020-syllabus.pdf",
-      "expiry_year": "2020"
-    },
-    "General Paper AS": {
-      "subject_code": "8021",
-      "url": "/415188-2019-2021-syllabus.pdf",
-      "expiry_year": "2021"
-    },
-    "French": {
-      "subject_code": "9716",
-      "url": "/415062-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "French AS": {
-      "subject_code": "8682",
-      "url": "/414882-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Mathematics": {
-      "subject_code": "9709",
-      "url": "/415060-2020-2022-syllabus.pdf",
-      "expiry_year": "2022"
-    },
-    "Physics": {
-      "subject_code": "9702",
+  
+  "5090": 
+  {
+    "url": "/414736-2020-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "7115":
+  {
+    "url": "/414795-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "5070": 
+  {
+    "url": "/414727-2020-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "2210":
+  {
+    "url": "/414609-2020-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "7048": 
+  {
+    "url": "/414782-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "6043":
+  {
+    "url": "/414750-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "2281":
+  {
+    "url": "/414635-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "2010":
+  {
+    "url": "/414592-2020-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "4037":
+  {
+    "url": "/414712-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "4024":
+  {
+    "url": "/253875-2018-2020-syllabus.pdf",
+    "expiry_year": "2020"
+  },
+  
+  "5054":
+  {
+    "url": "/414718-2020-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "7110":
+  {
+    "url": "/203286-2017-2019-syllabus.pdf",
+    "expiry_year": "2019"
+  },
+  
+  "2251": 
+  {
+    "url": "/414628-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+
+  "another comment by the same old developer" : ["The rest of the subjects below are 'A' level."],
+  
+  "9706":
+  {
+    "url": "/329550-2019-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "9700":
+  {
+    "url": "/329527-2019-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "9701":
+  {
+    "url": "/329530-2019-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+  
+  "9608":
+  {
+    "url": "/415023-2020-syllabus.pdf",
+    "expiry_year": "2020"
+  },
+
+  "9705":
+  {
+    "url": "/415058-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "9708":
+  {
+    "url": "/329552-2019-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+
+  "9093":
+  {
+    "url": "/414955-2020-syllabus.pdf",
+    "expiry_year": "2020"
+  },
+
+  "8021":
+  {
+    "url": "/415188-2019-2021-syllabus.pdf",
+    "expiry_year": "2021"
+  },
+
+  "9716": 
+  {
+    "url": "/415062-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+
+  "8682": 
+  {
+    "url": "/414882-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+
+  "9709":
+  {
+    "url": "/415060-2020-2022-syllabus.pdf",
+    "expiry_year": "2022"
+  },
+  
+  "9702":
+  {
       "url": "/329533-2019-2021-syllabus.pdf",
       "expiry_year": "2021"
-    },
-    "Sociology": {
-      "subject_code": "9699",
-      "url": "/415056-2020-syllabus.pdf",
-      "expiry_year": "2020"
-    }
+  },
+  
+  "9699":
+  {
+    "url": "/415056-2020-syllabus.pdf",
+    "expiry_year": "2020"
   }
 }
