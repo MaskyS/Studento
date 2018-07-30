@@ -1,1 +1,135 @@
-[{"Quote String":"Education is the most powerful weapon which you can use to change the world.","Quote Author":"Nelson Mandela"},{"Quote String":"An investment in knowledge pays the best interest.","Quote Author":"Benjamin Franklin"},{"Quote String":"Education is the passport to the future, for tomorrow belongs to those who prepare for it today.","Quote Author":"Malcom X"},{"Quote String":"Failure is not an option here. If things are failing, you are not innovating enough.","Quote Author":"Elon Musk"},{"Quote String":"Education is not preparation for life; education is life itself.","Quote Author":"John Dewey"},{"Quote String":"The roots of education are bitter, but the fruit is sweet.","Quote Author":"Aristotle"},{"Quote String":"Develop a learning passion for learning. If you do, you will never cease to grow.","Quote Author":"Anthony J. D'Angelo"},{"Quote String":"Education is the movement from darkness to light.","Quote Author":"Allan Bloom"},{"Quote String":"Intellectual growth should commence at birth and cease only at death.","Quote Author":"Albert Einstein"},{"Quote String":"Either you run the day or the day runs you.","Quote Author":"Jim Rohn"},{"Quote String":"There are always flowers for those who want to see them.","Quote Author":"Henry Matisse"},{"Quote String":"Work hard in silence, let your success be your noise.","Quote Author":"Frank Ocean"},{"Quote String":"Life begins at the end of your comfort zone.","Quote Author":"Neale Donald"},{"Quote String":"The greatest pleasure in life is doing what people say you cannot do.","Quote Author":"Walter Bagehot"},{"Quote String":"Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.","Quote Author":"Earl Nightingale"},{"Quote String":"A river cuts through rock not because of its power, but because of its persistence.","Quote Author":"Jim Watkins"},{"Quote String":"You don't have to be great to start, but you have to start to be great.","Quote Author":"Zig Ziglar"},{"Quote String":"If it is important to you, you will find a way. If not, you'll find an excuse.","Quote Author":"Ryan Blair"},{"Quote String":"If people are not laughing at your goals, your goals are too small.","Quote Author":"Azim Premki"},{"Quote String":"What you allow is what will continue.","Quote Author":"Anonymous"},{"Quote String":"The person who follows the crowd will usually go no further than the crowd. The person who walks alone is likely to find himself in places no one has ever seen before","Quote Author":"Albert Einstein"},{"Quote String":"If you don’t like something, change it. If you can’t change it, change the way you think about it.","Quote Author":"Mary Engelbreit"},{"Quote String":"Running away from your problems is a race you'll never win.","Quote Author":"Anonymous"},{"Quote String":"I knew that if I failed I wouldn’t regret that, but I knew the one thing I might regret is not trying.","Quote Author":"Jeff Bezos"},{"Quote String":"Experience is simply the name we give our mistakes.","Quote Author":"Oscar Wilde"},{"Quote String":"To expect the unexpected shows a thoroughly modern intellect.","Quote Author":"Oscar Wilde"},{"Quote String":"Hard work beats talent when talent doesn't work hard.","Quote Author":"Tim Notke"}]
+[ {
+    "Quote String": "Education is the most powerful weapon which you can use to change the world.", "Quote Author": "Nelson Mandela"
+}
+
+,
+{
+    "Quote String": "An investment in knowledge pays the best interest.", "Quote Author": "Benjamin Franklin"
+}
+
+,
+{
+    "Quote String": "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.", "Quote Author": "Malcom X"
+}
+
+,
+{
+    "Quote String": "Failure is not an option here. If things are failing, you are not innovating enough.", "Quote Author": "Elon Musk"
+}
+
+,
+{
+    "Quote String": "Education is not preparation for life; education is life itself.", "Quote Author": "John Dewey"
+}
+
+,
+{
+    "Quote String": "The roots of education are bitter, but the fruit is sweet.", "Quote Author": "Aristotle"
+}
+
+,
+{
+    "Quote String": "Develop a learning passion for learning. If you do, you will never cease to grow.", "Quote Author": "Anthony J. D'Angelo"
+}
+
+,
+{
+    "Quote String": "Education is the movement from darkness to light.", "Quote Author": "Allan Bloom"
+}
+
+,
+{
+    "Quote String": "Intellectual growth should commence at birth and cease only at death.", "Quote Author": "Albert Einstein"
+}
+
+,
+{
+    "Quote String": "Either you run the day or the day runs you.", "Quote Author": "Jim Rohn"
+}
+
+,
+{
+    "Quote String": "There are always flowers for those who want to see them.", "Quote Author": "Henry Matisse"
+}
+
+,
+{
+    "Quote String": "Work hard in silence, let your success be your noise.", "Quote Author": "Frank Ocean"
+}
+
+,
+{
+    "Quote String": "Life begins at the end of your comfort zone.", "Quote Author": "Neale Donald"
+}
+
+,
+{
+    "Quote String": "The greatest pleasure in life is doing what people say you cannot do.", "Quote Author": "Walter Bagehot"
+}
+
+,
+{
+    "Quote String": "Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.", "Quote Author": "Earl Nightingale"
+}
+
+,
+{
+    "Quote String": "A river cuts through rock not because of its power, but because of its persistence.", "Quote Author": "Jim Watkins"
+}
+
+,
+{
+    "Quote String": "You don't have to be great to start, but you have to start to be great.", "Quote Author": "Zig Ziglar"
+}
+
+,
+{
+    "Quote String": "If it is important to you, you will find a way. If not, you'll find an excuse.", "Quote Author": "Ryan Blair"
+}
+
+,
+{
+    "Quote String": "If people are not laughing at your goals, your goals are too small.", "Quote Author": "Azim Premki"
+}
+
+,
+{
+    "Quote String": "What you allow is what will continue.", "Quote Author": "Anonymous"
+}
+
+,
+{
+    "Quote String": "The person who follows the crowd will usually go no further than the crowd. The person who walks alone is likely to find himself in places no one has ever seen before", "Quote Author": "Albert Einstein"
+}
+
+,
+{
+    "Quote String": "If you don’t like something, change it. If you can’t change it, change the way you think about it.", "Quote Author": "Mary Engelbreit"
+}
+
+,
+{
+    "Quote String": "Running away from your problems is a race you'll never win.", "Quote Author": "Anonymous"
+}
+
+,
+{
+    "Quote String": "I knew that if I failed I wouldn’t regret that, but I knew the one thing I might regret is not trying.", "Quote Author": "Jeff Bezos"
+}
+
+,
+{
+    "Quote String": "Experience is simply the name we give our mistakes.", "Quote Author": "Oscar Wilde"
+}
+
+,
+{
+    "Quote String": "To expect the unexpected shows a thoroughly modern intellect.", "Quote Author": "Oscar Wilde"
+}
+
+,
+{
+    "Quote String": "Hard work beats talent when talent doesn't work hard.", "Quote Author": "Tim Notke"
+}
+
+]
