@@ -1,131 +1,185 @@
+import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart' show required;
 
+import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
-import '../UI/sliver_studento_app_bar.dart';
+import '../UI/clock.dart';
+import '../UI/vertical_divider.dart';
 
-class HomePage extends StatelessWidget {
-  final List<HomePageButton> _iconButtonList = [
-    HomePageButton(
-      title: 'PAST PAPERS',
-      iconFilePath: 'exam_icon.png',
-    ),
-    HomePageButton(
-      title: "SCHEDULE",
-      iconFilePath: 'schedule_icon.png',
-    ),
-    HomePageButton(
-      title: "TODO LIST",
-      iconFilePath: 'todo-list_icon.png',
-    ),
-    HomePageButton(
-      title: "TOPIC NOTES",
-      iconFilePath: 'notes_icon.png',
-    ),
-  ];
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+
+  Widget buildButtonRow({
+      @required Widget button1, 
+      @required Widget button2
+    }) => Expanded(
+      flex: 1,
+      child: Row(
+        children: <Widget>[
+          button1,
+          VerticalDivider(
+            color: Colors.blue,
+            width: 2.0,
+          ),
+          button2,
+        ],
+      ),
+  );
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: StudentoDrawer(usedInHomePage: true),
-      // Since this page has a SliverAppBar, we cannot use the appBar property
-      // here, so the appBar is placed inside the body instead.
-      body: _buildTopicListView(context),
+
+    List<Widget> appBarActions = <Widget>[
+      IconButton(
+        icon: Icon(Icons.notifications_active),
+        color: Colors.white,
+        onPressed: () =>
+          print(
+              "This will open up your schedule page! In the future anyway :P"),
+      ),
+    ];
+
+    TextStyle appBarTitleStyle  = TextStyle(
+      color: Colors.white,
+      fontFamily: 'Mina',
+      fontSize: 26.0,
+      fontWeight: FontWeight.bold,
     );
-  }
 
-  /// Takes [iconsButtonListIndex], figures out which button was pressed then
-  /// returns the appropriate page's [routeName].
-  String _getPageToBePushed(int iconsButtonListIndex) {
-    switch (iconsButtonListIndex) {
-      case 0:
-        return 'past_papers_page';
-        break;
+    PreferredSizeWidget appBar() => StudentoAppBar(
+      title: "Studento", 
+      actions: appBarActions,
+      titleStyle: appBarTitleStyle,
+    );
 
-      case 1:
-        return 'schedule_page';
-        break;
+    Widget clockContainer() => Expanded(
+      flex: 2,
+      child: Container(
+        alignment: Alignment.center,
+        constraints: BoxConstraints.expand(),
+        color: Colors.deepPurpleAccent,
+        child: Clock(),
+      ),
+    );
 
-      case 2:
-        return 'todo_list_page';
-        break;
+    Widget pastPapersButton = HomePageButton(
+      label: "PAST PAPERS", 
+      iconFileName: "exam_icon.png",
+      routeToBePushedWhenTapped: 'past_papers_page',
+    );
 
-      default:
-        return 'topic_notes_page';
-    }
-  }
+    Widget scheduleButton = HomePageButton(
+      label: "SCHEDULE", 
+      iconFileName: "schedule_icon.png",
+      routeToBePushedWhenTapped: 'schedule_page',
+    );
 
-  Widget _buildTopicListView(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverStudentoAppBar(),
-        SliverGrid(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200.0,
-            crossAxisSpacing: 1.0,
-            childAspectRatio: 1.2,
-          ),
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () =>
-                  Navigator.pushNamed(context, _getPageToBePushed(index)),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: (index < 2)
-                          ? BorderSide(color: Colors.blue[700])
-                          : BorderSide.none,
-                      right: (index == 0 || index == 2)
-                          ? BorderSide(color: Colors.blue[700])
-                          : BorderSide.none,
-                    ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[_iconButtonList[index]],
-                  ),
-                ),
-              );
-            },
-            childCount: 4,
-          ),
-        ),
-      ],
+    Widget todoListButton = HomePageButton(
+      label: "TODO LIST", 
+      iconFileName: "todo-list_icon.png",
+      routeToBePushedWhenTapped: 'todo_list_page',
+    );
+
+    Widget topicNotesButton = HomePageButton(
+      label: "TOPIC NOTES", 
+      iconFileName: "notes_icon.png",
+      routeToBePushedWhenTapped: 'topic_notes_page',
+    );
+
+    Widget buttonRow1 = buildButtonRow(
+      button1: pastPapersButton, 
+      button2: scheduleButton
+    );
+  
+    Widget buttonRow2 = buildButtonRow(
+      button1: todoListButton,
+      button2: topicNotesButton
+    ); 
+
+    return Scaffold(
+      appBar: appBar(),
+      drawer: StudentoDrawer(),
+      body:Column(
+        children: <Widget>[
+          clockContainer(),
+          buttonRow1,
+          Divider(height: 2.0, color: Colors.blue,),
+          buttonRow2,
+        ],
+      ),
     );
   }
 }
 
-/// The UI for the IconButtons on the HomePage and the text below them.
 class HomePageButton extends StatelessWidget {
-  final String title;
-  final String iconFilePath;
 
-  HomePageButton({@required this.title, @required this.iconFilePath});
+  HomePageButton({
+    @required this.label,
+    @required this.iconFileName,
+    @required this.routeToBePushedWhenTapped,
+  });
+
+  final String label;
+
+  final String iconFileName;
+
+  final String routeToBePushedWhenTapped;
+
+  void pushRoute(BuildContext context){
+     Navigator.of(context).pushNamed(routeToBePushedWhenTapped);
+  }
+
+  Widget icon() => Expanded(
+    flex: 1, 
+    child: Image(
+      alignment: Alignment.center,
+      repeat: ImageRepeat.noRepeat,
+      fit: BoxFit.contain,
+      image: AssetImage("assets/icons/$iconFileName"),
+    ),
+  );
+
+  final TextStyle labelStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: Colors.black87,
+  );
+
+  Widget labelText() => Expanded(flex:1, child: Text(
+    label,
+    textScaleFactor: 1.2,
+    style: labelStyle,
+  ));
 
   @override
   Widget build(BuildContext context) {
-    Widget _buttonIcon = Container(
-      margin: EdgeInsets.only(bottom: 10.0),
-      child: Image(image: AssetImage("assets/icons/$iconFilePath")),
-      constraints: BoxConstraints.loose(Size(45.0, 45.0)),
-    );
-
-    Widget _buttonText = Container(
+    
+    buttonsContainer() => Container(
       alignment: Alignment.center,
-      child: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 13.5,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      color: Colors.white70,
+      constraints: BoxConstraints.expand(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(padding: EdgeInsets.all(20.0)),
+          icon(),
+          Padding(padding: EdgeInsets.all(5.0)),
+          labelText(),
+        ],
       ),
     );
 
-    return Container(
-      width: 100.0,
-      child: Column(children: <Widget>[_buttonIcon, _buttonText]),
+    return Expanded(
+      child: Tooltip(
+      message: label,
+        child: InkWell(
+          onTap: () => pushRoute(context),
+          child: buttonsContainer(),
+        ),
+      ),
     );
   }
-} // Hom
+}

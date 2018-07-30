@@ -4,20 +4,21 @@ import '../util/shared_prefs_interface.dart';
 
 /// This class holds the UI and the logic for the Time and the greeting text
 /// you see on the Home Page.
-class TimeTextWidget extends StatefulWidget {
-  TimeTextWidget({Key key}) : super(key: key);
+class Clock extends StatefulWidget {
+  Clock({Key key}) : super(key: key);
 
   @override
-  _TimeTextWidgetState createState() => _TimeTextWidgetState();
+  _ClockState createState() => _ClockState();
 }
 
-class _TimeTextWidgetState extends State<TimeTextWidget> {
+class _ClockState extends State<Clock> {
   Timer _timer;
   DateTime _time;
   String userName;
 
   getUserName() async{
     String _userName = await SharedPreferencesHelper.getName();
+    assert(_userName != null);
     setState(() => userName = _userName);
   }
 
@@ -62,7 +63,7 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
     return greeting;
   }
 
-  @override
+@override
   Widget build(BuildContext context) {
     String twoDigits(int d) {
       if (d < 10) return '0$d';
@@ -79,32 +80,28 @@ class _TimeTextWidgetState extends State<TimeTextWidget> {
 
     Text _greetingWidget = Text(
       _greeting,
+      textScaleFactor: 1.5,
       style: TextStyle(
-        fontSize: 16.0,
+        fontWeight: FontWeight.w300,
         color: studentoWhite
       ),
     );
 
     Text _timeWidget = Text(
       time,
+      textScaleFactor: 7.5,
       style: TextStyle(
-        fontSize: 60.0,
         fontWeight: FontWeight.w800,
         color: studentoWhite,
         fontStyle: FontStyle.italic,
       ),
     );
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 15.0),
-      margin: EdgeInsets.only(top: 30.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          _timeWidget,
-          _greetingWidget,
-        ],
-      ),
+    return Column(mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _timeWidget,
+        _greetingWidget,
+      ],
     );
   }
 }
