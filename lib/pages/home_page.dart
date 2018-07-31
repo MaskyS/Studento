@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
     List<Widget> appBarActions = <Widget>[
       IconButton(
         icon: Icon(Icons.notifications_active),
-        color: Colors.white,
         onPressed: () =>
           print(
               "This will open up your schedule page! In the future anyway :P"),
@@ -44,14 +43,14 @@ class _HomePageState extends State<HomePage> {
     ];
 
     TextStyle appBarTitleStyle  = TextStyle(
-      color: Colors.white,
-      fontFamily: 'Mina',
+      color: Colors.black,
+      fontFamily: 'Montserrat',
       fontSize: 26.0,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w400,
     );
 
-    PreferredSizeWidget appBar() => StudentoAppBar(
-      title: "Studento", 
+    PreferredSizeWidget appBar = StudentoAppBar(
+      title: "STUDENTO", 
       actions: appBarActions,
       titleStyle: appBarTitleStyle,
     );
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> {
     ); 
 
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar,
       drawer: StudentoDrawer(),
       body:Column(
         children: <Widget>[
@@ -136,8 +135,6 @@ class HomePageButton extends StatelessWidget {
   Widget icon() => Expanded(
     flex: 1, 
     child: Image(
-      alignment: Alignment.center,
-      repeat: ImageRepeat.noRepeat,
       fit: BoxFit.contain,
       image: AssetImage("assets/icons/$iconFileName"),
     ),
@@ -174,6 +171,7 @@ class HomePageButton extends StatelessWidget {
 
     return Expanded(
       child: Tooltip(
+      verticalOffset: 5.0,
       message: label,
         child: InkWell(
           onTap: () => pushRoute(context),
