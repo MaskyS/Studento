@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           button1,
           VerticalDivider(
             color: Colors.blue,
-            width: 2.0,
+            width: 3.0,
           ),
           button2,
         ],
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           clockContainer(),
           buttonRow1,
-          Divider(height: 2.0, color: Colors.blue,),
+          Divider(height: 3.0, color: Colors.blue,),
           buttonRow2,
         ],
       ),
