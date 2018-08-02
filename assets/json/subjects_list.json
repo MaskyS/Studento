@@ -1,115 +1,140 @@
 {
   "O level": [
     {
-    "subject_name": "Accounting",
-    "subject_code": "7707"
+      "subject_name": "Accounting",
+      "subject_code": 7707
     },
+
     {
       "subject_name": "Biology",
-      "subject_code": "5090"
+      "subject_code": 5090
     },
+
     {
       "subject_name": "Business Studies",
-      "subject_code": "7115"
+      "subject_code": 7115
     },
+
     {
       "subject_name": "Chemistry",
-      "subject_code": "5070"
+      "subject_code": 5070
     },
+
     {
       "subject_name": "Computer Science",
-      "subject_code": "2210"
+      "subject_code": 2210
     },
+
     {
       "subject_name": "Design & Communication",
-      "subject_code": "7048"
+      "subject_code": 7048
     },
+
     {
       "subject_name": "Design & Technology",
-      "subject_code": "6043"
+      "subject_code": 6043
     },
+
     {
-      "subject_name": "Economics",
-      "subject_code": "2281"
+    "subject_name": "Economics",
+      "subject_code": 2281
     },
+
     {
       "subject_name": "Literature in English",
-      "subject_code": "2010"
+      "subject_code": 2010
     },
+
     {
       "subject_name": "Additional Mathematics",
-      "subject_code": "4037"
+      "subject_code": 4037
     },
+
     {
       "subject_name": "Mathematics D",
-      "subject_code": "4024"
+      "subject_code": 4024
     },
+
     {
       "subject_name": "Physics",
-      "subject_code": "5054"
+      "subject_code": 5054
     },
+
     {
       "subject_name": "Principles of Accounts",
-      "subject_code": "7110"
+      "subject_code": 7110
     },
+
     {
       "subject_name": "Sociology",
-      "subject_code": "2251"
+      "subject_code": 2251
     }
   ],
   "A level": [
+
     {
-      "subject_name": "Accounting",
-      "subject_code": "9706"
+    "subject_name": "Accounting",
+      "subject_code": 9706
     },
+
     {
       "subject_name": "Biology",
-      "subject_code": "9700"
+      "subject_code": 9700
     },
+
     {
       "subject_name": "Chemistry",
-      "subject_code": "9071"
+      "subject_code": 9071
     },
+
     {
       "subject_name": "Computer Science",
-      "subject_code": "9608"
+      "subject_code": 9608
     },
+
     {
       "subject_name": "Design & Technology",
-      "subject_code": "9705"
+      "subject_code": 9705
     },
+
     {
       "subject_name": "Economics",
-      "subject_code": "9708"
+      "subject_code": 9708
     },
+
     {
       "subject_name": "English Language",
-      "subject_code": "9093"
+      "subject_code": 9093
     },
+
     {
       "subject_name": "General Paper AS",
-      "subject_code": "8021"
+      "subject_code": 8021
     },
+
     {
       "subject_name": "French",
-      "subject_code": "9716"
+      "subject_code": 9716
     },
+
     {
       "subject_name": "French AS",
-      "subject_code": "8682"
+      "subject_code": 8682
     },
+
     {
       "subject_name": "Mathematics",
-      "subject_code": "9709"
+      "subject_code": 9709
     },
+
     {
       "subject_name": "Physics",
-      "subject_code": "9702"
+      "subject_code": 9702
     },
+
     {
       "subject_name": "Sociology",
-      "subject_code": "9699"
+      "subject_code": 9699
     }
   ]
 }
-
