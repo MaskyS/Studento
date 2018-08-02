@@ -4,12 +4,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-
 import '../../../UI/notes_not_found_dialog.dart';
+import '../../../UI/loading_page.dart';
 
 import '../../../UI/studento_app_bar.dart';
-import '../../../util/jaguar_launcher.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import '../../../util/shared_prefs_interface.dart';
 
 class TopicSelectPage extends StatefulWidget {
@@ -40,7 +39,6 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   @override
   void initState() {
     super.initState();
-    JaguarLauncher.startLocalServer(serverPort: 8090);
     getTopicsList();
     getSubjectCode();
   }
@@ -172,9 +170,7 @@ class _TopicSelectPageState extends State<TopicSelectPage> {
   Widget _getTopicsListView() {
     // If the topic list is still being loaded or happens to be empty,
     // show a [CircularProgressIndicator].
-    if (topicsList == null) {
-      return CircularProgressIndicator();
-    }
+    if (topicsList == null) return loadingPage();
 
     return ListView.builder(
       padding: EdgeInsets.fromLTRB(0.0, 250.0, 0.0, 32.0),

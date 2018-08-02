@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../UI/studento_app_bar.dart';
+import '../UI/loading_page.dart';
 import '../util/shared_prefs_interface.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -61,9 +62,7 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
   }
 
   Widget build(BuildContext context) {
-    if (isScheduleSet == null){
-      return Center(child: CircularProgressIndicator());
-    }
+    if (isScheduleSet == null) return loadingPage();
 
     return Scaffold(
       appBar: StudentoAppBar(

@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
+import 'loading_page.dart';
+
 class RandomQuoteContainer extends StatefulWidget {
   @override
   RandomQuoteContainerState createState() => RandomQuoteContainerState();
@@ -74,9 +76,7 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   @override
   Widget build(BuildContext context) {
     // While the quotes are being loaded, display a progress indicator.
-    if (quotesList == null) {
-      return CircularProgressIndicator();
-    }
+    if (quotesList == null) return loadingPage();
 
     return ListView(
       children: _buildRandomQuoteWidget(),

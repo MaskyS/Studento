@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'util/shared_prefs_interface.dart';
+import 'UI/loading_page.dart';
 
 import 'routes.dart';
 import 'pages/home_page.dart';
 import 'pages/intro.dart';
-
 
 void main() => runApp(Studento());
 
@@ -32,7 +32,7 @@ class _StudentoState extends State<Studento> {
 
   @override
   Widget build(BuildContext context) {
-    if (isSetupComplete == null) return Center(child: CircularProgressIndicator());
+    if (isSetupComplete == null) return loadingPage();
 
     // Lock app orientation to Portrait so rotating doesn't break the design.
     SystemChrome.setPreferredOrientations(
