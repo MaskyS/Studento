@@ -41,7 +41,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
     /// Load the json and decode it, then put it into [subjectCodesList].
     rootBundle
-        .loadString('assets/json/subjects_syllabus_urls.json')
+        .loadString('assets/json/subjects_list.json')
         .then((String fileData) {
       subjectCodesList = json.decode(fileData);
     });
