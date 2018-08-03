@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   Widget buildButtonRow({
-      @required Widget button1, 
+      @required Widget button1,
       @required Widget button2
     }) => Expanded(
       flex: 1,
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     PreferredSizeWidget appBar = StudentoAppBar(
-      title: "STUDENTO", 
+      title: "STUDENTO",
       actions: appBarActions,
       titleStyle: appBarTitleStyle,
     );
@@ -66,38 +66,38 @@ class _HomePageState extends State<HomePage> {
     );
 
     Widget pastPapersButton = HomePageButton(
-      label: "PAST PAPERS", 
+      label: "PAST PAPERS",
       iconFileName: "exam_icon.png",
       routeToBePushedWhenTapped: 'past_papers_page',
     );
 
     Widget scheduleButton = HomePageButton(
-      label: "SCHEDULE", 
+      label: "SCHEDULE",
       iconFileName: "schedule_icon.png",
       routeToBePushedWhenTapped: 'schedule_page',
     );
 
     Widget todoListButton = HomePageButton(
-      label: "TODO LIST", 
+      label: "TODO LIST",
       iconFileName: "todo-list_icon.png",
       routeToBePushedWhenTapped: 'todo_list_page',
     );
 
     Widget topicNotesButton = HomePageButton(
-      label: "TOPIC NOTES", 
+      label: "TOPIC NOTES",
       iconFileName: "notes_icon.png",
       routeToBePushedWhenTapped: 'topic_notes_page',
     );
 
     Widget buttonRow1 = buildButtonRow(
-      button1: pastPapersButton, 
+      button1: pastPapersButton,
       button2: scheduleButton
     );
-  
+
     Widget buttonRow2 = buildButtonRow(
       button1: todoListButton,
       button2: topicNotesButton
-    ); 
+    );
 
     return Scaffold(
       appBar: appBar,
@@ -133,7 +133,7 @@ class HomePageButton extends StatelessWidget {
   }
 
   Widget icon() => Expanded(
-    flex: 1, 
+    flex: 1,
     child: Image(
       fit: BoxFit.contain,
       image: AssetImage("assets/icons/$iconFileName"),
@@ -153,7 +153,7 @@ class HomePageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     buttonsContainer() => Container(
       alignment: Alignment.center,
       color: Colors.white70,

@@ -2,16 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:numberpicker/numberpicker.dart';
 
 import 'past_paper_view.dart';
 import '../../../UI/studento_app_bar.dart';
+import '../../../UI/loading_page.dart';
+import '../../../model/subject.dart';
 
 
 class PaperDetailsSelectionPage extends StatefulWidget {
-  final String level;
-  final String subjectName;
-  PaperDetailsSelectionPage(this.subjectName, this.level);
+  final Subject subject;
+  PaperDetailsSelectionPage(this.subject);
 
   @override
   PaperDetailsSelectionPageState createState() =>
@@ -19,57 +21,63 @@ class PaperDetailsSelectionPage extends StatefulWidget {
 }
 
 class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
+  List subjects;
   static int minYear = 2008;
   int selectedYear = ((DateTime.now().year + minYear) / 2).round();
   int selectedComponent;
   final GlobalKey _menuKey = GlobalKey();
-  /// This string is used so we know from which season a paper is.
+  /// This character string is used so we know from which season a paper is.
   /// This can have two values: ["s"] and ["w"] because those are the file
   /// names for our papers. Example, 4024_s14_qp_12.html
   String selectedSeason;
-  List<int> componentsList = [
-    11,
-    12,
-    23,
-    24,
-  ];
-  Map subjectCodesList;
+  List<int> componentsList;
 
   @override
   void initState() {
     super.initState();
+    loadComponents();
+  }
 
-    /// Load the json and decode it, then put it into [subjectCodesList].
+  /// Loads the components of the selected subjects from json file.
+  void loadComponents() {
     rootBundle
-        .loadString('assets/json/subjects_list.json')
-        .then((String fileData) {
-      subjectCodesList = json.decode(fileData);
+      .loadString('assets/json/components.json')
+      .then((String fileData) {
+        Map _decodedData = json.decode(fileData);
+        componentsList = _decodedData[widget.subject.subjectCode];
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (componentsList == null) return loadingPage();
     return Scaffold(
       appBar: StudentoAppBar (
-        title: "Past Papers for ${widget.subjectName}",
+        title: "Past Papers for ${widget.subject.name}",
       ),
       body: Container(child: _buildStepper()),
     );
   }
 
-  /// Gets the subject code of the specified subject of the specified level.
-  String _getSubjectCode(String level, String subject) {
-    // TODO If past papers are unavailable for the subject, we should show
-    // an AlertDialog and notify the user.
-    return subjectCodesList["$level"][subject]['subject_code'];
-  }
 
-  void openPaper(String paperName) {
+
+  void openPaper() {
+
+    int subjectCode =  widget.subject.subjectCode;
+
+    String paperName = "${subjectCode}_$selectedSeason" +
+      selectedYear.toString().substring(2) +
+      "_qp_" +
+      selectedComponent.toString();
+
     Navigator
-    .of(context)
-    .push(MaterialPageRoute(
-      builder: (_) => PastPaperView(paperName)
-    ));
+      .of(context).push(MaterialPageRoute(
+          builder: (_) => PastPaperView(paperName)));
+
+    print(
+      "User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subject.name} with componentcode $subjectCode");
+    print("So the filename would be $paperName");
+
   }
 
   Stepper _buildStepper() => Stepper(
@@ -109,17 +117,8 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       selectedYear != null &&
       selectedSeason != null)
       {
-        String subjectCode = _getSubjectCode(widget.level, widget.subjectName);
+        openPaper();
 
-        String paperName = "${subjectCode}_$selectedSeason" +
-          selectedYear.toString().substring(2) +
-          "_qp_" +
-          selectedComponent.toString();
-
-        openPaper("$paperName");
-        print(
-          "User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subjectName} with componentcode $subjectCode");
-        print("So the filename would be $paperName");
       } else {
         // Set the current step to the step which was not completed.
         // The uncompleted step has to be either Step 2 or 3 as year

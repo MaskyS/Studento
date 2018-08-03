@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/subjects_staggered_grid_view.dart';
+import '../model/subject.dart';
 import '../pages/sub-pages/past-papers/past_paper_details_select.dart';
 
 class PastPapersPage extends StatefulWidget {
@@ -21,13 +22,13 @@ class _PastPapersPageState extends State<PastPapersPage> {
     );
   }
 
-  void openPastPapersDetailsSelect(String subject, String level) {
+  void openPastPapersDetailsSelect(Subject subject) {
     // Open the past_paper_details_select page.
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (BuildContext context) =>
-          PaperDetailsSelectionPage(subject, level)
+          PaperDetailsSelectionPage(subject)
       ),
     );
   }
