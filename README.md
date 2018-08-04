@@ -1,5 +1,5 @@
 # Studento
-![Screenshot HomePage](progress_screenshots/flutter_08.png)
+![Screenshot HomePage](progress_screenshots/flutter_30.png)
 ## The only app you need for acing your IGCSE!
 
 This app is a WIP, but here's a small description of what's to come:
