@@ -21,8 +21,8 @@ bool operator ==(Object subject) =>
   }
 
   Subject(
-    final String name,
-    final int subjectCode,
+    this.name,
+    this.subjectCode,
   );
 
   String name;
