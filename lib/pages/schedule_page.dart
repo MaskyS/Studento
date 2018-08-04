@@ -10,8 +10,7 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderStateMixin {
   TabController _tabController;
-  bool isScheduleSet;
-  int noOfSessions;
+  int initialIndex;
   final List<Widget> dayTabs = [
     Tab(text: "Mon"),
     Tab(text: "Tues"),
@@ -20,24 +19,27 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     Tab(text: "Fri"),
   ];
 
+  bool isScheduleSet;
+  int noOfSessions;
+  bool isScheduleData = false;
+
   @override
   initState(){
     super.initState();
-    SharedPreferencesHelper
-      .getIsScheduleSet()
-      .then(
-        (bool value) =>
-        setState(() => isScheduleSet = value ?? false)
-    );
+    loadIsScheduleSet();
+    loadNoOfSessions();
 
-    SharedPreferencesHelper.getNoOfSessions()
-    .then(
-      (int value) => setState(() => noOfSessions = value)
+    getInitialIndex();
+    _tabController = TabController(
+      vsync: this,
+      length: dayTabs.length,
+      initialIndex: initialIndex,
     );
+  }
 
-    final int currentDay = DateTime.now().weekday;
-    final bool isWeekDay =  currentDay > 5;
-    int initialIndex;
+  void getInitialIndex() {
+    int currentDay = DateTime.now().weekday;
+    bool isWeekDay =  currentDay < 6;
 
     if (isWeekDay) {
       // initialIndex starts at zero, but [DateTime.weekday()] returns values starting from 1.
@@ -47,12 +49,15 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
       // During the weekend, set initialIndex to 0 show the schedule for the next Monday.
       initialIndex = 0;
     }
+  }
 
-    _tabController = TabController(
-      vsync: this,
-      length: dayTabs.length,
-      initialIndex: initialIndex,
-    );
+  void loadIsScheduleSet() async {
+    isScheduleSet =
+        await SharedPreferencesHelper.getIsScheduleSet() ?? false;
+  }
+
+  void loadNoOfSessions() async {
+    noOfSessions = await SharedPreferencesHelper.getNoOfSessions();
   }
 
   @override
@@ -70,14 +75,15 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
         bottom: TabBar(
           controller: _tabController,
           tabs: dayTabs,
-          indicatorColor: Colors.blue.shade400,
+          labelColor: Colors.black87,
+          indicatorColor: Colors.blue,
         ),
       ),
-      body: getClasses(),
+      body: getClasses(_tabController.index),
     );
   }
 
-  Widget getClasses() {
+  Widget getClasses(int dayIndex) {
     if (!isScheduleSet){
       //TODO Add schedule widget.
       return ListTile(
