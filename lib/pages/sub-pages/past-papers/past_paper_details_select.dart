@@ -30,7 +30,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   /// This can have two values: ["s"] and ["w"] because those are the file
   /// names for our papers. Example, 4024_s14_qp_12.html
   String selectedSeason;
-  List<int> componentsList;
+  List componentsList;
 
   @override
   void initState() {
@@ -44,7 +44,11 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       .loadString('assets/json/components.json')
       .then((String fileData) {
         Map _decodedData = json.decode(fileData);
-        componentsList = _decodedData[widget.subject.subjectCode];
+        setState(() {
+
+          componentsList = _decodedData["${widget.subject.subjectCode}"];
+          print(componentsList);
+        });
     });
   }
 
@@ -210,13 +214,13 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
   }
 
   Step _buildComponentSelectionStep() {
-    List<PopupMenuItem<int>> components = [];
+    List<PopupMenuItem> components = [];
 
-    void handlePopUpChanged(int value) =>
+    void handlePopUpChanged(value) =>
       setState(() => selectedComponent = value);
 
     components = componentsList.map(
-      (int component) =>
+      (component) =>
         PopupMenuItem(
           child: Text("$component"),
           value: component,
