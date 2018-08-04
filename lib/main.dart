@@ -44,12 +44,12 @@ class _StudentoState extends State<Studento> {
       routes: routes,
       theme: ThemeData(
         fontFamily: 'Montserrat',
-        primaryIconTheme: IconThemeData(color: Colors.white),
         // Studento Blue
-        primaryColor: Color(0xFF5fbff9),
-        accentColor: Color(0xFF5fbff9),
+        primaryColor: Colors.deepPurpleAccent,
+        accentColor: Colors.blue,
+        primaryIconTheme: IconThemeData(color: Colors.black87),
         // Studento Pink
-        buttonColor: Color(0xFFfc6dab),
+        buttonColor: Colors.blue,
       ),
     );
   }
