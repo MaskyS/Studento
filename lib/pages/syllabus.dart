@@ -8,6 +8,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
+import '../UI/loading_page.dart';
 import '../UI/subjects_staggered_grid_view.dart';
 import '../model/subject.dart';
 
@@ -31,7 +32,9 @@ class SyllabusPageState extends State<SyllabusPage> {
     rootBundle
         .loadString('assets/json/subjects_syllabus_urls.json')
         .then((fileData) {
-        urlList = json.decode(fileData);
+          setState(() {
+            urlList = json.decode(fileData);
+          });
     });
   }
 
@@ -75,6 +78,7 @@ class SyllabusPageState extends State<SyllabusPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (urlList == null) return loadingPage();
     return Scaffold(
       drawer: StudentoDrawer(),
       appBar: StudentoAppBar(title: "Syllabus"),
@@ -145,7 +149,7 @@ class SyllabusPageState extends State<SyllabusPage> {
   String _getSubjectUrl(Subject subject, Map urlList) {
     String googlePdfViewerUrlPrefix = "https://docs.google.com/gview?embedded=true&url=";
     String cambridgeSyllabusUrlPrefix = "http://www.cambridgeinternational.org/images";
-    String subjectSpecificUniqueUrlComponent =  urlList[subject.subjectCode]['url'];
+    String subjectSpecificUniqueUrlComponent =  urlList["${subject.subjectCode}"]['url'];
 
     String url =
         googlePdfViewerUrlPrefix
