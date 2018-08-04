@@ -97,13 +97,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_pdf_viewer:
+    dependency: "direct main"
+    description:
+      name: flutter_pdf_viewer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
       name: flutter_staggered_grid_view
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4"
+    version: "0.2.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -158,13 +165,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.2"
-  http_server:
-    dependency: transitive
-    description:
-      name: http_server
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.7"
   intl:
     dependency: "direct main"
     description:
@@ -179,20 +179,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2+1"
-  jaguar:
-    dependency: transitive
-    description:
-      name: jaguar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.11"
-  jaguar_flutter_asset:
-    dependency: "direct main"
-    description:
-      name: jaguar_flutter_asset
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.5"
   js:
     dependency: transitive
     description:
