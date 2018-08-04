@@ -93,7 +93,7 @@ class _SubjectsListState extends State<SubjectsList> {
         selectedSubjectCodes.add(subject.subjectCode.toString());
       });
 
-      saveSelectedSubjects(selectedSubjectCodes, selectedSubjectCodes);
+      saveSelectedSubjects(selectedSubjectNames, selectedSubjectCodes);
     });
   }
 
