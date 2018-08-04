@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
     TextStyle appBarTitleStyle  = TextStyle(
       color: Colors.black,
       fontFamily: 'Montserrat',
-      fontSize: 26.0,
+      fontSize: 20.0,
       fontWeight: FontWeight.w400,
     );
 
