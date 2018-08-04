@@ -17,27 +17,9 @@ class SubjectsStaggeredListView extends StatefulWidget {
 }
 
 class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
-  List<Subject> subjects;
-
-  final List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
-    StaggeredTile.count(2, 1),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 1),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 1),
-    StaggeredTile.count(2, 1),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 1),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 1),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 2),
-    StaggeredTile.count(2, 2),
-  ];
+  List<Subject> subjects = [];
+  List<Widget> subjectTiles = [];
+  bool isSubjectsLoaded = false;
 
   @override
   void initState() {
@@ -45,79 +27,53 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
     getSubjects();
   }
 
-  List<Subject> getSubjects() {
+  void getSubjects() async{
     List<String>_subjectsNamesList;
     List<String> _subjectCodesList;
 
-    SharedPreferencesHelper.getSubjectsList().then(
-        (List<String> subjeccts) => _subjectsNamesList = subjeccts);
-
-    SharedPreferencesHelper.getSubjectsCodesList().then(
-        (List<String> coddes) => _subjectCodesList = coddes);
+    _subjectsNamesList = await SharedPreferencesHelper.getSubjectsList();
+    _subjectCodesList = await SharedPreferencesHelper.getSubjectsCodesList();
 
     int i = 0;
-    _subjectsNamesList.forEach((String subject) {
+    _subjectsNamesList.forEach((String subjectName) {
       int subjectCode = int.parse(_subjectCodesList[i]);
-      setState(() => subjects.add(Subject(subject, subjectCode)));
+      Subject _subject = Subject(subjectName, subjectCode);
+      subjects.add(_subject);
       i++;
     });
 
-    return subjects;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<_SubjectTile> subjectTiles = [];
-
-    if (subjects == null) return loadingPage();
-
     /// Add tiles for each subject into [subjectTiles].
     subjects.forEach((Subject subject){
-      subjectTiles.add(_SubjectTile(subject, widget.onGridTileTap));
+        print("The subject about to be passed down from ListView is $subject");
+        // subjectTiles.add(_SubjectTile(subject, widget.onGridTileTap));
     });
 
-    return Padding(
-      padding: EdgeInsets.only(top: 12.0),
-      child: StaggeredGridView.count(
-        crossAxisCount: 4,
-        staggeredTiles: _staggeredTiles,
-        children: subjectTiles,
-      ),
+    setState(() =>
+      isSubjectsLoaded = true
     );
-  }
-}
 
-class _SubjectTile extends StatelessWidget {
-
-  /// The subject the tile will be displaying.
-  final Subject subject;
-
-  /// This callback function will be executed when GridTile is
-  /// tapped.
-  final Function(Subject subject) onTapFunction;
-
-  const _SubjectTile(
-    this.subject,
-    this.onTapFunction,
-  );
-
-  /// Prettifies the subject name by converting the name to uppercase and
-  /// breaking lengthy names into two lines.
-  String prettifySubjectName(String subjectName) {
-    subjectName = subjectName.toUpperCase();
-    subjectName = subjectName.replaceFirst(" ", " \n");
-    return subjectName;
   }
 
   @override
   Widget build(BuildContext context) {
 
-    void showHelpTextWhenLongPressed() {
-      String msg = "Tap the subject you seek.";
-      Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text(msg)));
-    }
+    if (!isSubjectsLoaded) return loadingPage();
+    StaggeredGridView subjectTilesBuilder = StaggeredGridView.countBuilder(
+          crossAxisCount: 4,
+          itemCount: subjects.length,
+          itemBuilder: (_, int index) => buildSubjectTile(subjects[index]),
+          staggeredTileBuilder: (int index) =>
+              StaggeredTile.count(2, index.isEven ? 2 : 1),
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+);
+    return Padding(
+      padding: EdgeInsets.only(top: 12.0),
+      child: subjectTilesBuilder,
+    );
+  }
 
+  Widget buildSubjectTile(Subject subject) {
     const LinearGradient backgroundGradient = LinearGradient(
       begin: FractionalOffset(0.0, 0.0),
       end: FractionalOffset(2.0, 0.0),
@@ -145,8 +101,8 @@ class _SubjectTile extends StatelessWidget {
     return Card(
       elevation: 2.0,
       child: InkWell(
-        onTap: onTapFunction(subject),
-        onLongPress: showHelpTextWhenLongPressed,
+        onTap: () => widget.onGridTileTap(subject),//widget.onGridTileTap(subject),
+        onLongPress: () => print("long pressed."),
         child: Container(
           child: Center(child: subjectNameText),
           padding: EdgeInsets.symmetric(
@@ -160,5 +116,13 @@ class _SubjectTile extends StatelessWidget {
         ),
       ),
     );
+  }
+  /// Prettifies the subject name by converting the name to uppercase and
+  /// breaking lengthy names into two lines.
+  String prettifySubjectName(String subjectName) {
+    print("Subject: $subjectName");
+    subjectName = subjectName.toUpperCase();
+    subjectName = subjectName.replaceFirst(" ", " \n");
+    return subjectName;
   }
 }
