@@ -71,6 +71,7 @@ abstract class SharedPreferencesHelper {
     print("subjects codes has been set to $subjectsCodesList");
   }
 
+  // TODO Convert to Duration
   static Future<String> getClassLength() async{
     var userData = await SharedPreferences.getInstance();
     String classLength = userData.getString("class_length");
@@ -108,5 +109,31 @@ abstract class SharedPreferencesHelper {
   static void setIsScheduleSet(bool isSetScheduleSet) async{
     var userData = await SharedPreferences.getInstance();
     userData.setBool("is_schedule_set", isSetScheduleSet);
+  }
+
+  static Future<DateTime> getSchoolStartTime() async{
+    var userData = await SharedPreferences.getInstance();
+    String startTimeString = userData.getString("school_start_time");
+    DateTime startTime = DateTime.parse(startTimeString);
+    return startTime;
+  }
+
+  static void setSchoolStartTime(DateTime schoolStartTime) async{
+    var userData = await SharedPreferences.getInstance();
+    String  startTimeString = schoolStartTime.toString();
+    userData.setString("school_start_time", startTimeString);
+  }
+
+  static Future<DateTime> getSchoolEndTime() async{
+    var userData = await SharedPreferences.getInstance();
+    String endTimeString = userData.getString("school_end_time");
+    DateTime endTime = DateTime.parse(endTimeString);
+    return endTime;
+  }
+
+  static void setSchoolEndTime(DateTime schoolEndTime) async{
+    var userData = await SharedPreferences.getInstance();
+    String endTimeString = schoolEndTime.toString();
+    userData.setString("school_end_time", endTimeString);
   }
 }

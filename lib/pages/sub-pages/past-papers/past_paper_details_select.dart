@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:numberpicker/numberpicker.dart';
+import 'package:flutter_pdf_viewer/flutter_pdf_viewer.dart';
 
-import 'past_paper_view.dart';
 import '../../../UI/studento_app_bar.dart';
 import '../../../UI/loading_page.dart';
 import '../../../model/subject.dart';
@@ -74,9 +74,8 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       "_qp_" +
       selectedComponent.toString();
 
-    Navigator
-      .of(context).push(MaterialPageRoute(
-          builder: (_) => PastPaperView(paperName)));
+    String fileUri = "assets/pdf/$subjectCode/$paperName.pdf";
+    FlutterPdfViewer.loadAsset(fileUri);
 
     print(
       "User selected year $selectedYear, season $selectedSeason and component $selectedComponent for the subject ${widget.subject.name} with componentcode $subjectCode");
