@@ -71,33 +71,34 @@ abstract class SharedPreferencesHelper {
     print("subjects codes has been set to $subjectsCodesList");
   }
 
-  static Future<String> getSessionLength() async{
+  static Future<String> getClassLength() async{
     var userData = await SharedPreferences.getInstance();
-    String sessionLength = userData.getString("session_length");
+    String classLength = userData.getString("class_length");
 
-    return sessionLength;
+    return classLength;
   }
 
-  static void setSessionLength(String sessionLength) async{
+  static void setClassLength(String classLength) async{
     var userData = await SharedPreferences.getInstance();
-    userData.setString("session_length", sessionLength);
+    userData.setString("class_length", classLength);
 
-    print("session_length has been set to: $sessionLength");
+    print("class_length has been set to: $classLength");
   }
 
-  static Future<int> getNoOfSessions() async{
+  static Future<int> getNoOfClasses() async{
     var userData = await SharedPreferences.getInstance();
-    int noOfSessions = userData.getInt("no_of_sessions");
+    int noOfClasses = userData.getInt("no_of_classes");
 
-    return noOfSessions;
+    return noOfClasses;
   }
 
-  static void setNoOfSessions(int noOfSessions) async{
+  static void setNoOfClasses(int noOfClasses) async{
     var userData = await SharedPreferences.getInstance();
-    userData.setInt("no_of_sessions", noOfSessions);
+    userData.setInt("no_of_classes", noOfClasses);
 
-    print("session_length has been set to: $noOfSessions");
+    print("class_length has been set to: $noOfClasses");
   }
+
   static Future<bool> getIsScheduleSet() async{
    var userData = await SharedPreferences.getInstance();
    bool isScheduleSet = userData.getBool("is_schedule_set");
