@@ -7,6 +7,7 @@ dependencies:
   device_info: "^0.2.0"
   connectivity: "^0.3.0"
   shared_preferences: "0.4.1"
+  json_serializable: ^0.5.8+1
   flutter_pdf_viewer: "^0.0.2"
   flutter_webview_plugin: "^0.1.6"
   url_launcher: "^3.0.0"
@@ -23,9 +24,9 @@ dependencies:
   firebase_analytics: "^0.3.3"
   firebase_core: any
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+# dev_dependencies:
+#   flutter_test:
+#     sdk: flutter
 
 
 # For information on the generic Dart part of this file, see the
