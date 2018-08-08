@@ -54,7 +54,7 @@ class RateDialog extends StatelessWidget {
       ),
       actions: <Widget> [
         FlatButton (
-          child: Text('NEVER ASK AGAIN'),
+          child: Text('MAYBE LATER.'),
           textColor: Colors.black38,
           onPressed: () => Navigator.of(context).pop(),
         ),
