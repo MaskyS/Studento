@@ -21,11 +21,22 @@ class StudentoDrawer extends StatelessWidget {
     }
   }
 
+  LinearGradient backgroundGradient = LinearGradient(
+    begin: FractionalOffset(0.0, 0.0),
+    end: FractionalOffset(2.0, 0.0),
+    stops: [0.0, 0.5],
+    tileMode: TileMode.clamp,
+    colors: [
+      Colors.deepPurpleAccent,
+      Color(0xFF5fbff9), // Imperialish blue.
+    ],
+  );
+
   // Place quote and author widgets located in RandomQuotesContainer() into the
   // DrawerHeader.
-  final drawerHeader = DrawerHeader(
+  drawerHeader() => DrawerHeader(
     decoration: BoxDecoration(
-      color: Colors.deepPurpleAccent,
+      gradient: backgroundGradient,
     ),
     child: RandomQuoteContainer(),
   );
@@ -81,7 +92,7 @@ class StudentoDrawer extends StatelessWidget {
 
   Widget build(BuildContext context) {
     List<Widget> fragmentsList = [
-      drawerHeader,
+      drawerHeader(),
       homePageFragment,
       syllabusPageFragment,
       eventsFragment,
