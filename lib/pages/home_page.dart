@@ -179,6 +179,7 @@ class _HomePageButtonState extends State<HomePageButton> {
     childDirected: false,
     gender: MobileAdGender.unknown,
   );
+
   InterstitialAd _interstitialAd;
 
   InterstitialAd createInterstitialAd() => InterstitialAd(
@@ -237,7 +238,10 @@ class _HomePageButtonState extends State<HomePageButton> {
       verticalOffset: 5.0,
       message: widget.label,
         child: InkWell(
-          onTap: () => pushRoute(context),
+          onTap: () {
+            pushRoute(context);
+            showInterstitialAd();
+          },
           child: buttonsContainer(),
         ),
       ),
