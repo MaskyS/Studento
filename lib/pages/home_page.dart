@@ -1,17 +1,45 @@
+import 'dart:math';
+
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
+
+import 'package:after_layout/after_layout.dart';
 
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/clock.dart';
 import '../UI/vertical_divider.dart';
-
+import '../UI/rate_dialog.dart';
+import '../ads_helper.dart' as ads;
+import 'package:firebase_admob/firebase_admob.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage>{
+
+  @override
+  void afterFirstLayout(BuildContext context){
+    bool isLuckyDay = decideWhetherToShowRatingDialog();
+    if (isLuckyDay) showRatingDialog();
+  }
+
+  bool decideWhetherToShowRatingDialog() {
+    var randomObj = Random();
+    int luckyNum = 10;
+    int randomNum = randomObj.nextInt(13);
+    if (randomNum == luckyNum) return true;
+
+    return false;
+  }
+
+  void showRatingDialog(){
+    showDialog(
+      context: context,
+      builder: (_) => RateDialog(),
+    );
+  }
 
   Widget buildButtonRow({
       @required Widget button1,
@@ -114,7 +142,9 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomePageButton extends StatelessWidget {
+class HomePageButton extends StatefulWidget {
+  @override
+  _HomePageButtonState createState() => _HomePageButtonState();
 
   HomePageButton({
     @required this.label,
@@ -127,16 +157,49 @@ class HomePageButton extends StatelessWidget {
   final String iconFileName;
 
   final String routeToBePushedWhenTapped;
+}
 
-  void pushRoute(BuildContext context){
-     Navigator.of(context).pushNamed(routeToBePushedWhenTapped);
+class _HomePageButtonState extends State<HomePageButton> {
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAdMob.instance.initialize(appId: ads.appId);
+  }
+
+  @override
+  void dispose() {
+    _interstitialAd?.dispose();
+    super.dispose();
+  }
+
+  static final MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    contentUrl: 'http://cambridgeinternational.org',
+    testDevices: null,
+    childDirected: false,
+    gender: MobileAdGender.unknown,
+  );
+  InterstitialAd _interstitialAd;
+
+  InterstitialAd createInterstitialAd() => InterstitialAd(
+    adUnitId: ads.adUnitId,
+    targetingInfo: targetingInfo,
+    listener: (MobileAdEvent event) {
+      print("InterstitialAd event $event");
+    },
+  );
+
+  void showInterstitialAd() {
+    _interstitialAd?.dispose();
+    _interstitialAd = createInterstitialAd()..load();
+    _interstitialAd?.show();
   }
 
   Widget icon() => Expanded(
     flex: 1,
     child: Image(
       fit: BoxFit.contain,
-      image: AssetImage("assets/icons/$iconFileName"),
+      image: AssetImage("assets/icons/${widget.iconFileName}"),
     ),
   );
 
@@ -146,7 +209,7 @@ class HomePageButton extends StatelessWidget {
   );
 
   Widget labelText() => Expanded(flex:1, child: Text(
-    label,
+    widget.label,
     textScaleFactor: 1.2,
     style: labelStyle,
   ));
@@ -172,12 +235,16 @@ class HomePageButton extends StatelessWidget {
     return Expanded(
       child: Tooltip(
       verticalOffset: 5.0,
-      message: label,
+      message: widget.label,
         child: InkWell(
           onTap: () => pushRoute(context),
           child: buttonsContainer(),
         ),
       ),
     );
+  }
+
+  void pushRoute(BuildContext context){
+     Navigator.of(context).pushNamed(widget.routeToBePushedWhenTapped);
   }
 }
