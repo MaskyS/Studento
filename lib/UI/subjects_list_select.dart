@@ -22,7 +22,7 @@ class _SubjectsListState extends State<SubjectsList> {
   /// it contains subjects for both levels.
   Map<String, dynamic> decodedSubjectData;
 
-  /// Actual type: [Map<String, dynamic>]
+  /// Actual type:  [List<Map<String, dynamic>>]
   /// Because of json_decode, can't strong type this.
   List<dynamic> _subjectsList;
 

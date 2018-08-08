@@ -106,6 +106,15 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
     },
   );
 
+  List<Step> buildSteps() {
+    List<Step> steps = [
+      _buildYearSelectionStep(),
+      _buildSeasonSelectionStep(),
+      _buildComponentSelectionStep()
+    ];
+    return steps;
+  }
+
   void handleOnStepContinue() {
     // Update the variable handling the current step value
     // going back one step i.e adding 1, until its the length of the
@@ -132,15 +141,6 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
 
   // Init the step to 0th position
   int currentStep = 0;
-
-  List<Step> buildSteps() {
-    List<Step> steps = [
-      _buildYearSelectionStep(),
-      _buildSeasonSelectionStep(),
-      _buildComponentSelectionStep()
-    ];
-    return steps;
-  }
 
   Step _buildYearSelectionStep() {
     /// Shows a dialog containing a [NumericalPicker] for the user to choose the

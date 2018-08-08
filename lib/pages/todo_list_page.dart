@@ -6,7 +6,7 @@ import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/date_time_item.dart';
 import '../model/todo_item.dart';
-import '../util/database_client.dart';
+import '../util/todo_item_database_client.dart';
 
 /// We need this key in order to access and modify [TodoListPage]'s [todoItemList]
 ///  in [_CreateNewTodoPageState].
