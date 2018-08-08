@@ -94,14 +94,14 @@ class _SetupState extends State<Setup> {
       onChanged: validateName,
       decoration: nameTextFieldDeco,
     );
-    
+
     Widget buildLevelRadioListTile(String level) => RadioListTile(
       title: Text(level),
       value: level,
       groupValue: selectedLevel,
       selected: false,
       onChanged: (String level) => setState(() => selectedLevel = level),
-    ); 
+    );
 
     Widget oLevelRadioListTile = buildLevelRadioListTile("O level");
     Widget aLevelRadioListTile = buildLevelRadioListTile("A level");
@@ -157,7 +157,7 @@ class _SetupState extends State<Setup> {
         errorText = "Your name doesn't look right. Please try again."
       );
     } else if (errorText != null) {
-      // Remove any previous error messages. 
+      // Remove any previous error messages.
       setState(() => errorText = null);
     }
 
@@ -283,7 +283,7 @@ class _SessionsLengthSliderState extends State<SessionsLengthSlider> {
   void saveSessionsLength(double length){
     String _length = "${length.toInt()}";
 
-    SharedPreferencesHelper.setSessionLength(_length);
+    SharedPreferencesHelper.setClassLength(_length);
     setState(() => sessionLength = _length);
   }
 }
@@ -334,7 +334,7 @@ class _NoOfSessionsSliderState extends State<NoOfSessionsSlider> {
 
   /// Set the number of sessions in both the slider and shared_prefs.
   void saveNoOfSessions(double no){
-    SharedPreferencesHelper.setNoOfSessions(no.toInt());
+    SharedPreferencesHelper.setNoOfClasses(no.toInt());
     setState(() => noOfSessions = no.toInt());
   }
 }
