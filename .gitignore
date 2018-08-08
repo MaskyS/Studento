@@ -8,3 +8,5 @@ build/
 ios/.generated/
 packages
 .flutter-plugins
+android/app/google-services.json
+lib/ads_helper.dart
