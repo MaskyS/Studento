@@ -74,7 +74,7 @@ class PaperDetailsSelectionPageState extends State<PaperDetailsSelectionPage> {
       "_qp_" +
       selectedComponent.toString();
 
-    String fileUri = "assets/pdf/$subjectCode/$paperName.pdf";
+    String fileUri = "assets/pdf/$subjectCode/$selectedYear/$paperName.pdf";
     FlutterPdfViewer.loadAsset(fileUri);
 
     print(

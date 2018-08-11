@@ -82,7 +82,11 @@ flutter:
     # - assets/html/past-papers/9700/
     # - assets/html/past-papers/9702/
     # - assets/html/past-papers/9705/
-    - assets/pdf/9706/
+    - assets/pdf/9706/2013/
+    - assets/pdf/9706/2014/
+    - assets/pdf/9706/2015/
+    - assets/pdf/9706/2016/
+    - assets/pdf/9706/2017/
     # - assets/html/past-papers/9708/
     # - assets/html/past-papers/9709/
     # - assets/html/past-papers/9716/
