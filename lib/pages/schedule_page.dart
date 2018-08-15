@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../UI/studento_app_bar.dart';
 import '../UI/loading_page.dart';
+import '../UI/class_widget.dart';
+import '../model/class.dart';
 import '../util/shared_prefs_interface.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -21,13 +23,15 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
 
   bool isScheduleSet;
   int noOfSessions;
-  bool isScheduleData = false;
+  bool isScheduleDataLoaded = false;
 
   @override
   initState(){
     super.initState();
-    loadIsScheduleSet();
-    loadNoOfSessions();
+    setState(() {
+      loadNoOfSessions();
+      isScheduleDataLoaded = true;
+    });
 
     getInitialIndex();
     _tabController = TabController(
@@ -42,22 +46,18 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     bool isWeekDay =  currentDay < 6;
 
     if (isWeekDay) {
-      // initialIndex starts at zero, but [DateTime.weekday()] returns values starting from 1.
-      // To fix that, we minus 1.
+      // initialIndex starts from zero, but [DateTime.weekday()] returns
+      // values starting from 1. To fix that, we minus 1.
       initialIndex = currentDay - 1;
     } else {
-      // During the weekend, set initialIndex to 0 show the schedule for the next Monday.
+      // During the weekend, set initialIndex to 0 show the schedule for the
+      // next Monday.
       initialIndex = 0;
     }
   }
 
-  void loadIsScheduleSet() async {
-    isScheduleSet =
-        await SharedPreferencesHelper.getIsScheduleSet() ?? false;
-  }
-
   void loadNoOfSessions() async {
-    noOfSessions = await SharedPreferencesHelper.getNoOfSessions();
+    noOfSessions = await SharedPreferencesHelper.getNoOfClasses();
   }
 
   @override
@@ -67,7 +67,9 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
   }
 
   Widget build(BuildContext context) {
-    if (isScheduleSet == null) return loadingPage();
+        print("noOfSessions is $noOfSessions and isScheduleSet is $isScheduleSet");
+
+    if (!isScheduleDataLoaded) return loadingPage();
 
     return Scaffold(
       appBar: StudentoAppBar(
@@ -83,30 +85,43 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     );
   }
 
+  Class exampleClass1 = Class(
+    classNo: 1,
+    weekDay: 1,
+    startTime: DateTime(2018, 3, 15, 43),
+    endTime: DateTime(2018, 3, 16, 43),
+    name: "Chemistry",
+    location: "Room 12",
+    teacher: "Panchoo"
+  );
+
+  Class exampleClass2 = Class(
+    classNo: 2,
+    weekDay: 12,
+    startTime: DateTime.now(),
+    endTime: DateTime.now().add(Duration(minutes: 14)),
+    name: "Chemistry",
+    location: "Room 13",
+    teacher: "Phannchoo"
+  );
+
   Widget getClasses(int dayIndex) {
-    if (!isScheduleSet){
+    if (isScheduleSet == false){
       //TODO Add schedule widget.
-      return ListTile(
-        contentPadding: EdgeInsets.only(right: 26.0),
-        leading: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 27.0),
-          color: Colors.redAccent,
-          child: Text("1", style: TextStyle(color: Colors.white)),
-        ),
-        onTap: (){print("Hi");},
-        title: Text("Mathematics"),
-        subtitle: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget> [
-            Text("Room 124"),
-            Divider(indent: 20.0),
-            Text("Mr. Robert"),
-          ],
-        ),
+      return ListView(
+        children: <Widget>[
+          ClassWidget(exampleClass1),
+          ClassWidget(exampleClass2),
+          ClassWidget(exampleClass1),
+          ClassWidget(exampleClass1),
+          ClassWidget(exampleClass1),
+          ClassWidget(exampleClass1),
+          ClassWidget(exampleClass1),
+        ],
       );
     }
 
-    return Column(
+    return Center(child: Column(
       children: <Widget>[
         Padding(padding: EdgeInsets.all(25.0),),
         Text("You haven't added your schedule yet.", textScaleFactor: 1.4,),
@@ -118,7 +133,7 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
           label: Text("Configure Schedule"),
         ),
       ],
-    );
+    ));
   }
 
 }
