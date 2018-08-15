@@ -6,11 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
+import '../model/subject.dart';
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/loading_page.dart';
 import '../UI/subjects_staggered_grid_view.dart';
-import '../model/subject.dart';
+import '../util/show_message_dialog.dart';
 
 class SyllabusPage extends StatefulWidget {
   @override
@@ -28,15 +29,14 @@ class SyllabusPageState extends State<SyllabusPage> {
     getUrlList();
   }
 
-  void getUrlList() {
-    rootBundle
-        .loadString('assets/json/subjects_syllabus_urls.json')
-        .then((fileData) {
-          setState(() {
-            urlList = json.decode(fileData);
-          });
-    });
-  }
+  void getUrlList() => rootBundle
+      .loadString('assets/json/subjects_syllabus_urls.json')
+      .then((fileData) {
+        setState(() {
+          urlList = json.decode(fileData);
+        });
+      }
+  );
 
   /// In this free version of Studento, syllabus are only available online.
   /// To prevent any nasty errors, we check if the device is connnected
@@ -47,34 +47,19 @@ class SyllabusPageState extends State<SyllabusPage> {
   void checkifConnected() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     bool isNoInternetConnection =
-        connectivityResult == ConnectivityResult.none;
+        (connectivityResult == ConnectivityResult.none);
 
     if (isNoInternetConnection) {
-      showNoInternetAlertDialog();
+      String _errorMsg = "Accessing syllabus requires an internet connection. Please connect to the internet and try again.";
+      showMessageDialog(
+        context,
+        msg: _errorMsg,
+      );
     }
-  }
-
-  void showNoInternetAlertDialog() {
-    String _errorMsg = "Accessing syllabus requires an internet connection. Please connect to the internet and try again.";
-    List<Widget> actionButtons = <Widget>[FlatButton(
-      child: Text("OK"),
-      onPressed: returnToHomePage()
-    )];
-
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        contentPadding: const EdgeInsets.all(20.0),
-        title: Text("Connection error"),
-        content: Text(_errorMsg),
-        actions: actionButtons,
-      ),
-    );
   }
 
   returnToHomePage() => Navigator.of(context)
       .popUntil(ModalRoute.withName('home_page'));
-
 
   @override
   Widget build(BuildContext context) {
