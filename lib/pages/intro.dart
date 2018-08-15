@@ -7,7 +7,7 @@ import 'dart:math';
 import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 
-import 'setup.dart';
+import 'sub-pages/setup/name_and_level_setup.dart';
 
 /// Template for each page which showcases the features of the Studento.
 class IntroPage extends StatefulWidget {
@@ -55,7 +55,7 @@ class IntroPageState extends State<IntroPage> {
       return _pages[index % _pages.length];
     },
   );
-  
+
   Widget buildGetStartedButton() => Positioned(
     bottom: 20.0,
     left: 0.0,
@@ -67,12 +67,12 @@ class IntroPageState extends State<IntroPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         child: Text("GET STARTED!"),
         onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => Setup()),
+          MaterialPageRoute(builder: (_) => NameAndLevelSetup()),
         ),
       ),
     ),
   );
-  
+
   Widget buildPageIndicatorButton() => Positioned(
     bottom: 70.0,
     left: 0.0,
@@ -183,16 +183,16 @@ class IntroPageModel extends StatelessWidget {
   final IconData mainIcon;
 
   IntroPageModel({
-    @required this.title, 
-    @required this.subtitle, 
+    @required this.title,
+    @required this.subtitle,
     @required this.mainIcon
   });
-  
+
   Widget buildTitle() => Text(
     title,
     textScaleFactor: 2.0,
     style: TextStyle(
-      color: Colors.white, 
+      color: Colors.white,
       fontWeight: FontWeight.bold
     ),
   );
