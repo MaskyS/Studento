@@ -62,14 +62,14 @@ class RateDialog extends StatelessWidget {
           child: Text('RATE IT'),
           onPressed: () {
             LaunchReview.launch(androidAppId: 'com.MaskyS.studento');
-            showRatedDialog();
+            showThankUDialog();
           },
         ),
       ],
     );
   }
 
-  void showRatedDialog() {
+  void showThankUDialog() {
     showDialog (
       barrierDismissible: false,
       context: buildContext,

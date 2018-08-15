@@ -21,7 +21,7 @@ class StudentoDrawer extends StatelessWidget {
     }
   }
 
-  LinearGradient backgroundGradient = LinearGradient(
+  final LinearGradient backgroundGradient = LinearGradient(
     begin: FractionalOffset(0.0, 0.0),
     end: FractionalOffset(2.0, 0.0),
     stops: [0.0, 0.5],
