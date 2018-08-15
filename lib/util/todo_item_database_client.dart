@@ -6,9 +6,9 @@ import 'package:sqflite/sqflite.dart';
 import '../model/todo_item.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper.internal();
-  factory DatabaseHelper() => _instance;
+class ToDoItemDatabaseHelper {
+  static final ToDoItemDatabaseHelper _instance = ToDoItemDatabaseHelper.internal();
+  factory ToDoItemDatabaseHelper() => _instance;
 
   final String tableName = "todoTbl";
   final String columnId = "id";
@@ -27,7 +27,7 @@ class DatabaseHelper {
    return _db;
   }
 
-  DatabaseHelper.internal();
+  ToDoItemDatabaseHelper.internal();
 
   initDb() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();

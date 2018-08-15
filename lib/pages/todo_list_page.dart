@@ -41,7 +41,7 @@ class _TodoListPageState extends State<TodoListPage> {
   /// We need this to show [Snackbar]s.
   BuildContext _scaffoldContext;
 
-  var db = DatabaseHelper();
+  var db = ToDoItemDatabaseHelper();
 
   /// Denotes which tab in the BottomNavigationBar is selected.
   /// [0] stands for the [Active] tab and [1] is for the [Completed] tab.
@@ -273,7 +273,7 @@ class _CreateNewTodoPageState extends State<CreateNewTodoPage> {
   final TextEditingController _titleEditingController = TextEditingController();
   final TextEditingController _detailsEditingController =
       TextEditingController();
-  var db = DatabaseHelper();
+  var db = ToDoItemDatabaseHelper();
   DateTime _dueDate = DateTime.now();
 
   @override
