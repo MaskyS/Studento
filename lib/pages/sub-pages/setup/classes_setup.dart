@@ -45,6 +45,12 @@ class _ClassesLengthSliderState extends State<ClassesLengthSlider> {
   String classesLength = "30.0";
 
   @override
+  void initState() {
+      super.initState();
+      saveClassesLength(double.parse(classesLength));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,6 +103,13 @@ class NoOfClassesSlider extends StatefulWidget {
 
 class _NoOfClassesSliderState extends State<NoOfClassesSlider> {
   int noOfClasses = 8;
+
+  @override
+  void initState() {
+    super.initState();
+    saveNoOfClasses(noOfClasses.toDouble());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
