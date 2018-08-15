@@ -31,7 +31,7 @@ class TodoItem extends StatelessWidget {
     this._itemName = obj["itemName"];
     this._details = obj["details"];
     this._dueDate = obj["dueDate"];
-    this.isComplete == (obj["isComplete"] == 1) ? true : false;
+    this.isComplete = (obj["isComplete"] == 1) ? true : false;
     this._id = obj["id"];
   }
 
