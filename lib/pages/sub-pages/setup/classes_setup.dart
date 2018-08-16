@@ -17,7 +17,7 @@ class _ClassesSetupState extends State<ClassesSetup> {
       title: "Classes",
       subtitle: "Set up your school classes/sessions info",
       body: _buildClassesBody(),
-      onFloatingButtonPressed: pushPermissionsPage,
+      onFloatingButtonPressed: pushRecessPage,
     );
   }
 
@@ -28,7 +28,7 @@ class _ClassesSetupState extends State<ClassesSetup> {
     ],
   );
 
-  void pushPermissionsPage() {
+  void pushRecessPage() {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (_) => RecessSetup()));
   }
@@ -118,7 +118,7 @@ class _NoOfClassesSliderState extends State<NoOfClassesSlider> {
         Padding(
           padding: EdgeInsets.only(left: 15.0, top: 15.0),
           child: Text(
-            "How many classes/sessions do you have in a day?",
+            "How many classes/sessions do you have in a day? (Include any breaks/recesses as classes!)",
             textScaleFactor: 1.2,
             style: TextStyle(
               color: Colors.black54,
