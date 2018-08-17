@@ -2,7 +2,7 @@ import 'package:meta/meta.dart' show required;
 import 'package:quiver/core.dart';
 
 class Class {
-  int _id;
+  int id;
   int classNo;
   int weekDay;
   DateTime startTime;
@@ -34,10 +34,10 @@ class Class {
         teacher == classItem.teacher;
 
   int get hashCode =>
-      hash4(_id.hashCode, classNo.hashCode, weekDay.hashCode, name.hashCode);
+      hash4(id.hashCode, classNo.hashCode, weekDay.hashCode, name.hashCode);
 
   Class.fromMap(dynamic obj) {
-    this._id = obj["id"];
+    this.id = obj["id"];
     this.classNo = obj["classNo"];
     this.weekDay = obj["weekDay"];
     this.startTime = DateTime.parse(obj["startTime"]);
@@ -73,7 +73,5 @@ class Class {
 
     return "$stringRepresentation";
   }
-
-  int get id => _id;
 
 }

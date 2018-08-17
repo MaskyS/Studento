@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../UI/studento_app_bar.dart';
 import '../UI/loading_page.dart';
 import '../UI/class_widget.dart';
 import '../model/class.dart';
 import '../util/shared_prefs_interface.dart';
+import '../util/schedule_database_client.dart';
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -21,18 +23,9 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     Tab(text: "Fri"),
   ];
 
-  bool isScheduleSet;
-  int noOfSessions;
-  bool isScheduleDataLoaded = false;
-
   @override
   initState(){
     super.initState();
-    setState(() {
-      loadNoOfSessions();
-      isScheduleDataLoaded = true;
-    });
-
     getInitialIndex();
     _tabController = TabController(
       vsync: this,
@@ -56,9 +49,6 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     }
   }
 
-  void loadNoOfSessions() async {
-    noOfSessions = await SharedPreferencesHelper.getNoOfClasses();
-  }
 
   @override
   dispose(){
@@ -67,10 +57,6 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
   }
 
   Widget build(BuildContext context) {
-        print("noOfSessions is $noOfSessions and isScheduleSet is $isScheduleSet");
-
-    if (!isScheduleDataLoaded) return loadingPage();
-
     return Scaffold(
       appBar: StudentoAppBar(
         title: "Schedule",
@@ -81,59 +67,100 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
           indicatorColor: Colors.blue,
         ),
       ),
-      body: getClasses(_tabController.index),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+         ClassesList(1),
+         ClassesList(2),
+         ClassesList(3),
+         ClassesList(4),
+         ClassesList(5)
+        ],
+      ) ,
     );
   }
 
-  Class exampleClass1 = Class(
-    classNo: 1,
-    weekDay: 1,
-    startTime: DateTime(2018, 3, 15, 43),
-    endTime: DateTime(2018, 3, 16, 43),
-    name: "Chemistry",
-    location: "Room 12",
-    teacher: "Panchoo"
-  );
+}
 
-  Class exampleClass2 = Class(
-    classNo: 2,
-    weekDay: 12,
-    startTime: DateTime.now(),
-    endTime: DateTime.now().add(Duration(minutes: 14)),
-    name: "Chemistry",
-    location: "Room 13",
-    teacher: "Phannchoo"
-  );
+class ClassesList extends StatefulWidget {
+  @override
+  _ClassesListState createState() => _ClassesListState();
 
-  Widget getClasses(int dayIndex) {
-    if (isScheduleSet == false){
-      //TODO Add schedule widget.
-      return ListView(
-        children: <Widget>[
-          ClassWidget(exampleClass1),
-          ClassWidget(exampleClass2),
-          ClassWidget(exampleClass1),
-          ClassWidget(exampleClass1),
-          ClassWidget(exampleClass1),
-          ClassWidget(exampleClass1),
-          ClassWidget(exampleClass1),
-        ],
-      );
-    }
+  final int weekDay;
 
-    return Center(child: Column(
-      children: <Widget>[
-        Padding(padding: EdgeInsets.all(25.0),),
-        Text("You haven't added your schedule yet.", textScaleFactor: 1.4,),
-        Padding(padding: EdgeInsets.all(20.0),),
-        FlatButton.icon(
-          color: Theme.of(context).buttonColor,
-          onPressed: (){print("You clicked this button");},
-          icon: Icon(Icons.schedule),
-          label: Text("Configure Schedule"),
-        ),
-      ],
-    ));
+  ClassesList(this.weekDay);
+}
+
+class _ClassesListState extends State<ClassesList> {
+  int noOfClasses;
+  bool isScheduleDataLoaded = false;
+
+  var db = ScheduleDatabaseHelper();
+
+  List<Class> classesList = <Class>[];
+
+
+  void loadNoOfClasses() async {
+    int _noOfClasses = await SharedPreferencesHelper.getNoOfClasses();
+    setState(() => noOfClasses = _noOfClasses);
   }
 
+  void loadSavedClasses() async{
+    List classes = await db.getClasses(weekDay: widget.weekDay);
+    List<Class> recesses = await db.getClasses(weekDay: 0);
+
+    recesses.forEach((Class recess){
+      int _classNo = recess.classNo;
+      classes.removeWhere((_class) => _class.classNo == _classNo);
+    });
+
+    List<Class> tempList = List.from(classes)..addAll(recesses);
+
+
+    DateTime dateThatWillNeverMatch =
+        DateTime.now().add(Duration(days: 999999));
+
+    List<Class> _classList = List.generate(
+      noOfClasses,
+      (int i) => Class(
+          classNo: i+1,
+          weekDay: widget.weekDay,
+          startTime : dateThatWillNeverMatch,
+          endTime: dateThatWillNeverMatch,
+          name: "You haven't set this class yet.",
+      ),
+    );
+
+    tempList.forEach((Class _class) {
+      _classList.replaceRange(
+        _class.classNo - 1,
+        _class.classNo,
+        [_class]
+      );
+    });
+
+    print("$_classList");
+    classesList = _classList;
+    setState(() =>isScheduleDataLoaded = true);
+  }
+
+  @override
+  void initState() {
+    loadNoOfClasses();
+    loadSavedClasses();
+    super.initState();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    if (!isScheduleDataLoaded) return loadingPage();
+
+    return ListView.builder(
+      itemCount: noOfClasses,
+      itemBuilder: (_, int index) {
+        return ClassWidget(classesList[index]);
+      },
+    );
+  }
 }
