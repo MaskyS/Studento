@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/class.dart';
 import '../util/schedule_database_client.dart';
+import '../UI/add_recess_dialog.dart';
 
 class ClassWidget extends StatefulWidget {
 
@@ -42,14 +43,64 @@ class _ClassWidgetState extends State<ClassWidget> {
   }
 
   void checkIfClassCurrentlyOngoing() {
-    DateTime currentTime = DateTime.now();
-    isClassCurrentlyOngoing =
-        currentTime.isAfter(widget.classItem.startTime)
-        && currentTime.isBefore(widget.classItem.endTime);
+
+    isClassCurrentlyOngoing = getIsClassCurrentlyOnGoing(
+      widget.classItem.startTime,
+      widget.classItem.endTime
+    );
 
     if (isClassCurrentlyOngoing) {
-      timeLeftInClass = widget.classItem.endTime.difference(currentTime);
+      timeLeftInClass = getTimeLeftInClass(
+        widget.classItem.startTime,
+        widget.classItem.endTime
+      );
     }
+  }
+
+  Duration getTimeLeftInClass(DateTime start, DateTime end) {
+    /// DateTime class doesn't have a setter for [hour],
+    /// so use this var for doing the maths instead.
+    int startHours = start.hour;
+
+    /// DateTime class doesn't have a setter for [minute],
+    /// so use this var for doing the maths instead.
+    int startMinutes = start.minute;
+
+    if (end.minute > start.minute) {
+      --startHours;
+      startMinutes += 60;
+    }
+
+    var diffMinutes = startMinutes - end.minute;
+    var diffHours = startHours - end.hour;
+
+    return Duration(hours: diffHours, minutes: diffMinutes);
+  }
+
+  bool getIsClassCurrentlyOnGoing(DateTime start, DateTime end) {
+    var currentTime = DateTime.now();
+
+    if (
+      start.hour >= currentTime.hour
+        && end.hour <= currentTime.hour
+    ) {
+      if (
+        start.minute >= currentTime.minute
+          && end.minute <= currentTime.hour
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  String getTimeLeftString(Duration timeLeft) {
+    String msg = "Ends in ";
+    if (timeLeft.inHours > 0) msg += "${timeLeft.inHours} hrs & ";
+    msg += "${timeLeft.inMinutes} mins";
+
+    return msg;
   }
 
   Widget buildSubtitle() {
@@ -64,19 +115,25 @@ class _ClassWidgetState extends State<ClassWidget> {
 
     if (isClassCurrentlyOngoing) {
       columnChildren.add(
-      Padding(padding: EdgeInsets.only(top: 5.0)));
+        Padding(padding: EdgeInsets.only(top: 5.0)));
       columnChildren.add(
-      Row(
-        children: <Widget>[
-          Text(
-            "Ends in ${timeLeftInClass.inMinutes} minutes.",
-            textScaleFactor: 0.8,
-            textAlign: TextAlign.start,
-            style: TextStyle(fontWeight: FontWeight.w500),
-          )],)
+        Row(
+          children: <Widget>[
+            Text(
+              getTimeLeftString(timeLeftInClass),
+              textScaleFactor: 0.8,
+              textAlign: TextAlign.start,
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
       );
     }
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: columnChildren);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: columnChildren
+    );
   }
 
   void showEditDialog() {
@@ -132,21 +189,22 @@ class _ClassWidgetState extends State<ClassWidget> {
 
   void updateClass() async{
     setState(() {
-      widget.classItem.name = nameController.text;
-      widget.classItem.location = locationController.text;
-      widget.classItem.teacher = teacherController.text;
-      print(widget.classItem.weekDay);
+      widget.classItem
+        ..name = nameController.text
+        ..location = locationController.text
+        ..teacher = teacherController.text;
     });
 
     bool doesClassExist =
-        (await db.getClass(widget.classItem.id) != null)
-          ? true
-          : false;
+        (await db.getClass(widget.classItem.id) != null);
 
     if (doesClassExist) {
       db.updateClass(widget.classItem);
     }
     else {
+      /// TODO Start Times/End Times should also be set here.
+      /// TODO Calculate that based on school start/end times
+      /// TODO + no of Classes + length of classes.
       int _id = await db.addClass(widget.classItem);
       setState(() => widget.classItem.id = _id);
     }
@@ -169,8 +227,30 @@ class _ClassWidgetState extends State<ClassWidget> {
     checkIfClassCurrentlyOngoing();
     Widget editButton = IconButton(
       icon: Icon(Icons.edit),
-      onPressed: showEditDialog,
-      tooltip: "Edit this class.",
+      onPressed: () async {
+        if (widget.classItem.weekDay == 0) {
+          Class updatedRecess = await Navigator
+              .of(context)
+              .push(MaterialPageRoute<Class>(
+                builder: (_) => AddRecessDialog.edit(widget.classItem),
+                fullscreenDialog: true
+              ));
+          if (updatedRecess != null) {
+            updatedRecess.id = widget.classItem.id;
+            setState(() => widget.classItem  = updatedRecess);
+            db.updateClass(updatedRecess);
+            // ? This is a super hack, The right was to do this is to
+            // ? update the parent widget (ClassesList) but the current
+            // ? implementation doesn't allow that.
+            Navigator
+                .of(context)
+                .pushReplacementNamed('schedule_page');
+          }
+        }
+          else {
+            showEditDialog();
+        }
+      }
     );
 
     return ListTile(
@@ -193,7 +273,6 @@ class _ClassWidgetState extends State<ClassWidget> {
         widget.classItem.name,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-
     );
   }
 }
