@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../ads_helper.dart' as ads;
 import '../util/shared_prefs_interface.dart';
 import '../UI/loading_page.dart';
 import '../model/subject.dart';
@@ -20,11 +24,26 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
   List<Subject> subjects = [];
   List<Widget> subjectTiles = [];
   bool isSubjectsLoaded = false;
+  BannerAd _bannerAd;
+
+  BannerAd createBannerAd() => BannerAd(
+    adUnitId: ads.bannerAdUnitId,
+    targetingInfo: ads.targetingInfo,
+    size: AdSize.smartBanner,
+  );
 
   @override
   void initState() {
     super.initState();
     getSubjects();
+    FirebaseAdMob.instance.initialize(appId: ads.appId);
+    _bannerAd = createBannerAd()..load()..show();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
   }
 
   void getSubjects() async{
