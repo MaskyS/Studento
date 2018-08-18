@@ -65,12 +65,16 @@ class ScheduleDatabaseHelper {
   }
 
   //Get
-  Future<List> getClasses({@required int weekDay}) async {
+  Future<List<Class>> getClasses({@required int weekDay}) async {
     assert (weekDay != null);
     var whereArg = weekDay;
     var dbClient = await db;
     var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE $columnWeekDay = $whereArg ORDER BY $columnClassNo ASC");
-    return result.toList();
+    List<Class> classes = <Class>[];
+    for (int i = 0; i < result.length; i++) {
+      classes.add(Class.fromMap(result[i]));
+    }
+    return classes;
   }
 
   //Insertion

@@ -65,7 +65,8 @@ class StudentoDrawer extends StatelessWidget {
   final marksCalculatorFragment = DrawerFragment(
     icon: Icons.assessment,
     title: "Marks Calculator",
-    subtitle: "Input your assignment scores, get your final mark. Simple.",
+    subtitle: "Coming soon...",
+    // subtitle: "Input your assignment scores, get your final mark. Simple.",
     routeName: 'marks_calculator_page',
   );
 

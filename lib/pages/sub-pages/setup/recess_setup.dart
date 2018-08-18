@@ -103,9 +103,9 @@ class _RecessSetupState extends State<RecessSetup> {
           fullscreenDialog: true
         ),
     );
-    if (newRecess != null) {
+
+    if (newRecess != null)
       addRecess(newRecess);
-    }
   }
 
   void _openEditRecessDialog(Class _recess) async{

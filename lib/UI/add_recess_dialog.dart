@@ -22,14 +22,10 @@ class AddRecessDialog extends StatefulWidget {
       : classAfterWhichRecessStarts = recessEntryToEdit.classNo - 1;
 
   @override
-  WeightEntryDialogState createState() {
-    if (recessEntryToEdit != null) {
-      return WeightEntryDialogState(recessEntryToEdit, classAfterWhichRecessStarts);
-    } else {
-      return WeightEntryDialogState(
-          null, classAfterWhichRecessStarts);
-    }
-  }
+  WeightEntryDialogState createState() =>
+    (recessEntryToEdit != null)
+        ? WeightEntryDialogState(recessEntryToEdit, classAfterWhichRecessStarts)
+        : WeightEntryDialogState(null, classAfterWhichRecessStarts);
 }
 
 class WeightEntryDialogState extends State<AddRecessDialog> {
@@ -53,10 +49,12 @@ class WeightEntryDialogState extends State<AddRecessDialog> {
   }
 
   void initTime() {
-    _startTime =
-    recessEntry != null ? recessEntry.startTime : DateTime.now();
-    _endTime =
-        recessEntry != null ? recessEntry.endTime : DateTime.now();
+    _startTime = (recessEntry != null)
+        ? recessEntry.startTime
+        : DateTime.now();
+    _endTime = (recessEntry != null)
+        ? recessEntry.endTime
+        : DateTime.now();
   }
 
   void loadNoOfClasses() async {
@@ -77,19 +75,8 @@ class WeightEntryDialogState extends State<AddRecessDialog> {
   Widget _buildSaveButton() => FlatButton(
     child: Text('SAVE'),
     onPressed: () {
-      if (isTimeValid) {
-        recessEntry = Class(
-          weekDay: 0,
-          endTime: _endTime,
-          startTime: _startTime,
-          name: "Recess 1",
-          classNo: _classAfterWhichRecessStarts + 1,
-        );
-
-        Navigator
-            .of(context)
-            .pop(recessEntry);
-      }
+      if (isTimeValid)
+        returnEditedRecess();
       else {
         showMessageDialog(
           context,
@@ -161,7 +148,7 @@ class WeightEntryDialogState extends State<AddRecessDialog> {
       builder: (_) => NumberPickerDialog.integer(
         title: Text("Enter class no: "),
         initialIntegerValue: _classAfterWhichRecessStarts,
-        maxValue: _noOfClasses,
+        maxValue: _noOfClasses - 2, // Minus 2 since recess cant be after the last clas, neither BE the last class.
         minValue: 1,
       ),
     ).then((int value) {
@@ -186,5 +173,19 @@ class WeightEntryDialogState extends State<AddRecessDialog> {
     );
 
     return dateTimeObj;
+  }
+
+  void returnEditedRecess(){
+    recessEntry = Class(
+      weekDay: 0,
+      endTime: _endTime,
+      startTime: _startTime,
+      name: "Recess 1",
+      classNo: _classAfterWhichRecessStarts + 1,
+    );
+
+    Navigator
+        .of(context)
+        .pop(recessEntry);
   }
 }

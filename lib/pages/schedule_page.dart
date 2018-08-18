@@ -23,17 +23,6 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     Tab(text: "Fri"),
   ];
 
-  @override
-  initState(){
-    super.initState();
-    getInitialIndex();
-    _tabController = TabController(
-      vsync: this,
-      length: dayTabs.length,
-      initialIndex: initialIndex,
-    );
-  }
-
   void getInitialIndex() {
     int currentDay = DateTime.now().weekday;
     bool isWeekDay =  currentDay < 6;
@@ -49,11 +38,21 @@ class _SchedulePageState extends State<SchedulePage>  with SingleTickerProviderS
     }
   }
 
+  @override
+  void initState(){
+    super.initState();
+    getInitialIndex();
+    _tabController = TabController(
+      vsync: this,
+      length: dayTabs.length,
+      initialIndex: initialIndex,
+    );
+  }
 
   @override
-  dispose(){
-    super.dispose();
+  void dispose() {
     _tabController.dispose();
+    super.dispose();
   }
 
   Widget build(BuildContext context) {
@@ -139,16 +138,15 @@ class _ClassesListState extends State<ClassesList> {
       );
     });
 
-    print("$_classList");
     classesList = _classList;
     setState(() =>isScheduleDataLoaded = true);
   }
 
   @override
   void initState() {
+    super.initState();
     loadNoOfClasses();
     loadSavedClasses();
-    super.initState();
   }
 
 
