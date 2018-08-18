@@ -48,28 +48,27 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
         // subjectTiles.add(_SubjectTile(subject, widget.onGridTileTap));
     });
 
-    setState(() =>
-      isSubjectsLoaded = true
-    );
+    setState(() => isSubjectsLoaded = true);
 
   }
 
   @override
   Widget build(BuildContext context) {
-
     if (!isSubjectsLoaded) return loadingPage();
-    StaggeredGridView subjectTilesBuilder = StaggeredGridView.countBuilder(
-          crossAxisCount: 4,
-          itemCount: subjects.length,
-          itemBuilder: (_, int index) => buildSubjectTile(subjects[index]),
-          staggeredTileBuilder: (int index) =>
-              StaggeredTile.count(2, index.isEven ? 2 : 1),
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-);
+
+    Widget subjectTilesBuilder() => StaggeredGridView.countBuilder(
+      crossAxisCount: 4,
+      mainAxisSpacing: 4.0,
+      crossAxisSpacing: 4.0,
+      itemCount: subjects.length,
+      itemBuilder: (_, int i) => buildSubjectTile(subjects[i]),
+      staggeredTileBuilder: (int i) =>
+          StaggeredTile.count(2, i.isEven ? 2 : 1),
+    );
+
     return Padding(
       padding: EdgeInsets.only(top: 12.0),
-      child: subjectTilesBuilder,
+      child: subjectTilesBuilder(),
     );
   }
 
@@ -78,7 +77,6 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
       begin: FractionalOffset(0.0, 0.0),
       end: FractionalOffset(2.0, 0.0),
       stops: [0.0, 0.5],
-      tileMode: TileMode.clamp,
       colors: [
         Colors.deepPurpleAccent,
         Color(0xFF5fbff9), // Imperialish blue.
@@ -98,31 +96,28 @@ class _SubjectsStaggeredListViewState extends State<SubjectsStaggeredListView> {
       style: subjectNameStyle,
     );
 
-    return Card(
+    return Material(
       elevation: 2.0,
-      child: InkWell(
-        onTap: () => widget.onGridTileTap(subject),//widget.onGridTileTap(subject),
-        onLongPress: () => print("long pressed."),
-        child: Container(
+      color: Colors.transparent,
+      child: Ink(
+        decoration: BoxDecoration(
+          gradient: backgroundGradient,
+          border: Border.all(color: Colors.black54, width: 2.0),
+        ),
+        child: InkWell(
+          onTap: () => widget.onGridTileTap(subject),
           child: Center(child: subjectNameText),
-          padding: EdgeInsets.symmetric(
-            vertical: 18.0,
-            horizontal: 5.0,
-          ),
-          decoration: BoxDecoration(
-            gradient: backgroundGradient,
-            border: Border.all(color: Colors.black54, width: 2.0),
-          ),
         ),
       ),
     );
   }
+
   /// Prettifies the subject name by converting the name to uppercase and
   /// breaking lengthy names into two lines.
   String prettifySubjectName(String subjectName) {
-    print("Subject: $subjectName");
     subjectName = subjectName.toUpperCase();
     subjectName = subjectName.replaceFirst(" ", " \n");
     return subjectName;
   }
+
 }
