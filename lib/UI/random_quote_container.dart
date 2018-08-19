@@ -15,12 +15,9 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
   List quotesList;
 
   /// Read the quotes from the json file into [quotesList].
-  void _getQuotes() {
-    rootBundle.loadString('assets/json/quotes.json').then((String fileData) {
-      setState(() =>
-        quotesList = json.decode(fileData)
-      );
-    });
+  void _getQuotes() async{
+    String data = await rootBundle.loadString('assets/json/quotes.json');
+    setState(() => quotesList = json.decode(data));
   }
 
   @override
@@ -29,8 +26,17 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
     _getQuotes();
   }
 
-  List<Widget> _buildRandomQuoteWidget() {
+  @override
+  Widget build(BuildContext context) {
+    // While the quotes are being loaded, display a progress indicator.
+    if (quotesList == null) return loadingPage();
 
+    return ListView(
+      children: _buildRandomQuoteWidget(),
+    );
+  }
+
+  List<Widget> _buildRandomQuoteWidget() {
     // Get a random quote and the corresponding author from the list.
     int randomIndex = Random().nextInt(quotesList.length);
     final String quote = quotesList[randomIndex]["Quote String"];
@@ -71,15 +77,5 @@ class RandomQuoteContainerState extends State<RandomQuoteContainer> {
       quoteTextContainer(),
       authorContainer(),
     ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // While the quotes are being loaded, display a progress indicator.
-    if (quotesList == null) return loadingPage();
-
-    return ListView(
-      children: _buildRandomQuoteWidget(),
-    );
   }
 }

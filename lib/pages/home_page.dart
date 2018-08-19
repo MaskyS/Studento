@@ -173,18 +173,11 @@ class _HomePageButtonState extends State<HomePageButton> {
     super.dispose();
   }
 
-  static final MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    contentUrl: 'http://cambridgeinternational.org',
-    testDevices: null,
-    childDirected: false,
-    gender: MobileAdGender.unknown,
-  );
-
   InterstitialAd _interstitialAd;
 
   InterstitialAd createInterstitialAd() => InterstitialAd(
-    adUnitId: ads.adUnitId,
-    targetingInfo: targetingInfo,
+    adUnitId: ads.interstitialAdUnitId,
+    targetingInfo: ads.targetingInfo,
     listener: (MobileAdEvent event) {
       print("InterstitialAd event $event");
     },
