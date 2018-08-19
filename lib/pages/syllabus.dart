@@ -58,9 +58,6 @@ class SyllabusPageState extends State<SyllabusPage> {
     }
   }
 
-  returnToHomePage() => Navigator.of(context)
-      .popUntil(ModalRoute.withName('home_page'));
-
   @override
   Widget build(BuildContext context) {
     if (urlList == null) return loadingPage();
@@ -81,10 +78,6 @@ class SyllabusPageState extends State<SyllabusPage> {
         color: Colors.white,
         onPressed: () => _showSnackBar(context),
     )];
-
-    // Prevent Navigational state nests (i.e tapping back forever to get back
-    // to the home page).
-    returnToHomePage();
 
     /// Open up the WebView Scaffold which will display the pdf document of the
     /// requested syllabus.

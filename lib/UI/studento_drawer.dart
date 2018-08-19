@@ -5,12 +5,6 @@ import '../UI/random_quote_container.dart';
 
 class StudentoDrawer extends StatelessWidget {
 
-  /// Whether this drawer is being used in the HomePage. If so, we'll remove
-  /// the fragment that navigates to the HomePage on tap.
-  final bool usedInHomePage;
-
-  StudentoDrawer({this.usedInHomePage: false});
-
   static void _launchBugReportingWebsite() async {
     print("You're a good user, thanks for reporting bugs.");
     const url = 'https://github.com/MaskyS/studento/issues/';
@@ -34,18 +28,11 @@ class StudentoDrawer extends StatelessWidget {
 
   // Place quote and author widgets located in RandomQuotesContainer() into the
   // DrawerHeader.
-  drawerHeader() => DrawerHeader(
+  Widget drawerHeader() => DrawerHeader(
     decoration: BoxDecoration(
       gradient: backgroundGradient,
     ),
     child: RandomQuoteContainer(),
-  );
-
-  final homePageFragment = DrawerFragment(
-    title: "Home",
-    icon: Icons.home,
-    subtitle: "Go back to the home page.",
-    routeName: 'home_page',
   );
 
   final syllabusPageFragment = DrawerFragment(
@@ -94,7 +81,6 @@ class StudentoDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> fragmentsList = [
       drawerHeader(),
-      homePageFragment,
       syllabusPageFragment,
       eventsFragment,
       marksCalculatorFragment,
@@ -103,10 +89,6 @@ class StudentoDrawer extends StatelessWidget {
       settingsFragment,
       sendFeedbackFragment
     ];
-
-    if (usedInHomePage) {
-      fragmentsList.remove(homePageFragment);
-    }
 
     final drawer = Drawer(
       child: ListView(
@@ -131,7 +113,7 @@ class DrawerFragment extends StatelessWidget {
   );
 
   void _onTap(String routeName, BuildContext context) {
-    Navigator.pushReplacementNamed(context, 'home_page');
+    Navigator.pushNamedAndRemoveUntil(context, 'home_page', ModalRoute.withName('home_page'));
     Navigator.pushNamed(context, routeName);
   }
 
