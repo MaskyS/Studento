@@ -8,7 +8,6 @@ import 'package:after_layout/after_layout.dart';
 import '../UI/studento_app_bar.dart';
 import '../UI/studento_drawer.dart';
 import '../UI/clock.dart';
-import '../UI/vertical_divider.dart';
 import '../UI/rate_dialog.dart';
 import '../ads_helper.dart' as ads;
 import 'package:firebase_admob/firebase_admob.dart';

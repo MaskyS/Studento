@@ -51,11 +51,11 @@ class _PermissionsSetupState extends State<PermissionsSetup> {
         int.parse(androidInfo.version.release.substring(0,1)) >= 6;
 
     if (_isAndroidVersionMarshmallowAndAbove){
-      bool isPermissionRequestGranted = false;
-      while (!isPermissionRequestGranted) {
-        isPermissionRequestGranted = await
+      var permissionRequestStatus = PermissionStatus.notDetermined;
+      while (permissionRequestStatus != PermissionStatus.authorized) {
+        permissionRequestStatus = await
             SimplePermissions.requestPermission(Permission.WriteExternalStorage);
-        print("permission request result is $isPermissionRequestGranted.");
+        print("permission request result is $permissionRequestStatus.");
       }
     }
 

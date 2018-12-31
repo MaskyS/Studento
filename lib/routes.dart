@@ -8,7 +8,7 @@ import 'pages/get_pro_page.dart';
 import 'pages/settings.dart';
 import 'pages/schedule_page.dart';
 import 'pages/todo_list_page.dart';
-import 'pages/topic_notes.dart';
+// import 'pages/topic_notes.dart';
 
 const String homeRoute = 'home_page';
 
@@ -28,7 +28,7 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   pastPapersPageRoute: (BuildContext context) => PastPapersPage(),
   schedulePageRoute: (BuildContext context) => SchedulePage(),
   syllabusPageRoute: (BuildContext context) => SyllabusPage(),
-  topicNotesPageRoute: (BuildContext context) => TopicNotesPage(),
+  // topicNotesPageRoute: (BuildContext context) => TopicNotesPage(),
   eventsPageRoute: (BuildContext context) => EventsPage(),
   marksCalculatorPageRoute: (BuildContext context) => MarksCalculatorPage(),
   getProPageRoute: (BuildContext context) => GetProPage(),
