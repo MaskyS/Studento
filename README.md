@@ -26,6 +26,6 @@ This app is a WIP, but here's a small description of what's to come:
 - A compilation of high quality revisions notes on each subject so you can catch
   up on classes you missed, or master topics that have been giving you trouble.
   
-- Any other feature you'd like to see? Send them to maskys@hackers.mu
+- Any other feature you'd like to see? Send them to maskys@cyberstorm.mu
   You can also help us out by filling this 1 minute survey: https://goo.gl/AGMs4e
 
