@@ -1,7 +1,7 @@
 # Studento (Work in Progress)
 
 Development temporarily on hold until my exams are over and flutter reaches 1.0 (For easier webview & pdf integration as well as other features.)
-![Screenshot HomePage](progress_screenshots/Frame.png)
+![Screenshot HomePage](progress_screenshots/flutter_31.png)
 ## The only app you need for acing your IGCSE!
 
 This app is a WIP, but here's a small description of what's to come:
