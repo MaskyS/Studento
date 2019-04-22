@@ -1,8 +1,9 @@
 # Studento (Work in Progress)
 
 Work still in progress!
+<img src="https://github.com/MaskyS/Studento/blob/master/progress_screenshots/flutter_32.png" height="1000">
 
-![Screenshot HomePage](progress_screenshots/flutter_32.png =250x)
+
 ## The only app you need for acing your IGCSE!
 
 This app is a WIP, but here's a small description of what's to come:
