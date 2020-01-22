@@ -1,9 +1,9 @@
-# Studento
+# Studento   
+
 <p align="center">
 <img src="https://github.com/MaskyS/Studento/blob/master/progress_screenshots/flutter_32.png" height="600">
-   <a href='https://play.google.com/store/apps/details?id=com.MaskyS.studento&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </p>
-
+ <a href='https://play.google.com/store/apps/details?id=com.MaskyS.studento&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="100"/></a>
 ## The only app you need for acing your CIE Exams
 
 Studento is designed to be the O/A Level student's swiss knife- it's an assistant app by students, for students.
