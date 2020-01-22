@@ -1,6 +1,7 @@
 # Studento
 <p align="center">
 <img src="https://github.com/MaskyS/Studento/blob/master/progress_screenshots/flutter_32.png" height="600">
+   <a href='https://play.google.com/store/apps/details?id=com.MaskyS.studento&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </p>
 
 ## The only app you need for acing your CIE Exams
@@ -30,7 +31,7 @@ At its core, Studento is a pain-killer. It comes with the following active compo
 #### Never be surprised in a test
 - The syllabus of each subject is within a few taps' reach, so you'll always know what will be on your test.
 
-- Any other feature you'd like to see? Send them to (contact@maskys.com)[mailto:contact@maskys.com] or create an issue!
+- Any other feature you'd like to see? Send them to (contact@maskys.com) or create an issue!
 
 
 #### Why was the code removed from this repo?
