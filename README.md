@@ -34,8 +34,6 @@ At its core, Studento is a pain-killer. It comes with the following active compo
 #### Never be surprised in a test
 - The syllabus of each subject is within a few taps' reach, so you'll always know what will be on your test.
 
-- Any other feature you'd like to see? Send them to (contact@maskys.com) or create an issue!
-
 
 #### Why was the code removed from this repo?
 The old proof-of-concept app that I'd built for this project used to live here. I decided to pull it because the final app will be closed-source. The repo will be used in the future for tracking issues/milestones.
